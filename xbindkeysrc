@@ -1,0 +1,46 @@
+#VolumeUp
+"amixer sset PCM 1+"
+    m:0x0 + c:176
+    XF86AudioRaiseVolume
+
+#VolumeDown
+"amixer sset PCM 1-"
+    m:0x0 + c:174
+    XF86AudioLowerVolume
+
+#Mute
+"amixer sset Speaker toggle"
+    m:0x0 + c:160
+    XF86AudioMute
+
+#PlayPause
+"mocp -G"
+    m:0x0 + c:162
+    NoSymbol
+
+#Stop
+"mocp -s"
+    m:0x0 + c:164
+    NoSymbol
+
+#Previous
+"mocp -r"
+    m:0x0 + c:144
+    NoSymbol
+
+#Next
+"mocp -f"
+    m:0x0 + c:153
+    NoSymbol
+#Lock
+"slock"
+   m:0x0 + c:146
+   NoSymbol
+#Toggle-Vga
+"toggle-vga"
+   m:0x0 + c:214
+   XF86Display
+#Toggle-Touchpad
+"toggle-touchpad"
+   m:0x0 + c:249
+   NoSymbol
