@@ -7,7 +7,7 @@ volume(){
     fi
 }
 
-xbindkeys&
+xbindkeys -f ~/.xbindkeysrc
 synclient TouchpadOff=1
 bgs $HOME/wallpapers/Treehugger-1400x1050.jpg
 while xsetroot -name "[Vol: `volume`]   `batmon`  [`date +"%a %d.%m.%Y  %H:%M"`]"; do
