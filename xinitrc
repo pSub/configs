@@ -10,6 +10,9 @@ volume(){
 xbindkeys -f ~/.xbindkeysrc
 synclient TouchpadOff=1
 bgs $HOME/wallpapers/Treehugger-1400x1050.jpg
+thunderbird &
+firefox &
+xterm -e irssi &
 while xsetroot -name "[Vol: `volume`]   `batmon`  [`date +"%a %d.%m.%Y  %H:%M"`]"; do
        sleep 1
 done &
