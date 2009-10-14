@@ -14,11 +14,13 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "mail" };
+static const char *tags[] = { "term", "www", "dev", "chat", "mail", "misc"};
 
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Thunderbird",  NULL,       NULL,       1 << 8,       False,       -1 },
+	{ "Thunderbird",  NULL,       NULL,       1 << 4,       False,       -1 },
+    { "Shiretoko",    NULL,       NULL,       1 << 1,       False,       -1 },
+    { "XTerm",      NULL,         "irssi",       1 << 3,       False,       -1 },
 };
 
 /* layout(s) */
@@ -76,9 +78,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
@@ -98,4 +97,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
