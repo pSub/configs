@@ -2,3 +2,4 @@
 PROMPT="[%n@%m %c]%# "
 alias startx="(startx &) && exit"
 alias when="when --futur=0 --past=0"
+alias ls="ls --color=auto"
