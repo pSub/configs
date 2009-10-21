@@ -5,3 +5,6 @@ alias ls="ls --color=auto"
 if [ "$(tty)" = "/dev/tty1" ]; then
    (startx -- -nolisten tcp  &) && exit
 fi
+
+setopt autocd
+autoload -U compinit && compinit
