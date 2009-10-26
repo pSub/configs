@@ -22,6 +22,7 @@ setopt autocd
 setopt no_beep
 setopt rm_star_wait
 autoload -U compinit && compinit
+autoload -U keeper && keeper
 zle -N global-alias-space
 zstyle ':completion::complete:*' rehash true
 zstyle ':completion:*:kill:*' command 'ps cf -u $USER -o pid,%cpu,cmd'
