@@ -5,14 +5,18 @@ global-alias-space(){
    zle self-insert
 }
 
+start restart stop reload(){
+   echo "/etc/rc.d/$1 $0"
+}
+
 PROMPT="[%n@%m %c]%1(j.(%j%).)%# "
 export PAGER=less
 
 eval `dircolors`
 alias when="when --futur=0 --past=0"
 alias ls="ls --color=auto"
-alias -g G="| grep"
-alias -g P="| $PAGER"
+alias -g g="| grep"
+alias -g p="| $PAGER"
 
 if [ "$(tty)" = "/dev/tty1" ]; then
    (startx -- -nolisten tcp  &) && exit
@@ -21,6 +25,7 @@ fi
 setopt autocd
 setopt no_beep
 setopt rm_star_wait
+setopt function_argzero
 autoload -U compinit && compinit
 autoload -U keeper && keeper
 zle -N global-alias-space
