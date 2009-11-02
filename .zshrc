@@ -6,7 +6,7 @@ global-alias-space(){
 }
 
 start restart stop reload(){
-   echo "/etc/rc.d/$1 $0"
+   su --command="/etc/rc.d/$1 $0"
 }
 
 PROMPT="[%n@%m %c]%1(j.(%j%).)%# "
