@@ -7,12 +7,15 @@ volume(){
     fi
 }
 
-xbindkeys -f ~/.xbindkeysrc
-synclient TouchpadOff=1
-bgs $HOME/wallpapers/Treehugger-1400x1050.jpg
+setxkbmap -layout de-latin1-nodeadkeys & 
+xbindkeys -f $HOME/.xbindkeysrc &
+xmodmap $HOME/.xmodmaprc &
+synclient TouchpadOff=1 &
+wmname LG3D &
+bgs $HOME/wallpapers/Treehugger-1400x1050.jpg &
 thunderbird &
 firefox &
 while xsetroot -name "[Vol: `volume`]   `batmon`  [`date +"%a %d.%m.%Y  %H:%M"`]"; do
        sleep 1
 done &
-exec dwm 2> ~/.log/dwm.log
+exec dwm 2> $HOME/.log/dwm.log
