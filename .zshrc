@@ -2,7 +2,6 @@
 
 setopt autocd
 setopt no_beep
-setopt rm_star_wait
 setopt function_argzero
 setopt histignoredups
 
