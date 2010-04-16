@@ -14,27 +14,23 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "term", "www", "dev", "chat", "mail", "misc"};
+static const char *tags[] = { "cli", "www", "dev", "chat", "mail", "misc"};
 
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Shredder",  NULL,       NULL,       1 << 4,       False,       -1 },
     { "Namoroka",    NULL,       NULL,       1 << 1,       False,       -1 },
-    { "XTerm",      NULL,         "irssi",       1 << 3,       False,       -1 },
 };
 
 /* layout(s) */
 static const float mfact      = 0.55; /* factor of master area size [0.05..0.95] */
 static const Bool resizehints = True; /* True means respect size hints in tiled resizals */
-static const int nmaster = 2; /* default number of clients in the master area */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-    { "-|=",      ntile },
-    { "-|-",      nbstack },
 };
 
 /* key definitions */
@@ -50,13 +46,13 @@ static const Layout layouts[] = {
 
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "xterm", NULL };
+static const char *termcmd[]  = { "urxvtc", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_v,      togglebar,      {0} },
+	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
@@ -64,14 +60,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
-    { MODKEY,                       XK_a,      incnmaster,     {.i = +1 } },
-    { MODKEY,                       XK_z,      incnmaster,     {.i = -1 } },
-    { MODKEY,                       XK_x,      setnmaster,     {.i = 2 } },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-    { MODKEY,                       XK_n,      setlayout,      {.v = &layouts[3] } },
-    { MODKEY,                       XK_b,      setlayout,      {.v = &layouts[4] } },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
