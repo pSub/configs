@@ -14,12 +14,14 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "cli", "www", "dev", "chat", "mail", "misc"};
+static const char *tags[] = { "org", "www", "dev", "chat", "mail", "cli","misc"};
 
 static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Shredder",  NULL,       NULL,       1 << 4,       False,       -1 },
-    { "Namoroka",    NULL,       NULL,       1 << 1,       False,       -1 },
+	{ "Lanikai",  NULL,       NULL,       1 << 4,       False,       -1 },
+  { "Namoroka",  NULL,       NULL,       1 << 1,       False,       -1 },
+  { "feh",       NULL,       NULL,       0,         True,        -1 },
+  { NULL, NULL, "floatingwin", 0, True, -1 },
 };
 
 /* layout(s) */
@@ -47,11 +49,13 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "urxvtc", NULL };
+static const char *termfcmd[] = { "urxvtc", "-T", "floatingwin", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termfcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -77,6 +81,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
+  TAGKEYS(                        XK_7,                      6)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
