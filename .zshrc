@@ -31,6 +31,10 @@ start restart stop reload(){
    su --command="/etc/rc.d/$1 $0"
 }
 
+sync-unison(){
+   unison unison && unison all;
+}
+
 PROMPT="[%n@%m %c]%1(j.(%j%).)%1(?.%{$fg[red]%}.)%#%{$reset_color%} "
 
 export PAGER=less
