@@ -27,6 +27,9 @@ xbindkeys -f $HOME/.xbindkeysrc &
 # Loading the xmodmap configuration (capslock -> escape)
 xmodmap /home/pascal/.xmodmaprc &
 
+# Start urxvt daemon
+urxvtd &
+
 # Disable touchpad
 synclient TouchpadOff=1 &
 
@@ -34,7 +37,7 @@ synclient TouchpadOff=1 &
 wmname LG3D &
 
 # Set background
-bgs $HOME/wallpapers/Treehugger-1400x1050.jpg &
+bgs $HOME/wallpapers/Dystopia-2000x1333.jpg &
 thunderbird &
 firefox &
 
