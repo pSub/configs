@@ -57,6 +57,11 @@ sync-unison(){
     unison unison && unison all;
 }
 
+hexeditor(){
+   xxd $1 | vipe | xxd -r | sponge $1
+}
+
+
 precmd() {       
     vcs_info 'prompt'          
 }
