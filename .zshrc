@@ -8,6 +8,7 @@ setopt histignoredups
 autoload -U compinit && compinit
 autoload -U keeper && keeper
 autoload -U colors && colors
+autoload -U zfinit && zfinit
 autoload -Uz vcs_info
 zmodload -ap zsh/mapfile mapfile 
 
