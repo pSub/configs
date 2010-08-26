@@ -70,6 +70,9 @@ hexeditor(){
    xxd $input | vipe | xxd -r | sponge $output
 }
 
+greptodos(){
+   find . -name $1 | xargs grep -oE 'TODO:[^$]*' | sed s/TODO:/$2/ | combine - xor ~/.test > ~/.test
+}
 
 precmd() {       
     vcs_info 'prompt'          
