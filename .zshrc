@@ -58,7 +58,15 @@ sync-unison(){
 }
 
 hexeditor(){
-   xxd $1 | vipe | xxd -r | sponge $1
+   if [[ ! -f $1 ]]; then
+        touch $1
+   fi
+   input=$1
+   output=$2
+   if [ $# -eq 1 ]; then
+      output=$1
+   fi
+   xxd $input | vipe | xxd -r | sponge $output
 }
 
 
