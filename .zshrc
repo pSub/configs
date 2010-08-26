@@ -71,7 +71,7 @@ hexeditor(){
 }
 
 greptodos(){
-   find . -name $1 | xargs grep -oE 'TODO:[^$]*' | sed s/TODO:/$2/ | combine - xor ~/.test > ~/.test
+   find . -name $1 | xargs grep --no-filename -oE 'TODO:[^$]*' | sed s/TODO:/$2/ | combine - xor ~/.todo.txt | sponge ~/.todo.txt
 }
 
 precmd() {       
