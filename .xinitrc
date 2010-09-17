@@ -1,7 +1,8 @@
-# Display the speaker volume
+# Display the speaker/headphone volume
 volume(){
-    state="`amixer get Speaker |awk '/Front\ Left:/ {print $4}'`" 
-    if test "$state" != "[on]"; then
+    speaker="`amixer get Speaker | awk '/Front\ Left:/ {print $4}'`" 
+    headphone="`amixer get Headphone | awk '/Front\ Left:/ {print $4}'`"
+    if test "$speaker" != "[on]" && test "$headphone" != "[on]"; then
         echo "Mute"
      else
         echo "`amixer get PCM | awk '/Front\ Left:/{print $5}' | sed -e 's/\[//g'| sed -e 's/%\]//g'`"
@@ -21,13 +22,16 @@ wifi(){
 # Disable touchpad clicks while typing
 #syndaemon -d
 
+# Disable beep
+xset b off
+
 # Loading the xbindkeys configuration
 xbindkeys -f $HOME/.xbindkeysrc &
 
 # Loading the xmodmap configuration (capslock -> escape)
 xmodmap /home/pascal/.xmodmaprc &
 
-# Start urxvt daemon
+# urxvt daemon
 urxvtd &
 
 # Disable touchpad
