@@ -12,6 +12,7 @@ autoload -U zfinit && zfinit
 autoload -Uz vcs_info
 zmodload -ap zsh/mapfile mapfile 
 
+
 # set some colors
 for COLOR in RED GREEN YELLOW WHITE BLACK CYAN; do
     eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'         
@@ -74,6 +75,21 @@ greptodos(){
    find . -name $1 | xargs grep --no-filename -oE 'TODO:[^$]*' | sed s/TODO:/$2/ | combine - xor ~/.todo.txt | sponge ~/.todo.txt
 }
 
+addExpense(){
+  echo $1 >> $HOME/finances/$(date +"%Y-%m")/out
+}
+
+addRevenue(){
+  echo $1 >> $HOME/finances/$(date +"%Y-%m")/in
+}
+
+showFinancialPosition(){
+   totalIn=$(cat $HOME/finances/$(date +"%Y-%m")/in | awk -F ";" '{SUM += $2} END {print SUM}')
+   totalOut=$(cat $HOME/finances/$(date +"%Y-%m")/out | awk -F ";" '{SUM += $2} END {print SUM}')
+   total=$(($totalIn - $totalOut))
+   printf "Revenues: %.2f\nExpenses: %.2f\nTotal:    %.2f\n" "$totalIn" "$totalOut" "$total"
+}
+
 precmd() {       
     vcs_info 'prompt'          
 }
@@ -84,6 +100,7 @@ PROMPT="[%n@%m %c]%1(j.(%j%).)%1(?.%{$fg[red]%}.)%#%{$reset_color%} "
 RPROMPT="${git}"
 
 export PAGER=less
+export REPORTTIME="10"
 
 eval `dircolors`
 alias when="when --futur=0 --past=0"
@@ -91,6 +108,8 @@ alias todo="hsgtd"
 alias ls="ls --color=auto"
 alias -g g="| grep"
 alias -g p="| $PAGER"
+alias -s pdf=apvlv
+alias -s djvu=djview
 alias sup="ruby -I $HOME/.gem/mainline/lib -w $HOME/.gem/mainline/bin/sup"
 
 if [ "$(tty)" = "/dev/tty1" ]; then
