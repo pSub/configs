@@ -1,0 +1,13 @@
+# vcs_info preferences
+FMT_BRANCH="${PR_GREEN}%s on %b%u%c in %S${PR_RESET}"
+FMT_ACTION="(${PR_CYAN}%a${PR_RESET}%)"
+
+zstyle ':vcs_info:*:prompt:*' check-for-changes true
+zstyle ':vcs_info:*:prompt:*' unstagedstr '¹'  # display ¹ if there are unstaged changes
+zstyle ':vcs_info:*:prompt:*' stagedstr '²'    # display ² if there are staged changes
+zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}" ""
+zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"              ""
+
+# Completion style
+zstyle ':completion::complete:*' rehash true
+zstyle ':completion:*:kill:*' command 'ps cf -u $USER -o pid,%cpu,cmd'

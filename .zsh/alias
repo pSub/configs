@@ -1,0 +1,36 @@
+# Aliases
+alias todo="hsgtd"
+alias ls="ls --color=auto"
+
+# Suffix aliases
+alias -s pdf=apvlv
+alias -s djvu=djview
+
+global-alias-space(){
+   local ga="$LBUFFER[(w)-1]"
+   [[ -n $ga ]] && LBUFFER[(w)-1]="${${galiases[$ga]}:-$ga}"
+   zle self-insert
+}
+
+global-alias-tilde(){
+   LBUFFER+="~/"
+}
+
+global-alias-dot() {
+   if [[ $LBUFFER = *.. ]]; then
+       LBUFFER+=/..
+   else
+       LBUFFER+=.
+   fi
+}
+
+zle -N global-alias-space
+zle -N global-alias-tilde
+zle -N global-alias-dot
+
+alias -g g="| grep"
+alias -g p="| $PAGER"
+
+bindkey ' ' global-alias-space
+bindkey '~' global-alias-tilde
+bindkey '.' global-alias-dot
