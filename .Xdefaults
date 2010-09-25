@@ -1,28 +1,31 @@
-Xcursor.theme:          Neutral
+Xcursor.theme                : Neutral
 
-Xft.dpi:                96
-Xft.antialias:          true
-Xft.hinting:            full
+Xft.dpi                      : 96
+Xft.antialias                : true
+Xft.hinting                  : full
 
-urxvt.font: xft:terminus:pixelsize=14
-urxvt.foreground: #d2d2d2
-urxvt.background: #1B1D1E
-urxvt.cursorColor: #FFFFFF
-urxvt.urgentOnBell: true
-urxvt.internalBorder: 3
-urxvt.saveLines: 32767
-urxvt.visualBell: false
-urxvt.jumpScroll: false
-urxvt.scrollBar: false
-urxvt.scrollTtyKeypress:true
-urxvt.scrollWithBuffer: false
-urxvt.scrollTtyOutput: false
-urxvt.utmpInhibit: true
-urxvt.urlLauncher: firefox
-urxvt.matcher.button: 1
-urxvt.perl-ext-common: default,matcher
-urxvt.matcher.pattern.1: \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-urxvt.depth: 24
-urxvt.transparent: false
-urxvt.fading: 20
-urxvt.shading: -2
+urxvt.font                   : xft:inconsolata:pixelsize=14
+urxvt.foreground             : #d2d2d2
+urxvt.background             : #1B1D1E
+urxvt.cursorColor            : #FFFFFF
+#urxvt.colorBD                : #8ac6f2 # bold
+urxvt.colorUL                : #95e454
+urxvt.urgentOnBell           : true
+urxvt.internalBorder         : 3
+urxvt.saveLines              : 32767
+urxvt.visualBell             : false
+urxvt.jumpScroll             : false
+urxvt.scrollBar              : false
+urxvt.scrollTtyKeypress      : true
+urxvt.scrollWithBuffer       : false
+urxvt.scrollTtyOutput        : false
+urxvt.utmpInhibit            : true
+urxvt.urlLauncher            : firefox
+urxvt.matcher.button         : 1
+urxvt.perl-ext-common        : default,matcher
+urxvt.matcher.pattern.1      : \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+urxvt.depth                  : 24
+urxvt.transparent            : false
+urxvt.fading                 : 20%
+urxvt.shading                : -2
+urxvt.metaSendsEscape        : true
