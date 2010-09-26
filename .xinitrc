@@ -31,6 +31,9 @@ xbindkeys -f $HOME/.xbindkeysrc &
 # Loading the xmodmap configuration (capslock -> escape)
 xmodmap /home/pascal/.xmodmaprc &
 
+# Preloading dmenu cache
+dmenu_path > /dev/null
+
 # urxvt daemon
 urxvtd &
 
