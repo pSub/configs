@@ -1,7 +1,8 @@
 precmd() {       
     vcs_info 'prompt'          
-    git='$vcs_info_msg_0_' 
 }
+
+git='$vcs_info_msg_0_' 
 
 export PROMPT="[%n@%m %c]%1(j.(%j%).)%1(?.%{$fg[red]%}.)%#%{$reset_color%} "
 export RPROMPT="${git}"
