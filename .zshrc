@@ -24,13 +24,6 @@ setopt histignoredups
 setopt extendedglob
 setopt interactivecomments
 
-# Set some colors aliases
-for COLOR in RED GREEN YELLOW WHITE BLACK CYAN; do
-    eval PR_$COLOR='%{$fg[${(L)COLOR}]%}'         
-    eval PR_BRIGHT_$COLOR='%{$fg_bold[${(L)COLOR}]%}'
-done                                                 
-PR_RESET="%{${reset_color}%}"; 
-
 # Colors
 if [[ -f ~/.dircolors ]] {
     if [[ ${TERM} == screen* ]] {

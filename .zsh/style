@@ -1,6 +1,6 @@
 # vcs_info preferences
-FMT_BRANCH="${PR_GREEN}%s on %b%u%c in %S${PR_RESET}"
-FMT_ACTION="(${PR_CYAN}%a${PR_RESET}%)"
+FMT_BRANCH="%{$fg[green]%}%s on %b%u%c in %S%{$reset_color%}"
+FMT_ACTION="(%{$fg[cyan]%}%a%{$reset_color%}%)"
 
 zstyle ':vcs_info:*:prompt:*' check-for-changes true
 zstyle ':vcs_info:*:prompt:*' unstagedstr '¹'  # display ¹ if there are unstaged changes
