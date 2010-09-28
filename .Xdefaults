@@ -15,10 +15,11 @@ urxvt.internalBorder         : 3
 urxvt.saveLines              : 32767
 urxvt.visualBell             : false
 urxvt.jumpScroll             : false
-urxvt.scrollBar              : false
+urxvt.scrollBar              : plain
 urxvt.scrollTtyKeypress      : true
 urxvt.scrollWithBuffer       : false
 urxvt.scrollTtyOutput        : false
+urxvt.secondaryScroll        : true
 urxvt.utmpInhibit            : true
 urxvt.urlLauncher            : firefox
 urxvt.matcher.button         : 1
