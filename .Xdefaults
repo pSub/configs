@@ -1,10 +1,10 @@
 Xcursor.theme                : Neutral
 
 Xft.dpi                      : 96
-Xft.antialias                : true
+Xft.antialias                : false
 Xft.hinting                  : full
 
-urxvt.font                   : xft:inconsolata:pixelsize=14
+urxvt.font                   : xft:inconsolata:pixelsize=16,xft:gentium:pixelsize=13
 urxvt.foreground             : #d2d2d2
 urxvt.background             : #1B1D1E
 urxvt.cursorColor            : #FFFFFF
