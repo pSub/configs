@@ -58,6 +58,10 @@ dcp() {
     }
 }
 
+lcd() {
+    cd "$@" && ls
+}
+
 start restart stop reload(){ su --command="/etc/init.d/$1 $0" }
 
 sync-unison(){ unison unison && unison all; }
