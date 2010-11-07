@@ -11,7 +11,7 @@ volume(){
 
 # Display wifi signal strength
 wifi(){
-    state="`iwconfig wlan0 | sed 's/ /\n/g' | grep -o '[000-999]/[000-999]'`"
+    state="`iwconfig wlan0 | grep -oE '([0-9]+)/([0-9]+)'`"
     if test "$state" == ""; then
         echo "D/C"
     else
@@ -38,7 +38,7 @@ dmenu_path > /dev/null
 urxvtd &
 
 # Disable touchpad
-synclient TouchpadOff=1 &
+#synclient TouchpadOff=1 &
 
 # Set wm name (useful for java apps)
 wmname LG3D &
@@ -49,7 +49,7 @@ thunderbird &
 firefox &
 
 # Refresh the dwm statusbar every second
-while xsetroot -name "[Wifi: `wifi`] [Vol: `volume`] [Bat: `batmon`] [`date +"%a %d.%m.%Y  %H:%M"`]"; do
+while xsetroot -name "[Wifi: `wifi`] [Bat: `batmon`] [`date +"%a %d.%m.%Y  %H:%M"`]"; do
       sleep 1
 done &
 
