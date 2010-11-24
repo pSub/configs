@@ -1,0 +1,9 @@
+unbind-key l
+bind-key L toggle-show-read-feeds
+bind-key h prev-unread-feed
+bind-key l next-unread-feed
+bind-key j down
+bind-key k up
+
+autoreload yes
+refresh-on-startup yes
