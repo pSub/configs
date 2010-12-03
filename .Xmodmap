@@ -1,6 +1,0 @@
-!! Defines Windows-Key as new Multi-key
-keycode 115 = Multi_key
-!! Removes Caps_lock
-clear lock
-!! Make Caps_lock an escape key.
-keycode 0x42 = Escape
