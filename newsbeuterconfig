@@ -6,4 +6,5 @@ bind-key j down
 bind-key k up
 
 auto-reload yes
+notify-beep yes
 refresh-on-startup yes
