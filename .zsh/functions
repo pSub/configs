@@ -62,7 +62,25 @@ lcd() {
     cd "$@" && ls
 }
 
-start restart stop reload(){ su --command="/etc/init.d/$1 $0" }
+start restart stop reload(){
+  local daemonPath
+  distro=$(cat /etc/issue)
+  case $distro in
+          *"Arch Linux"*)
+                daemonPath="/etc/rc.d/" ;;
+          *"Debian GNU/Linux"*)
+                daemonPath="/etc/init.d/" ;;
+          *)
+                echo "Distro not supported"
+                exit 1
+  esac
+  if [[ $UID = 0 ]]; then
+      $daemonPath$1 $0
+  else
+      su --command="$daemonPath$1 $0"
+  fi
+  unset daemonPath
+}
 
 sync-unison(){ unison unison && unison all; }
 
