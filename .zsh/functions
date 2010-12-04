@@ -85,6 +85,7 @@ start restart stop reload(){
 sync-unison(){ unison unison && unison all; }
 
 hexeditor(){
+    local input output
     if [[ ! -f $1 ]] {
         touch $1
     }
@@ -94,6 +95,7 @@ hexeditor(){
         output=$1
     }
     xxd $input | vipe | xxd -r | sponge $output
+    unset input output
 }
 
 greptodos(){
@@ -109,9 +111,11 @@ addRevenue(){
 }
 
 showFinancialPosition(){
+   local totalIn totalOut total
    totalIn=$(cat $HOME/finances/$(date +"%Y-%m")/in | awk -F ";" '{SUM += $2} END {print SUM}')
    totalOut=$(cat $HOME/finances/$(date +"%Y-%m")/out | awk -F ";" '{SUM += $2} END {print SUM}')
    total=$(($totalIn - $totalOut))
    printf "Revenues: %.2f\nExpenses: %.2f\nTotal:    %.2f\n" "$totalIn" "$totalOut" "$total"
+   unset totalIn totalOut total
 }
 
