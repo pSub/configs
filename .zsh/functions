@@ -63,7 +63,7 @@ lcd() {
 }
 
 start restart stop reload(){
-  local daemonPath
+  local daemonPath distro
   distro=$(cat /etc/issue)
   case $distro in
           *"Arch Linux"*)
@@ -79,7 +79,7 @@ start restart stop reload(){
   else
       su --command="$daemonPath$1 $0"
   fi
-  unset daemonPath
+  unset daemonPath distro
 }
 
 sync-unison(){ unison unison && unison all; }
