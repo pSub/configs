@@ -47,8 +47,10 @@ wmname LG3D &
 # Set background
 bgs $HOME/wallpapers/Blue_Moon-1920x1200.jpg
 
-urxvtc -e newsbeuter
-urxvtc -e hsgtd
+# Add all programms which depend on
+# synchronised data in this script
+urxvtc -e /home/pascal/.bin/checkforsync
+
 thunderbird &
 firefox &
 
