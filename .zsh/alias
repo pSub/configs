@@ -1,10 +1,16 @@
 # Aliases
 alias todo="hsgtd"
 alias ls="ls --color=auto"
+alias xfiglatex="xfig -specialtext -latexfonts -startlatexFont default"
 
 # Suffix aliases
-alias -s pdf=apvlv
-alias -s djvu=djview
+alias -s pdf="background zathura"
+alias -s djvu="background djview"
+
+# Function to start suffix aliases in background
+background(){
+  $1 $2 &!
+}
 
 global-alias-space(){
    local ga="$LBUFFER[(w)-1]"
