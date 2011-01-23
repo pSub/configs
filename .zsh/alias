@@ -19,7 +19,11 @@ global-alias-space(){
 }
 
 global-alias-tilde(){
-   LBUFFER+="~/"
+   if [[ $LBUFFER = "git"* ]]; then
+      LBUFFER+="~"
+   else
+      LBUFFER+="~/"
+   fi
 }
 
 global-alias-dot() {
