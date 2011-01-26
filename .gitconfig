@@ -1,0 +1,68 @@
+[user]
+    name = Pascal Wittmann
+    email = mail@pascal-wittmann.de
+
+[core]
+    whitespace = fix,-indent-with-non-tab,trailing-space
+
+[apply]
+    whitespace = fix
+
+[color]
+    status = auto
+    diff = false
+    branch = auto
+    interactive = auto
+    ui = auto
+    pager = false
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+[color "status"]
+    added = green
+    changed = yellow
+    untracked = cyan
+[color "interactive"]
+    error = cyan
+    header = yellow
+
+[merge]
+    tool = diff
+[diff]
+    tool = vimdiff
+    renames = copy
+[alias]
+    ad = add
+    ap = add -p
+    pl = pull
+    pr = pull --rebase
+    ps = push
+    fe = fetch
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    d1 = diff HEAD^1..
+    df = diff
+    dfc = diff --cached
+    gdf = difftool
+    gdfc = difftool --cached
+    mg = merge
+    gmg = mergetool
+    vu = ls-files -u                #view unmerged files
+    l1 = !git --no-pager log HEAD^1.. 
+    lp = log -p
+    slog = log --pretty=format:\"%h - %cr - %s (%cn)\"
+    stats = shortlog -s -n -e --no-merges
+    incoming = !git-incoming
+    outgoing = !git-outgoing
+    addremove = !git-addremove
+    in = incoming
+    out = outgoing
+    addr = addremove
+    amend = commit --amend -C HEAD
+    amendc = commit --amend
+    tree = log --graph --pretty=oneline --decorate
+[branch]
+	autosetuprebase = always
