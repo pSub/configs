@@ -32,8 +32,9 @@ xbindkeys -f $HOME/.xbindkeysrc &
 setxkbmap -option "caps:escape"
 setxkbmap -option "compose:lwin"
 
-# Preloading dmenu cache
-dmenu_path > /dev/null
+# Using fuse to make dmenu faster
+# no more dmenu_path needed
+unionfs $PATH ~/.path
 
 # urxvt daemon
 urxvtd &
