@@ -1,0 +1,17 @@
+#!/bin/sh
+
+echo -n "Do you want to synchronise changes? [y/n/d] "
+read action
+case "$action" in
+    y)
+      HOME=/home/pascal; ssh-add && unison unison && unison all
+    ;;
+    d)
+      return 0
+    ;;
+esac
+
+# Add programms to start
+# after successful synchronisation
+urxvtc -e newsbeuter
+urxvtc -e hsgtd
