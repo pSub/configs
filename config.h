@@ -58,13 +58,13 @@ static const Layout layouts[] = {
 /* commands */
 static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "urxvtc", NULL };
-static const char *termfcmd[] = { "urxvtc", "-T", "floatingwin", NULL };
+static const char *termfloatingcmd[] = { "urxvtc", "-T", "floatingwin", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termfcmd } },
+	{ MODKEY|ControlMask,           XK_Return, spawn,          {.v = termfloatingcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -84,19 +84,19 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },           /* key binding makes it unlikly to kill dwm accidentally */
+	{ MODKEY|ShiftMask,             XK_t,      rotatelayoutaxis, {.i = 0} },    /* 0 = layout axis */
+	{ MODKEY,                       XK_plus, rotatelayoutaxis, {.i = 1} },    /* 1 = master axis */
+	{ MODKEY,                       XK_numbersign, rotatelayoutaxis, {.i = 2} },    /* 2 = stack axis */
+	{ MODKEY|ShiftMask,             XK_m,      mirrorlayout,     {0} },
+	{ MODKEY,                       XK_i,      shiftmastersplit, {.i = +1} },   /* increase the number of clients in the master area */
+	{ MODKEY,                       XK_o,      shiftmastersplit, {.i = -1} },   /* reduce the number of clients in the master area */
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
-	{ MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },
-	{ MODKEY|ControlMask,           XK_t,      rotatelayoutaxis, {.i = 0} },    /* 0 = layout axis */
-	{ MODKEY|ShiftMask,             XK_asciicircum,    rotatelayoutaxis, {.i = 1} },    /* 1 = master axis */
-	{ MODKEY|ShiftMask,             XK_Tab,    rotatelayoutaxis, {.i = 2} },    /* 2 = stack axis */
-	{ MODKEY|ControlMask,           XK_m, mirrorlayout,     {0} },
-	{ MODKEY|ControlMask,           XK_u,      shiftmastersplit, {.i = -1} },   /* reduce the number of tiled clients in the master area */
-	{ MODKEY|ControlMask,           XK_i,      shiftmastersplit, {.i = +1} },   /* increase the number of tiled clients in the master area */
 };
 
 /* button definitions */
