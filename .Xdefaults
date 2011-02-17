@@ -1,15 +1,30 @@
 Xcursor.theme                : Neutral
 
 Xft.dpi                      : 96
-Xft.antialias                : false
+Xft.antialias                : true
 Xft.hinting                  : full
 
-urxvt.font                   : xft:inconsolata:pixelsize=16,xft:gentium:pixelsize=13
+urxvt.font                   : xft:inconsolata:pixelsize=16,xft:dejavu sans mono:pixelsize=13,xft:gentium
 urxvt.foreground             : #d2d2d2
 urxvt.background             : #1B1D1E
 urxvt.cursorColor            : #FFFFFF
-#urxvt.colorBD                : #8ac6f2 # bold
 urxvt.colorUL                : #95e454
+urxvt.color0                 : #000000
+urxvt.color8                 : #555753
+urxvt.color1                 : #ff6565
+urxvt.color9                 : #ff8d8d
+urxvt.color2                 : #93d44f
+urxvt.color10                : #c8e7a8
+urxvt.color3                 : #eab93d
+urxvt.color11                : #ffc123
+urxvt.color4                 : #204a87
+urxvt.color12                : #3465a4
+urxvt.color5                 : #ce5c00
+urxvt.color13                : #f57900
+urxvt.color6                 : #89b6e2
+urxvt.color14                : #46a4ff
+urxvt.color7                 : #cccccc
+urxvt.color15                : #ffffff
 urxvt.urgentOnBell           : true
 urxvt.internalBorder         : 3
 urxvt.saveLines              : 32767
@@ -25,6 +40,7 @@ urxvt.urlLauncher            : firefox
 urxvt.matcher.button         : 1
 urxvt.perl-ext-common        : default,matcher
 urxvt.matcher.pattern.1      : \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+urxvt.cutchars               : "()*,<>[]{}|'
 urxvt.depth                  : 24
 urxvt.transparent            : false
 urxvt.fading                 : 20%
