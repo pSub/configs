@@ -64,6 +64,10 @@ lcd() {
 
 start restart stop reload(){
   local daemonPath distro
+  if [[ $# -ne 1 ]]; then
+    echo "Usage: start [restart, stop, reload] DAEMON"
+    return 1
+  fi
   distro=$(cat /etc/issue)
   case $distro in
           *"Arch Linux"*)
