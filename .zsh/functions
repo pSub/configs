@@ -64,22 +64,27 @@ folder="finances"
 format=$(date +"%Y-%m")
 expenses=$HOME/${folder}/${format}/out
 revenues=$HOME/${folder}/${format}/in
+cron=false
+desc=""
+amount=""
 
 addExpense(){
   checkfolder
-  echo $1 >> ${expenses}
+  parseoptions $@
+  echo $desc\;$amount >> ${expenses}
 }
 
 addRevenue(){
   checkfolder
-  echo $1 >> ${revenues}
+  parseoptions $@
+  echo $desc\;$amount >> ${revenues}
 }
 
 showFinancialPosition(){
    local totalIn totalOut total
    checkfolder
-   totalIn=$(cat ${expenses} | awk -F ";" '{SUM += $2} END {print SUM}')
-   totalOut=$(cat ${revenues} | awk -F ";" '{SUM += $2} END {print SUM}')
+   totalIn=$(cat ${revenues} | awk -F ";" '{SUM += $2} END {print SUM}')
+   totalOut=$(cat ${expenses} | awk -F ";" '{SUM += $2} END {print SUM}')
    total=$((${totalIn:-0} - ${totalOut:-0}))
    printf "Revenues: %.2f\nExpenses: %.2f\nTotal:    %.2f\n" "$totalIn" "$totalOut" "$total"
    unset totalIn totalOut total
@@ -93,3 +98,17 @@ checkfolder(){
   fi
 }
 
+parseoptions(){
+  while getopts "cd:a:" option
+  do
+      case $option in
+              c) cron=true ;;
+              d) desc=$OPTARG ;;
+              a) amount=$OPTARG ;;
+              *) return 1 ;;
+      esac
+  done
+  if [[ -z $desc ]] || [[ -z $amount ]]; then
+      return 1
+  fi
+}
