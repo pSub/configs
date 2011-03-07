@@ -80,7 +80,7 @@ showFinancialPosition(){
    checkfolder
    totalIn=$(cat ${expenses} | awk -F ";" '{SUM += $2} END {print SUM}')
    totalOut=$(cat ${revenues} | awk -F ";" '{SUM += $2} END {print SUM}')
-   total=$(($totalIn - $totalOut))
+   total=$((${totalIn:-0} - ${totalOut:-0}))
    printf "Revenues: %.2f\nExpenses: %.2f\nTotal:    %.2f\n" "$totalIn" "$totalOut" "$total"
    unset totalIn totalOut total
 }
