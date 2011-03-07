@@ -58,18 +58,23 @@ greptodos(){
     find . -name $1 | xargs grep --no-filename -oE 'TODO:[^$]*' | sed s/TODO:/$2/ | combine - or ~/.todo.txt | sponge ~/.todo.txt
 }
 
+# Simple financial organizer
+
+folder="finances"
+format=$(date +"%Y-%m")
+
 addExpense(){
-  echo $1 >> $HOME/finances/$(date +"%Y-%m")/out
+  echo $1 >> $HOME/${folder}/${format}/out
 }
 
 addRevenue(){
-  echo $1 >> $HOME/finances/$(date +"%Y-%m")/in
+  echo $1 >> $HOME/${folder}/${format}/in
 }
 
 showFinancialPosition(){
    local totalIn totalOut total
-   totalIn=$(cat $HOME/finances/$(date +"%Y-%m")/in | awk -F ";" '{SUM += $2} END {print SUM}')
-   totalOut=$(cat $HOME/finances/$(date +"%Y-%m")/out | awk -F ";" '{SUM += $2} END {print SUM}')
+   totalIn=$(cat $HOME/${folder}/${format}/in | awk -F ";" '{SUM += $2} END {print SUM}')
+   totalOut=$(cat $HOME/${folder}/${format}/out | awk -F ";" '{SUM += $2} END {print SUM}')
    total=$(($totalIn - $totalOut))
    printf "Revenues: %.2f\nExpenses: %.2f\nTotal:    %.2f\n" "$totalIn" "$totalOut" "$total"
    unset totalIn totalOut total
