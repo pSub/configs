@@ -62,21 +62,34 @@ greptodos(){
 
 folder="finances"
 format=$(date +"%Y-%m")
+expenses=$HOME/${folder}/${format}/out
+revenues=$HOME/${folder}/${format}/in
 
 addExpense(){
-  echo $1 >> $HOME/${folder}/${format}/out
+  checkfolder
+  echo $1 >> ${expenses}
 }
 
 addRevenue(){
-  echo $1 >> $HOME/${folder}/${format}/in
+  checkfolder
+  echo $1 >> ${revenues}
 }
 
 showFinancialPosition(){
    local totalIn totalOut total
-   totalIn=$(cat $HOME/${folder}/${format}/in | awk -F ";" '{SUM += $2} END {print SUM}')
-   totalOut=$(cat $HOME/${folder}/${format}/out | awk -F ";" '{SUM += $2} END {print SUM}')
+   checkfolder
+   totalIn=$(cat ${expenses} | awk -F ";" '{SUM += $2} END {print SUM}')
+   totalOut=$(cat ${revenues} | awk -F ";" '{SUM += $2} END {print SUM}')
    total=$(($totalIn - $totalOut))
    printf "Revenues: %.2f\nExpenses: %.2f\nTotal:    %.2f\n" "$totalIn" "$totalOut" "$total"
    unset totalIn totalOut total
+}
+
+checkfolder(){
+  if [[ ! -d $HOME/${folder}/${format} ]]; then
+    mkdir -p $HOME/${folder}/${format}
+    touch ${expenses}
+    touch ${revenues}
+  fi
 }
 
