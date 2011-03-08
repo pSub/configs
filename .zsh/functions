@@ -71,12 +71,22 @@ amount=""
 addExpense(){
   checkfolder
   parseoptions $@
+  case $? in
+      0) : ;;
+      1) return 1 ;;
+      2) interactive ;; 
+  esac
   echo $desc\;$amount >> ${expenses}
 }
 
 addRevenue(){
   checkfolder
   parseoptions $@
+  case $? in
+      0) : ;;
+      1) return 1 ;;
+      2) interactive ;; 
+  esac
   echo $desc\;$amount >> ${revenues}
 }
 
@@ -99,6 +109,9 @@ checkfolder(){
 }
 
 parseoptions(){
+  if [[ -z $* ]]; then
+      return 2
+  fi
   while getopts "cd:a:" option
   do
       case $option in
@@ -111,4 +124,12 @@ parseoptions(){
   if [[ -z $desc ]] || [[ -z $amount ]]; then
       return 1
   fi
+  return 0
+}
+
+interactive(){
+    echo -n "Description: "
+    read desc
+    echo -n "Amount: "
+    read amount
 }
