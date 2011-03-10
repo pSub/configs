@@ -66,7 +66,7 @@ monthpath=$HOME/${folder}/${format}
 expenses=${monthpath}/out
 revenues=${monthpath}/in
 cron=""
-desc=""
+spec=""
 amount=""
 
 addExpense(){
@@ -79,7 +79,7 @@ addExpense(){
   esac
   while read line; do
       echo $(date +"%d. %H:%M")\;${line} >> ${expenses}
-  done < ${cron:-=($(echo ${desc}\;${amount})}
+  done < ${cron:-=($(echo ${spec}\;${amount})}
 }
 
 addRevenue(){
@@ -92,7 +92,7 @@ addRevenue(){
   esac
   while read line; do
       echo $(date +"%d. %H:%M")\;${line} >> ${revenues}
-  done < ${cron:-=($(echo ${desc}\;${amount})}
+  done < ${cron:-=($(echo ${spec}\;${amount})}
 }
 
 showFinancialPosition(){
@@ -118,12 +118,12 @@ parseoptions(){
                  else
                       return 1
                  fi ;;
-              d) desc=$OPTARG ;;
+              d) spec=$OPTARG ;;
               a) amount=$OPTARG ;;
               *) return 1 ;;
       esac
   done
-  if [[ -z cron &&  (-z $desc || -z $amount) ]]; then
+  if [[ -z cron &&  (-z $spec || -z $amount) ]]; then
       return 1
   fi
   return 0
