@@ -78,7 +78,7 @@ addExpense(){
       2) interactive ;; 
   esac
   while read line; do
-      echo $(date +"%d. %H:%M")\;${line} >> ${expenses}
+      echo ${date:-$(date +"%d. %H:%M")}\;${line} >> ${expenses}
   done < ${cron:-=($(echo ${spec}\;${amount})}
 }
 
@@ -91,7 +91,7 @@ addRevenue(){
       2) interactive ;; 
   esac
   while read line; do
-      echo $(date +"%d. %H:%M")\;${line} >> ${revenues}
+      echo ${date:-$(date +"%d. %H:%M")}\;${line} >> ${revenues}
   done < ${cron:-=($(echo ${spec}\;${amount})}
 }
 
@@ -109,7 +109,7 @@ parseoptions(){
   if [[ -z $* ]]; then
       return 2
   fi
-  while getopts "c:d:a:" option
+  while getopts "c:s:a:d:" option
   do
       case $option in
               c) if [ ! -f ${monthpath}/cron ]; then
@@ -118,8 +118,9 @@ parseoptions(){
                  else
                       return 1
                  fi ;;
-              d) spec=$OPTARG ;;
+              s) spec=$OPTARG ;;
               a) amount=$OPTARG ;;
+              d) date=$OPTARG ;;
               *) return 1 ;;
       esac
   done
@@ -131,9 +132,11 @@ parseoptions(){
 
 interactive(){
     echo -n "Description: "
-    read desc
+    read spec
     echo -n "Amount: "
     read amount
+    echo -n "Date (optional): "
+    read date
 }
 
 checkfolder(){
