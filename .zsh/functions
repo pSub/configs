@@ -78,7 +78,7 @@ addExpense(){
       2) interactive ;; 
   esac
   while read line; do
-      echo ${line} >> ${expenses}
+      echo $(date +"%d. %H:%M")\;${line} >> ${expenses}
   done < ${cron:-=($(echo ${desc}\;${amount})}
 }
 
@@ -91,15 +91,15 @@ addRevenue(){
       2) interactive ;; 
   esac
   while read line; do
-      echo ${line} >> ${revenues}
+      echo $(date +"%d. %H:%M")\;${line} >> ${revenues}
   done < ${cron:-=($(echo ${desc}\;${amount})}
 }
 
 showFinancialPosition(){
    local totalIn totalOut total
    checkfolder
-   totalIn=$(cat ${revenues} | awk -F ";" '{SUM += $2} END {print SUM}')
-   totalOut=$(cat ${expenses} | awk -F ";" '{SUM += $2} END {print SUM}')
+   totalIn=$(cat ${revenues} | awk -F ";" '{SUM += $3} END {print SUM}')
+   totalOut=$(cat ${expenses} | awk -F ";" '{SUM += $3} END {print SUM}')
    total=$((${totalIn:-0} - ${totalOut:-0}))
    printf "Revenues: %.2f\nExpenses: %.2f\nTotal:    %.2f\n" "$totalIn" "$totalOut" "$total"
    unset totalIn totalOut total
