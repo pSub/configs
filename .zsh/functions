@@ -62,9 +62,10 @@ greptodos(){
 
 folder="finances"
 format=$(date +"%Y-%m")
-expenses=$HOME/${folder}/${format}/out
-revenues=$HOME/${folder}/${format}/in
-cron=false
+monthpath=$HOME/${folder}/${format}
+expenses=${monthpath}/out
+revenues=${monthpath}/in
+cron=""
 desc=""
 amount=""
 
@@ -76,7 +77,9 @@ addExpense(){
       1) return 1 ;;
       2) interactive ;; 
   esac
-  echo $desc\;$amount >> ${expenses}
+  while read line; do
+      echo ${line} >> ${expenses}
+  done < ${cron:-=($(echo ${desc}\;${amount})}
 }
 
 addRevenue(){
@@ -87,7 +90,9 @@ addRevenue(){
       1) return 1 ;;
       2) interactive ;; 
   esac
-  echo $desc\;$amount >> ${revenues}
+  while read line; do
+      echo ${line} >> ${revenues}
+  done < ${cron:-=($(echo ${desc}\;${amount})}
 }
 
 showFinancialPosition(){
@@ -100,28 +105,25 @@ showFinancialPosition(){
    unset totalIn totalOut total
 }
 
-checkfolder(){
-  if [[ ! -d $HOME/${folder}/${format} ]]; then
-    mkdir -p $HOME/${folder}/${format}
-    touch ${expenses}
-    touch ${revenues}
-  fi
-}
-
 parseoptions(){
   if [[ -z $* ]]; then
       return 2
   fi
-  while getopts "cd:a:" option
+  while getopts "c:d:a:" option
   do
       case $option in
-              c) cron=true ;;
+              c) if [ ! -f ${monthpath}/cron ]; then
+                      cron=$OPTARG
+                      touch ${monthpath}/cron
+                 else
+                      return 1
+                 fi ;;
               d) desc=$OPTARG ;;
               a) amount=$OPTARG ;;
               *) return 1 ;;
       esac
   done
-  if [[ -z $desc ]] || [[ -z $amount ]]; then
+  if [[ -z cron &&  (-z $desc || -z $amount) ]]; then
       return 1
   fi
   return 0
@@ -132,4 +134,12 @@ interactive(){
     read desc
     echo -n "Amount: "
     read amount
+}
+
+checkfolder(){
+  if [[ ! -d ${monthpath} ]]; then
+    mkdir -p ${monthpath}
+    touch ${expenses}
+    touch ${revenues}
+  fi
 }
