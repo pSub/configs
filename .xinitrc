@@ -19,8 +19,14 @@ wifi(){
     fi
 }
 
+# urxvt daemon
+urxvtd &
+
 # Disable touchpad clicks while typing
 #syndaemon -d
+
+# Disable touchpad
+synclient TouchpadOff=1 &
 
 # Disable beep
 xset b off
@@ -36,28 +42,24 @@ setxkbmap -option "compose:lwin"
 # no more dmenu_path needed
 unionfs $PATH ~/.path
 
-# urxvt daemon
-urxvtd &
-
-# Disable touchpad
-synclient TouchpadOff=1 &
-
 # Set wm name (useful for java apps)
 wmname LG3D &
-
-# Set background
-bgs $HOME/wallpapers/Blue_Moon-1920x1200.jpg
 
 # Add all programms which depend on
 # synchronised data in this script
 urxvtc -e /home/pascal/.bin/checkforsync
 
+# Autostart without synchronisation
 thunderbird &
 firefox &
 
+# Set background
+bgs $HOME/wallpapers/Blue_Moon-1920x1200.jpg
+
 # Refresh the dwm statusbar every second
-while xsetroot -name "[Volume: `volume`] [Wifi: `wifi`] [Bat: `batmon`] [`date +"%a %d.%m.%Y  %H:%M"`]"; do
-      sleep 1
+while true; do
+    xsetroot -name "[Volume: `volume`] [Wifi: `wifi`] [Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]";
+    sleep 1
 done &
 
 # Uncomment your favor wm
