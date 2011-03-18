@@ -59,7 +59,7 @@ thunderbird &
 firefox &
 
 # Set background
-bgs $HOME/wallpapers/Blue_Moon-1920x1200.jpg
+bgs $(cat $HOME/wallpapers/current)
 
 # Refresh the dwm statusbar every second
 while true; do
