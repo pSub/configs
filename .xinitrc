@@ -37,8 +37,10 @@ xset b off
 # Loading the xbindkeys configuration
 xbindkeys -f $HOME/.xbindkeysrc &
 
-# Loading the xmodmap configuration (capslock -> escape)
+# Set Escape to Caps_Lock
 setxkbmap -option "caps:escape"
+
+# Set Multi_Key to left Windows key
 setxkbmap -option "compose:lwin"
 
 # Using fuse to make dmenu faster
