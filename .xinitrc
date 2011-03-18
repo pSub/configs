@@ -23,7 +23,7 @@ wifi(){
 exec /home/pascal/.bin/xrandr &
 
 # urxvt daemon
-urxvtd &
+urxvtd -q -f -o
 
 # Disable touchpad clicks while typing
 #syndaemon -d
