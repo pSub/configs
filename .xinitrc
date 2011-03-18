@@ -19,6 +19,9 @@ wifi(){
     fi
 }
 
+# Load xrandr
+exec /home/pascal/.bin/xrandr &
+
 # urxvt daemon
 urxvtd &
 
