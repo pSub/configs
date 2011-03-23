@@ -11,7 +11,7 @@ volume(){
 
 # Display wifi signal strength
 wifi(){
-    state="`iwconfig wlan0 | sed 's/ /\n/g' | grep -o '[000-999]/[000-999]'`"
+    state="`iwconfig wlan0 | grep -oE '([0-9]+)/([0-9]+)'`"
     if test "$state" == ""; then
         echo "D/C"
     else
@@ -19,8 +19,17 @@ wifi(){
     fi
 }
 
+# Load xrandr
+exec /home/pascal/.bin/xrandr &
+
+# urxvt daemon
+urxvtd -q -f -o
+
 # Disable touchpad clicks while typing
 #syndaemon -d
+
+# Disable touchpad
+synclient TouchpadOff=1 &
 
 # Disable beep
 xset b off
@@ -28,36 +37,34 @@ xset b off
 # Loading the xbindkeys configuration
 xbindkeys -f $HOME/.xbindkeysrc &
 
-# Loading the xmodmap configuration (capslock -> escape)
+# Set Escape to Caps_Lock
 setxkbmap -option "caps:escape"
+
+# Set Multi_Key to left Windows key
 setxkbmap -option "compose:lwin"
 
 # Using fuse to make dmenu faster
 # no more dmenu_path needed
 unionfs $PATH ~/.path
 
-# urxvt daemon
-urxvtd &
-
-# Disable touchpad
-synclient TouchpadOff=1 &
-
 # Set wm name (useful for java apps)
 wmname LG3D &
-
-# Set background
-bgs $HOME/wallpapers/Blue_Moon-1920x1200.jpg
 
 # Add all programms which depend on
 # synchronised data in this script
 urxvtc -e /home/pascal/.bin/checkforsync
 
+# Autostart without synchronisation
 thunderbird &
 firefox &
 
+# Set background
+bgs $(cat $HOME/wallpapers/current)
+
 # Refresh the dwm statusbar every second
-while xsetroot -name "[Volume: `volume`] [Wifi: `wifi`] [Bat: `batmon`] [`date +"%a %d.%m.%Y  %H:%M"`]"; do
-      sleep 1
+while true; do
+    xsetroot -name "[Volume: `volume`] [Wifi: `wifi`] [Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]";
+    sleep 1
 done &
 
 # Uncomment your favor wm

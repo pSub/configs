@@ -3,8 +3,8 @@ FMT_BRANCH="%{$fg[green]%}%s on %b%u%c in %S%{$reset_color%}"
 FMT_ACTION="(%{$fg[cyan]%}%a%{$reset_color%}%)"
 
 zstyle ':vcs_info:*:prompt:*' check-for-changes true
-zstyle ':vcs_info:*:prompt:*' unstagedstr '¹'  # display ¹ if there are unstaged changes
-zstyle ':vcs_info:*:prompt:*' stagedstr '²'    # display ² if there are staged changes
+zstyle ':vcs_info:*:prompt:*' unstagedstr "%F{11}●%{$reset_color%}"
+zstyle ':vcs_info:*:prompt:*' stagedstr  "%F{28}●%{$reset_color%}"
 zstyle ':vcs_info:*:prompt:*' actionformats "${FMT_BRANCH}${FMT_ACTION}" ""
 zstyle ':vcs_info:*:prompt:*' formats       "${FMT_BRANCH}"              ""
 
