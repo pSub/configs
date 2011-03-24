@@ -43,11 +43,11 @@ function load_config() {
 }
 
 if [[ -d $ZSHDIR ]] {
-    load_config $ZSHDIR/alias
-    load_config $ZSHDIR/bindkey
-    load_config $ZSHDIR/functions
-    load_config $ZSHDIR/style
-    load_config $ZSHDIR/prompt
+    load_config $ZSHDIR/alias.zsh
+    load_config $ZSHDIR/bindkey.zsh
+    load_config $ZSHDIR/functions.zsh
+    load_config $ZSHDIR/style.zsh
+    load_config $ZSHDIR/prompt.zsh
 }
 
 if [ "$(tty)" = "/dev/tty1" ]; then
