@@ -50,6 +50,9 @@ if [[ -d $ZSHDIR ]] {
     load_config $ZSHDIR/prompt.zsh
 }
 
+# Load financial-tool
+load_config ~/projects/financial/financial.zsh
+
 if [ "$(tty)" = "/dev/tty1" ]; then
    ssh-agent startx &!
    logout
