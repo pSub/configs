@@ -19,7 +19,7 @@ wifi(){
     fi
 }
 
-# Adds adds first parameter as prefix to the lines of the second parameter
+# Adds first parameter as prefix to the lines of the second parameter
 # therefor the second parameter must be a file
 addprefix(){
   for s in $(cat $2)
@@ -29,10 +29,10 @@ addprefix(){
 }
 
 # Path to background
-BGPATH = $HOME/wallpapers/
+BGPATH=$HOME/wallpapers/
 
 # Path to file with active backgrounds
-BGACTIVE = $BGPATH/current
+BGACTIVE=$BGPATH/current
 
 # Load xrandr
 exec /home/pascal/.bin/xrandr &
