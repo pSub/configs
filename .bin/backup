@@ -1,6 +1,4 @@
 #!/bin/sh
-# Must be called as root user
-
 intervals=(daily weekly)
 
 createBackup(){
@@ -11,11 +9,12 @@ case $answer in
   n) exit 0 ;;
   *) echo -n "Which device contains the encrypted backup volume? [std. sdb1] "
      read device
+     su -c "
      cryptsetup luksOpen /dev/${device:-sdb1} backup &&
      mount /dev/mapper/backup/ /backup &&
      rsnapshot $1 &&
      umount /backup &&
-     cryptsetup luksClose backup &&
+     cryptsetup luksClose backup" &&
      rm ~/.$1-backup ;;
 esac
 }

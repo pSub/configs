@@ -51,6 +51,6 @@ if [[ -d $ZSHDIR ]] {
 }
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-   ssh-agent startx &!
+   backup && ssh-agent startx &!
    logout
 fi
