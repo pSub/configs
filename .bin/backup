@@ -1,0 +1,28 @@
+#!/bin/sh
+# Must be called as root user
+
+intervals=(daily weekly)
+
+createBackup(){
+echo -n "Create a $1 backup NOW? [Yn] "
+read answer
+
+case $answer in
+  n) exit 0 ;;
+  *) echo -n "Which device contains the encrypted backup volume? [std. sdb1] "
+     read device
+     cryptsetup luksOpen /dev/${device:-sdb1} backup &&
+     mount /dev/mapper/backup/ /backup &&
+     rsnapshot $1 &&
+     umount /backup &&
+     cryptsetup luksClose backup &&
+     rm ~/.$1-backup ;;
+esac
+}
+
+for interval in $intervals
+do
+  if [ -f ~/.$interval-backup ]; then
+      createBackup "$interval"
+  fi
+done
