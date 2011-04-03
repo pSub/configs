@@ -9,7 +9,7 @@ case $answer in
   n) exit 0 ;;
   *) echo -n "Which device contains the encrypted backup volume? [std. sdb1] "
      read device
-     su -c "
+     echo -n "Enter root "; su -c "
      cryptsetup luksOpen /dev/${device:-sdb1} backup &&
      mount /dev/mapper/backup/ /backup &&
      rsnapshot $1 &&
