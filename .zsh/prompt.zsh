@@ -10,6 +10,9 @@ function prompt_char() {
   "hg")
       echo '☿'
       ;;
+  "darcs")
+      echo '✼'
+      ;;
   *)
       echo '%#'
       ;;
