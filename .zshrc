@@ -42,12 +42,13 @@ function load_config() {
     }
 }
 
+config_files=(alias bindkey functions style prompt zle)
+
 if [[ -d $ZSHDIR ]] {
-    load_config $ZSHDIR/alias.zsh
-    load_config $ZSHDIR/bindkey.zsh
-    load_config $ZSHDIR/functions.zsh
-    load_config $ZSHDIR/style.zsh
-    load_config $ZSHDIR/prompt.zsh
+    for config_file in $config_files
+    do
+      load_config $ZSHDIR/$config_file.zsh
+    done
 }
 
 if [ "$(tty)" = "/dev/tty1" ]; then
