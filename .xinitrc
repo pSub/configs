@@ -1,11 +1,10 @@
 # Display the speaker/headphone volume
 volume(){
-    speaker="`amixer get Speaker | awk '/Front\ Left:/ {print $4}'`" 
-    headphone="`amixer get Headphone | awk '/Front\ Left:/ {print $4}'`"
-    if test "$speaker" != "[on]" && test "$headphone" != "[on]"; then
+    speaker="`amixer get Speaker | awk '/Front\ Left:/ {print $7}'`" 
+    if test "$speaker" != "[on]"; then
         echo "Mute"
      else
-        echo "`amixer get PCM | awk '/Front\ Left:/{print $5}' | sed -e 's/\[//g'| sed -e 's/%\]//g'`"
+        echo "`amixer get Master | awk '/Mono:/ {print $4}' | sed -e 's/\[//g'| sed -e 's/%\]//g'`"
     fi
 }
 
@@ -19,8 +18,6 @@ wifi(){
     fi
 }
 
-# Adds first parameter as prefix to the lines of the second parameter
-# therefor the second parameter must be a file
 addprefix(){
   for s in $(cat $2)
   do
@@ -28,60 +25,48 @@ addprefix(){
   done
 }
 
-# Path to background
-BGPATH=$HOME/wallpapers/
-
-# Path to file with active backgrounds
-BGACTIVE=$BGPATH/current
-
-# Load xrandr
-exec /home/pascal/.bin/xrandr &
-
-# urxvt daemon
-urxvtd -q -f -o
-
-# Disable touchpad clicks while typing
-#syndaemon -d
-
-# Disable touchpad
-synclient TouchpadOff=1 &
+exec $HOME/.bin/xrandr &
 
 # Disable beep
 xset b off
 
+# Set keyboard layout
+setxkbmap -layout de
+
 # Loading the xbindkeys configuration
 xbindkeys -f $HOME/.xbindkeysrc &
 
-# Set Escape to Caps_Lock
-setxkbmap -option "caps:escape"
+# Disable touchpad clicks while typing
+#syndaemon -d
+synclient VertEdgeScroll=1
 
-# Set Multi_Key to left Windows key
-setxkbmap -option "compose:lwin"
-
-# Using fuse to make dmenu faster
-# no more dmenu_path needed
-unionfs $PATH ~/.path
+# Disable touchpad tap click
+synclient TapButton1=0
+synclient TapButton2=0
+synclient TapButton3=0
 
 # Set wm name (useful for java apps)
 wmname LG3D &
 
-# Add all programms which depend on
-# synchronised data in this script
-urxvtc -e /home/pascal/.bin/checkforsync
-
-# Autostart without synchronisation
-thunderbird &
-firefox &
+BGPATH=$HOME/wallpapers/
+BGACTIVE=$BGPATH/current
 
 # Set background
 bgs $(addprefix $BGPATH $BGACTIVE)
 
+# Start urxvt daemon
+urxvtd -q -f -o
+
+urxvtc -e /home/pascal/.bin/checkforsync & 
+#thunderbird &
+#firefox &
+
 # Refresh the dwm statusbar every second
 while true; do
-    xsetroot -name "[Volume: `volume`] [Wifi: `wifi`] [Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]";
-    sleep 1
+      xsetroot -name "[Vol: `volume`] [Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]";
+      sleep 1
 done &
 
 # Uncomment your favor wm
-exec dwm
+xmodmap $HOME/.Xmodmap && exec dwm
 #exec xmonad
