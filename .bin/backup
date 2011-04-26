@@ -6,7 +6,7 @@ echo -n "Create a $1 backup NOW? [Yn] "
 read answer
 
 case $answer in
-  n) exit 0 ;;
+  n) return 0 ;;
   *) echo -n "Which device contains the encrypted backup volume? [std. sdb1] "
      read device
      echo -n "Enter root "; su -c "
@@ -19,7 +19,7 @@ case $answer in
 esac
 }
 
-for interval in $intervals
+for interval in ${intervals[@]}
 do
   if [ -f ~/.$interval-backup ]; then
       createBackup "$interval"
