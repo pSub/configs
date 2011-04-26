@@ -1,8 +1,8 @@
 keycode 66 = Control_L
 clear Lock
 add Control = Control_L
-keycode 108 = Meta_R
+keycode 135 = Meta_L
 keycode 133 = Multi_key
-keycode 135 = ISO_Level3_Shift
-clear Mod3
-add Mod3 = Meta_R
+keycode 108 = ISO_Level3_Shift
+clear Mod1
+add Mod1 = Alt_L
