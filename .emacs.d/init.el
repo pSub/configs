@@ -6,8 +6,17 @@
 (add-to-list 'load-path "~/.emacs.d/")
 (setq next-line-add-newlines t) ; C-n makes new line
 (setq x-menu 'meta)
+(setq-default indent-tabs-mode nil)
 
-(load "/usr/share/emacs/site-lisp/haskell-mode/haskell-site-file")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indention)
+(dolist (dir '(
+	       "/usr/local/share/emacs/site-lisp"
+	       ))
+  (add-to-list 'load-path dir))
+
+(require 'magit)
+(load "util")
+(load "haskell")
+(load "org-mode")
 
 (ido-mode t)
+(show-paren-mode t)
