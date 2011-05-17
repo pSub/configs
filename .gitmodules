@@ -7,3 +7,6 @@
 [submodule ".elisp/vendor/haskell-mode"]
 	path = .elisp/vendor/haskell-mode
 	url = https://github.com/pheaver/haskell-mode.git
+[submodule ".elisp/vendor/emacs-eclim"]
+	path = .elisp/vendor/emacs-eclim
+	url = https://github.com/senny/emacs-eclim.git
