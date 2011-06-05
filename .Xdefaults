@@ -4,7 +4,7 @@ Xft.dpi                      : 96
 Xft.antialias                : true
 Xft.hinting                  : full
 
-urxvt.font                   : xft:inconsolata:pixelsize=16,xft:dejavu sans mono:pixelsize=13,xft:gentium
+urxvt.font                   : xft:inconsolata:pixelsize=13,xft:dejavu sans mono:pixelsize=13,xft:gentium
 urxvt.foreground             : #d2d2d2
 urxvt.background             : #1B1D1E
 urxvt.cursorColor            : #FFFFFF
