@@ -7,7 +7,7 @@
 (setq next-line-add-newlines t) ; C-n makes new line
 (setq x-menu 'meta)
 (setq-default indent-tabs-mode nil)
-
+  
 (dolist (dir '(
 	       "/usr/local/share/emacs/site-lisp"
 	       ))
@@ -17,6 +17,9 @@
 (load "util")
 (load "haskell")
 (load "org-mode")
+(load "java")
+(load "php")
+(load "my-wl")
 
 (ido-mode t)
 (show-paren-mode t)
