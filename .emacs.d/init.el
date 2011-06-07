@@ -20,6 +20,8 @@
 (load "java")
 (load "php")
 (load "my-wl")
+(load "my-vcs")
+(load "my-prolog")
 
 (ido-mode t)
 (show-paren-mode t)
