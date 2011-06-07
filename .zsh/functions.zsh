@@ -15,9 +15,9 @@ lcd() {
 }
 
 start restart stop reload(){
-  local daemonPath distro
-  if [[ $# -ne 1 ]]; then
-    echo "Usage: start [restart, stop, reload] DAEMON"
+  local daemonPath distro cmd
+  if [[ $# -le 1 ]]; then
+    echo "Usage: start [restart, stop, reload] DAEMON [DAEMON ...]"
     return 1
   fi
   distro=$(cat /etc/issue)
@@ -31,9 +31,14 @@ start restart stop reload(){
                 exit 1
   esac
   if [[ $UID = 0 ]]; then
-      $daemonPath$1 $0
+      foreach daemon ($*); do
+        $daemonPath$daemon $0
+      done
   else
-      su --command="$daemonPath$1 $0"
+      foreach daemon ($*); do
+         cmd="$cmd $daemonPath$daemon $0;"
+      done
+      su --command="$cmd"
   fi
   unset daemonPath distro
 }
