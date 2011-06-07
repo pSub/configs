@@ -1,4 +1,8 @@
 #!/bin/sh
+# Cronjobs like this are needed:
+# @daily ID=daily-backup /bin/touch /home/user/.daily-backup
+# @weekly ID=weekly-backup /bin/touch /home/user/.weekly-backup
+
 intervals=(daily weekly)
 
 createBackup(){
