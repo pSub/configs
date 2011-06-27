@@ -1,8 +1,0 @@
-#!/bin/sh
-#
-# Rerun dmenu_path (reconstructing the cache) whenever a file is
-# removed or added to a directory in PATH.  Start this in the
-# background and enjoy.  Requires inotify-tools.
-
-(IFS=":"; inotifywait -q -e move -e create -e delete $PATH -m) \
-| while read line; do dmenu_path > /var/dmenu/cache; done

@@ -1,3 +1,4 @@
+#!/bin/sh
 # Display the speaker/headphone volume
 volume(){
     speaker="`amixer get Speaker | awk '/Front\ Left:/ {print $7}'`" 
@@ -18,6 +19,8 @@ wifi(){
     fi
 }
 
+# Adds first parameter as prefix to the lines of the second parameter
+# therefore the second parameter must bei a file
 addprefix(){
   for s in $(cat $2)
   do
@@ -25,41 +28,45 @@ addprefix(){
   done
 }
 
-exec $HOME/.bin/xrandr &
-
-# Disable beep
-xset b off
-
-# Set keyboard layout
-setxkbmap -layout de
-
-# Loading the xbindkeys configuration
-xbindkeys -f $HOME/.xbindkeysrc &
-
-# Disable touchpad clicks while typing
-#syndaemon -d
-synclient VertEdgeScroll=1
-
-# Disable touchpad tap click
-synclient TapButton1=0
-synclient TapButton2=0
-synclient TapButton3=0
-
-# Set wm name (useful for java apps)
-wmname LG3D &
-
+# Path to background images
 BGPATH=$HOME/wallpapers/
+
+# Path to file with active backgrounds
+# one line per background
 BGACTIVE=$BGPATH/current
 
-# Set background
-bgs $(addprefix $BGPATH $BGACTIVE)
+# Load xrandr configuration
+$HOME/.bin/xrandr-config
 
 # Start urxvt daemon
 urxvtd -q -f -o
 
-urxvtc -e /home/pascal/.bin/checkforsync & 
-#thunderbird &
-#firefox &
+# Start notification daemon
+/usr/lib/notification-daemon-1.0/notification-daemon &
+
+# Start daemon for plug'n play
+udisks-glue -c $HOME/.udisks-glue.conf &
+
+# Disable beep
+xset b off &
+
+# Set keyboard layout
+setxkbmap -layout de -variant nodeadkeys &
+
+# Load the xbindkeys configuration
+xbindkeys -f $HOME/.xbindkeysrc &
+
+# Load touchpad (synaptics) configuration
+exec $HOME/.bin/synclient-config &
+
+# Set window-manager name (useful for java apps)
+wmname LG3D &
+
+# Set background
+bgs $(addprefix $BGPATH $BGACTIVE)
+
+# Autostart applications
+exec $HOME/.bin/x-autostart &
 
 # Refresh the dwm statusbar every second
 while true; do
@@ -67,6 +74,6 @@ while true; do
       sleep 1
 done &
 
-# Uncomment your favor wm
+# Start xmodmap with dwm to make sure changes
+# form xmodmap are applied
 xmodmap $HOME/.Xmodmap && exec dwm
-#exec xmonad

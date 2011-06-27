@@ -1,0 +1,11 @@
+#!/bin/sh
+urxvtc -e $HOME/.bin/checkforsync &
+emacs --daemon &
+case $(hostname) in
+  'firmin')
+      ;;
+  'subiectiva')
+      thunderbird &
+      firefox &
+      ;;
+esac
