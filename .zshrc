@@ -1,5 +1,16 @@
 # Created by pSub for 4.3.10
 
+# Declaration of config files to
+# be used, which are located in
+# ~/.zsh/
+config_files=(alias
+              bindkey
+              functions
+              style
+              prompt
+              zle
+             )
+
 export ZSHDIR=$HOME/.zsh
 export EDITOR="emacsclient --alternate-editor emacs +%d %s"
 export PAGER=less
@@ -42,14 +53,6 @@ function load_config() {
         source $1
     }
 }
-
-config_files=(alias
-              bindkey
-              functions
-              style
-              prompt
-              zle
-             )
 
 if [[ -d $ZSHDIR ]] {
     for config_file in $config_files
