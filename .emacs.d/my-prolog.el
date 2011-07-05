@@ -5,7 +5,7 @@
 (setq prolog-system 'swi)
 (setq auto-mode-alist (append '(("\.pl$" . prolog-mode)
                                 ("\.m$" . mercury-mode))
-                               auto-mode-alist)
+                               auto-mode-alist))
 (define-key prolog-mode-map (kbd "C-c C-l") 'prolog-compile-file)
 
 (provide 'my-prolog)

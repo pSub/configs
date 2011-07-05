@@ -14,6 +14,8 @@
   (add-to-list 'load-path dir))
 
 (require 'magit)
+(require 'vimpulse)
+(load "my-auctex")
 (load "my-util")
 (load "my-haskell")
 (load "my-org-mode")
@@ -22,6 +24,7 @@
 (load "my-wl")
 (load "my-vcs")
 (load "my-prolog")
+(load "my-nxhtml")
 
 (ido-mode t)
 (show-paren-mode t)
