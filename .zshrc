@@ -42,7 +42,13 @@ function load_config() {
     }
 }
 
-config_files=(alias bindkey functions style prompt zle)
+config_files=(alias
+              bindkey
+              functions
+              style
+              prompt
+              zle
+             )
 
 if [[ -d $ZSHDIR ]] {
     for config_file in $config_files
