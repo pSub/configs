@@ -99,6 +99,7 @@ static Key keys[] = {
   TAGKEYS(                        XK_5,                      4)
   TAGKEYS(                        XK_6,                      5)
   TAGKEYS(                        XK_7,                      6)
+  TAGKEYS(                        XK_c,                      4)
 };
 
 /* button definitions */
