@@ -14,17 +14,18 @@ static const Bool showbar           = True;     /* False means no bar */
 static const Bool topbar            = True;     /* False means bottom bar */
 
 /* tagging */
-static const char *tags[] = { "org", "www", "dev", "chat", "mail", "misc"};
+static const char *tags[] = { "org", "www", "dev", "doc", "chat", "mail", "misc"};
 
 /* include(s) depending on the tags array */
 #include "flextile.h"
 
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Thunderbird",  NULL,       NULL,       1 << 4,       False,       -1 },
-  { "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
-  { "feh",       NULL,       NULL,       0,         True,        -1 },
-  { NULL, NULL, "floatingwin", 0, True, -1 },
+	/* class      instance    title          tags mask     isfloating   monitor */
+  { "Thunderbird",    NULL,       NULL,          1 << 5,       False,       -1 },
+  { "Firefox",        NULL,       NULL,          1 << 1,       False,       -1 },
+  { "feh",            NULL,       NULL,          0,            True,        -1 },
+  { "Zathura",        NULL,       NULL,          1 << 3,       False,       -1 },
+  { NULL,             NULL,       "floatingwin", 0,            True,        -1 },
 };
 
 /* layout(s) */
@@ -45,7 +46,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod3Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ShiftMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -56,7 +57,7 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
-static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { "urxvtc", NULL };
 static const char *termfloatingcmd[] = { "urxvtc", "-T", "floatingwin", NULL };
 
@@ -97,6 +98,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
 	TAGKEYS(                        XK_6,                      5)
+        TAGKEYS(                        XK_7,                      6)
 };
 
 /* button definitions */
