@@ -36,6 +36,7 @@ if [[ -f ~/.dircolors ]] {
     eval $( dircolors -b )
 }
 
+# Auxiliary function
 function load_config() {
     if [[ -f $1 ]] {
         source $1
@@ -58,6 +59,8 @@ if [[ -d $ZSHDIR ]] {
 }
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-   backup && ssh-agent startx &!
-   logout
+    # Check for backup before login
+    # and start ssh-agent with X
+    backup && ssh-agent startx &!
+    logout
 fi
