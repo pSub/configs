@@ -1,13 +1,13 @@
 #!/bin/sh
 # Display the speaker/headphone volume
 volume(){
-    speaker="`amixer get Speaker | awk '/Front\ Left:/ {print $7}'`" 
+    speaker="`amixer get Master | awk '/Mono:/ {print $6}'`" 
     if test "$speaker" != "[on]"; then
         echo "Mute"
      else
-        echo "`amixer get Master | awk '/Mono:/ {print $4}' | sed -e 's/\[//g'| sed -e 's/%\]//g'`"
+        echo "`amixer get Master | awk '/Mono:/ {print $4}' | sed -e 's/\[\|%\]//g'`"
     fi
-}
+} 
 
 # Display wifi signal strength
 wifi(){
