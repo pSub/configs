@@ -1,7 +1,7 @@
 # Created by pSub for 4.3.10
 
 export ZSHDIR=$HOME/.zsh
-export EDITOR=vim
+export EDITOR="emacsclient --alternate-editor emacs +%d %s"
 export PAGER=less
 export REPORTTIME="10"
 export HISTFILE=$HOME/.zshhistory
