@@ -7,6 +7,8 @@
 (setq next-line-add-newlines t) ; C-n makes new line
 (setq x-menu 'meta)
 (setq-default indent-tabs-mode nil)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
   
 (dolist (dir '(
 	       "/usr/local/share/emacs/site-lisp"
