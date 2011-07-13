@@ -12,7 +12,7 @@ config_files=(alias
              )
 
 export ZSHDIR=$HOME/.zsh
-export EDITOR="emacsclient --alternate-editor emacs +%d %s"
+export EDITOR="ec"
 export PAGER=less
 export REPORTTIME="10"
 export HISTFILE=$HOME/.zshhistory
