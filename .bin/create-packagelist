@@ -1,0 +1,4 @@
+#!/bin/sh
+# Idea from patrick brisbin (github.com/pbrisbin)
+pacman -Qqe | grep -Fvx "$(pacman -Qqm)" > paclog && echo 'Created package list' || echo 'Failed creating package list'
+pacman -Qqm > aurlog && echo 'Created aur package list' || echo 'Failed creating aur package list'
