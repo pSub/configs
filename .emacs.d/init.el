@@ -9,6 +9,10 @@
 (setq-default indent-tabs-mode nil)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+(ido-mode t)
+(show-paren-mode t)
   
 (dolist (dir '(
 	       "/usr/local/share/emacs/site-lisp"
@@ -27,6 +31,4 @@
 (load "my-vcs")
 (load "my-prolog")
 (load "my-nxhtml")
-
-(ido-mode t)
-(show-paren-mode t)
+(sml-modeline-mode t)
