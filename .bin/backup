@@ -3,7 +3,7 @@
 # @daily ID=daily-backup /bin/touch /home/user/.daily-backup
 # @weekly ID=weekly-backup /bin/touch /home/user/.weekly-backup
 
-intervals=(daily weekly)
+intervals=(weekly)
 
 createBackup(){
 echo -n "Create a $1 backup NOW? [Yn] "
