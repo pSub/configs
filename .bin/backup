@@ -6,12 +6,12 @@
 intervals=(weekly)
 
 createBackup(){
-echo -n "Create a $1 backup NOW? [Yn] "
+echo -n "Create a $1 backup NOW? [yn] "
 read answer
 
 case $answer in
   n) return 0 ;;
-  *) echo -n "Which device contains the encrypted backup volume? [std. sdb1] "
+  y) echo -n "Which device contains the encrypted backup volume? [std. sdb1] "
      read device
      echo -n "Enter root "; su -c "
      cryptsetup luksOpen /dev/${device:-sdb1} backup &&
