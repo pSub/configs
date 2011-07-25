@@ -9,6 +9,10 @@ alias pack="apack"
 alias -s pdf="background zathura"
 alias -s djvu="background djview"
 
+# Global aliases
+alias -g g="| grep"
+alias -g p="| $PAGER"
+
 # Function to start suffix aliases in background
 background(){
   $1 $2 &!
@@ -39,9 +43,6 @@ global-alias-dot() {
 zle -N global-alias-space
 zle -N global-alias-tilde
 zle -N global-alias-dot
-
-alias -g g="| grep"
-alias -g p="| $PAGER"
 
 bindkey ' ' global-alias-space
 bindkey '~' global-alias-tilde
