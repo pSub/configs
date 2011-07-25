@@ -1,2 +1,6 @@
 #!/bin/sh
+# A wrapper around su(1)
+# Examples of usage
+#   - Setting the pacman_command variable in the
+#     aurget (https://github.com/pbrisbin/aurget) config
 su -c "$*"
