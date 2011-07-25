@@ -1,18 +1,29 @@
 #!/bin/sh
 
 echo -n "Do you want to synchronise changes? [y/n/d] "
-read action
-case "$action" in
-    y)
-      HOME=/home/pascal
-      # It's important to sync the unison profile
-      # files first
-      ssh-add && unison unison && unison all
-    ;;
-    d)
-      exit 0
-    ;;
-esac
+
+while [ 1 ]
+do
+    read action
+    case $action in
+        "y" )
+            HOME=/home/pascal
+            # It's important to sync the unison profile
+            # files first
+            ssh-add && unison unison && unison all
+            break
+            ;;
+        "n" )
+            break
+            ;;
+        "d" )
+            exit 0
+            ;;
+        * )
+            echo -n "Invalid input! Try again: "
+            ;;
+    esac
+done
 
 # Add programms to start
 # after successful synchronisation
