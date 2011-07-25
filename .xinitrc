@@ -70,7 +70,7 @@ exec $HOME/.bin/x-autostart &
 
 # Refresh the dwm statusbar every second
 while true; do
-      xsetroot -name "[Vol: `volume`] [Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]";
+      xsetroot -name "[Fin: `finances -q show`] [Vol: `volume`] [Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]";
       sleep 1
 done &
 
