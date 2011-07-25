@@ -60,10 +60,3 @@ if [[ -d $ZSHDIR ]] {
       load_config $ZSHDIR/$config_file.zsh
     done
 }
-
-if [ "$(tty)" = "/dev/tty1" ]; then
-    # Check for backup before login
-    # and start ssh-agent with X
-    backup && ssh-agent startx &!
-    logout
-fi
