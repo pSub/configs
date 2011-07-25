@@ -5,11 +5,9 @@ read action
 case "$action" in
     y)
       HOME=/home/pascal
-      ssh-add && (connected1=$(unison unison)) && (connected2=$(unison all))
-      if [[ $connected1=*"Could not resolve hostname"* ||
-            $connected2=*"Could not resolve hostname"* ]]; then
-          exit 1
-      fi
+      # It's important to sync the unison profile
+      # files first
+      ssh-add && unison unison && unison all
     ;;
     d)
       exit 0
