@@ -1,10 +1,12 @@
 #!/bin/sh
-# Cronjobs like this are needed:
-# @daily ID=daily-backup /bin/touch /home/user/.daily-backup
-# @weekly ID=weekly-backup /bin/touch /home/user/.weekly-backup
 
+# The Backup intervals in use.
+# Must be a subset of the intervals
+# defined in the rsnapshot config
 intervals=(weekly)
 
+# Prompts the user to run the backup
+# for the given interval.
 createBackup(){
 echo -n "Create a $1 backup NOW? [yn] "
 
@@ -33,6 +35,16 @@ do
 done
 }
 
+# The user is prompted to run a backup
+# if and only if a file .$interval-backup
+# exists in his $HOME (e.g created by
+# a cronjob). Where $interval ∈ intervals.
+# This file will be removed, if the backup
+# was successful.
+
+# Example cronjobs:
+# @daily ID=daily-backup /bin/touch /home/user/.daily-backup
+# @weekly ID=weekly-backup /bin/touch /home/user/.weekly-backup
 for interval in ${intervals[@]}
 do
   if [ -f ~/.$interval-backup ]; then
