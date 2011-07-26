@@ -1,4 +1,6 @@
 #!/bin/sh
+# This script is started form .xinitrc and provides
+# host specific synclient configs
 
 case $(hostname) in
   'firmin')
