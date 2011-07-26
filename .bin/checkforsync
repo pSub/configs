@@ -6,6 +6,8 @@ while [ 1 ]
 do
     read action
     case $action in
+        
+        # Sync all changes and start depending programs
         "y" )
             HOME=/home/pascal
             # It's important to sync the unison profile
@@ -13,19 +15,24 @@ do
             ssh-add && unison unison && unison all
             break
             ;;
+        
+        # Don't sync and start depending programs
         "n" )
             break
             ;;
+
+        # Don't sync and don't start programs
         "d" )
             exit 0
             ;;
+
         * )
             echo -n "Invalid input! Try again: "
             ;;
     esac
 done
 
-# Add programms to start
-# after successful synchronisation
+# Add programms to start after successful synchronisation.
+# Most likely programs that depends on data that was synced.
 urxvtc -e newsbeuter
 urxvtc -e hsgtd
