@@ -32,7 +32,9 @@ zmodload -ap zsh/mapfile mapfile
 setopt autocd
 
 # Be quiet
-setopt no_beep
+setopt nobeep
+setopt nohistbeep
+setopt nolistbeep
 
 # Maybe needed for prompt, I'm not sure
 setopt prompt_subst
