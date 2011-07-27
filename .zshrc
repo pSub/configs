@@ -1,8 +1,7 @@
 # Created by pSub for 4.3.10
 
 # Declaration of config files to
-# be used, which are located in
-# ~/.zsh/
+# be used, which are located in $ZSHDIR
 config_files=(alias
               bindkey
               functions
@@ -18,25 +17,40 @@ export REPORTTIME="10"
 export HISTFILE=$HOME/.zshhistory
 export COLORTERM=yes
 
-# Load extra modules
+# MODULES
 autoload -U compinit && compinit
 autoload -U keeper && keeper
 autoload -U colors && colors
 autoload -U zfinit && zfinit
 autoload -U zmv
 autoload -Uz vcs_info
-zmodload -ap zsh/mapfile mapfile 
+zmodload -ap zsh/mapfile mapfile
 
-# Set Options
+# OPTIONS
+
+# change directory without 'cd'
 setopt autocd
-setopt no_beep
-setopt prompt_subst
-setopt function_argzero
-setopt histignoredups
-setopt extendedglob
-setopt interactivecomments
 
-# Colors
+# Be quiet
+setopt no_beep
+
+# Maybe needed for prompt, I'm not sure
+setopt prompt_subst
+
+# $0 is the name of the function/script
+setopt function_argzero
+
+# No duplicate entries in history
+setopt histignoredups
+
+# Cool globbing stuff, see http://zsh.sourceforge.net/Intro/intro_2.html
+setopt extendedglob
+
+# Comments are allowed in the prompt, useful when pasting a shelscript
+setopt interactivecomments  
+
+
+# COLORS
 if [[ -f ~/.dircolors ]] {
     if [[ ${TERM} == screen* ]] {
         eval $( TERM=screen dircolors ~/.dircolors )
@@ -54,9 +68,13 @@ function load_config() {
     }
 }
 
+# Load config files
 if [[ -d $ZSHDIR ]] {
     for config_file in $config_files
     do
       load_config $ZSHDIR/$config_file.zsh
     done
 }
+
+unfunction load_config
+unset config_files
