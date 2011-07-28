@@ -2,6 +2,8 @@
 
 # Auxiliarity function
 function unison_sync() {
+    # It's important to sync the unison profile
+    # files first
     unison unison && unison all
 }
 
@@ -14,9 +16,6 @@ do
         
         # Sync all changes and start depending programs
         "y" )
-            HOME=/home/pascal
-            # It's important to sync the unison profile
-            # files first
             if [[ ! $(ssh-add -l) = *$HOME/.ssh/id_rsa* ]]; then
                 ssh-add && unison_sync
             else
@@ -48,6 +47,8 @@ do
             ;;
     esac
 done
+
+unset -f unison_sync
 
 # Add programms to start after successful synchronisation.
 # Most likely programs that depends on data that was synced.
