@@ -1,6 +1,11 @@
 #!/bin/sh
 
-echo -n "Do you want to synchronise changes? [y/n/d] "
+# Auxiliarity function
+function unison_sync() {
+    unison unison && unison all
+}
+
+echo -n "Do you want to synchronise changes? [y/o/n/d] "
 
 while [ 1 ]
 do
@@ -12,7 +17,11 @@ do
             HOME=/home/pascal
             # It's important to sync the unison profile
             # files first
-            ssh-add && unison unison && unison all
+            if [[ ! $(ssh-add -l) = *$HOME/.ssh/id_rsa* ]]; then
+                ssh-add && unison_sync
+            else
+                unison_sync
+            fi
             break
             ;;
         
@@ -23,7 +32,9 @@ do
 
         # Only add the ssh key
         "o" )
-            ssh-add
+            if [[ ! $(ssh-add -l) = *$HOME/.ssh/id_rsa* ]]; then
+                ssh-add
+            fi
             exit 0
             ;;
         
