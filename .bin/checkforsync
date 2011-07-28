@@ -10,6 +10,10 @@ function unison_sync() {
     fi
 }
 
+function sshkey_is_added() {
+    [[ ! $(ssh-add -l) = *$HOME/.ssh/id_rsa* ]]
+}
+
 echo -n "Do you want to synchronise changes? [y/o/n/d] "
 
 while [ 1 ]
@@ -19,7 +23,7 @@ do
         
         # Sync all changes and start depending programs
         "y" )
-            if [[ ! $(ssh-add -l) = *$HOME/.ssh/id_rsa* ]]; then
+            if sshkey_is_added; then
                 ssh-add && unison_sync
             else
                 unison_sync
@@ -34,7 +38,7 @@ do
 
         # Only add the ssh key
         "o" )
-            if [[ ! $(ssh-add -l) = *$HOME/.ssh/id_rsa* ]]; then
+            if sshkey_is_added; then
                 ssh-add
             fi
             exit 0
@@ -52,6 +56,7 @@ do
 done
 
 unset -f unison_sync
+unset -f sshkey_is_added
 
 # Add programms to start after successful synchronisation.
 # Most likely programs that depends on data that was synced.
