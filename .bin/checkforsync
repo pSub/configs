@@ -21,6 +21,12 @@ do
             break
             ;;
 
+        # Only add the ssh key
+        "o" )
+            ssh-add
+            exit 0
+            ;;
+        
         # Don't sync and don't start programs
         "d" )
             exit 0
