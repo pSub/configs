@@ -1,2 +1,4 @@
 #!/bin/sh
+# The empty alternate editor ensures that a daemon
+# is started if no daemon is already running.
 exec emacsclient --alternate-editor="" -c "$@"
