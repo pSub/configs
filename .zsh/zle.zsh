@@ -4,4 +4,4 @@ after-first-word() {
   zle forward-word
 }
 zle -N after-first-word
-bindkey "^P" after-first-word
+bindkey "^@" after-first-word
