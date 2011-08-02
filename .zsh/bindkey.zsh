@@ -51,7 +51,13 @@ bindkey "^@" after-first-word
 # Keybindings to change pacman commands on the fly
 # TODO: DRY!
 replace-pacman-command() {
-  BUFFER=${BUFFER/pacman [-a-zA-Z]#/pacman $@}
+      if [[ $LBUFFER = "pacman"* ]]; then
+	 CURSOR=0
+	 zle forward-word
+	 zle delete-word
+	 LBUFFER+="$*"
+         zle end-of-line
+      fi
 }
 
 replace-pacman-command-insert() {
