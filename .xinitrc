@@ -57,7 +57,7 @@ setxkbmap -layout de -variant nodeadkeys &
 xbindkeys -f $HOME/.xbindkeysrc &
 
 # Load touchpad (synaptics) configuration
-exec $HOME/.bin/synclient-config &
+$HOME/.bin/synclient-config &
 
 # Set window-manager name (useful for java apps)
 wmname LG3D &
@@ -65,8 +65,14 @@ wmname LG3D &
 # Set background
 bgs $(addprefix $BGPATH $BGACTIVE)
 
+# Start scdaemon
+scdaemon --daemon
+
+# Start gpg-agent
+eval "$(gpg-agent --daemon --enable-ssh-support)"
+
 # Autostart applications
-exec $HOME/.bin/x-autostart &
+$HOME/.bin/x-autostart &
 
 # Refresh the dwm statusbar every second
 while true; do

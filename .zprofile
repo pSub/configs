@@ -6,6 +6,6 @@ export PATH
 if [ "$(tty)" = "/dev/tty1" ]; then
     # Check for backup before login
     # and start ssh-agent with X
-    backup && ssh-agent startx &!
+    backup && startx &!
     logout
 fi
