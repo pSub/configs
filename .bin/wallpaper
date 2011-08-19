@@ -16,5 +16,15 @@ addprefix(){
   done
 }
 
-# Set background
-bgs $(addprefix $BGPATH $BGACTIVE)
+# Set wallpaper
+setWallpaper(){
+  bgs $(addprefix $BGPATH $BGACTIVE)
+}
+
+# Set initial wallpaper
+setWallpaper
+
+# Look for wallpaper changes and apply them
+while inotifywait $BGACTIVE; do
+  setWallpaper
+done
