@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # Extending PATH
 PATH=$PATH:$HOME/.cabal/bin:$HOME/.bin
 export PATH
