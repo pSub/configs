@@ -1,5 +1,6 @@
 emulate -L zsh
 
+# Create a directory and change to it
 mcd() { mkdir -p "$@" && cd "$@" }
 
 dcp() {
@@ -10,10 +11,13 @@ dcp() {
     }
 }
 
+# Change to directory and list the content
 lcd() {
     cd "$@" && ls
 }
 
+# Handle the start/stop/restart and reload of daemons uniformly.
+# It's able to handle multiple daemons.
 start restart stop reload(){
   local daemonPath distro cmd
   if [[ $# -le 1 ]]; then
@@ -45,6 +49,9 @@ start restart stop reload(){
 
 sync-unison(){ unison unison && unison all; }
 
+# Very simple hexeditor that uses the editor
+# specified in $EDITOR. Needs the package moreutils:
+# http://joey.kitenet.net/code/moreutils/
 hexeditor(){
     local input output
     if [[ ! -f $1 ]] {
@@ -59,6 +66,7 @@ hexeditor(){
     unset input output
 }
 
+# Ugly function to grep ToDo-Entries.
 greptodos(){
     find . -name $1 | xargs grep --no-filename -oE 'TODO:[^$]*' | sed s/TODO:/$2/ | combine - or ~/.todo.txt | sponge ~/.todo.txt
 }
