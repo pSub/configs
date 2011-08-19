@@ -19,22 +19,6 @@ wifi(){
     fi
 }
 
-# Adds first parameter as prefix to the lines of the second parameter
-# therefore the second parameter must bei a file
-addprefix(){
-  for s in $(cat $2)
-  do
-    echo -n $1$s" "
-  done
-}
-
-# Path to background images
-BGPATH=$HOME/wallpapers/
-
-# Path to file with active backgrounds
-# one line per background
-BGACTIVE=$BGPATH/current
-
 # Load xrandr configuration
 $HOME/.bin/xrandr-config
 
@@ -62,14 +46,14 @@ $HOME/.bin/synclient-config &
 # Set window-manager name (useful for java apps)
 wmname LG3D &
 
-# Set background
-bgs $(addprefix $BGPATH $BGACTIVE)
-
 # Start scdaemon
 scdaemon --daemon
 
 # Start gpg-agent
 eval "$(gpg-agent --daemon --enable-ssh-support)"
+
+# Set background / wallpaper
+$HOME/.bin/wallpaper &
 
 # Autostart applications
 $HOME/.bin/x-autostart &
