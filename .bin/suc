@@ -1,6 +1,18 @@
 #!/bin/sh
-# A wrapper around su(1)
+# A wrapper around su(1): To execute a command as root
+# without the need of surrounding quotes. It runs su
+# again when it fail (e.g. incorrect password), too.
+# 
 # Examples of usage
 #   - Setting the pacman_command variable in the
 #     aurget (https://github.com/pbrisbin/aurget) config
-su -c "$*"
+
+while [ 1 ]; do
+    su -c "$*"
+
+    # If su fails (e.g. password incorrect)
+    # run it again
+    if [ $? -ne 125 ]; then
+        break
+    fi
+done        
