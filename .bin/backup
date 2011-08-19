@@ -20,7 +20,7 @@ do
         "y" )
             echo -n "Which device contains the encrypted backup volume? [std. sdb1] "
             read device
-            echo -n "Enter root "; su -c "
+            echo -n "Enter root "; suc "
             cryptsetup luksOpen /dev/${device:-sdb1} backup &&
             mount /dev/mapper/backup/ /backup &&
             rsnapshot $1 &&
