@@ -47,8 +47,6 @@ start restart stop reload(){
   unset daemonPath distro
 }
 
-sync-unison(){ unison unison && unison all; }
-
 # Very simple hexeditor that uses the editor
 # specified in $EDITOR. Needs the package moreutils:
 # http://joey.kitenet.net/code/moreutils/
