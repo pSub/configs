@@ -18,6 +18,8 @@ addprefix(){
 
 # Set wallpaper
 setWallpaper(){
+  # The project page of bgs can be found on:
+  # http://s01.de/~tox/index.cgi/proj_bgs
   bgs $(addprefix $BGPATH $BGACTIVE)
 }
 
