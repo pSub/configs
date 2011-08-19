@@ -5,6 +5,8 @@ Xft.antialias                : true
 Xft.hinting                  : full
 
 urxvt.font                   : xft:inconsolata:pixelsize=13,xft:dejavu sans mono:pixelsize=13,xft:gentium
+
+! Colors are from https://wiki.archlinux.org/index.php/Xdefaults#Terminal_colors
 urxvt.foreground             : #d2d2d2
 urxvt.background             : #1B1D1E
 urxvt.cursorColor            : #FFFFFF
@@ -25,12 +27,18 @@ urxvt.color6                 : #89b6e2
 urxvt.color14                : #46a4ff
 urxvt.color7                 : #cccccc
 urxvt.color15                : #ffffff
+
+! To use urgency hints with console programms
 urxvt.urgentOnBell           : true
+
 urxvt.internalBorder         : 3
 urxvt.saveLines              : 32767
 urxvt.visualBell             : false
 urxvt.jumpScroll             : false
+
+! No scroll bar
 urxvt.scrollBar              : plain
+
 urxvt.scrollTtyKeypress      : true
 urxvt.scrollWithBuffer       : false
 urxvt.scrollTtyOutput        : false
@@ -38,11 +46,20 @@ urxvt.secondaryScroll        : true
 urxvt.utmpInhibit            : true
 urxvt.urlLauncher            : firefox
 urxvt.matcher.button         : 1
+
+! Extension that matches URLs
 urxvt.perl-ext-common        : default,matcher
+
 urxvt.matcher.pattern.1      : \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-urxvt.cutchars               : "()*,<>[]{}|'
+
+! Charactes which bound the selection on double click
+urxvt.cutchars               : "\"()*,<>[]{}|'"
+
 urxvt.depth                  : 24
 urxvt.transparent            : false
+
+! If the window has no focus its faded out about 20%
 urxvt.fading                 : 20%
+
 urxvt.shading                : -2
 urxvt.metaSendsEscape        : true
