@@ -4,6 +4,7 @@ alias ls="ls --color=auto"
 alias xfiglatex="xfig -specialtext -latexfonts -startlatexFont default"
 alias unpack="aunpack"
 alias pack="apack"
+alias sync-unison="unison unison && unison all"
 
 # Suffix aliases
 alias -s pdf="background zathura"
