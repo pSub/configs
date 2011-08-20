@@ -20,7 +20,7 @@ lcd() {
 # It's able to handle multiple daemons.
 start restart stop reload(){
   local daemonPath distro cmd
-  if [[ $# -le 1 ]]; then
+  if [[ $# -le 0 ]]; then
     echo "Usage: start [restart, stop, reload] DAEMON [DAEMON ...]"
     return 1
   fi
