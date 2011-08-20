@@ -60,7 +60,7 @@ replace-pacman-command() {
       fi
 }
 
-replace-pacman-command-insert() {
+replace-pacman-command-install() {
   replace-pacman-command "-S"
 }
 
@@ -76,8 +76,8 @@ replace-pacman-command-info() {
   replace-pacman-command "-Qi"
 }
 
-zle -N replace-pacman-command-insert
-bindkey "^[i" replace-pacman-command-insert
+zle -N replace-pacman-command-install
+bindkey "^[i" replace-pacman-command-install
 
 zle -N replace-pacman-command-search
 bindkey "^[f" replace-pacman-command-search
