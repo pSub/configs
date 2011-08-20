@@ -77,13 +77,21 @@ replace-pacman-command-info() {
 }
 
 zle -N replace-pacman-command-install
+
+# Meta-i
 bindkey "^[i" replace-pacman-command-install
 
 zle -N replace-pacman-command-search
+
+# Meta-f
 bindkey "^[f" replace-pacman-command-search
 
 zle -N replace-pacman-command-remove
+
+# Meta-r
 bindkey "^[r" replace-pacman-command-remove
 
 zle -N replace-pacman-command-info
+
+# Meta-p
 bindkey "^[p" replace-pacman-command-info
