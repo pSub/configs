@@ -1,17 +1,17 @@
-# I don't need Capslock
+! I don't need Capslock
 clear Lock
 
-# Map Control to Capslock key
+! Map Control to Capslock key
 keycode 66 = Control_L
 add Control = Control_L
 
-# Make sure keys are mapped right
+! Make sure keys are mapped right
 keycode 64 = Alt_L
 keycode 135 = Meta_L
 keycode 133 = Multi_key
 keycode 108 = ISO_Level3_Shift
 
-# Separate Meta and Alt
+! Separate Meta and Alt
 clear Mod1
 add Mod1 = Meta_L
 add Mod3 = Alt_L
