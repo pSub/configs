@@ -49,7 +49,14 @@ bindkey "^@" after-first-word
 
 
 # Keybindings to change pacman commands on the fly
-# TODO: DRY!
+pacman_bindings=("^[i" "S"     # Meta-i → install
+                 "^[f" "Ss"    # Meta-f → search
+                 "^[r" "Rs"    # Meta-r → remove
+                 "^[p" "Qi"    # Meta-p → info / properties
+                )
+
+# Function that checks the BUFFER for a pacman command
+# and replaces the operation with the given parameters
 replace-pacman-command() {
       if [[ $LBUFFER = "pacman"* ]]; then
 	 CURSOR=0
@@ -60,38 +67,24 @@ replace-pacman-command() {
       fi
 }
 
-replace-pacman-command-install() {
-  replace-pacman-command "-S"
-}
+# Creates widgets from pacman_bindings and replace-pacman-command
+# and binds them the the given keys
+local i
+i=1
+while [ $i -le ${#pacman_bindings} ]; do
 
-replace-pacman-command-search() {
-  replace-pacman-command "-Ss"
-}
+    # The widget function: Operation is accessed over the name of
+    # this function because its hard to create a local accessor
+    # inside the function.
+    function "replace-pacman-command-"$i {
+        number=${WIDGET//[^[:digit:]]/}
+        replace-pacman-command "-"$pacman_bindings[$number+1]
+    }
 
-replace-pacman-command-remove() {
-  replace-pacman-command "-Rs"
-}
+    # Create a widet and bind it to the key
+    zle -N "replace-pacman-command-"$i 
+    bindkey $pacman_bindings[$i] "replace-pacman-command-"$i
 
-replace-pacman-command-info() {
-  replace-pacman-command "-Qi"
-}
-
-zle -N replace-pacman-command-install
-
-# Meta-i
-bindkey "^[i" replace-pacman-command-install
-
-zle -N replace-pacman-command-search
-
-# Meta-f
-bindkey "^[f" replace-pacman-command-search
-
-zle -N replace-pacman-command-remove
-
-# Meta-r
-bindkey "^[r" replace-pacman-command-remove
-
-zle -N replace-pacman-command-info
-
-# Meta-p
-bindkey "^[p" replace-pacman-command-info
+    # We do this, because we don't have 2-dimensional arrays
+    i=$((i+2))
+done
