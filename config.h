@@ -21,8 +21,9 @@ static const char *tags[] = { "org", "www", "dev", "docs", "chat", "mail", "misc
 
 static const Rule rules[] = {
   /* class      instance    title          tags mask     isfloating   monitor */
-  { "Thunderbird",    NULL,       NULL,          1 << 5,       False,       -1 },
-  { "Firefox",        NULL,       NULL,          1 << 1,       False,       -1 },
+  { "Thunderbird",    NULL,       NULL,          1 << 5,       False,        0 },
+  { "Firefox",        NULL,       NULL,          1 << 1,       False,        0 },
+  { "Opera",          NULL,       NULL,          1 << 1,       False,        0 },
   { "feh",            NULL,       NULL,          0,            True,        -1 },
   { "Zathura",        NULL,       NULL,          1 << 3,       False,       -1 },
   { NULL,             NULL,       "floatingwin", 0,            True,        -1 },
@@ -86,7 +87,7 @@ static Key keys[] = {
   { MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
   { MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
   { MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} },           /* key binding makes it unlikly to kill dwm accidentally */
-  { MODKEY|ShiftMask,             XK_t,      rotatelayoutaxis, {.i = 0} },    /* 0 = layout axis */
+  { MODKEY,                       XK_r,      rotatelayoutaxis, {.i = 0} },    /* 0 = layout axis */
   { MODKEY,                       XK_plus, rotatelayoutaxis, {.i = 1} },    /* 1 = master axis */
   { MODKEY,                       XK_numbersign, rotatelayoutaxis, {.i = 2} },    /* 2 = stack axis */
   { MODKEY|ShiftMask,             XK_m,      mirrorlayout,     {0} },
