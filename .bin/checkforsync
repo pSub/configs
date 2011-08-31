@@ -62,3 +62,4 @@ unset -f sshkey_is_added
 # Most likely programs that depends on data that was synced.
 urxvtc -e newsbeuter
 urxvtc -e hsgtd
+opera

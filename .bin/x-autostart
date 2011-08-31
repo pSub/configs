@@ -9,6 +9,5 @@ case $(hostname) in
       ;;
   'subiectiva')
       thunderbird &
-      firefox &
       ;;
 esac
