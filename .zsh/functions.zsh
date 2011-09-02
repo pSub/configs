@@ -16,6 +16,12 @@ lcd() {
     cd "$@" && ls
 }
 
+# Simple slmenu based function to change directories
+ch() {
+  dirs=$(find -L -maxdepth 1 -type d -name '*' ! -name '.*' -printf '%f\n')
+  cd $(echo $dirs | slmenu -p λ)
+}
+
 # Handle the start/stop/restart and reload of daemons uniformly.
 # It's able to handle multiple daemons.
 start restart stop reload(){
