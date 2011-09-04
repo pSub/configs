@@ -59,10 +59,10 @@ pacman_bindings=("^[i" "S"     # Meta-i → install
 # and replaces the operation with the given parameters
 replace-pacman-command() {
       if [[ $LBUFFER = "pacman"* ]]; then
-	 CURSOR=0
-	 zle forward-word
-	 zle delete-word
-	 LBUFFER+="$*"
+         CURSOR=0
+         zle forward-word
+         zle delete-word
+         LBUFFER+="$*"
          zle end-of-line
       fi
 }
