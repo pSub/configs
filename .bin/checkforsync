@@ -45,4 +45,4 @@ unset -f unison_sync
 # Most likely programs that depends on data that was synced.
 urxvtc -e newsbeuter
 urxvtc -e hsgtd
-opera
+opera &!
