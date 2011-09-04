@@ -53,7 +53,7 @@ urxvt.perl-ext-common        : default,matcher
 urxvt.matcher.pattern.1      : \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 
 ! Charactes which bound the selection on double click
-urxvt.cutchars               : "\"()*,<>[]{}|'"
+urxvt.cutchars               : -
 
 urxvt.depth                  : 24
 urxvt.transparent            : false
