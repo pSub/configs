@@ -3,7 +3,7 @@
 
 (global-linum-mode 1) ; line numbers in all buffers
 (define-key global-map (kbd "RET") 'newline-and-indent)
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 (setq next-line-add-newlines t) ; C-n makes new line
 (setq x-menu 'meta)
 (setq-default indent-tabs-mode nil)
@@ -11,11 +11,30 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+; http://savannah.nongnu.org/projects/dtrt-indent/
+;(require 'dtrt-indent)
+;(dtrt-indent-mode 1)
+
+; Save all backupfiles in ~/.saves
+(setq
+   backup-by-copying t      ; don't clobber symlinks
+   backup-directory-alist
+    '(("." . "~/.saves"))    ; don't litter my fs tree
+   delete-old-versions t
+   kept-new-versions 6
+   kept-old-versions 2
+   version-control t)       ; use versioned backups
+
+; Save auto saved files in /tmp
+(setq auto-save-file-name-transforms
+   `((".*" ,temporary-file-directory t)))
+
 (ido-mode t)
 (show-paren-mode t)
   
 (dolist (dir '(
 	       "/usr/local/share/emacs/site-lisp"
+               "/home/pascal/.elisp/autocomplete"
 	       ))
   (add-to-list 'load-path dir))
 
