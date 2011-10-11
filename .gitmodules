@@ -1,12 +1,12 @@
-[submodule "/home/pascal/configs/.elisp/vendor/magit"]
-	path = /home/pascal/configs/.elisp/vendor/magit
+[submodule ".elisp/magit"]
+	path = .elisp/magit
 	url = https://github.com/magit/magit.git
 [submodule ".elisp/ghc-mod"]
 	path = .elisp/ghc-mod
 	url = https://github.com/kazu-yamamoto/ghc-mod.git
-[submodule ".elisp/vendor/haskell-mode"]
-	path = .elisp/vendor/haskell-mode
+[submodule ".elisp/haskell-mode"]
+	path = .elisp/haskell-mode
 	url = https://github.com/pheaver/haskell-mode.git
-[submodule ".elisp/vendor/emacs-eclim"]
-	path = .elisp/vendor/emacs-eclim
+[submodule ".elisp/emacs-eclim"]
+	path = .elisp/emacs-eclim
 	url = https://github.com/senny/emacs-eclim.git
