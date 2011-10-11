@@ -10,8 +10,8 @@
 [submodule ".elisp/emacs-eclim"]
 	path = .elisp/emacs-eclim
 	url = https://github.com/senny/emacs-eclim.git
-[submodule ".elisp/haskell-emcas"]
-	path = .elisp/haskell-emcas
+[submodule ".elisp/haskell-emacs"]
+	path = .elisp/haskell-emacs
 	url = https://github.com/chrisdone/haskell-emacs.git
 [submodule ".elisp/nxhtml"]
 	path = .elisp/nxhtml
