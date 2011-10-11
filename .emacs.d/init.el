@@ -3,7 +3,6 @@
 
 (global-linum-mode 1) ; line numbers in all buffers
 (define-key global-map (kbd "RET") 'newline-and-indent)
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 (setq next-line-add-newlines t) ; C-n makes new line
 (setq x-menu 'meta)
 (setq-default indent-tabs-mode nil)
@@ -32,10 +31,11 @@
 (ido-mode t)
 (show-paren-mode t)
   
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 (dolist (dir '(
-	       "/usr/local/share/emacs/site-lisp"
-               "/home/pascal/.elisp/autocomplete"
-	       ))
+  "/usr/local/share/emacs/site-lisp"
+  "/home/pascal/.elisp"
+  ))
   (add-to-list 'load-path dir))
 
 (require 'magit)
