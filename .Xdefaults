@@ -44,7 +44,7 @@ urxvt.scrollWithBuffer       : false
 urxvt.scrollTtyOutput        : false
 urxvt.secondaryScroll        : true
 urxvt.utmpInhibit            : true
-urxvt.urlLauncher            : firefox
+urxvt.urlLauncher            : opera
 urxvt.matcher.button         : 1
 
 ! Extension that matches URLs
