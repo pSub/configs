@@ -38,7 +38,6 @@
   ))
   (add-to-list 'load-path dir))
 
-(require 'magit)
 (require 'vimpulse)
 (load "my-auctex")
 (load "my-util")

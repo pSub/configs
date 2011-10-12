@@ -1,15 +1,15 @@
 ;; haskell-emacs from Chris Done
 
 (message "Loading dependencies...")
-(add-to-list 'load-path "~/.elisp/haskell-emcas/lib/")
-(add-to-list 'load-path "~/.elisp/haskell-emcas/lib/auto-complete-1.3.1")
+(add-to-list 'load-path (expand-file-name "~/.elisp/haskell-emacs/lib/"))
+(add-to-list 'load-path (expand-file-name "~/.elisp/haskell-emacs/lib/auto-complete-1.3.1"))
 (require 'auto-complete)
 (require 'auto-complete-etags)
 (require 'paredit)
 (message "Loaded dependencies.")
 
 (message "Loading hs library...")
-(add-to-list 'load-path "~/.elisp/haskell-emcas/src/")
+(add-to-list 'load-path "~/.elisp/haskell-emacs/src/")
 (require 'hs)
 (message "Load hs library.")
 
