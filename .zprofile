@@ -1,8 +1,12 @@
 #!/usr/bin/env zsh
 
 # Extending PATH
-PATH=$PATH:$HOME/.cabal/bin:$HOME/.bin
+PATH=$PATH:$HOME/.cabal/bin:$HOME/.bin:/opt/Isabelle2011-1/bin
 export PATH
+
+# Isabelle Options
+PROOFGENERAL_OPTIONS=-m iff -m no_brackets
+export PROOFGENERAL_OPTIONS
 
 # Starting X when login in on tty1
 if [ "$(tty)" = "/dev/tty1" ]; then
