@@ -5,7 +5,7 @@ PATH=$PATH:$HOME/.cabal/bin:$HOME/.bin:/opt/Isabelle2011-1/bin
 export PATH
 
 # Isabelle Options
-PROOFGENERAL_OPTIONS=-m iff -m no_brackets
+PROOFGENERAL_OPTIONS="-m iff -m no_brackets"
 export PROOFGENERAL_OPTIONS
 
 # Starting X when login in on tty1
