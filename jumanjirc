@@ -1,0 +1,11 @@
+# jumanji configuration
+searchengine g http://www.google.com/search?q=%s
+
+set tabbar_bgcolor #222222
+set tabbar_fgcolor #ffffff
+set tabbar_focus_bgcolor #2e3436
+set tabbar_focus_fgcolor #f5a400
+
+set download_dir ~/sandbox/
+set download_command urxvt -e sh -c "wget --load-cookies ~/.config/jumanji/cookies '%s' -O '%s'"
+set spawn_editor ec
