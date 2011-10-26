@@ -33,14 +33,14 @@ pkgbuild_editor=
 # where to save built packages. if empty, the value of PKGDEST in
 # makepkg.conf or the current working directory will be used.
 ###
-package_directory=
+package_directory=/tmp/
 
 #
 # where to download source files and do the actual building. aurget
 # will create subdirectories named after the packages being built.
 # if empty, the current working directory will be used.
 ###
-build_directory=
+build_directory=/tmp/
 
 #
 # if true, aurget will discard source files after building a package.
@@ -51,7 +51,7 @@ discard_sources=true
 # if true, aurget will not discard sources of development packages as
 # defined by development_regex regardless of the above setting.
 ###
-dont_discard_devels=true
+dont_discard_devels=false
 
 #
 # this regex is matched against package names to determine if a package
@@ -95,11 +95,11 @@ ignore_packages=
 #
 # by default, aurget uses no color. uncomment to enable/customize.
 ###
-#nocolor="\e[0m"   # reset color
-#colorW="\e[1;37m" # white
-#colorC="\e[1;36m" # cyan
-#colorB="\e[1;34m" # blue
-#colorR="\e[1;31m" # red
-#colorG="\e[1;32m" # green
-#colorY="\e[1;33m" # yellow
-#colorM="\e[1;35m" # magenta
+nocolor="\e[0m"   # reset color
+colorW="\e[1;37m" # white
+colorC="\e[1;36m" # cyan
+colorB="\e[1;34m" # blue
+colorR="\e[1;31m" # red
+colorG="\e[1;32m" # green
+colorY="\e[1;33m" # yellow
+colorM="\e[1;35m" # magenta
