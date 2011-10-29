@@ -1,10 +1,18 @@
 #!/bin/sh
 
+url=$1
+cookie=$2
+
 . $HOME/configs/dmenu_config.sh
 
 function runDmenu() {
   file=$((echo ".."; ls) | dmenu $dmenu_conf -l 15 -p $PWD)
   return $(test -n "$file")
+}
+
+# FIXME: Certificate support
+function runCurl() {
+  curl -k --cookie-jar $3 "${1}" -o "${2}"
 }
 
 while runDmenu; do
@@ -13,11 +21,11 @@ while runDmenu; do
   elif [ -f $file ]; then
       ans=$(echo -e "Yes\nNo" | dmenu $dmenu_conf -i -p "Overwrite existing file $file?")
       if echo $ans | grep -i "^Yes" > /dev/null ; then
-        wget --load-cookies ~/.config/jumanji/cookies $1 -O $PWD/$file
+        runCurl $url $PWD/$file $cookie
       fi
       exit
   else
-      wget --load-cookies ~/.config/jumanji/cookies $1 -O $PWD/$file
+      runCurl $url $PWD/$file $cookie
       exit
   fi
 done
