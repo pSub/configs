@@ -1,0 +1,23 @@
+#!/bin/sh
+
+. $HOME/configs/dmenu_config.sh
+
+function runDmenu() {
+  file=$((echo ".."; ls) | dmenu $dmenu_conf -l 15 -p $PWD)
+  return $(test -n "$file")
+}
+
+while runDmenu; do
+  if [ -d $file ]; then
+      cd $file
+  elif [ -f $file ]; then
+      ans=$(echo -e "Yes\nNo" | dmenu $dmenu_conf -i -p "Overwrite existing file $file?")
+      if echo $ans | grep -i "^Yes" > /dev/null ; then
+        wget --load-cookies ~/.config/jumanji/cookies $1 -O $PWD/$file
+      fi
+      exit
+  else
+      wget --load-cookies ~/.config/jumanji/cookies $1 -O $PWD/$file
+      exit
+  fi
+done

@@ -7,5 +7,5 @@ set tabbar_focus_bgcolor #2e3436
 set tabbar_focus_fgcolor #f5a400
 
 set download_dir ~/sandbox/
-set download_command urxvt -e sh -c "wget --load-cookies ~/.config/jumanji/cookies '%s' -O '%s'"
+set download_command filechooser '%s'
 set spawn_editor ec
