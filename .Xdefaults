@@ -44,7 +44,7 @@ urxvt.scrollWithBuffer       : false
 urxvt.scrollTtyOutput        : false
 urxvt.secondaryScroll        : true
 urxvt.utmpInhibit            : true
-urxvt.urlLauncher            : opera
+urxvt.urlLauncher            : jumanji
 urxvt.matcher.button         : 1
 
 ! Extension that matches URLs
