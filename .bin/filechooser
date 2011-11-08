@@ -6,26 +6,42 @@ cookie=$2
 . $HOME/configs/dmenu_config.sh
 
 function runDmenu() {
-  file=$((echo ".."; ls) | dmenu $dmenu_conf -l 15 -p $PWD)
+  file=$((echo -e ".\n.."; ls) | dmenu $dmenu_conf -l 15 -p $PWD)
   return $(test -n "$file")
 }
 
 # FIXME: Certificate support
 function runCurl() {
-  curl -k --cookie-jar $3 "${1}" -o "${2}"
+  if [ $# -eq 2 ]; then
+    curl -k --cookie-jar ${1} ${2} -O
+  else 
+    curl -k --cookie-jar ${1} ${2} -o ${3}
+  fi
 }
 
+# Run until location is choosen, or dmenu exists
 while runDmenu; do
-  if [ -d $file ]; then
+
+  # File will be downloaded with original name
+  if [ $file = "." ]; then
+      runCurl $cookie $url
+      exit
+
+  # Change directory
+  elif [ -d $file ]; then
       cd $file
+
+  # Overwrite existing file
   elif [ -f $file ]; then
       ans=$(echo -e "Yes\nNo" | dmenu $dmenu_conf -i -p "Overwrite existing file $file?")
       if echo $ans | grep -i "^Yes" > /dev/null ; then
-        runCurl $url $PWD/$file $cookie
+        runCurl $cookie $url $PWD/$file
       fi
       exit
+
+  # Create new file    
   else
-      runCurl $url $PWD/$file $cookie
+      runCurl $cookie $url $PWD/$file
       exit
   fi
 done
