@@ -43,6 +43,9 @@ xbindkeys -f $HOME/.xbindkeysrc &
 # Load touchpad (synaptics) configuration
 $HOME/.bin/synclient-config &
 
+# Synchronise clipboards
+parcellite -d &
+
 # Set window-manager name (useful for java apps)
 wmname LG3D &
 
