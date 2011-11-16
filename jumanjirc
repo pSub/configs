@@ -1,5 +1,5 @@
 # jumanji configuration
-searchengine g https://www.duckduckgo.com/?q=%s
+searchengine g http://www.google.de/search?q=%s
 
 set tabbar_bgcolor #222222
 set tabbar_fgcolor #ffffff
