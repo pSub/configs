@@ -6,7 +6,7 @@ cookie=$2
 . $HOME/configs/dmenu_config.sh
 
 function runDmenu() {
-  file=$((echo -e ".\n.."; ls) | dmenu $dmenu_conf -l 15 -p $PWD)
+  file=$((echo -e ".\n.."; ls; echo "!open") | dmenu $dmenu_conf -l 15 -p $PWD)
   return $(test -n "$file")
 }
 
@@ -22,8 +22,13 @@ function runCurl() {
 # Run until location is choosen, or dmenu exists
 while runDmenu; do
 
+  if [ $file = "!open" ]; then
+      cmd=$(dmenu_path | dmenu $dmenu_conf)
+      tempfile=$(mktemp)
+      runCurl $cookie $url $tempfile && exec $cmd $tempfile
+
   # File will be downloaded with original name
-  if [ $file = "." ]; then
+  elif [ $file = "." ]; then
       runCurl $cookie $url
       exit
 
