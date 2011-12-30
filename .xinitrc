@@ -26,7 +26,7 @@ $HOME/.bin/xrandr-config
 urxvtd -q -f -o
 
 # Start notification daemon
-#/usr/lib/xfce4/notifyd/xfce4-notifyd  &
+dunst &
 
 # Start daemon for plug'n play
 udisks-glue -c $HOME/.udisks-glue.conf &
