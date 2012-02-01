@@ -35,3 +35,5 @@ used=$(echo "${var}" | tail -n1)
 echo "Available quota: $((${total}-${used}))"
 echo "Used quota: ${used}"
 echo "Total quota: ${total}"
+
+exit 0
