@@ -23,7 +23,7 @@ if [[ $output == *"you don't have any printquota yet"* ]]; then
     exit 1
 fi
 
-if [[ $output == ""  ]]; then
+if [[ $output == "" ]]; then
     echo "Error: Wrong password or username"
     exit 1
 fi
