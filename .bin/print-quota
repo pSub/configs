@@ -1,7 +1,10 @@
 #!/bin/sh
 
+# Print quota script for the RBG computer
+# pool at the TU Darmstadt
+
 if [[ $# -ne 1 ]]; then
-    echo "Warning: No username"
+    echo "Usage: print-quota USER"
     exit 1
 fi
 
