@@ -18,13 +18,13 @@ echo ""
 output=$(wget --no-check-certificate -qO- --http-user=$1 --http-passwd=${password} "https://printer.rbg.informatik.tu-darmstadt.de/quota")
 
 if [[ $output == *"you don't have any printquota yet"* ]]; then
-    echo "Warning: You don't have any printquota yet, it will be
-    created when you print the first time"
+    echo "Warning: You don't have any printquota yet, it will be"
+    echo "         created when you print the first time."
     exit 1
 fi
 
 if [[ $output == ""  ]]; then
-    echo "Warning: Wrong password or username"
+    echo "Error: Wrong password or username"
     exit 1
 fi
 
