@@ -20,7 +20,7 @@ function runDmenu() {
 function runCurl() {
   if [ $# -eq 2 ]; then
     curl -k --cookie-jar ${1} ${2} -O
-  else 
+  else
     curl -k --cookie-jar ${1} ${2} -o ${3}
   fi
   echo $PWD > $last_file
@@ -56,7 +56,7 @@ while runDmenu; do
       fi
       exit
 
-  # Create new file    
+  # Create new file
   else
       runCurl $cookie $url $PWD/$file
       exit
