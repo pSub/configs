@@ -8,7 +8,7 @@
 #     aurget (https://github.com/pbrisbin/aurget) config
 
 while [ 1 ]; do
-    su --login -c "$*"
+    su --login --command="$*"
 
     # If su fails (e.g. password incorrect)
     # run it again
