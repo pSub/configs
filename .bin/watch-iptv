@@ -15,7 +15,7 @@
 if [ -e $HOME/.iptv-channels ]
 then
     channel=$(dmenu $dmenu_conf < $HOME/.iptv-channels)
-    ssh rbg2 "wget -O - http://iptv.fbihome.de/streams/tv/$channel" | mplayer -cache 8192 -
+    ssh rbg1 "wget -O - http://iptv.fbihome.de/streams/tv/$channel" | mplayer -cache 8192 -
 else
     echo "No config file $HOME/.iptv-list found"
     exit 1
