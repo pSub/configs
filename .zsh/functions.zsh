@@ -69,8 +69,3 @@ hexeditor(){
     xxd $input | vipe | xxd -r | sponge $output
     unset input output
 }
-
-# Ugly function to grep ToDo-Entries.
-greptodos(){
-    find . -name $1 | xargs grep --no-filename -oE 'TODO:[^$]*' | sed s/TODO:/$2/ | combine - or ~/.todo.txt | sponge ~/.todo.txt
-}
