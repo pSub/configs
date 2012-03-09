@@ -6,6 +6,7 @@ alias unpack="aunpack"
 alias pack="apack"
 alias sync-unison="unison unison && unison all"
 alias su="su --login"
+alias ssh="TERM=xterm ssh"
 
 # Suffix aliases
 alias -s pdf="background zathura"
