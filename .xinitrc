@@ -62,7 +62,7 @@ $HOME/.bin/wallpaper &
 $HOME/.bin/x-autostart &
 
 # Refresh the dwm statusbar every second
-while xsetroot -name "[Fin: `finances -q show`] [Vol: `volume`] [Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]"; do
+while xsetroot -name "[Vol: `volume`] [Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]"; do
       sleep 1
 done &
 
