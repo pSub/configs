@@ -31,7 +31,7 @@
 
 (ido-mode t)
 (show-paren-mode t)
-  
+
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 (dolist (dir '(
   "/usr/local/share/emacs/site-lisp"

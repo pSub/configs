@@ -22,7 +22,7 @@
 (add-to-list 'auto-mode-alist '("\\.hcr\\'" . hs-core-mode))
 
 ;; Setup key bindings
-(add-hook 
+(add-hook
  'hs-mode-hook
  (lambda ()
    (interactive)
@@ -51,7 +51,7 @@
 
    ;; Display the :info of the current symbol at point.
    (define-key hs-mode-map (kbd "C-c C-i") 'hs-process-info-of-interactive)
-   
+
    ;; Load the current file.
    (define-key hs-mode-map (kbd "<f5>")
      (lambda ()

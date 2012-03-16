@@ -49,7 +49,7 @@ setopt histignoredups
 setopt extendedglob
 
 # Comments are allowed in the prompt, useful when pasting a shelscript
-setopt interactivecomments  
+setopt interactivecomments
 
 
 # COLORS
