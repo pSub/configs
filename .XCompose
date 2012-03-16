@@ -151,6 +151,7 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <S> <s> : "☆" U2606 # WHITE STAR
 <Multi_key> <O> <O> : "●" U25CF # BIG DOT
 <Multi_key> <O> <o> : "•" U2022 # SMALL DOT
-<Multi_key> <T> <M> : "™"   U2122 # TRADE MARK SIGN
+<Multi_key> <T> <M> : "™" U2122 # TRADE MARK SIGN
+<Multi_key> <C> <M> : "✓" U2713 # CHECK MARK SIGN
 
 <Multi_key> <q> <i> : "؟" U2E2E # IRONIC SIGN
