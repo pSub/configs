@@ -3,4 +3,4 @@ xrandr --output LVDS1 --auto --primary
 xrandr --output VGA1 --auto --right-of LVDS1
 
 # Update the wallpapers
-touch $HOME/.wallpaper/current
+touch $HOME/wallpapers/current
