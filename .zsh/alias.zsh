@@ -20,6 +20,15 @@ background(){
   $1 $2 &> /dev/null &!
 }
 
+# Function to start suffix aliases in background with compressed files
+background-compressed(){
+  arguments=""
+  for arg in $2; do
+    arguments+="=(zcat $arg) "
+  done
+  $1 $arguments &> /dev/null &!
+}
+
 # Expand an global alias when hitting space after the alias
 global-alias-space(){
    local ga="$LBUFFER[(w)-1]"
