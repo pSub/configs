@@ -43,10 +43,11 @@ esac
 after-first-word() {
   zle beginning-of-line
   zle forward-word
+  LBUFFER+=' '
+  zle backward-char
 }
 zle -N after-first-word
 bindkey "^@" after-first-word
-
 
 # Keybindings to change pacman commands on the fly
 pacman_bindings=("^[i" "S"     # Meta-i → install
