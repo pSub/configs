@@ -31,6 +31,9 @@ zmodload -ap zsh/mapfile mapfile
 # change directory without 'cd'
 setopt autocd
 
+# Push direcotries automatically
+setopt autopushd
+
 # Be quiet
 setopt nobeep
 setopt nohistbeep
