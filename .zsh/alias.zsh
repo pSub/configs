@@ -19,7 +19,7 @@ alias -g p="| $PAGER"
 
 # Function to start suffix aliases in background
 background(){
-  $1 $2 &!
+  $1 $2 &> /dev/null &!
 }
 
 # Expand an global alias when hitting space after the alias
