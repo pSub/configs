@@ -9,9 +9,7 @@ alias su="su --login"
 alias ssh="TERM=xterm ssh"
 
 # Suffix aliases
-alias -s pdf="background zathura"
-alias -s djvu="background zathura"
-alias -s ps="background zathura"
+alias -s {pdf,djvu,ps}="background zathura"
 
 # Global aliases
 alias -g g="| grep"
