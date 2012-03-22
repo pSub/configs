@@ -34,6 +34,9 @@ setopt autocd
 # Push direcotries automatically
 setopt autopushd
 
+# Ignore duplicates on dictionary stack
+setopt pushd_ignoredups
+
 # Be quiet
 setopt nobeep
 setopt nohistbeep
