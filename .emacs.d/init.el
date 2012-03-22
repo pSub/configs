@@ -40,6 +40,7 @@
   (add-to-list 'load-path dir))
 
 (require 'vimpulse)
+(load "my-helm")
 (load "my-auctex")
 (load "my-util")
 (load "my-haskell")
