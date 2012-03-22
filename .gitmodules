@@ -13,3 +13,6 @@
 [submodule ".elisp/dtrt-indent"]
 	path = .elisp/dtrt-indent
 	url = git://git.savannah.nongnu.org/dtrt-indent.git
+[submodule ".elisp/helm"]
+	path = .elisp/helm
+	url = https://github.com/emacs-helm/helm.git
