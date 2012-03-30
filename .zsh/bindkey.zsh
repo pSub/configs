@@ -43,6 +43,7 @@ esac
 after-first-word() {
   zle beginning-of-line
   zle forward-word
+  zle backward-char
   LBUFFER+=' '
   zle backward-char
 }
