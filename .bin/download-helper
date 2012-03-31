@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Url and cookie have to be provided as parameters to
+# this script (e.g. by jumanji).
 url=$1
 cookie=$2
 
@@ -9,13 +11,19 @@ last_file=$HOME/.filechooser
 # Get last directory downloaded to
 last=$(cat $last_file)
 
+# Include the dmenu config
 . $HOME/configs/dmenu_config.sh
 
+# Prompt the user for the filename and propagate the return code
 function runDmenu() {
   file=$((echo -e ".\n.."; ls; echo -e "!open\n!last (${last})") | dmenu $dmenu_conf -l 15 -p $PWD)
   return $(test -n "$file")
 }
 
+# A simple abstraction from curl
+# first parameter: the cookie
+# second parameter: the url
+# third parameter: the local filename
 # FIXME: Certificate support
 function runCurl() {
   if [ $# -eq 2 ]; then
@@ -26,7 +34,7 @@ function runCurl() {
   echo $PWD > $last_file
 }
 
-# Run until location is choosen, or dmenu exists
+# Run until location is choosen or dmenu exists
 while runDmenu; do
 
   # Changes to last directory
