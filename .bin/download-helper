@@ -12,7 +12,7 @@ last=$(cat $last_file)
 . $HOME/configs/dmenu_config.sh
 
 function runDmenu() {
-  file=$((echo -e ".\n.."; ls; echo "!open"; echo "!last (${last})") | dmenu $dmenu_conf -l 15 -p $PWD)
+  file=$((echo -e ".\n.."; ls; echo -e "!open\n!last (${last})") | dmenu $dmenu_conf -l 15 -p $PWD)
   return $(test -n "$file")
 }
 
