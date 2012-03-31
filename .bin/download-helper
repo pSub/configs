@@ -6,10 +6,10 @@ url=$1
 cookie=$2
 
 # File to save $last
-last_file=$HOME/.download-helper
+last_path=$HOME/.download-helper
 
 # Get last directory downloaded to
-last=$(cat $last_file)
+last=$(cat $last_path)
 
 # Include the dmenu config
 . $HOME/configs/dmenu_config.sh
@@ -31,7 +31,7 @@ function runCurl() {
   else
     curl -kL --cookie-jar ${1} ${2} -o ${3}
   fi
-  echo $PWD > $last_file
+  echo $PWD > $last_path
 }
 
 # Run until location is choosen or dmenu exists
