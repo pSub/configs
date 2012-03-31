@@ -19,9 +19,9 @@ function runDmenu() {
 # FIXME: Certificate support
 function runCurl() {
   if [ $# -eq 2 ]; then
-    curl -k --cookie-jar ${1} ${2} -O
+    curl -kL --cookie-jar ${1} ${2} -O
   else
-    curl -k --cookie-jar ${1} ${2} -o ${3}
+    curl -kL --cookie-jar ${1} ${2} -o ${3}
   fi
   echo $PWD > $last_file
 }
