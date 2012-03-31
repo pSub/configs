@@ -6,7 +6,7 @@ url=$1
 cookie=$2
 
 # File to save $last
-last_file=$HOME/.filechooser
+last_file=$HOME/.download-helper
 
 # Get last directory downloaded to
 last=$(cat $last_file)
