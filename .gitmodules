@@ -6,7 +6,7 @@
 	url = https://github.com/kazu-yamamoto/ghc-mod.git
 [submodule ".elisp/haskell-mode"]
 	path = .elisp/haskell-mode
-	url = https://github.com/pheaver/haskell-mode.git
+	url = https://github.com/haskell/haskell-mode.git
 [submodule ".elisp/emacs-eclim"]
 	path = .elisp/emacs-eclim
 	url = https://github.com/senny/emacs-eclim.git
