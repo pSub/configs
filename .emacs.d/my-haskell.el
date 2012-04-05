@@ -1,112 +1,76 @@
-;; haskell-emacs from Chris Done
+(load (expand-file-name "~/.elisp/haskell-mode/haskell-site-file"))
 
-(message "Loading dependencies...")
-(add-to-list 'load-path (expand-file-name "~/.elisp/haskell-emacs/lib/"))
-(add-to-list 'load-path (expand-file-name "~/.elisp/haskell-emacs/lib/auto-complete-1.3.1"))
-(require 'auto-complete)
-(require 'auto-complete-etags)
-(require 'paredit)
-(message "Loaded dependencies.")
+;; Customization
+(custom-set-variables
+ ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
+ '(haskell-process-type 'cabal-dev)
 
-(message "Loading hs library...")
-(add-to-list 'load-path "~/.elisp/haskell-emacs/src/")
-(require 'hs)
-(message "Load hs library.")
+ ;; Use notify.el (if you have it installed) at the end of running
+ ;; Cabal commands or generally things worth notifying.
+ '(haskell-notify-p t))
 
-;; Instructions:
-(message "Run M-x hs-project-start (that's Alt-x) to start a project.")
+(add-hook 'haskell-mode-hook 'haskell-hook)
+(add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
 
-;; Setup associations with file types.
-(add-to-list 'auto-mode-alist (cons "\\.hs\\'" 'hs-mode))
-(add-to-list 'auto-mode-alist (cons "\\.cabal\\'" 'hs-cabal-mode))
-(add-to-list 'auto-mode-alist '("\\.hcr\\'" . hs-core-mode))
+;; Haskell main editing mode key bindings.
+(defun haskell-hook ()
+  ;; Use simple indentation.
+  (turn-on-haskell-simple-indent)
+  (define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
+  (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
 
-;; Setup key bindings
-(add-hook
- 'hs-mode-hook
- (lambda ()
-   (interactive)
-   ;; Bring up the interactive mode for this project.
-   (define-key hs-mode-map (kbd "C-`") 'hs-mode-bring-interactive-mode)
+  ;; Load the current file (and make a session if not already made).
+  (define-key haskell-mode-map [?\C-c ?\C-l] 'haskell-process-load-file)
+  (define-key haskell-mode-map [f5] 'haskell-process-load-file)
 
-   ;; Space after a symbol shows its info.
-   (define-key hs-mode-map (kbd "SPC") 'hs-mode-space-info)
-   (define-key hs-interactive-mode-map (kbd "SPC") 'hs-mode-space-info)
+  ;; Switch to the REPL.
+  (define-key haskell-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch)
+  ;; “Bring” the REPL, hiding all other windows apart from the source
+  ;; and the REPL.
+  (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
 
-   ;; Insert language extensions.
-   (define-key hs-mode-map (kbd "C-c e") 'hs-mode-insert-language-extension)
+  ;; Build the Cabal project.
+  (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+  ;; Interactively choose the Cabal command to run.
+  (define-key haskell-mode-map (kbd "C-c c") 'haskell-process-cabal)
 
-   ;; Build the current Cabal project.
-   (define-key hs-mode-map (kbd "C-c C-c") 'hs-cabal-build-interactive)
+  ;; Get the type and info of the symbol at point, print it in the
+  ;; message buffer.
+  (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
+  (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
 
-   ;; Run a cabal command (prompting for which command).
-   (define-key hs-mode-map (kbd "C-c c") 'hs-cabal-ido-interactive)
+  ;; Contextually do clever things on the space key, in particular:
+  ;;   1. Complete imports, letting you choose the module name.
+  ;;   2. Show the type of the symbol after the space.
+  (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
 
-   ;; Run a script within the project directory.
-   ;; E.g., define: (setq hs-config-scripts '("scripts/dothis" "scripts/dothat"))
-   (define-key hs-mode-map (kbd "C-c t") 'hs-cabal-script-interactive)
+  ;; Jump to the imports. Keep tapping to jump between import
+  ;; groups. C-u f8 to jump back again.
+  (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
 
-   ;; Get the :type of the current symbol at point.
-   (define-key hs-mode-map (kbd "C-c C-t") 'hs-process-type-of-interactive)
+  ;; Jump to the definition of the current symbol.
+  (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
 
-   ;; Display the :info of the current symbol at point.
-   (define-key hs-mode-map (kbd "C-c C-i") 'hs-process-info-of-interactive)
+  ;; Save the current buffer and generate etags (a TAGS file) for the
+  ;; whole project.
+  (define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer-and-tags)
 
-   ;; Load the current file.
-   (define-key hs-mode-map (kbd "<f5>")
-     (lambda ()
-       (interactive)
-       (when (buffer-modified-p) (save-buffer))
-       (hs-process-load-interactive)))
+  ;; Indent the below lines on columns after the current column.
+  (define-key haskell-mode-map (kbd "C-<right>")
+    (lambda ()
+      (interactive)
+      (haskell-move-nested 1)))
+  ;; Same as above but backwards.
+  (define-key haskell-mode-map (kbd "C-<left>")
+    (lambda ()
+      (interactive)
+      (haskell-move-nested -1))))
 
-   ;; Save the current file, updating the etags file.
-   (define-key hs-mode-map (kbd "\C-x\C-s")
-     (lambda ()
-       (interactive)
-       (when (buffer-modified-p)
-         (save-buffer) (hs-tags-generate-interactive))))
+;; Useful to have these keybindings for .cabal files, too.
+(defun haskell-cabal-hook ()
+  (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+  (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)
+  (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
+  (define-key haskell-cabal-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch))
 
-   ;; Go to the same column when hitting ret.
-   (define-key hs-mode-map (kbd "<return>") 'hs-mode-newline-same-col)
-
-   ;; Indent one level.
-   (define-key hs-mode-map (kbd "C-<return>") 'hs-mode-newline-indent)
-
-   ;; Move the code below the current nesting left one.
-   (define-key hs-mode-map (kbd "C-<left>")
-     (lambda () (interactive) (hs-move-nested -1)))
-
-   ;; Move the code below the current nesting right one.
-   (define-key hs-mode-map (kbd "C-<right>")
-     (lambda () (interactive) (hs-move-nested 1)))
-
-   ;; Useful editing features of paredit.
-   (define-key hs-mode-map (kbd "\"") 'paredit-doublequote)
-   (define-key hs-mode-map (kbd "[") 'paredit-open-square)
-   (define-key hs-mode-map (kbd "(") 'paredit-open-round)
-   (define-key hs-mode-map (kbd "]") 'paredit-close-square)
-   (define-key hs-mode-map (kbd ")") 'paredit-close-round)
-   (define-key hs-mode-map (kbd "{") 'paredit-open-curly)
-   (define-key hs-mode-map (kbd "}") 'paredit-close-curly)
-   (define-key hs-mode-map (kbd "M-(") 'paredit-wrap-round)
-   (define-key hs-mode-map (kbd "DEL") 'paredit-backward-delete)
-   (define-key hs-mode-map (kbd "C-k") 'paredit-kill)
-
-   ;; Jump to the imports.
-   (define-key hs-mode-map [f8] 'hs-navigate-imports)
-
-   ;; Sort and re-align the import list.
-   (define-key hs-mode-map (kbd "C-c C-.")
-     (lambda ()
-       (interactive)
-       (let ((col (current-column)))
-         (hs-sort-imports)
-         (hs-align-imports)
-         (goto-char (+ (line-beginning-position)
-                       col)))))))
-
-;; It's nice to have these globally defined so that you can
-;; build/re-build/run scripts related to your project from anywhere.
-(global-set-key (kbd "C-c t") 'hs-cabal-script-interactive)
-(global-set-key (kbd "C-c C-c") 'hs-cabal-build-interactive)
-(global-set-key (kbd "C-c c") 'hs-cabal-ido-interactive)
+(provide 'my-haskell)
