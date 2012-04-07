@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 # vcs_info preferences
 zstyle ':vcs_info:*' enable git hg darcs cvs svn
 zstyle ':vcs_info:*' max-exports "4"

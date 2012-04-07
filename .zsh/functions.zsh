@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 emulate -L zsh
 
 # Create a directory and change to it

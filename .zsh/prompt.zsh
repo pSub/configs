@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 function precmd() {
   # vcs infos in the prompt
   vcs_info 'prompt'

@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 # Aliases
 alias todo="hsgtd"
 alias ls="ls --color=auto"
