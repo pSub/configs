@@ -44,10 +44,9 @@ esac
 # Move to where the arguments belong.
 after-first-word() {
   zle beginning-of-line
-  zle forward-word
+  zle vi-forward-blank-word
   zle backward-char
   LBUFFER+=' '
-  zle backward-char
 }
 zle -N after-first-word
 bindkey "^@" after-first-word
