@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Extending PATH
-PATH=$PATH:$HOME/.cabal/bin:$HOME/.bin:/opt/Isabelle2011-1/bin
+PATH=$PATH:$HOME/.cabal/bin:$HOME/.bin
 export PATH
 
 # Isabelle Options
