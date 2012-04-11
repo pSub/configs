@@ -12,3 +12,6 @@ zstyle ':vcs_info:*:prompt:*' formats '%u%c' '%s' "on %{$fg[red]%}%b%{$reset_col
 # Completion style
 zstyle ':completion::complete:*' rehash true
 zstyle ':completion:*:kill:*' command 'ps cf -u $USER -o pid,%cpu,cmd'
+
+# pasting with tabs does not perform completion
+zstyle ':completion:*' insert-tab pending
