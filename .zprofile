@@ -14,8 +14,7 @@ export PDF_VIEWER
 
 # Starting X when login in on tty1
 if [ "$(tty)" = "/dev/tty1" ]; then
-    # Check for backup before login
-    # and start ssh-agent with X
+    # Check for backup before starting X
     backup && startx &!
     logout
 fi
