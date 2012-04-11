@@ -1,0 +1,4 @@
+#!/bin/sh
+
+wid=$(xwininfo -root -children | grep "$*" | awk '{print $1}')
+seturgent $wid 1
