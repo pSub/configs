@@ -39,6 +39,9 @@
   ))
   (add-to-list 'load-path dir))
 
+(load "color-theme-molokai/color-theme-molokai")
+(color-theme-molokai)
+
 (require 'vimpulse)
 (load "my-helm")
 (load "my-auctex")
