@@ -16,3 +16,6 @@
 [submodule ".elisp/helm"]
 	path = .elisp/helm
 	url = https://github.com/emacs-helm/helm.git
+[submodule ".elisp/color-theme-molokai"]
+	path = .elisp/color-theme-molokai
+	url = git@github.com:pSub/color-theme-molokai.git
