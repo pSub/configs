@@ -42,7 +42,7 @@
 (load "color-theme-molokai/color-theme-molokai")
 (color-theme-molokai)
 
-(require 'vimpulse)
+(load "my-evil")
 (load "my-helm")
 (load "my-auctex")
 (load "my-util")
