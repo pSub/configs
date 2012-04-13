@@ -19,3 +19,6 @@
 [submodule ".elisp/color-theme-molokai"]
 	path = .elisp/color-theme-molokai
 	url = git@github.com:pSub/color-theme-molokai.git
+[submodule ".elisp/evil"]
+	path = .elisp/evil
+	url = git://gitorious.org/evil/evil.git
