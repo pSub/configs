@@ -1,8 +1,10 @@
 # -*- mode: shell-script -*-
 
 # Function to start suffix aliases in background with compressed files
+local arguments
 arguments=""
 for arg in $2; do
   arguments+="=(zcat $arg) "
 done
 $1 $arguments &> /dev/null &!
+unset arguments

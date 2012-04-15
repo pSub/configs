@@ -4,3 +4,4 @@
 local ga="$LBUFFER[(w)-1]"
 [[ -n $ga ]] && LBUFFER[(w)-1]="${${galiases[$ga]}:-$ga}"
 zle self-insert
+unset ga
