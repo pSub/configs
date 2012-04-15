@@ -90,6 +90,16 @@ if [[ -f ~/.dircolors ]] {
     eval $( dircolors -b )
 }
 
+# Persistent directory stack by Christian Neukirchen
+# <http://chneukirchen.org/blog/archive/2012/02/10-new-zsh-tricks-you-may-not-know.html>
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+  [[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
+fi
+chpwd() {
+  print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
+}
+
 # Auxiliary function
 function load_config() {
     if [[ -f $1 ]] {
