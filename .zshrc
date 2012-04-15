@@ -21,7 +21,7 @@ export DIRSTACKSIZE=9
 export DIRSTACKFILE=~/.zdirs
 
 # Keybindings to change pacman commands on the fly
-export pacman_bindings=(
+pacman_bindings=(
     "^[i" "S"     # Meta-i → install
     "^[f" "Ss"    # Meta-f → search
     "^[r" "Rs"    # Meta-r → remove
