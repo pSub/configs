@@ -119,20 +119,14 @@ chpwd() {
   print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
 }
 
-# Auxiliary function
-function load_config() {
-    if [[ -f $1 ]] {
-        source $1
-    }
-}
-
 # Load config files
 if [[ -d $ZSHDIR ]] {
     for config_file in $config_files
     do
-      load_config $ZSHDIR/$config_file.zsh
+        if [[ -f $ZSHDIR/$config_file.zsh ]] {
+            source $ZSHDIR/$config_file.zsh
+        }
     done
 }
 
-unfunction load_config
 unset config_files
