@@ -94,6 +94,9 @@ setopt interactivecomments
 setopt hash_cmds
 setopt hash_dirs
 
+# Redirect output to multiple destinations (this is the default)
+setopt multios
+
 
 # COLORS
 if [[ -f ~/.dircolors ]] {
