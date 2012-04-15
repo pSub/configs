@@ -1,0 +1,5 @@
+# -*- mode: shell-script -*-
+
+# Handy use of dirstack bound to C-x C-f
+LBUFFER+="cd -"
+zle expand-or-complete

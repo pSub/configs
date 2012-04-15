@@ -1,0 +1,6 @@
+# -*- mode: shell-script -*-
+
+# Expand an global alias when hitting space after the alias
+local ga="$LBUFFER[(w)-1]"
+[[ -n $ga ]] && LBUFFER[(w)-1]="${${galiases[$ga]}:-$ga}"
+zle self-insert

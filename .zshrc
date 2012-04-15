@@ -11,6 +11,7 @@ config_files=(alias
              )
 
 export ZSHDIR=$HOME/.zsh
+export ZSHFUN=$ZSHDIR/functions
 export EDITOR="ec"
 export PAGER=less
 export REPORTTIME="10"
@@ -28,6 +29,15 @@ zmodload -ap zsh/mapfile mapfile
 
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
+
+# Add directory with custom functions to FPATH
+fpath=($fpath $ZSHFUN)
+
+# Mark all functions in ZSHFUN for autoloading
+for file in $ZSHFUN/*
+do
+    autoload -U $file:t
+done
 
 # OPTIONS
 

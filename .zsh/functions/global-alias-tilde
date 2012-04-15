@@ -1,0 +1,9 @@
+# -*- mode: shell-script -*-
+
+# Add a slash after tilde, but only if git isn't involved.
+# Git is the only case I need a tilde without a slash.
+if [[ $LBUFFER = "git"* ]]; then
+   LBUFFER+="~"
+else
+   LBUFFER+="~/"
+fi

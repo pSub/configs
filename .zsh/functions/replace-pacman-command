@@ -1,0 +1,11 @@
+# -*- mode: shell-script -*-
+
+# Function that checks the BUFFER for a pacman command
+# and replaces the operation with the given parameters
+if [[ $LBUFFER = "pacman"* ]]; then
+   CURSOR=0
+   zle forward-word
+   zle delete-word
+   LBUFFER+="$*"
+   zle end-of-line
+fi

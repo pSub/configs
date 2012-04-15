@@ -17,53 +17,7 @@ alias -s {pdf,djvu,ps}="background zathura"
 alias -g g="| grep"
 alias -g p="| $PAGER"
 
-# Function to start suffix aliases in background
-background(){
-  $1 $2 &> /dev/null &!
-}
-
-# Function to start suffix aliases in background with compressed files
-background-compressed(){
-  arguments=""
-  for arg in $2; do
-    arguments+="=(zcat $arg) "
-  done
-  $1 $arguments &> /dev/null &!
-}
-
-# Expand an global alias when hitting space after the alias
-global-alias-space(){
-   local ga="$LBUFFER[(w)-1]"
-   [[ -n $ga ]] && LBUFFER[(w)-1]="${${galiases[$ga]}:-$ga}"
-   zle self-insert
-}
-
-# Add a slash after tilde, but only if git isn't involved.
-# Git is the only case I need a tilde without a slash.
-global-alias-tilde(){
-   if [[ $LBUFFER = "git"* ]]; then
-      LBUFFER+="~"
-   else
-      LBUFFER+="~/"
-   fi
-}
-
-# Expand dots. E.g. ... -> ../..
-global-alias-dot() {
-   if [[ $LBUFFER = *.. ]]; then
-       LBUFFER+=/..
-   else
-       LBUFFER+=.
-   fi
-}
-
-# Handy use of dirstack bound to C-x C-f
-global-alias-dirstack() {
-   LBUFFER+="cd -"
-   zle expand-or-complete
-}
-
-# Register these functions as zle-widgets
+# Register functions for aliases as zle-widgets
 zle -N global-alias-space
 zle -N global-alias-tilde
 zle -N global-alias-dot

@@ -1,0 +1,9 @@
+# -*- mode: shell-script -*-
+
+# IRC client like history
+# http://zshwiki.org/home/zle/ircclientlikeinput
+if [[ -n "$BUFFER" ]];
+then
+  print -S "$BUFFER"
+fi
+return 0

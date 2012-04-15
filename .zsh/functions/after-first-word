@@ -1,0 +1,7 @@
+# -*- mode: shell-script -*-
+
+# Move to where the arguments belong.
+zle beginning-of-line
+zle vi-forward-blank-word
+zle backward-char
+LBUFFER+=' '

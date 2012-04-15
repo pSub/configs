@@ -1,0 +1,4 @@
+# -*- mode: shell-script -*-
+
+# Function to start suffix aliases in background
+$1 $2 &> /dev/null &!

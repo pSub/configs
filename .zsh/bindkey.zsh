@@ -41,13 +41,6 @@ case "$TERM" in
         ;;
 esac
 
-# Move to where the arguments belong.
-after-first-word() {
-  zle beginning-of-line
-  zle vi-forward-blank-word
-  zle backward-char
-  LBUFFER+=' '
-}
 zle -N after-first-word
 bindkey "^@" after-first-word
 
@@ -57,18 +50,6 @@ pacman_bindings=("^[i" "S"     # Meta-i → install
                  "^[r" "Rs"    # Meta-r → remove
                  "^[p" "Qi"    # Meta-p → info / properties
                 )
-
-# Function that checks the BUFFER for a pacman command
-# and replaces the operation with the given parameters
-replace-pacman-command() {
-      if [[ $LBUFFER = "pacman"* ]]; then
-         CURSOR=0
-         zle forward-word
-         zle delete-word
-         LBUFFER+="$*"
-         zle end-of-line
-      fi
-}
 
 # Creates widgets from pacman_bindings and replace-pacman-command
 # and binds them the the given keys
@@ -94,21 +75,5 @@ done
 
 # IRC client like history
 # http://zshwiki.org/home/zle/ircclientlikeinput
-fake-accept-line() {
-  if [[ -n "$BUFFER" ]];
-  then
-    print -S "$BUFFER"
-  fi
-  return 0
-}
 zle -N fake-accept-line
-
-down-or-fake-accept-line() {
-  if (( HISTNO == HISTCMD )) && [[ "$RBUFFER" != *$'\n'* ]];
-  then
-    zle fake-accept-line
-  fi
-  zle .down-line-or-history "$@"
-}
-
 zle -N down-line-or-history down-or-fake-accept-line

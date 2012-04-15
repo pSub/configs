@@ -1,0 +1,9 @@
+# -*- mode: shell-script -*-
+
+# IRC client like history
+# http://zshwiki.org/home/zle/ircclientlikeinput
+if (( HISTNO == HISTCMD )) && [[ "$RBUFFER" != *$'\n'* ]];
+then
+  zle fake-accept-line
+fi
+zle .down-line-or-history "$@"

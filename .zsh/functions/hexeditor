@@ -1,0 +1,16 @@
+# -*- mode: shell-script -*-
+
+# Very simple hexeditor that uses the editor
+# specified in $EDITOR. Needs the package moreutils:
+# http://joey.kitenet.net/code/moreutils/
+local input output
+if [[ ! -f $1 ]] {
+    touch $1
+}
+input=$1
+output=$2
+if [[ $# -eq 1 ]] {
+    output=$1
+}
+xxd $input | vipe | xxd -r | sponge $output
+unset input output

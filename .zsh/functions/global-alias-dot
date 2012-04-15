@@ -1,0 +1,8 @@
+# -*- mode: shell-script -*-
+
+# Expand dots. E.g. ... -> ../..
+if [[ $LBUFFER = *.. ]]; then
+    LBUFFER+=/..
+else
+    LBUFFER+=.
+fi
