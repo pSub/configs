@@ -22,3 +22,6 @@
 [submodule ".elisp/evil"]
 	path = .elisp/evil
 	url = git://gitorious.org/evil/evil.git
+[submodule ".elisp/undo-tree"]
+	path = .elisp/undo-tree
+	url = http://www.dr-qubit.org/git/undo-tree.git
