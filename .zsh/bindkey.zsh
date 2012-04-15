@@ -68,4 +68,4 @@ while [ $i -le ${#pacman_bindings} ]; do
     # We do this, because we don't have 2-dimensional arrays
     i=$((i+2))
 done
-
+unset i
