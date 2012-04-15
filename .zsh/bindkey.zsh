@@ -44,13 +44,6 @@ esac
 zle -N after-first-word
 bindkey "^@" after-first-word
 
-# Keybindings to change pacman commands on the fly
-pacman_bindings=("^[i" "S"     # Meta-i → install
-                 "^[f" "Ss"    # Meta-f → search
-                 "^[r" "Rs"    # Meta-r → remove
-                 "^[p" "Qi"    # Meta-p → info / properties
-                )
-
 # Creates widgets from pacman_bindings and replace-pacman-command
 # and binds them the the given keys
 local i

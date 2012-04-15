@@ -17,6 +17,16 @@ export PAGER=less
 export REPORTTIME="10"
 export HISTFILE=$HOME/.zshhistory
 export COLORTERM=yes
+export DIRSTACKSIZE=9
+export DIRSTACKFILE=~/.zdirs
+
+# Keybindings to change pacman commands on the fly
+export pacman_bindings=(
+    "^[i" "S"     # Meta-i → install
+    "^[f" "Ss"    # Meta-f → search
+    "^[r" "Rs"    # Meta-r → remove
+    "^[p" "Qi"    # Meta-p → info / properties
+)
 
 # MODULES
 autoload -U compinit && compinit
