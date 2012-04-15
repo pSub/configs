@@ -16,10 +16,3 @@ alias -s {pdf,djvu,ps}="background zathura"
 # Global aliases
 alias -g g="| grep"
 alias -g p="| $PAGER"
-
-# Bind the appropriated keys to the expansion
-# widgets above.
-bindkey ' ' global-alias-space
-bindkey '~' global-alias-tilde
-bindkey '.' global-alias-dot
-bindkey '^X^f' global-alias-dirstack

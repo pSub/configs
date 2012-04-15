@@ -42,6 +42,10 @@ case "$TERM" in
 esac
 
 bindkey "^@" after-first-word
+bindkey ' ' global-alias-space
+bindkey '~' global-alias-tilde
+bindkey '.' global-alias-dot
+bindkey '^X^f' global-alias-dirstack
 
 # Creates widgets from pacman_bindings and replace-pacman-command
 # and binds them the the given keys
