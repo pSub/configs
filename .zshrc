@@ -32,7 +32,6 @@ pacman_bindings=(
 autoload -U compinit && compinit
 autoload -U keeper && keeper
 autoload -U colors && colors
-autoload -U zfinit && zfinit
 autoload -U zmv
 autoload -Uz vcs_info
 autoload -U url-quote-magic
