@@ -42,6 +42,9 @@
 (load "color-theme-molokai/color-theme-molokai")
 (color-theme-molokai)
 
+(load "undo-tree/undo-tree")
+(global-undo-tree-mode)
+
 (load "my-evil")
 (load "my-helm")
 (load "my-auctex")
