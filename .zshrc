@@ -35,8 +35,6 @@ autoload -U colors && colors
 autoload -U zfinit && zfinit
 autoload -U zmv
 autoload -Uz vcs_info
-zmodload -ap zsh/mapfile mapfile
-
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
 
