@@ -17,12 +17,6 @@ alias -s {pdf,djvu,ps}="background zathura"
 alias -g g="| grep"
 alias -g p="| $PAGER"
 
-# Register functions for aliases as zle-widgets
-zle -N global-alias-space
-zle -N global-alias-tilde
-zle -N global-alias-dot
-zle -N global-alias-dirstack
-
 # Bind the appropriated keys to the expansion
 # widgets above.
 bindkey ' ' global-alias-space

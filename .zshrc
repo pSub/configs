@@ -36,7 +36,6 @@ autoload -U zfinit && zfinit
 autoload -U zmv
 autoload -Uz vcs_info
 autoload -U url-quote-magic
-zle -N self-insert url-quote-magic
 
 # Add directory with custom functions to FPATH
 fpath=($fpath $ZSHFUN)
@@ -46,6 +45,19 @@ for file in $ZSHFUN/*
 do
     autoload -U $file:t
 done
+
+# Register zle widgets
+zle -N self-insert url-quote-magic
+zle -N global-alias-space
+zle -N global-alias-tilde
+zle -N global-alias-dot
+zle -N global-alias-dirstack
+zle -N after-first-word
+
+# IRC client like history
+# http://zshwiki.org/home/zle/ircclientlikeinput
+zle -N fake-accept-line
+zle -N down-line-or-history down-or-fake-accept-line
 
 # OPTIONS
 

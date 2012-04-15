@@ -41,7 +41,6 @@ case "$TERM" in
         ;;
 esac
 
-zle -N after-first-word
 bindkey "^@" after-first-word
 
 # Creates widgets from pacman_bindings and replace-pacman-command
@@ -66,7 +65,3 @@ while [ $i -le ${#pacman_bindings} ]; do
     i=$((i+2))
 done
 
-# IRC client like history
-# http://zshwiki.org/home/zle/ircclientlikeinput
-zle -N fake-accept-line
-zle -N down-line-or-history down-or-fake-accept-line
