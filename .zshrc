@@ -90,6 +90,10 @@ setopt extendedglob
 # Comments are allowed in the prompt, useful when pasting a shelscript
 setopt interactivecomments
 
+# Do hashing
+setopt hash_cmds
+setopt hash_dirs
+
 
 # COLORS
 if [[ -f ~/.dircolors ]] {
