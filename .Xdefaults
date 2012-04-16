@@ -28,6 +28,8 @@ urxvt.color14                : #46a4ff
 urxvt.color7                 : #cccccc
 urxvt.color15                : #ffffff
 
+emacs.pointerColor           : #ffffff
+
 ! To use urgency hints with console programms
 urxvt.urgentOnBell           : true
 
