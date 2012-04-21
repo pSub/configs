@@ -8,4 +8,7 @@
 (setq TeX-view-program-list '(("Zathura" "zathura %o")))
 (setq TeX-view-program-selection '((output-pdf "Zathura")))
 
+;; Load RefTex
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+
 (provide 'my-auctex)
