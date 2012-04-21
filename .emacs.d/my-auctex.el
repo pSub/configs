@@ -11,4 +11,10 @@
 ;; Load RefTex
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 
+;; Load flyspell-mode
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+
+;; Load auto-fill-mode
+(add-hook 'LaTeX-mode-hook 'auto-fill-mode)
+
 (provide 'my-auctex)
