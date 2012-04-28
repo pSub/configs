@@ -39,4 +39,13 @@
 :EMAIL: %(org-contacts-template-email)
 :END:")
         ))
+
+(defun my/agenda-frame ()
+  (modify-frame-parameters nil '( (name . "Agenda Frame") ))
+  (if (fboundp 'x-focus-frame)
+      (x-focus-frame nil))
+  (let ((org-agenda-window-setup 'current-window))
+    (make-variable-frame-local 'org-agenda-mode-map)
+    (org-agenda-list)))
+
 (provide 'my-org-mode)
