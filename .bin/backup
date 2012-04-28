@@ -43,8 +43,8 @@ done
 # was successful.
 
 # Example cronjobs:
-# @daily ID=daily-backup /bin/touch /home/user/.daily-backup
-# @weekly ID=weekly-backup /bin/touch /home/user/.weekly-backup
+# @daily ID=daily-backup /usr/bin/touch $HOME/.daily-backup
+# @weekly ID=weekly-backup /usr/bin/touch $HOME/.weekly-backup
 for interval in ${intervals[@]}
 do
   if [ -f ~/.$interval-backup ]; then
