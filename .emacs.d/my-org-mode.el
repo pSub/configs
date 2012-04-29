@@ -40,8 +40,12 @@
 :END:")
         ))
 
+(defvar org-agenda-mode-map (make-sparse-keymap)
+   "Keymap for `org-agenda-mode'.")
+
 (defun my/agenda-frame ()
-  (modify-frame-parameters nil '( (name . "Agenda Frame") ))
+  (modify-frame-parameters nil '( (name . "Agenda Frame")
+                                  (instance . "agenda-frame")))
   (if (fboundp 'x-focus-frame)
       (x-focus-frame nil))
   (let ((org-agenda-window-setup 'current-window))
