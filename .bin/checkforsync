@@ -45,4 +45,3 @@ unset -f unison_sync
 # Most likely programs that depends on data that was synced.
 urxvtc -e hsgtd &!
 $HOME/.bin/org-agenda &!
-opera &!
