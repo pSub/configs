@@ -16,13 +16,13 @@ while [ 1 ]
 do
     read action
     case $action in
-        
+
         # Sync all changes and start depending programs
         "y" )
             unison_sync
             break
             ;;
-        
+
         # Don't sync and start depending programs
         "n" )
             break
