@@ -3,7 +3,7 @@
 # a host specific autostart
 
 urxvtc -e $HOME/.bin/checkforsync &
-(emacs --daemon; $HOME/.bin/org-agenda) &
+emacs --daemon &
 case $(hostname) in
   'firmin')
       ;;
