@@ -3,8 +3,11 @@
 # Auxiliarity function
 function unison_sync() {
     # It's important to sync the unison profile
-    # files first
-    unison unison && unison all
+    # files first without deletions, that allows
+    # correct handling of the deletion of subconfigs.
+    #
+    # $HOME is the local root of unison.
+    unison unison -nodeletion $HOME && unison all && unison unison
     if [ $? -ne 0 ]; then
         exit 1
     fi

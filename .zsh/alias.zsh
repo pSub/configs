@@ -6,7 +6,10 @@ alias ls="ls --color=auto"
 alias xfiglatex="xfig -specialtext -latexfonts -startlatexFont default"
 alias unpack="aunpack"
 alias pack="apack"
-alias sync-unison="unison unison && unison all"
+
+# $HOME is the local root of unison.
+alias sync-unison="unison unison -nodeletion $HOME && unison all && unison unison"
+
 alias su="su --login"
 alias ssh="TERM=xterm ssh"
 
