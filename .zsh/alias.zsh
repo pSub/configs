@@ -10,7 +10,7 @@ alias pack="apack"
 # $HOME is the local root of unison.
 alias sync-unison="unison unison -nodeletion $HOME && unison all && unison unison"
 
-alias su="su --login"
+alias sul="su --login"
 alias ssh="TERM=xterm ssh"
 
 # Suffix aliases
