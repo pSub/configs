@@ -8,11 +8,11 @@
 #     aurget (https://github.com/pbrisbin/aurget) config
 
 while [ 1 ]; do
-    su --login --command="$*"
+    su --command="$*"
 
     # If su fails (e.g. password incorrect)
     # run it again
     if [ $? -ne 125 ]; then
         break
     fi
-done        
+done
