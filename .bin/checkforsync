@@ -46,5 +46,5 @@ unset -f unison_sync
 
 # Add programms to start after successful synchronisation.
 # Most likely programs that depends on data that was synced.
-urxvtc -e hsgtd &!
-$HOME/.bin/org-agenda &!
+setsid urxvtc -e hsgtd
+setsid $HOME/.bin/org-agenda
