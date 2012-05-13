@@ -1,12 +1,32 @@
 #!/bin/sh
 
+# This script helps to create backups with rsnapshot
+# in a regular manner. It is typically called from
+# ~/.xinitrc.
+#
+# The user is prompted to run a backup if a file
+# ~/.$INTERVAL-backup exists in his $HOME directory.
+# $INTERVAL needs to be a name from the array
+# `intervals' defined above. This file is removed after
+# the backup was created successfully.
+#
+# Typically such files are create via a cronjob.
+#
+# Example cronjobs:
+#
+#   @daily ID=daily-backup /usr/bin/touch $HOME/.daily-backup
+#   @weekly ID=weekly-backup /usr/bin/touch $HOME/.weekly-backup
+#
+
 # The Backup intervals in use.
-# Must be a subset of the intervals
-# defined in the rsnapshot config
+# These need to be a subset of the intervals defined in the rsnapshot
+# configuration.
 intervals=(weekly)
 
-# Prompts the user to run the backup
-# for the given interval.
+
+# This is an interactive function that helps to create a backup.
+# The user is prompted for all credentials.
+# The function takes exactly on parameter, namely the interval.
 createBackup(){
 echo -n "Create a $1 backup NOW? [yn] "
 
@@ -35,16 +55,7 @@ do
 done
 }
 
-# The user is prompted to run a backup
-# if and only if a file .$interval-backup
-# exists in his $HOME (e.g created by
-# a cronjob). Where $interval ∈ intervals.
-# This file will be removed, if the backup
-# was successful.
-
-# Example cronjobs:
-# @daily ID=daily-backup /usr/bin/touch $HOME/.daily-backup
-# @weekly ID=weekly-backup /usr/bin/touch $HOME/.weekly-backup
+# Check if there are pending backups.
 for interval in ${intervals[@]}
 do
   if [ -f ~/.$interval-backup ]; then

@@ -1,6 +1,21 @@
 #!/bin/sh
 
-# Url and cookie have to be provided as parameters to
+# This is a very small download manager for web-browsers such
+# as jumanji.
+# It provides the ability to either save the file to disk or
+# to save it temporary and open it with an application. It
+# makes heavy use of dmenu to achieve this.
+# In addition it provides cookie and rudimentary certificate
+# support.
+#
+# A file can be opened with an application by selection the
+# special file `!open' from dmenu. After that you have to
+# choose the application.
+#
+# An other special file is `!last' which jumps to the last
+# directory you have downloaded to.
+
+# The URL and the cookie have to be provided as parameters to
 # this script (e.g. by jumanji).
 url=$1
 cookie=$2

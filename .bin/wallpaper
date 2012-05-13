@@ -1,14 +1,37 @@
 #!/bin/sh
 
-# Path to background images
+# This is a little script to manage wallpapers.
+# The intended usage scenario is the following:
+#   - Save all wallpapers in $BGPATH.
+#   - Write the file names (relative to $BGPATH)
+#     of the wallpapers that should be shown
+#     in the file $BGACTIVE.
+#   - Run this script.
+#
+# This script will launch inotify to watch changes
+# on the file $BGACTIVE. If it detects changes the
+# wallpapers are automatically changed.
+#
+# Multiple file names in $BGACTIVE are only possible
+# (useful) if your setter program supports multiple
+# wallpapers (commonly one wallpaper per monitor)
+# in the following way
+#
+#    setter filename [filename, …]
+
+# Path to wallpaper images
 BGPATH=$HOME/wallpapers/
 
-# Path to file with active backgrounds
-# one line per background
+# Path to file with active wallpapers.
+# One line per file name.
 BGACTIVE=$BGPATH/current
 
+# The program that sets the wallpaper.
+# By default bgs (see http://s01.de/~tox/)
+SETTER=bgs
+
 # Adds first parameter as prefix to the lines of the second parameter
-# therefore the second parameter must bei a file
+# therefore the second parameter must bei a file.
 addprefix(){
   for s in $(cat $2)
   do
@@ -20,7 +43,7 @@ addprefix(){
 setWallpaper(){
   # The project page of bgs can be found on:
   # http://s01.de/~tox/index.cgi/proj_bgs
-  bgs $(addprefix $BGPATH $BGACTIVE)
+  $SETTER $(addprefix $BGPATH $BGACTIVE)
 }
 
 # Set initial wallpaper

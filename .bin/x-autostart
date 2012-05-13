@@ -1,9 +1,10 @@
 #!/bin/sh
-# This script is startet from .xinitrc and provides
-# a host specific autostart
+# This script is started from ~/.xinitrc and provides
+# a host specific autostart for X applications.
 
 urxvtc -e $HOME/.bin/checkforsync &
 emacs --daemon &
+
 case $(hostname) in
   'firmin')
       ;;
