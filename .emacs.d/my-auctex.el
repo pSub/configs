@@ -14,6 +14,9 @@
 ;; Load flyspell-mode
 (add-hook 'LaTeX-mode-hook 'flyspell-mode)
 
+;; Spellcheck the buffer
+(add-hook 'LaTeX-mode-hook 'flyspell-buffer)
+
 ;; Load auto-fill-mode
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
 
