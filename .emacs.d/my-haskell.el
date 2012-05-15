@@ -9,6 +9,7 @@
  ;; Cabal commands or generally things worth notifying.
  '(haskell-notify-p t))
 
+(add-hook 'haskell-mode-hook 'flyspell-prog-mode)
 (add-hook 'haskell-mode-hook 'haskell-hook)
 (add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
 
