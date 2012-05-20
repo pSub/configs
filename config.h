@@ -26,6 +26,7 @@ static const Rule rules[] = {
   { "Firefox",        NULL,       NULL,           1 << 1,       False,        0 },
   { "Opera",          NULL,       NULL,           1 << 1,       False,        0 },
   { "Jumanji",        NULL,       NULL,           1 << 1,       False,        0 },
+  { "Conkeror",       NULL,       NULL,           1 << 1,       False,        0 },
   { "feh",            NULL,       NULL,           0,            True,        -1 },
   { "Pinentry",       NULL,       NULL,           0,            True,        -1 },
   { "Zathura",        NULL,       NULL,           1 << 3,       False,       -1 },
