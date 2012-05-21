@@ -20,4 +20,7 @@
 ;; Load auto-fill-mode
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
 
+;; Load orgtbl-mode
+(add-hook 'LaTeX-mode-hook 'orgtbl-mode)
+
 (provide 'my-auctex)
