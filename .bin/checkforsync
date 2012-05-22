@@ -53,5 +53,7 @@ unset -f unison_sync
 # These applications are started after a successful
 # synchronization. It is intended for applications
 # that depend on synchronized data.
+setsid $HOME/.bin/reload-emacs-config
 setsid urxvtc -e hsgtd
 setsid $HOME/.bin/org-agenda
+
