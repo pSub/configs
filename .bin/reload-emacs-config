@@ -1,0 +1,2 @@
+#!/bin/sh
+emacsclient -e '(load-file "~/.emacs.d/init.el")'
