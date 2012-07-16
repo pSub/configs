@@ -1,14 +1,4 @@
 #!/bin/sh
-# Display the speaker/headphone volume
-volume(){
-    speaker="`amixer get Master | awk '/Mono:/ {print $6}'`" 
-    if test "$speaker" != "[on]"; then
-        echo "Mute"
-     else
-        echo "`amixer get Master | awk '/Mono:/ {print $4}' | sed -e 's/\[\|%\]//g'`"
-    fi
-} 
-
 # Display wifi signal strength
 wifi(){
     state="`iwconfig wlan0 | grep -oE '([0-9]+)/([0-9]+)'`"
@@ -62,7 +52,7 @@ $HOME/.bin/wallpaper &
 $HOME/.bin/x-autostart &
 
 # Refresh the dwm statusbar every second
-while xsetroot -name "[Vol: `volume`] [Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]"; do
+while xsetroot -name "[Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]"; do
       sleep 1
 done &
 
