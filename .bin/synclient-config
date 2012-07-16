@@ -3,8 +3,7 @@
 # a host specific synclient configuration.
 
 case $(hostname) in
-  'firmin')
-      synclient TapButton1=0
+  'firmin' | 'zinnober')
       synclient TapButton2=0
       synclient TapButton3=0
       synclient VertEdgeScroll=1
