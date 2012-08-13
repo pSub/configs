@@ -9,6 +9,10 @@ wifi(){
     fi
 }
 
+batmon(){
+    acpi -b | awk 'gsub(/,/,"") {print $3 $4}' | sed 's/Charging/↑/;s/Discharging/↓/;s/Full/•/'
+}
+
 # Load xrandr configuration
 $HOME/.bin/xrandr-config
 
