@@ -53,11 +53,7 @@
 (load "my-haskell")
 (load "my-org-mode")
 (load "my-java")
-(load "my-php")
 (load "my-wl")
 (load "my-vcs")
 (load "my-prolog")
-(sml-modeline-mode t)
-
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
+(load "my-agda")
