@@ -33,7 +33,7 @@ pkgbuild_editor=
 # where to save built packages. if empty, the value of PKGDEST in
 # makepkg.conf or the current working directory will be used.
 ###
-package_directory=/tmp/
+package_directory=/tmp
 
 #
 # where to download source files and do the actual building. aurget
