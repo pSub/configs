@@ -43,6 +43,16 @@ interactive("search-clipboard-contents", "Search in Google the content of the X 
 
 define_key(content_buffer_normal_keymap, "M-y", "search-clipboard-contents");
 
+// For url_remoting_fn; load in a new buffer
+function load_url_in_new_buffer_perhaps_bg(url, ctx) {
+    create_buffer_in_current_window(
+        buffer_creator(content_buffer, $opener = ctx, $load = url),
+        ctx.prefix_argument ? OPEN_NEW_BUFFER_BACKGROUND : OPEN_NEW_BUFFER,
+        !ctx.prefix_argument);
+}
+
+url_remoting_fn = load_url_in_new_buffer_perhaps_bg;
+
 // make C-d "kill current buffer"
 define_key(default_global_keymap, "C-d", "kill-current-buffer");
 
