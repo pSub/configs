@@ -1,0 +1,95 @@
+// Mode-line
+mode_line_mode(true);
+
+// auto completion in the minibuffer
+minibuffer_auto_complete_default = true;
+url_completion_use_history = true; // should work since bf05c87405
+url_completion_use_bookmarks = true;
+
+// display the url before going to it in hints mode
+hints_display_url_panel = true;
+
+
+// i'd like to have tabs
+require("new-tabs.js");
+
+// right click opens new tab
+require("clicks-in-new-buffer.js");
+
+// Set to either OPEN_NEW_BUFFER or OPEN_NEW_BUFFER_BACKGROUND
+clicks_in_new_buffer_target = OPEN_NEW_BUFFER_BACKGROUND; // Now buffers open in background.
+
+// Set to 0 = left mouse, 1 = middle mouse, 2 = right mouse
+clicks_in_new_buffer_button = 2; //  Now right mouse follows links in new buffers.
+
+// redefine C-f as "forwards" and C-b as "backwards"
+define_key(content_buffer_normal_keymap, "C-f", "forward");
+define_key(content_buffer_normal_keymap, "C-b", "back");
+
+// make M-f and M-b switch to next and previous buffers
+define_key(content_buffer_normal_keymap, "M-f", "buffer-next");
+define_key(content_buffer_normal_keymap, "M-b", "buffer-previous");
+
+// Use M-l to follow link in new background buffer
+define_key(default_global_keymap, "C-l", "follow-new-buffer-background");
+
+interactive("search-clipboard-contents", "Search in Google the content of the X clipboard (the selected text)",
+              "find-url",
+              $browser_object=
+              function(I) {
+                  return "google "+ read_from_x_primary_selection();
+              }
+);
+
+define_key(content_buffer_normal_keymap, "M-y", "search-clipboard-contents");
+
+// make C-d "kill current buffer"
+define_key(default_global_keymap, "C-d", "kill-current-buffer");
+
+// cwd
+cwd=get_home_directory();
+cwd.append("downloads");
+
+// Make sure I don't close by accident
+ add_hook("before_quit_hook",
+           function () {
+               var w = get_recent_conkeror_window();
+               var result = (w == null) ||
+                   "y" == (yield w.minibuffer.read_single_character_option(
+                       $prompt = "Quit Conkeror? (y/n)",
+                       $options = ["y", "n"]));
+               yield co_return(result);
+           });
+
+can_kill_last_buffer = false;
+
+// load github mode
+require("github");
+
+// xkcd add mouse-over text
+xkcd_add_title = true;
+
+set_protocol_handler("mailto", find_file_in_path("thunderbird"));
+
+// allow to install extensions
+session_pref("xpinstall.whitelist.required", false);
+
+// disable clock in modeline
+remove_hook("mode_line_hook", mode_line_adder(clock_widget));
+
+// disable scroll position in modeline
+remove_hook("mode_line_hook", mode_line_adder(current_buffer_scroll_position_widget));
+
+// navigation buttons
+//load_paths.unshift("chrome://conkeror-contrib/content/");
+//require("mode-line-buttons.js");
+//mode_line_add_buttons(standard_mode_line_buttons, true);
+
+//// Webjumps
+define_webjump("hoogle", "http://haskell.org/hoogle/?hoogle=%s",
+               $alternative = "http://haskell.org/hoogle/");
+
+define_webjump("hackage", "http://google.com/search?as_sitesearch=hackage.haskell.org%2Fpackage&as_q=%s");
+
+require("page-modes/wikipedia.js");
+define_wikipedia_webjumps("en", "de");
