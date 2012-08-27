@@ -1,5 +1,6 @@
 (require 'org-install)
 (require 'org-contacts)
+(require 'diary-lib)
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 (global-set-key "\C-cl" 'org-store-link)
@@ -11,7 +12,7 @@
 
 (setq org-agenda-files (list (concat org-directory "agenda/"))
       org-default-notes-file (concat org-directory "notes.org")
-      org-contacts-files (concat org-directory "contacts.org"))
+      org-contacts-files (list (concat org-directory "contacts.org")))
 
 (setq org-refile-targets '((buffer-file-name :maxlevel . 3)
                            (org-agenda-files :maxlevel . 2)
@@ -34,9 +35,16 @@
          "* %:description\n  %:link\n  %U"
          )
         ("c" "Contacts" entry (file (concat org-directory "contacts.org"))
-         "* %(org-contacts-template-name)
+         "*
 :PROPERTIES:
-:EMAIL: %(org-contacts-template-email)
+:EMAIL:
+:URL:
+:WORK:
+:HOME:
+:MOBILE:
+:LOCATION:
+:BIRTHDAY:
+:NOTE:
 :END:")
         ))
 
