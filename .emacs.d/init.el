@@ -30,6 +30,9 @@
 (setq auto-save-file-name-transforms
    `((".*" ,temporary-file-directory t)))
 
+(setq browse-url-generic-program "conkeror"
+      browse-url-browser-function 'browse-url-generic)
+
 (ido-mode t)
 (show-paren-mode t)
 
