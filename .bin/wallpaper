@@ -31,7 +31,7 @@ BGACTIVE=$BGPATH/current
 SETTER=bgs
 
 # Adds first parameter as prefix to the lines of the second parameter
-# therefore the second parameter must bei a file.
+# therefore the second parameter must be a file.
 addprefix(){
   for s in $(cat $2)
   do
