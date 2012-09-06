@@ -20,7 +20,7 @@
 #    setter filename [filename, …]
 
 # Path to wallpaper images
-BGPATH=$HOME/wallpapers/
+BGPATH=$HOME/wallpapers
 
 # Path to file with active wallpapers.
 # One line per file name.
