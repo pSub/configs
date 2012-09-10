@@ -1,0 +1,2 @@
+#!/bin/sh
+ssh obiectiva "echo $* | xargs r2e add"
