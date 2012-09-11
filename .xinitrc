@@ -57,6 +57,6 @@ while xsetroot -name "[Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]"; do
       sleep 1
 done &
 
-# Start xmodmap with dwm to make sure changes
-# form xmodmap are applied
+# Start xmodmap before dwm to make sure the changes
+# from xmodmap are applied
 xmodmap $HOME/.Xmodmap && exec dwm
