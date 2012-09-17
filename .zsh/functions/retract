@@ -1,0 +1,28 @@
+# -*- mode: shell-script -*-
+
+# Removes characters until the completiong of
+# the remaining word is ambiguous.
+#
+# Code is from Oliver Kiddle, see
+# http://www.zsh.org/mla/users/2012/msg00577.html
+
+local _comp_backup=1 bumax=30
+
+if (( ! $+functions[compadd] )); then
+  compadd() {
+    local save oldp="$PREFIX"
+    SUFFIX=
+    local i
+    for ((i=_comp_backup;i>0;i--)); do
+      PREFIX="${PREFIX%?}"
+    done
+
+    builtin compadd -S '' -F "( $oldp* )" "$@"
+  }
+  trap 'unfunction compadd' EXIT INT
+fi
+
+while [[ _comp_backup -le bumax ]]; do
+  _complete && return
+  (( _comp_backup++ ))
+done

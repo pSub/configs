@@ -46,6 +46,7 @@ bindkey ' ' global-alias-space
 bindkey '~' global-alias-tilde
 bindkey '.' global-alias-dot
 bindkey '^X^f' global-alias-dirstack
+bindkey '^H' retract
 
 # Creates widgets from pacman_bindings and replace-pacman-command
 # and binds them the the given keys

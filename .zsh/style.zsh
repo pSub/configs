@@ -14,5 +14,7 @@ zstyle ':completion::complete:*' rehash true
 zstyle ':completion:*' menu select
 zstyle ':completion:*:kill:*' command 'ps cf -u $USER -o pid,%cpu,cmd'
 
+zstyle ':completion:retract::::' completer _retract
+
 # pasting with tabs does not perform completion
 zstyle ':completion:*' insert-tab pending
