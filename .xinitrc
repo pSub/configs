@@ -28,6 +28,9 @@ udisks-glue -c $HOME/.udisks-glue.conf &
 # Disable beep
 xset b off &
 
+# Set DPMS off
+xset dpms off &
+
 # Set keyboard layout
 setxkbmap -layout de -variant nodeadkeys &
 
