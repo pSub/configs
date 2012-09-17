@@ -1,8 +1,5 @@
-Configs
-=======
-Here you can find just a few config files from serveral programms. I use
-most of these config files on my notebook and I just want to store and
-share them here.
+Configuration Files
+===================
 
-Have fun with them,
-pSub
+These are the configuration files I actively use. Everywhere
+possible I've given the source, unless its my own work.
