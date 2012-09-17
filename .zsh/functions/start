@@ -6,6 +6,10 @@ if [[ $# -le 0 ]]; then
   echo "Usage: start [restart, stop, reload] DAEMON [DAEMON ...]"
   return 1
 fi
+
+which systemd > /dev/null
+isSystemd=$?
+
 distro=$(cat /etc/issue)
 case $distro in
         *"Arch Linux"*)
@@ -13,16 +17,24 @@ case $distro in
         *"Debian GNU/Linux"*)
               daemonPath="/etc/init.d/" ;;
         *)
-              echo "Distro not supported"
+              echo "Distribution not supported!"
               exit 1
 esac
 if [[ $UID = 0 ]]; then
     foreach daemon ($*); do
-      $daemonPath$daemon $0
+      if test $isSystemd; then
+          systemctl $0 $daemon
+      else
+          $daemonPath$daemon $0
+      fi
     done
 else
     foreach daemon ($*); do
-       cmd="$cmd $daemonPath$daemon $0;"
+      if test $isSystemd; then
+          cmd="$cmd systemctl $0 $daemon;"
+      else
+          cmd="$cmd $daemonPath$daemon $0;"
+      fi
     done
     su --command="$cmd"
 fi
