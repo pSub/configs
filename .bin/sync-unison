@@ -15,6 +15,12 @@ PROFILES=(
 TMP_NAME=tmp
 TMP_PROFILE=$HOME/.unison/$TMP_NAME.prf
 
+# If arguments are given PROFILES is ignored
+# and the arguments are used as profiles.
+if [ ! -z $1 ]; then
+   PROFILES=$@
+fi
+
 # Create the temporary unison profile.
 echo "include default" > $TMP_PROFILE
 for PROFILE in $PROFILES; do
