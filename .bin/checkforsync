@@ -1,19 +1,5 @@
 #!/bin/sh
 
-# Auxiliarity function
-function unison_sync() {
-    # It is important to synchronize the unison profile
-    # files first without deletions, that allows the
-    # correct deletion of configuration files in the
-    # profile `all'.
-    #
-    # $HOME is the local root of unison.
-    unison unison -nodeletion $HOME && unison all && unison unison
-    if [ $? -ne 0 ]; then
-        exit 1
-    fi
-}
-
 echo -n "Do you want to synchronize changes? [y/n/d] "
 
 while [ 1 ]
@@ -24,7 +10,7 @@ do
         # Synchronize all changes and start the applications
         # that depend on them.
         "y" )
-            unison_sync
+            sync-unison
             break
             ;;
 
@@ -47,8 +33,6 @@ do
             ;;
     esac
 done
-
-unset -f unison_sync
 
 # These applications are started after a successful
 # synchronization. It is intended for applications

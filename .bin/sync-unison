@@ -1,0 +1,35 @@
+#!/bin/sh
+
+# The unison profiles that shall be synchronized.
+PROFILES=(
+        config
+        docs
+        org
+        projects
+        studium
+        wallpapers
+        web
+        )
+
+# The name and path of the temporary unison profile.
+TMP_NAME=tmp
+TMP_PROFILE=$HOME/.unison/$TMP_NAME.prf
+
+# Create the temporary unison profile.
+echo "include default" > $TMP_PROFILE
+for PROFILE in $PROFILES; do
+    echo "include ${PROFILE}-path" >> $TMP_PROFILE
+done
+
+# It is important to synchronize the unison profile
+# files first without deletions, that allows the
+# correct deletion of configuration files in the
+# profile `all'.
+#
+# $HOME is the local root of unison.
+unison unison -nodeletion $HOME -ignore "Name ${TMP_NAME}.prf" &&
+unison $TMP_NAME &&
+unison unison -ignore "Name ${TMP_NAME}.prf"
+if [ $? -ne 0 ]; then
+    exit 1
+fi
