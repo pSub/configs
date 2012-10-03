@@ -1,4 +1,6 @@
 #!/bin/sh
+
+# Displays the battery status using the acpi tool.
 batmon(){
     acpi -b | awk 'gsub(/,/,"") {print $3 $4}' | sed 's/Charging/↑/;s/Discharging/↓/;s/Full/•/'
 }
