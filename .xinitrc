@@ -1,14 +1,4 @@
 #!/bin/sh
-# Display wifi signal strength
-wifi(){
-    state="`iwconfig wlan0 | grep -oE '([0-9]+)/([0-9]+)'`"
-    if test "$state" == ""; then
-        echo "D/C"
-    else
-        echo $state
-    fi
-}
-
 batmon(){
     acpi -b | awk 'gsub(/,/,"") {print $3 $4}' | sed 's/Charging/↑/;s/Discharging/↓/;s/Full/•/'
 }
