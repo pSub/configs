@@ -24,7 +24,7 @@ fi
 # Create the temporary unison profile.
 echo "include default" > $TMP_PROFILE
 for PROFILE in $PROFILES; do
-    echo "include ${PROFILE}-path" >> $TMP_PROFILE
+    echo "include ${PROFILE}" >> $TMP_PROFILE
 done
 
 # It is important to synchronize the unison profile
