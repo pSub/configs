@@ -23,7 +23,7 @@ fi
 
 # Create the temporary unison profile.
 echo "include default" > $TMP_PROFILE
-for PROFILE in $PROFILES; do
+for PROFILE in ${PROFILES[@]}; do
     echo "include ${PROFILE}" >> $TMP_PROFILE
 done
 
