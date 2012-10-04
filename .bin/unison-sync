@@ -21,6 +21,8 @@ if [ ! -z $1 ]; then
    PROFILES=$@
 fi
 
+echo "Synchronizing the following profiles: ${PROFILES[@]}"
+
 # Create the temporary unison profile.
 echo "include default" > $TMP_PROFILE
 for PROFILE in ${PROFILES[@]}; do
