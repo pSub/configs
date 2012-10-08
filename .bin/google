@@ -1,0 +1,3 @@
+#!/bin/sh
+
+$BROWSER https://www.google.de/search?q=$1 &!
