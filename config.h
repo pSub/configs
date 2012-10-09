@@ -21,17 +21,17 @@ static const char *tags[] = { "org", "www", "dev", "docs", "chat", "mail", "misc
 #include "movestack.c"
 
 static const Rule rules[] = {
-  /* class      instance    title                 tags mask     isfloating   monitor */
-  { "Thunderbird",    NULL,       NULL,           1 << 5,       False,        0 },
-  { "Firefox",        NULL,       NULL,           1 << 1,       False,        0 },
-  { "Opera",          NULL,       NULL,           1 << 1,       False,        0 },
-  { "Jumanji",        NULL,       NULL,           1 << 1,       False,        0 },
-  { "Conkeror",       NULL,       NULL,           1 << 1,       False,        0 },
-  { "feh",            NULL,       NULL,           0,            True,        -1 },
-  { "Pinentry",       NULL,       NULL,           0,            True,        -1 },
-  { "Zathura",        NULL,       NULL,           1 << 3,       False,       -1 },
-  { NULL,             NULL,       "Agenda Frame", 1 << 1,       False,        0 },
-  { NULL,             NULL,       "floatingwin",  0,            True,        -1 },
+  /* class      instance      title                 tags mask     isfloating   monitor */
+  { "Thunderbird",    NULL,         NULL,           1 << 5,       False,        0 },
+  { "Firefox",        NULL,         NULL,           1 << 1,       False,        0 },
+  { "Opera",          NULL,         NULL,           1 << 1,       False,        0 },
+  { "Jumanji",        NULL,         NULL,           1 << 1,       False,        0 },
+  { "Conkeror",       NULL,         NULL,           1 << 1,       False,        0 },
+  { "feh",            NULL,         NULL,           0,            True,        -1 },
+  { "Pinentry",       NULL,         NULL,           0,            True,        -1 },
+  { "Zathura",        NULL,         NULL,           1 << 3,       False,       -1 },
+  { NULL,             NULL,         "Agenda Frame", 1,            False,        1 },
+  { NULL,             NULL,         "floatingwin",  0,            True,        -1 },
 };
 
 /* layout(s) */
