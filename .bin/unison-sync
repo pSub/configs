@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 # The unison profiles that shall be synchronized.
 PROFILES=(
         config
@@ -22,13 +23,24 @@ if [ ! -z $1 ]; then
    PROFILES=$@
 fi
 
-echo "Synchronizing the following profiles: ${PROFILES[@]}"
+# The internal profile TMP_NAME is removed to
+# prevent infinite loops.
+PROFILES=${PROFILES[@]//$TMP_NAME/}
+
+# Abort if only the internal profile shall be synchronized.
+if [ "${PROFILES[@]}" = "" ]; then
+    echo "Attempting to only synchronize the internal"\
+         "profile ${TMP_NAME}. Aborting..."
+    exit 1
+fi
 
 # Create the temporary unison profile.
 echo "include default" > $TMP_PROFILE
 for PROFILE in ${PROFILES[@]}; do
     echo "include ${PROFILE}" >> $TMP_PROFILE
 done
+
+echo "Synchronizing the following profiles: ${PROFILES[@]}"
 
 # It is important to synchronize the unison profile
 # files first without deletions, that allows the
