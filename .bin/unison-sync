@@ -51,10 +51,10 @@ done
 
 echo "Synchronizing the following profiles: ${PROFILES[@]}"
 
-# It is important to synchronize the unison profile
-# files first without deletions, that allows the
-# correct deletion of configuration files in the
-# profile `all'.
+# It is important to synchronize the UNISON_PRF profile
+# first without deletions at the local root, that allows the
+# correct deletion of remaining files in profiles included
+# in TMP_NAME.
 #
 # $HOME is the local root of unison.
 unison $UNISON_PRF -nodeletion $HOME -ignore "Name ${TMP_NAME}.prf" &&
