@@ -55,8 +55,6 @@
 (load "my-util")
 (load "my-haskell")
 (load "my-org-mode")
-(load "my-wl")
 (load "my-vcs")
-(load "my-prolog")
 (load "my-notmuch")
 (load "my-agda")
