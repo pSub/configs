@@ -18,6 +18,7 @@ TMP_PROFILE=$HOME/.unison/$TMP_NAME.prf
 # If arguments are given PROFILES is ignored
 # and the arguments are used as profiles.
 if [ ! -z $1 ]; then
+   PROFILES=()
    PROFILES=$@
 fi
 
