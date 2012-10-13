@@ -16,5 +16,9 @@ zstyle ':completion:*:kill:*' command 'ps cf -u $USER -o pid,%cpu,cmd'
 
 zstyle ':completion:retract::::' completer _retract
 
+# Standard unison completion for the
+# unison-sync wrapper
+compdef _unison unison-sync
+
 # pasting with tabs does not perform completion
 zstyle ':completion:*' insert-tab pending
