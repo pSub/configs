@@ -1,31 +1,8 @@
 #!/bin/sh
 
-# The name and path of the temporary unison profile.
-TMP_NAME=tmp
-UNISON_DIR=$HOME/.unison
-TMP_PROFILE=$UNISON_DIR/$TMP_NAME.prf
-
-# Create the temporary unison profile.
-echo "include default" > $TMP_PROFILE
-for PROFILE in $(find $UNISON_DIR \
-                      -type f \
-                      -name '*.prf' \
-                      -not -name "unison.prf" \
-                      -not -name "default.prf" \
-                      -not -name "${TMP_NAME}.prf" \
-                      -exec basename {} \;); do
-    echo "include ${PROFILE%.*}" >> $TMP_PROFILE
-done
-
-# It is important to synchronize the unison profile
-# files first without deletions, that allows the
-# correct deletion of configuration files in the
-# profile `all'.
-#
-# $HOME is the local root of unison.
-unison unison -nodeletion $HOME -ignore "Name ${TMP_NAME}.prf" &&
-unison $TMP_NAME &&
-unison unison -ignore "Name ${TMP_NAME}.prf"
-if [ $? -ne 0 ]; then
-    exit 1
-fi
+unison-sync $(find $HOME/.unison \
+    -type f \
+    -name '*.prf' \
+    -not -name "unison.prf" \
+    -not -name "default.prf" \
+    -exec sh -c 'basename {} | cut -f1 -d \.' \;)
