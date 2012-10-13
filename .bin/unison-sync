@@ -22,6 +22,9 @@ UNISON_PRF=unison
 # The default profile. This profile must contain the roots.
 DEFAULT_PRF=default
 
+# The local root defined in the default profile.
+LOCAL_ROOT=$HOME
+
 # Clean up on termination
 trap "rm ${TMP_PROFILE}" SIGINT SIGTERM SIGQUIT SIGKILL EXIT
 
@@ -55,9 +58,7 @@ echo "Synchronizing the following profiles: ${PROFILES[@]}"
 # first without deletions at the local root, that allows the
 # correct deletion of remaining files in profiles included
 # in TMP_NAME.
-#
-# $HOME is the local root of unison.
-unison $UNISON_PRF -nodeletion $HOME -ignore "Name ${TMP_NAME}.prf" &&
+unison $UNISON_PRF -nodeletion $LOCAL_ROOT -ignore "Name ${TMP_NAME}.prf" &&
 unison $TMP_NAME &&
 unison $UNISON_PRF -ignore "Name ${TMP_NAME}.prf"
 if [ $? -ne 0 ]; then
