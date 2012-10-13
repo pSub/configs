@@ -16,6 +16,12 @@ PROFILES=(
 TMP_NAME=tmp
 TMP_PROFILE=$HOME/.unison/$TMP_NAME.prf
 
+# The profile the synchronize the unison profiles
+UNISON_PRF=unison
+
+# The default profile. This profile must contain the roots.
+DEFAULT_PRF=default
+
 # Clean up on termination
 trap "rm ${TMP_PROFILE}" SIGINT SIGTERM SIGQUIT SIGKILL EXIT
 
@@ -38,7 +44,7 @@ if [ "${PROFILES[@]}" = "" ]; then
 fi
 
 # Create the temporary unison profile.
-echo "include default" > $TMP_PROFILE
+echo "include ${DEFAULT_PRF}" > $TMP_PROFILE
 for PROFILE in ${PROFILES[@]}; do
     echo "include ${PROFILE}" >> $TMP_PROFILE
 done
@@ -51,9 +57,9 @@ echo "Synchronizing the following profiles: ${PROFILES[@]}"
 # profile `all'.
 #
 # $HOME is the local root of unison.
-unison unison -nodeletion $HOME -ignore "Name ${TMP_NAME}.prf" &&
+unison $UNISON_PRF -nodeletion $HOME -ignore "Name ${TMP_NAME}.prf" &&
 unison $TMP_NAME &&
-unison unison -ignore "Name ${TMP_NAME}.prf"
+unison $UNISON_PRF -ignore "Name ${TMP_NAME}.prf"
 if [ $? -ne 0 ]; then
     exit 1
 fi
