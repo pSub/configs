@@ -34,4 +34,4 @@ deploy:
 	ln -sf ~/configs/.xbindkeysrc ~/.xbindkeysrc
 	ln -sf ~/configs/jumanjirc ~/.config/jumanji/jumanjirc
 	ln -sf ~/configs/.pentadactylrc ~/.pentadactylrc
-
+	ln -sf ~/configs/.htoprc ~/.htoprc
