@@ -1,4 +1,0 @@
-# -*- mode: shell-script -*-
-
-# Change to directory and list the content
-cd "$@" && ls

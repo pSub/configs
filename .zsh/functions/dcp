@@ -1,9 +1,0 @@
-# -*- mode: shell-script -*-
-
-# Create the destination directory before
-# calling `cp'.
-if [[ -d $2 ]] {
-    mkdir -p $2 && cp $1 $2
-} else {
-    mkdir -p dirname $2 && cp $1 $2
-}

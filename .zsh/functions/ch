@@ -1,7 +1,0 @@
-# -*- mode: shell-script -*-
-
-# Simple slmenu based function to change directories
-local dirs
-dirs=$(find -L -maxdepth 1 -type d -name '*' ! -name '.*' -printf '%f\n')
-cd $(echo $dirs | slmenu -p λ)
-unset dirs
