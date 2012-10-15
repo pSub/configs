@@ -40,7 +40,7 @@ fi
 PROFILES=${PROFILES[@]//$TMP_NAME/}
 
 # Abort if only the internal profile shall be synchronized.
-if [ "${PROFILES[@]}" = "" ]; then
+if [ "${PROFILES}" = "" ]; then
     echo "Attempting to only synchronize the internal"\
          "profile ${TMP_NAME}. Aborting..."
     exit 1
