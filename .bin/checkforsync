@@ -10,7 +10,7 @@ do
         # Synchronize all changes and start the applications
         # that depend on them.
         "y" )
-            sync-unison
+            unison-sync
             break
             ;;
 
@@ -40,4 +40,3 @@ done
 setsid $HOME/.bin/reload-emacs-config
 setsid urxvtc -e hsgtd
 setsid $HOME/.bin/org-agenda
-
