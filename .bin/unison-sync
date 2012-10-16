@@ -26,7 +26,7 @@ DEFAULT_PRF=default
 LOCAL_ROOT=$HOME
 
 # Clean up on termination
-trap "rm ${TMP_PROFILE}" SIGINT SIGTERM SIGQUIT SIGKILL EXIT
+#trap "rm ${TMP_PROFILE}" SIGINT SIGTERM SIGQUIT SIGKILL EXIT
 
 # If arguments are given PROFILES is ignored
 # and the arguments are used as profiles.
@@ -37,7 +37,7 @@ fi
 
 # The internal profile TMP_NAME is removed to
 # prevent infinite loops.
-PROFILES=${PROFILES[@]//$TMP_NAME/}
+PROFILES=(${PROFILES[@]//$TMP_NAME/})
 
 # Abort if only the internal profile shall be synchronized.
 if [ "${PROFILES}" = "" ]; then
