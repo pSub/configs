@@ -1,1 +1,41 @@
-start
+# -*- mode: shell-script -*-
+
+# Handle the start/stop/restart and reload of daemons uniformly.
+local daemonPath distro cmd
+if [[ $# -le 0 ]]; then
+  echo "Usage: start [restart, stop, reload] DAEMON [DAEMON ...]"
+  return 1
+fi
+
+which systemd > /dev/null
+isSystemd=$?
+
+distro=$(cat /etc/issue)
+case $distro in
+        *"Arch Linux"*)
+              daemonPath="/etc/rc.d/" ;;
+        *"Debian GNU/Linux"*)
+              daemonPath="/etc/init.d/" ;;
+        *)
+              echo "Distribution not supported!"
+              exit 1
+esac
+if [[ $UID = 0 ]]; then
+    foreach daemon ($*); do
+      if test $isSystemd; then
+          systemctl $0 $daemon
+      else
+          $daemonPath$daemon $0
+      fi
+    done
+else
+    foreach daemon ($*); do
+      if test $isSystemd; then
+          cmd="$cmd systemctl $0 $daemon;"
+      else
+          cmd="$cmd $daemonPath$daemon $0;"
+      fi
+    done
+    su --command="$cmd"
+fi
+unset daemonPath distro
