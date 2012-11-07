@@ -1,6 +1,12 @@
 #!/bin/sh
+if [[ $# -eq 1 ]]; then
+    direction=$1
+else
+    direction="right-of"
+fi
+
 xrandr --output LVDS1 --auto --primary
-xrandr --output VGA1 --auto --right-of LVDS1
+xrandr --output VGA1 --auto --$direction LVDS1
 
 # Update the wallpapers
 touch $HOME/wallpapers/current
