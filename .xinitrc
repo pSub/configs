@@ -53,7 +53,8 @@ $HOME/.bin/wallpaper &
 $HOME/.bin/x-autostart &
 
 # Refresh the dwm statusbar every second
-while xsetroot -name "[Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]"; do
+while true; do
+      xsetroot -name "[Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]"
       sleep 1
 done &
 
