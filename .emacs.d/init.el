@@ -39,7 +39,7 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 (dolist (dir '(
   "/usr/local/share/emacs/site-lisp"
-  (expand-file-name "~/.elisp")
+  "~/.elisp"
   ))
   (add-to-list 'load-path dir))
 
