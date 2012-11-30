@@ -30,6 +30,7 @@ static const Rule rules[] = {
   { "feh",            NULL,         NULL,           0,            True,        -1 },
   { "Pinentry",       NULL,         NULL,           0,            True,        -1 },
   { "Zathura",        NULL,         NULL,           1 << 3,       False,       -1 },
+  { "llpp",           NULL,         NULL,           1 << 3,       False,       -1 },
   { NULL,             NULL,         "Agenda Frame", 1,            False,        1 },
   { NULL,             NULL,         "floatingwin",  0,            True,        -1 },
 };
