@@ -1,0 +1,25 @@
+#!/bin/sh
+# This wrapper provides automatic reloading on file modifications
+# to the pdfviewer llpp via inotify.
+
+# Start llpp with the given file.
+llpp $1 &
+
+# Track the PID of the llpp instance.
+pid=$!
+
+# Kill the llpp instance if the shell script terminates.
+trap "kill ${pid}" SIGINT SIGTERM SIGQUIT SIGKILL
+
+# Watch for changes on given file.
+while inotifywait -qq -e close_write $1; do
+    # Inform the llpp instance about file changes.
+    kill -HUP $llppPID
+done &
+
+# Obtain the PID of inotifywait
+pids=$(jobs -p | grep -v $pid)
+
+# If llpp terminates kill the inotifywait process
+wait $pid
+kill $pids
