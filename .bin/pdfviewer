@@ -12,14 +12,13 @@ pid=$!
 trap "kill ${pid}" SIGINT SIGTERM SIGQUIT SIGKILL
 
 # Watch for changes on given file.
-while inotifywait -qq -e close_write $1; do
-    # Inform the llpp instance about file changes.
-    kill -HUP $llppPID
+inotifywait -m -e close_write $1 | while read; do
+    kill -HUP $pid
 done &
 
-# Obtain the PID of inotifywait
+# Obtain the PID of inotifywait.
 pids=$(jobs -p | grep -v $pid)
 
-# If llpp terminates kill the inotifywait process
+# If llpp terminates kill the inotifywait process.
 wait $pid
 kill $pids
