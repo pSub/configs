@@ -8,7 +8,7 @@
 
 ;; Set zathura as prefered pdf reader
 (setq TeX-view-program-list '(("pdfviewer" "pdfviewer %o")))
-(setq TeX-view-program-selection '((output-pdf "zathura")))
+(setq TeX-view-program-selection '((output-pdf "pdfviewer")))
 
 ;; Load RefTex
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
