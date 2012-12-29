@@ -1,4 +1,4 @@
-// -*- mode: c -*-
+// -*- mode: js -*-
 
 // Display the mode-line
 mode_line_mode(true);
@@ -60,6 +60,17 @@ can_kill_last_buffer = false;
 
 // xkcd add mouse-over text
 xkcd_add_title = true;
+
+// view source in your editor.
+view_source_use_external_editor = true;
+
+// load download buffers in the background in the current
+// window, instead of in new windows.
+download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND;
+
+// load urls from the command line in new buffers instead
+// of new windows.
+url_remoting_fn = load_url_in_new_buffer;
 
 
 /* -------- Protocol Handlers --------- */
