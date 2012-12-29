@@ -6,19 +6,19 @@
 llpp $1 &
 
 # Track the PID of the llpp instance.
-pid=$!
+pid_llpp=$!
 
 # Kill the llpp instance if the shell script terminates.
-trap "kill ${pid}" SIGINT SIGTERM SIGQUIT SIGKILL
+trap "kill ${pid_llpp}" SIGINT SIGTERM SIGQUIT SIGKILL
 
 # Watch for changes on given file.
 inotifywait -m -e close_write $1 | while read; do
-    kill -HUP $pid
+    kill -HUP $pid_llpp
 done &
 
 # Obtain the PID of inotifywait.
-pids=$(jobs -p | grep -v $pid)
+pid_inotify=$(jobs -p | grep -v $pid_llpp)
 
 # If llpp terminates kill the inotifywait process.
-wait $pid
-kill $pids
+wait $pid_llpp
+kill $pid_inotify
