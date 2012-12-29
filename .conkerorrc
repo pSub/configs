@@ -1,3 +1,5 @@
+// -*- mode: c -*-
+
 // Display the mode-line
 mode_line_mode(true);
 
