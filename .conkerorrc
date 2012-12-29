@@ -60,10 +60,14 @@ can_kill_last_buffer = false;
 xkcd_add_title = true;
 
 
-/* -------- Key Bindings --------- */
+/* -------- Protocol Handlers --------- */
 
 set_protocol_handler("mailto", find_file_in_path("thunderbird"));
 
+
+/* -------- Content Handlers --------- */
+
+external_content_handlers.set("application/pdf", "pdfviewer");
 
 /* -------- Key Bindings --------- */
 
