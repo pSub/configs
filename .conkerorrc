@@ -72,8 +72,8 @@ define_key(content_buffer_normal_keymap, "C-f", "forward");
 define_key(content_buffer_normal_keymap, "C-b", "back");
 
 // Make M-f and M-b switch to next and previous buffers
-define_key(content_buffer_normal_keymap, "M-f", "buffer-next");
-define_key(content_buffer_normal_keymap, "M-b", "buffer-previous");
+define_key(content_buffer_normal_keymap, "C-tab", "buffer-next");
+define_key(content_buffer_normal_keymap, "C-S-tab", "buffer-previous");
 
 // Use C-l to follow link in new background buffer
 define_key(default_global_keymap, "C-l", "follow-new-buffer-background");
