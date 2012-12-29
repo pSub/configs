@@ -53,9 +53,6 @@ function load_url_in_new_buffer_perhaps_bg(url, ctx) {
 
 url_remoting_fn = load_url_in_new_buffer_perhaps_bg;
 
-// make C-d "kill current buffer"
-define_key(default_global_keymap, "C-d", "kill-current-buffer");
-
 // cwd
 cwd=get_home_directory();
 cwd.append("downloads");
