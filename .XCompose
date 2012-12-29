@@ -60,12 +60,12 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <m> <b> : "⊥" U22A5 # BOTTOM
 <Multi_key> <m> <a> <l> <e> <p> <h> : "ℵ" U2135 # ALEF SYMBOL
 
-<Multi_key> <m> <bar> <C> : "ℂ" U2102 # DOUBLE-STRUCK CAPITAL C
-<Multi_key> <m> <bar> <N> : "ℕ" U2115 # DOUBLE-STRUCK CAPITAL N
-<Multi_key> <m> <bar> <P> : "ℙ" U2119 # DOUBLE-STRUCK CAPITAL P
-<Multi_key> <m> <bar> <Q> : "ℚ" U211A # DOUBLE-STRUCK CAPITAL Q
-<Multi_key> <m> <bar> <R> : "ℝ" U211D # DOUBLE-STRUCK CAPITAL R
-<Multi_key> <m> <bar> <Z> : "ℤ" U2124 # DOUBLE-STRUCK CAPITAL Z
+<Multi_key> <m> <C> : "ℂ" U2102 # DOUBLE-STRUCK CAPITAL C
+<Multi_key> <m> <N> : "ℕ" U2115 # DOUBLE-STRUCK CAPITAL N
+<Multi_key> <m> <P> : "ℙ" U2119 # DOUBLE-STRUCK CAPITAL P
+<Multi_key> <m> <Q> : "ℚ" U211A # DOUBLE-STRUCK CAPITAL Q
+<Multi_key> <m> <R> : "ℝ" U211D # DOUBLE-STRUCK CAPITAL R
+<Multi_key> <m> <Z> : "ℤ" U2124 # DOUBLE-STRUCK CAPITAL Z
 
 #SUBSCRIPTS
 <Multi_key> <minus> <0> : "₀" U2080 # SUBSCRIPT 0
