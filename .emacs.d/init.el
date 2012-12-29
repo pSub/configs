@@ -11,9 +11,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
-; http://savannah.nongnu.org/projects/dtrt-indent/
-;(require 'dtrt-indent)
-;(dtrt-indent-mode 1)
 
 ; Save all backupfiles in ~/.saves
 (setq
@@ -42,6 +39,10 @@
   "~/.elisp"
   ))
   (add-to-list 'load-path dir))
+
+; http://savannah.nongnu.org/projects/dtrt-indent/
+(load "dtrt-indent/dtrt-indent")
+(dtrt-indent-mode 1)
 
 (load "color-theme-molokai/color-theme-molokai")
 (color-theme-molokai)
