@@ -46,7 +46,7 @@ urxvt.scrollWithBuffer       : false
 urxvt.scrollTtyOutput        : false
 urxvt.secondaryScroll        : true
 urxvt.utmpInhibit            : true
-urxvt.urlLauncher            : conkeror
+urxvt.url-launcher            : conkeror
 urxvt.matcher.button         : 1
 
 ! Extension that matches URLs
