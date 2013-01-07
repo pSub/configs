@@ -1,9 +1,12 @@
 Xcursor.theme                : Neutral
-
 Xft.dpi                      : 96
 Xft.antialias                : true
 Xft.hinting                  : full
 
+! --- emacs --- !
+emacs.pointerColor           : #ffffff
+
+! --- rxvt-unicode --- !
 urxvt.font                   : xft:inconsolata:pixelsize=13,xft:dejavu sans mono:pixelsize=13,xft:gentium
 
 ! Colors are from https://wiki.archlinux.org/index.php/Xdefaults#Terminal_colors
@@ -28,40 +31,44 @@ urxvt.color14                : #46a4ff
 urxvt.color7                 : #cccccc
 urxvt.color15                : #ffffff
 
-emacs.pointerColor           : #ffffff
-
-! To use urgency hints with console programms
+! To use urgency hints with console programs.
 urxvt.urgentOnBell           : true
 
 urxvt.internalBorder         : 3
-urxvt.saveLines              : 32767
+urxvt.saveLines              : 65535
 urxvt.visualBell             : false
-urxvt.jumpScroll             : false
 
-! No scroll bar
+! No scroll bar.
 urxvt.scrollBar              : plain
 
-urxvt.scrollTtyKeypress      : true
-urxvt.scrollWithBuffer       : false
 urxvt.scrollTtyOutput        : false
+urxvt.scrollTtyKeypress      : true
+urxvt.scrollWithBuffer       : true
+urxvt.jumpScroll             : true
 urxvt.secondaryScroll        : true
 urxvt.utmpInhibit            : true
-urxvt.url-launcher            : conkeror
-urxvt.matcher.button         : 1
 
-! Extension that matches URLs
+! Was urlLauncher in urxvt versions before 9.16.
+urxvt.url-launcher           : conkeror
+
+! Extension that matches URLs.
 urxvt.perl-ext-common        : default,matcher
 
 urxvt.matcher.pattern.1      : \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-
-! Charactes which bound the selection on double click
-urxvt.cutchars               : -
+urxvt.matcher.button         : 1
 
 urxvt.depth                  : 24
 urxvt.transparent            : false
 
 ! If the window has no focus its faded out about 20%
-urxvt.fading                 : 20%
+urxvt.fading                 : 5%
+urxvt.fadeColor              : gray
 
-urxvt.shading                : -2
 urxvt.metaSendsEscape        : true
+urxvt.pastableTabs           : true
+
+! Pressing Print dumps the screen content to a file
+urxvt.print-pipe             : cat > $HOME/urxvt-screen-dump
+
+! Charactes which bound the selection on double click.
+urxvt.cutchars               : BACKSLASH `&()*,;<=>?@[]^{|}-"'
