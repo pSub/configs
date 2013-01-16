@@ -8,7 +8,13 @@
 
  ;; Use notify.el (if you have it installed) at the end of running
  ;; Cabal commands or generally things worth notifying.
- '(haskell-notify-p t))
+ '(haskell-notify-p t)
+
+ ;; To enable tags generation on save.
+ '(haskell-tags-on-save t)
+
+ ;; To enable stylish on save.
+ '(haskell-stylish-on-save t))
 
 (add-hook 'haskell-mode-hook 'flyspell-prog-mode)
 (add-hook 'haskell-mode-hook 'haskell-hook)
