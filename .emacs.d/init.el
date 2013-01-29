@@ -6,7 +6,7 @@
 (setq next-line-add-newlines t) ; C-n makes new line
 (setq x-menu 'meta)
 (setq-default indent-tabs-mode nil)
-(setq-default show-trailing-whitespace t)
+(setq-default show-trailing-whitespace nil)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
