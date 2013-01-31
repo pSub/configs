@@ -99,8 +99,6 @@ static Key keys[] = {
   { MODKEY,                       XK_plus, rotatelayoutaxis, {.i = 1} },    /* 1 = master axis */
   { MODKEY,                       XK_numbersign, rotatelayoutaxis, {.i = 2} },    /* 2 = stack axis */
   { MODKEY|ShiftMask,             XK_m,      mirrorlayout,     {0} },
-  { MODKEY,                       XK_i,      shiftmastersplit, {.i = +1} },   /* increase the number of clients in the master area */
-  { MODKEY,                       XK_o,      shiftmastersplit, {.i = -1} },   /* reduce the number of clients in the master area */
   TAGKEYS(                        XK_1,                      0)
   TAGKEYS(                        XK_2,                      1)
   TAGKEYS(                        XK_3,                      2)
