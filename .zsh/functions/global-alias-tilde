@@ -1,8 +1,11 @@
 # -*- mode: shell-script -*-
 
-# Add a slash after tilde, but only if git isn't involved.
-# Git is the only case I need a tilde without a slash.
-if [[ $LBUFFER = "git"* ]]; then
+# Usually a slash follows directly after a tilde, because tilde is
+# usually used in paths. Therefore this function automatically appends
+# a slash after a tilde except for two cases:
+# 1) in a git command (e.g. `git reset --hard HEAD~2`)
+# 2) when pasting a command (the slash is already there)
+if [[ $LBUFFER = "git"* ]] || [[ $PENDING -ge 1 ]]; then
    LBUFFER+="~"
 else
    LBUFFER+="~/"
