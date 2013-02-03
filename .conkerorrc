@@ -41,6 +41,9 @@ interactive("search-clipboard-contents", "Search in Google the content of the X 
 // Display the url before going to it in hints mode
 hints_display_url_panel = true;
 
+// If the select is unambigous open the link directly
+hints_auto_exit_delay = 1;
+
 // Auto completion in the minibuffer
 minibuffer_auto_complete_default = true;
 url_completion_use_history = true; // Should work since bf05c87405
