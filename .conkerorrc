@@ -21,6 +21,9 @@ require("new-tabs.js");
 // Load github mode
 require("github");
 
+// Load Duck Duck Go mode
+require("duckduckgo");
+
 // Click to open new tabs
 require("clicks-in-new-buffer.js");
 
