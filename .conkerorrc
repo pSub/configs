@@ -100,6 +100,9 @@ download_buffer_automatic_open_target = OPEN_NEW_BUFFER_BACKGROUND;
 // of new windows.
 url_remoting_fn = load_url_in_new_buffer;
 
+// Do not select the whole url on C-x C-v.
+minibuffer_read_url_select_initial = false;
+
 
 /* -------- Protocol Handlers --------- */
 
