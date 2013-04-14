@@ -1,0 +1,13 @@
+# Disable distracting features during the presentation.
+(xset s off;
+killall -SIGUSR1 dunst) &&
+
+# Configure external monitor/projector.
+xrandr-config &&
+
+# Start the presentation.
+$PRESENTER $@ &&
+
+# Enable distraction features again.
+(xset s on;
+killall -SIGUSR2 dunst)

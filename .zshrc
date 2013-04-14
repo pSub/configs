@@ -15,6 +15,7 @@ export ZSHFUN=$ZSHDIR/functions
 export EDITOR="ec"
 export PAGER=less
 export BROWSER=conkeror
+export PRESENTER=pdfpc
 export REPORTTIME="10"
 export HISTFILE=$HOME/.zshhistory
 export COLORTERM=yes
