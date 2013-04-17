@@ -123,6 +123,18 @@ define_key(content_buffer_normal_keymap, "C-b", "back");
 define_key(content_buffer_normal_keymap, "C-tab", "buffer-next");
 define_key(content_buffer_normal_keymap, "C-S-tab", "buffer-previous");
 
+// Bind 0-9 to the corresponding buffers
+function define_switch_buffer_key (key, buf_num) {
+    define_key(default_global_keymap, key,
+               function (I) {
+                   switch_to_buffer(I.window,
+                                    I.window.buffers.get_buffer(buf_num));
+               });
+}
+for (let i = 0; i < 10; ++i) {
+    define_switch_buffer_key(String((i+1)%10), i);
+}
+
 // Use C-l to follow link in new background buffer
 define_key(default_global_keymap, "C-l", "follow-new-buffer-background");
 
