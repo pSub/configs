@@ -25,3 +25,6 @@
 [submodule ".elisp/undo-tree"]
 	path = .elisp/undo-tree
 	url = http://www.dr-qubit.org/git/undo-tree.git
+[submodule ".elisp/scala-mode"]
+	path = .elisp/scala-mode
+	url = https://github.com/hvesalai/scala-mode2.git
