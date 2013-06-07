@@ -17,7 +17,7 @@ export GTK_IM_MODULE
 
 
 # Starting X when login in on tty1
-if [ "$(tty)" = "/dev/tty1" ]; then
+if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
     # Check for backup before starting X
     backup && startx --vt1 &!
     logout
