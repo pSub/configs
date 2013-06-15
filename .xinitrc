@@ -58,6 +58,9 @@ while true; do
       sleep 1
 done &
 
+# Lock the screen after startup.
+slock &
+
 # Start xmodmap before dwm to make sure the changes
 # from xmodmap are applied
 xmodmap $HOME/.Xmodmap && exec dwm
