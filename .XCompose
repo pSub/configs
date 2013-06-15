@@ -53,12 +53,12 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <m> <E>     : "∃" U2203 # THERE EXISTS
 <Multi_key> <m> <n> <E> : "∄" U2204 # THERE DOES NOT EXIST
 <Multi_key> <m> <exclam> : "¬"  U00AC # NOT
-<Multi_key> <m> <a>     : "∧" U2227 # AND
-<Multi_key> <m> <o>     : "∨" U2228 # OR
+<Multi_key> <m> <a> <n> <d>     : "∧" U2227 # AND
+<Multi_key> <m> <o> <r>    : "∨" U2228 # OR
 <Multi_key> <m> <period> : "∘" U2218 # RING OPERATOR
 <Multi_key> <m> <x> : "⊕" U2295 # XOR
 <Multi_key> <m> <b> : "⊥" U22A5 # BOTTOM
-<Multi_key> <m> <a> <l> <e> <p> <h> : "ℵ" U2135 # ALEF SYMBOL
+#<Multi_key> <m> <a> <l> <e> <p> <h> : "ℵ" U2135 # ALEF SYMBOL
 
 <Multi_key> <m> <C> : "ℂ" U2102 # DOUBLE-STRUCK CAPITAL C
 <Multi_key> <m> <N> : "ℕ" U2115 # DOUBLE-STRUCK CAPITAL N
