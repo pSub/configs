@@ -15,13 +15,13 @@ deploy:
 	mkdir -p ~/.vim/backup
 	mkdir -p ~/.config/zathura
 
-	ln -sf ~/config/.bin ~/.bin
-	ln -sf ~/config/.zshrc ~/.zshrc
-	ln -sf ~/config/.zsh ~/.zsh
-	ln -sf ~/config/.zprofile ~/.zprofile
-	ln -sf ~/config/.xinitrc ~/.xinitrc
-	ln -sf ~/config/.vimrc ~/.vimrc
-	ln -sf ~/config/.udisks-glue.conf ~/.udisks-glue.conf
+	ln -sf ~/configs/.bin ~/.bin
+	ln -sf ~/configs/.zshrc ~/.zshrc
+	ln -sf ~/configs/.zsh ~/.zsh
+	ln -sf ~/configs/.zprofile ~/.zprofile
+	ln -sf ~/configs/.xinitrc ~/.xinitrc
+	ln -sf ~/configs/.vimrc ~/.vimrc
+	ln -sf ~/configs/.udisks-glue.conf ~/.udisks-glue.conf
 	ln -sf ~/configs/.iptv-channelsiptv-channels ~/.iptv-channelsiptv-channels
 	ln -sf ~/configs/.gitconfig ~/.gitconfig
 	ln -sf ~/configs/.emacs.d ~/.emacs.d
