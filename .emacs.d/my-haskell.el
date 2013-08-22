@@ -1,10 +1,9 @@
-(load (expand-file-name "~/.elisp/haskell-mode/haskell-site-file"))
-(load "haskell-site-file")
+(load "haskell-mode-autoloads")
 
 ;; Customization
 (custom-set-variables
  ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
- '(haskell-process-type 'ghci)
+ '(haskell-process-type 'cabal-dev)
 
  ;; Use notify.el (if you have it installed) at the end of running
  ;; Cabal commands or generally things worth notifying.
@@ -16,9 +15,9 @@
  ;; To enable stylish on save.
  '(haskell-stylish-on-save t))
 
-(add-hook 'haskell-mode-hook 'flyspell-prog-mode)
 (add-hook 'haskell-mode-hook 'haskell-hook)
 (add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 
 ;; Haskell main editing mode key bindings.
 (defun haskell-hook ()
