@@ -59,9 +59,9 @@ echo "Synchronizing the following profiles: ${PROFILES[@]}"
 # first without deletions at the local root, that allows the
 # correct deletion of remaining files in profiles included
 # in TMP_NAME.
-unison $UNISON_PRF -nodeletion $LOCAL_ROOT -ignore "Name ${TMP_NAME}.prf" &&
-unison $TMP_NAME &&
-unison $UNISON_PRF -ignore "Name ${TMP_NAME}.prf"
+unison -ui text $UNISON_PRF -nodeletion $LOCAL_ROOT -ignore "Name ${TMP_NAME}.prf" &&
+unison -ui text $TMP_NAME &&
+unison -ui text $UNISON_PRF -ignore "Name ${TMP_NAME}.prf"
 if [ $? -ne 0 ]; then
     exit 1
 fi
