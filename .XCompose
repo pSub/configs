@@ -29,6 +29,8 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <equal> <greater> : "⇒" U21D2 # RIGHTWARDS DOUBLE ARROW
 <Multi_key> <equal> <v> : "⇓" U21D3 # DOWNWARDS DOUBLE ARROW
 
+<Multi_key> <bar> <greater> : "▷" U25B7
+
 #MATH
 <Multi_key> <0> <0> : "∞" U221E # INFINITY
 <Multi_key> <m> <greater> <plus> : "≫" U226B # MUCH GREATER-THAN
@@ -58,6 +60,8 @@ include "/usr/share/X11/locale/en_US.UTF-8/Compose"
 <Multi_key> <m> <period> : "∘" U2218 # RING OPERATOR
 <Multi_key> <m> <x> : "⊕" U2295 # XOR
 <Multi_key> <m> <b> : "⊥" U22A5 # BOTTOM
+<Multi_key> <m> <bracketleft> : "⟦" 27E6
+<Multi_key> <m> <t> <o> : "↦"  U21A6
 #<Multi_key> <m> <a> <l> <e> <p> <h> : "ℵ" U2135 # ALEF SYMBOL
 
 <Multi_key> <m> <C> : "ℂ" U2102 # DOUBLE-STRUCK CAPITAL C
