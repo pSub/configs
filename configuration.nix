@@ -75,6 +75,7 @@
 
   # List services that you want to enable:
 
+  services.udisks.enable = true;
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
