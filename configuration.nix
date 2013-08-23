@@ -73,6 +73,25 @@
     defaultLocale = "en_US.UTF-8";
   };
 
+  fonts = {
+    enableFontDir = true;
+    enableCoreFonts = true;
+    enableGhostscriptFonts = true;
+    extraFonts = with pkgs ; [
+      liberation_ttf
+      ttf_bitstream_vera
+      dejavu_fonts
+      terminus_font
+      bakoma_ttf
+      clearlyU
+      cm_unicode
+      andagii
+      bakoma_ttf
+      inconsolata
+      gentium
+    ];
+  };
+
   # List services that you want to enable:
 
   services.udisks.enable = true;
@@ -121,11 +140,6 @@
       xclip
       xbindkeys
       xlibs.xinput
-
-      # Fonts
-      inconsolata
-      gentium
-      dejavu_fonts
 
       # Misc
       haskellPackages.AgdaExecutable
