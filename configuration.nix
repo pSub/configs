@@ -91,6 +91,7 @@
       unison
       git
       htop
+      wmname
       zsh
 
       # Emacs
@@ -103,6 +104,8 @@
 
       # Xutils
       xclip
+      xbindkeys
+      xlibs.xinput
 
       # Fonts
       inconsolata
