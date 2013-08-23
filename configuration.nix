@@ -10,8 +10,10 @@
       ./hardware-configuration.nix
     ];
 
-  boot.initrd.kernelModules =
-    [ # Specify all kernel modules that are necessary for mounting the root
+  boot.kernelPackages = pkgs.linuxPackages_3_10;
+
+  boot.initrd.kernelModules =    [
+      # Specify all kernel modules that are necessary for mounting the root
       # filesystem.
     ];
 
