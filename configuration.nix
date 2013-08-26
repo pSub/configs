@@ -132,6 +132,8 @@
   services.xserver.displayManager.slim.defaultUser = "pascal";
   services.xserver.startGnuPGAgent = true;
   services.xserver.startOpenSSHAgent = false;
+  services.xserver.videoDrivers = [ "intel" "vesa" ];
+
   # Time.
   time.timeZone = "Europe/Berlin";
 
