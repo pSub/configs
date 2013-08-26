@@ -132,6 +132,8 @@
   services.xserver.displayManager.slim.defaultUser = "pascal";
   services.xserver.startGnuPGAgent = true;
   services.xserver.startOpenSSHAgent = false;
+  # Time.
+  time.timeZone = "Europe/Berlin";
 
   environment = {
     systemPackages = with pkgs; [
