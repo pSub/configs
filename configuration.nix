@@ -109,6 +109,9 @@
     esac
   '';
 
+  # ClamAV.
+  services.clamav.updater.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
