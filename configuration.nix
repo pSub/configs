@@ -115,6 +115,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # SMART.
+  services.smartd.enable = true;
+  services.smartd.devices = [ { device = "/dev/sda"; } ];
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "de";
