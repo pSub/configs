@@ -41,7 +41,6 @@
   boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "brauchli"; # Define your hostname.
-  networking.wireless.enable = false;  # Enables Wireless.
   networking.networkmanager.enable = true;
 
   # Power Management
