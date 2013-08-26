@@ -142,6 +142,7 @@
       unison
       git
       htop
+      transmission_remote_gtk
       wmname
       zsh
 
