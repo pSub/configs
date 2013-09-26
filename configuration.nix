@@ -134,6 +134,8 @@
   services.xserver.startOpenSSHAgent = false;
   services.xserver.videoDrivers = [ "intel" "vesa" ];
 
+  services.mpd.enable = true;
+
   # Time.
   time.timeZone = "Europe/Berlin";
 
