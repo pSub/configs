@@ -141,6 +141,8 @@
 
   environment = {
     systemPackages = with pkgs; [
+      atool
+      unzip
       unison
       git
       htop
