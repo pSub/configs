@@ -14,6 +14,7 @@ deploy:
 	mkdir -p ~/.vim/tmp
 	mkdir -p ~/.vim/backup
 	mkdir -p ~/.config/zathura
+	mkdir -p ~/.config/jumanji
 
 	ln -sf ~/configs/bin ~/bin
 	ln -sf ~/configs/.zshrc ~/.zshrc
