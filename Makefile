@@ -20,9 +20,10 @@ deploy:
 	ln -sf ~/configs/.zsh ~/.zsh
 	ln -sf ~/configs/.zprofile ~/.zprofile
 	ln -sf ~/configs/.xinitrc ~/.xinitrc
+	ln -sf ~/configs/.xinitrc ~/.xsession
 	ln -sf ~/configs/.vimrc ~/.vimrc
 	ln -sf ~/configs/.udisks-glue.conf ~/.udisks-glue.conf
-	ln -sf ~/configs/.iptv-channelsiptv-channels ~/.iptv-channelsiptv-channels
+	ln -sf ~/configs/.iptv-channels ~/.iptv-channels
 	ln -sf ~/configs/.gitconfig ~/.gitconfig
 	ln -sf ~/configs/.emacs.d ~/.emacs.d
 	ln -sf ~/configs/.elisp ~/.elisp
