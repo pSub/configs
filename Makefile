@@ -15,7 +15,7 @@ deploy:
 	mkdir -p ~/.vim/backup
 	mkdir -p ~/.config/zathura
 
-	ln -sf ~/configs/.bin ~/.bin
+	ln -sf ~/configs/bin ~/bin
 	ln -sf ~/configs/.zshrc ~/.zshrc
 	ln -sf ~/configs/.zsh ~/.zsh
 	ln -sf ~/configs/.zprofile ~/.zprofile
