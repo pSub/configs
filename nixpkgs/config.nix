@@ -4,11 +4,6 @@
   dwm.patches = [ ./dwm.patch ];
 
   packageOverrides = pkgs : with pkgs; {
-    sdlEnv = pkgs.myEnvFun {
-      name = "sdl";
-      buildInputs = [ stdenv ];
-    };
-
     dwbEnv = pkgs.myEnvFun {
       name = "dwb";
       buildInputs = [ stdenv libsoup webkit pkgconfig gnome3.gtk gnutls json_c m4 ];
