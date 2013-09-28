@@ -21,7 +21,7 @@ udisks-glue -c $HOME/.udisks-glue.conf &
 xset b off &
 
 # Set DPMS off
-xset dpms off &
+xset -dpms &
 
 # Set keyboard layout
 setxkbmap -layout de -variant nodeadkeys &
