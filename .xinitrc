@@ -6,7 +6,7 @@ batmon(){
 }
 
 # Load xrandr configuration
-$HOME/.bin/xrandr-config
+$HOME/bin/xrandr-config
 
 # Start urxvt daemon
 urxvtd -q -f -o
@@ -30,7 +30,7 @@ setxkbmap -layout de -variant nodeadkeys &
 xbindkeys -f $HOME/.xbindkeysrc &
 
 # Load touchpad (synaptics) configuration
-$HOME/.bin/synclient-config &
+$HOME/bin/synclient-config &
 
 # Vertical and horizontal scrolling on Thinkpads
 xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 8 1
@@ -47,10 +47,10 @@ scdaemon --daemon
 eval "$(gpg-agent --daemon --enable-ssh-support)"
 
 # Set background / wallpaper
-$HOME/.bin/wallpaper &
+$HOME/bin/wallpaper &
 
 # Autostart applications
-$HOME/.bin/x-autostart &
+$HOME/bin/x-autostart &
 
 # Refresh the dwm statusbar every second
 while true; do
