@@ -127,6 +127,10 @@
   services.xserver.enable = true;
   services.xserver.layout = "de";
   services.xserver.xkbVariant = "nodeadkeys";
+  services.xserver.synaptics.enable = true;
+  services.xserver.synaptics.accelFactor = "0.01";
+  services.xserver.synaptics.tapButtons = false;
+  services.xserver.synaptics.vertEdgeScroll = true;
   services.xserver.displayManager.slim.enable = true;
   services.xserver.displayManager.slim.autoLogin = true;
   services.xserver.displayManager.slim.defaultUser = "pascal";
