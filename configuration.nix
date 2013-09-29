@@ -153,6 +153,7 @@
       unison
       git
       htop
+      inotifyTools
       transmission_remote_gtk
       wmname
       zsh
