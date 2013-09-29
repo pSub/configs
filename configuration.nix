@@ -140,6 +140,9 @@
 
   services.mpd.enable = true;
 
+  # Firewall
+  networking.firewall.enable = true;
+
   # Time.
   time.timeZone = "Europe/Berlin";
 
