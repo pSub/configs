@@ -183,8 +183,8 @@
 	zsh
   ];
 
-  # When enabled systemd-logind.service fails to start.
-  #environment.noXlibs = true;
+  # X-libraries and fonts are not needed on the server.
+  environment.noXlibs = true;
   fonts.enableFontConfig = false;
 
   users.extraUsers = {
