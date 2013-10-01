@@ -96,6 +96,7 @@
 
   # List services that you want to enable:
 
+  # Udisks.
   services.udisks.enable = true;
 
   services.acpid.enable = true;
@@ -110,7 +111,7 @@
   '';
 
   # ClamAV.
-  services.clamav.updater.enable = true;
+  services.clamav.updater.enable = false;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -138,6 +139,7 @@
   services.xserver.startOpenSSHAgent = false;
   services.xserver.videoDrivers = [ "intel" "vesa" ];
 
+  # MPD
   services.mpd.enable = true;
 
   # Firewall
