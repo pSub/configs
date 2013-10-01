@@ -45,8 +45,10 @@ wmname LG3D &
 # Start scdaemon
 scdaemon --daemon
 
-# Start gpg-agent
-eval "$(gpg-agent --daemon --enable-ssh-support)"
+# Start gpg-agent if not on NixOS
+if [[ $(uname -a) != *"NixOS"* ]]; then
+  eval "$(gpg-agent --daemon --enable-ssh-support)"
+fi
 
 # Set background / wallpaper
 $HOME/bin/wallpaper &
