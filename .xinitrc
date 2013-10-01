@@ -23,8 +23,10 @@ xset b off &
 # Set DPMS off
 xset -dpms &
 
-# Set keyboard layout
-setxkbmap -layout de -variant nodeadkeys &
+# Set keyboard layout if not on NixOS
+if [[ $(uname -a) != *"NixOS"* ]]; then
+  setxkbmap -layout de -variant nodeadkeys &
+fi
 
 # Load the xbindkeys configuration
 xbindkeys -f $HOME/.xbindkeysrc &
