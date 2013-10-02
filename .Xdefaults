@@ -60,7 +60,7 @@ urxvt.matcher.button         : 1
 urxvt.depth                  : 24
 urxvt.transparent            : false
 
-! If the window has no focus its faded out about 20%
+! If the window has no focus its faded out about 5%
 urxvt.fading                 : 5%
 urxvt.fadeColor              : gray
 
