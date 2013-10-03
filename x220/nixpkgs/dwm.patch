@@ -41,7 +41,7 @@ diff --git a/config.def.h b/config.def.h
 index 77ff358..79a61b2 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -1,45 +1,52 @@
+@@ -1,45 +1,53 @@
  /* See LICENSE file for copyright and license details. */
  
  /* appearance */
@@ -75,6 +75,7 @@ index 77ff358..79a61b2 100644
 +  { "Thunderbird",     NULL,       NULL,       1 << 5,       False,        0 },
 +  { "Firefox",         NULL,       NULL,       1 << 1,       False,        0 },
 +  { "Conkeror",        NULL,       NULL,       1 << 1,       False,        0 },
++  { ".dwb-wrapped",    NULL,       NULL,       1 << 1,       False,        0 },
 +  { "feh",             NULL,       NULL,       0,            True,        -1 },
 +  { "Pinentry",        NULL,       NULL,       0,            True,         0 },
 +  { "llpp",            NULL,       NULL,       1 << 3,       False,       -1 },
