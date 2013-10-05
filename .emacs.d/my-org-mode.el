@@ -91,7 +91,6 @@
    "Keymap for `org-agenda-mode'.")
 
 (defun my/agenda-frame ()
-  (modify-frame-parameters nil '( (name . "Agenda Frame")))
   (if (fboundp 'x-focus-frame)
       (x-focus-frame nil))
   (let ((org-agenda-window-setup 'current-window))

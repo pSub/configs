@@ -1,2 +1,2 @@
 #!/bin/sh
-emacsclient -a "" -c -e '(my/agenda-frame)'
+emacsclient -a "" -c -F "'(name . \"Agenda Frame\")" -e '(my/agenda-frame)'
