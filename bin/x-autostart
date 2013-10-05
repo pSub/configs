@@ -8,7 +8,7 @@ emacs --daemon &
 case $(hostname) in
   'firmin')
       ;;
-  'subiectiva' | 'zinnober')
+  'subiectiva' | 'brauchli')
       thunderbird &
       ;;
 esac
