@@ -76,8 +76,9 @@
 (dolist (dir '(
   "~/.emacs.d/"
 ; Paths for NixOS
-  "~/.nix-profile/share/org/contrib/lisp"
+  "~/.nix-profile/share/org/contrib/lisp/"
   "~/.nix-profile/share/emacs/site-lisp/"
+  "~/.nix-profile/emacs/site-lisp/org/"
 ; Path for Arch Linux
   "/usr/local/share/emacs/site-lisp"
   "~/.elisp"
