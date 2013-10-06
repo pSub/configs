@@ -41,7 +41,7 @@ diff --git a/config.def.h b/config.def.h
 index 77ff358..79a61b2 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -1,45 +1,54 @@
+@@ -1,45 +1,55 @@
  /* See LICENSE file for copyright and license details. */
  
  /* appearance */
@@ -79,7 +79,8 @@ index 77ff358..79a61b2 100644
 +  { "feh",             NULL,       NULL,           0,            True,        -1 },
 +  { "Pinentry",        NULL,       NULL,           0,            True,         0 },
 +  { "llpp",            NULL,       NULL,           1 << 3,       False,       -1 },
-+  { NULL,              NULL,       "Agenda Frame", 1 << 0,       False,        0 },     
++  { NULL,              NULL,       "Agenda Frame", 1 << 0,       False,        0 },
++  { NULL,              NULL,       "Feeds Frame",  1 << 6,       False,        0 },
 +  { NULL,              NULL,       "floatwin",     0,            True,        -1 },
  };
  
