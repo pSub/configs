@@ -5,7 +5,6 @@
 
 (setq elfeed-feeds
       '(
-
         ;; Planets
         "http://planet.nixos.org/atom.xml"
         "http://planet.haskell.org/atom.xml"
@@ -14,6 +13,11 @@
         "http://scientopia.org/blogs/goodmath/feed/"
         "http://theorylunch.wordpress.com/feed/"
         "http://existentialtype.wordpress.com/feed/"
+
+        ;; Fun
+        "http://feeds.feedburner.com/SpikedMath"
+        "http://xkcd.com/atom.xml"
+        "http://feeds.feedburner.com/CartesianClosedComic"
 
         ;; Misc
         "http://noamlewis.wordpress.com/feed/"
