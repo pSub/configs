@@ -14,22 +14,22 @@
     XF86AudioMute
 
 #PlayPause
-"mocp -G"
+"mpc toggle"
     m:0x0 + c:172
     XF86AudioPlay
 
 #Stop
-"mocp -s"
+"mpc stop"
     m:0x0 + c:174
     XF86AudioStop
 
 #Previous
-"mocp -r"
+"mpc prev"
     m:0x0 + c:173
     XF86AudioPrev
 
 #Next
-"mocp -f"
+"mpc next"
     m:0x0 + c:171
     XF86AudioNext
 
