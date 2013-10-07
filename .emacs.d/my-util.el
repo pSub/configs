@@ -10,4 +10,10 @@
         (progn ,@body)
     (message (format "%s not loaded" ,file))))
 
+(defun read-lines (fPath)
+  "Return a list of lines of a file at FPATH."
+  (with-temp-buffer
+    (insert-file-contents fPath)
+    (split-string (buffer-string) "\n" t)))
+
 (provide 'util)
