@@ -59,6 +59,10 @@
     defaultLocale = "en_US.UTF-8";
   };
 
+  # Use zsh globally.
+  programs.bash.enable = false;
+  programs.zsh.enable = true;
+
   # Cron daemon.
   services.cron.enable = true;
 
