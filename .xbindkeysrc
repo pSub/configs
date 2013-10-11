@@ -34,7 +34,7 @@
     XF86AudioNext
 
 #Lock
-"slock"
+"lock"
    m:0x0 + c:160
    XF86ScreenSaver
 
