@@ -37,5 +37,6 @@ deploy:
 	ln -sf ~/configs/jumanjirc ~/.config/jumanji/jumanjirc
 	ln -sf ~/configs/.pentadactylrc ~/.pentadactylrc
 	ln -sf ~/configs/.htoprc ~/.config/htop/htoprc
+	ln -sf ~/configs/cabal-config ~/.cabal/config
 
 	chmod +x ~/.xsession
