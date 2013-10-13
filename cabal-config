@@ -34,6 +34,7 @@ world-file: /home/pascal/.cabal/world
 -- flags:
 extra-include-dirs: /home/pascal/.nix-profile/include/
 extra-lib-dirs: /home/pascal/.nix-profile/lib/
+extra-prog-path: /home/pascal/.cabal/bin
 -- tests: False
 -- library-coverage: False
 -- benchmarks: False
