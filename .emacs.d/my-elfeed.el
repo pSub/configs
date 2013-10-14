@@ -12,4 +12,10 @@
             (elfeed-make-tagger :feed-url regex
                                 :add '(packaging))))
 
+(dolist (regex '("tu-darmstadt.de"
+                 "cased.de"))
+  (add-hook 'elfeed-new-entry-hook
+            (elfeed-make-tagger :feed-url regex
+                                :add '(tu-darmstadt))))
+
 (provide ' my-elfeed)
