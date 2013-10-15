@@ -1,6 +1,7 @@
 (require 'org-install)
 (require 'org-contacts)
 (require 'org-habit)
+(require 'org-journal)
 (require 'diary-lib)
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
@@ -32,7 +33,8 @@
 
 (setq org-agenda-files (list (concat org-directory "agenda/"))
       org-default-notes-file (concat org-directory "notes.org")
-      org-contacts-files (list (concat org-directory "contacts.org")))
+      org-contacts-files (list (concat org-directory "contacts.org"))
+      org-journal-dir (concat org-directory "journal/"))
 
 (setq org-refile-targets '((buffer-file-name :maxlevel . 3)
                            (org-agenda-files :maxlevel . 2)
