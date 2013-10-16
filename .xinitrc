@@ -42,9 +42,6 @@ xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 8 6 7 4
 # Set window-manager name (useful for java apps)
 wmname LG3D &
 
-# Start scdaemon
-scdaemon --daemon
-
 # Start gpg-agent if not on NixOS
 if [[ $(uname -a) != *"NixOS"* ]]; then
   eval "$(gpg-agent --daemon --enable-ssh-support)"
