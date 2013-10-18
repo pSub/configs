@@ -19,5 +19,9 @@
          haskellPackages.hlint
      ]);
 
+   myTexLive = pkgs.texLiveAggregationFun {
+     paths = [
+       texLive texLiveExtra texLiveBeamer
+     ];  name = "mytexlive"; };
   };
 }
