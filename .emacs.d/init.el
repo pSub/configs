@@ -103,6 +103,5 @@
 (load "my-vcs")
 ;(load "my-notmuch")
 ;(load "my-scala")
-;; The emacs mode seems to be not included in NixOS at the moment
-;(load "my-agda")
+(load "my-agda")
 (load "my-elfeed")
