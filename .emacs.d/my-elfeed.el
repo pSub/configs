@@ -7,6 +7,7 @@
   (elfeed-update))
 
 (define-key elfeed-search-mode-map "G" 'elfeed-my-update)
+(define-key elfeed-search-mode-map (kbd "C-x C-s") (lambda () (interactive) (elfeed-db-save)))
 
 (global-set-key (kbd "C-x w") 'elfeed)
 
