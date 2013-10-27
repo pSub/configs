@@ -67,6 +67,9 @@
 (setq auto-save-file-name-transforms
    `((".*" ,temporary-file-directory t)))
 
+
+(setq url-cache-directory temporary-file-directory)
+
 (setq browse-url-generic-program "dwb"
      browse-url-browser-function 'browse-url-generic)
 
