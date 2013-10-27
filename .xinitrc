@@ -61,7 +61,7 @@ while true; do
 done &
 
 # Lock the screen after startup.
-slock &
+$HOME/bin/lock
 
 # Start xmodmap before dwm to make sure the changes
 # from xmodmap are applied
