@@ -138,12 +138,13 @@
   services.xserver.startGnuPGAgent = true;
   services.xserver.startOpenSSHAgent = false;
   services.xserver.videoDrivers = [ "intel" "vesa" ];
+  services.xserver.vaapiDrivers = [ pkgs.vaapiIntel ];
 
   # MPD
   services.mpd.enable = true;
 
   # Firewall
-  networking.firewall.enable = true;
+  #networking.firewall.enable = true;
 
   # Time.
   time.timeZone = "Europe/Berlin";
