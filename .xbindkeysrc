@@ -40,7 +40,6 @@
 
 #Toggle-Vga
 "xrandr-config"
-   m:0x0 + c:214
    XF86Display
 
 #Toggle-Touchpad
