@@ -38,5 +38,6 @@ deploy:
 	ln -sf ~/configs/.pentadactylrc ~/.pentadactylrc
 	ln -sf ~/configs/.htoprc ~/.config/htop/htoprc
 	ln -sf ~/configs/cabal-config ~/.cabal/config
+	ln -sf ~/configs/.stylish-haskell.yaml ~/.stylish-haskell.yaml
 
 	chmod +x ~/.xsession
