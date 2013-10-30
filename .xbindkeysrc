@@ -1,41 +1,33 @@
 #VolumeUp
 "amixer sset Master 1+"
-    m:0x0 + c:123
     XF86AudioRaiseVolume
 
 #VolumeDown
 "amixer sset Master 1-"
-    m:0x0 + c:122
     XF86AudioLowerVolume
 
 #Mute
 "amixer sset Master toggle"
-    m:0x0 + c:121
     XF86AudioMute
 
 #PlayPause
 "mpc toggle"
-    m:0x0 + c:172
     XF86AudioPlay
 
 #Stop
 "mpc stop"
-    m:0x0 + c:174
     XF86AudioStop
 
 #Previous
 "mpc prev"
-    m:0x0 + c:173
     XF86AudioPrev
 
 #Next
 "mpc next"
-    m:0x0 + c:171
     XF86AudioNext
 
 #Lock
 "lock"
-   m:0x0 + c:160
    XF86ScreenSaver
 
 #Toggle-Vga
@@ -44,5 +36,4 @@
 
 #Toggle-Touchpad
 "toggle-touchpad"
-   m:0x0 + c:200
    XF86TouchpadOn
