@@ -23,7 +23,7 @@
   boot.kernelModules = [ "tp_smapi" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.tp_smapi ];
 
-  boot.extraKernelParams = [ "quiet" ];
+  boot.kernelParams = [ "quiet" ];
     
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
