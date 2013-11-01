@@ -175,6 +175,7 @@
       xlibs.xinput
 
       # Misc
+      haskellPackages.Agda
       haskellPackages.AgdaExecutable
     ];
 
