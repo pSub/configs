@@ -52,6 +52,7 @@
 
   fileSystems."/".device = "/dev/mapper/vgroup-root";
   fileSystems."/boot".device = "/dev/sda1";
+  fileSystems."/tmp" = { device = "tmpfs"; fsType = "tmpfs"; };
 
   # List swap partitions activated at boot time.
   swapDevices =
