@@ -3,10 +3,13 @@
 
 { config, pkgs, ... }:
 
-{
+let hydra = pkgs.fetchgit { url = https://github.com/NixOS/hydra; rev = "refs/heads/master"; };
+
+in {
   require =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      "${hydra}/hydra-module.nix"
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_3_10;
@@ -36,6 +39,7 @@
   networking.firewall.allowedTCPPorts = [
     80 # http
     443 # https
+    3000 # hydra
     6667 # bitlbee
     51413 # torrent
   ];
@@ -68,6 +72,13 @@
 
   # Logfile scanner settings.
   services.logcheck.enable = true;
+
+  # Hydra
+  services.hydra.enable = false;
+  services.hydra.hydra = (import "${hydra}/release.nix" {}).build.x86_64-linux;
+  services.hydra.hydraURL = "http://psub.eu";
+  services.hydra.port = 3000;
+  services.hydra.notificationSender = "hydra@psub.eu";
 
   # The OpenSSH daemon.
   services.openssh.enable = true;
