@@ -31,7 +31,7 @@ deploy:
 	ln -sf ~/configs/.conkerorrc ~/.conkerorrc
 	ln -sf ~/configs/.aurgetrc ~/.aurgetrc
 	ln -sf ~/configs/.Xmodmap ~/.Xmodmap
-	ln -sf ~/configs/.Xdefaults ~/.Xdefaults
+	ln -sf ~/configs/.Xresources ~/.Xresources
 	ln -sf ~/configs/.XCompose ~/.XCompose
 	ln -sf ~/configs/.xbindkeysrc ~/.xbindkeysrc
 	ln -sf ~/configs/jumanjirc ~/.config/jumanji/jumanjirc
