@@ -17,6 +17,7 @@
 (require-package 'ghc)
 (require-package 'ghci-completion)
 (require-package 'auctex)
+(require-package 'auto-complete)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
