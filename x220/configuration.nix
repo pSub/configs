@@ -181,7 +181,7 @@
     ];
 
     etc = {
-      # This link is used to esablish compatibility to Arch.
+      # This link is used to establish compatibility to Arch.
       certificates = {
         source = "${pkgs.cacert}/etc/ca-bundle.crt";
         target = "ssl/certs/ca-certificates.crt";
