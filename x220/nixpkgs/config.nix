@@ -16,7 +16,7 @@
 
    myTexLive = pkgs.texLiveAggregationFun {
      paths = [
-       texLive texLiveExtra texLiveBeamer
+       texLive texLiveExtra texLiveBeamer texLiveCMSuper
      ];  name = "mytexlive"; };
   };
 }
