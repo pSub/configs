@@ -8,6 +8,12 @@ batmon(){
 # Load xrandr configuration
 $HOME/bin/xrandr-config
 
+# Load Xdefaults into the database. NixOS does this
+# automatically.
+if [[ $(uname -a) != *"NixOS"* ]]; then
+  xrdb $HOME/.Xdefaults
+fi
+
 # Start urxvt daemon
 urxvtd -q -f -o
 
