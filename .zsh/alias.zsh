@@ -7,7 +7,6 @@ alias xfiglatex="xfig -specialtext -latexfonts -startlatexFont default"
 alias unpack="aunpack"
 alias pack="apack"
 alias sul="su --login"
-alias ssh="TERM=xterm ssh"
 
 # Suffix aliases
 alias -s {djvu,ps}="background zathura"
