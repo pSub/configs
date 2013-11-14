@@ -39,7 +39,7 @@ in {
   networking.firewall.allowedTCPPorts = [
     80 # http
     443 # https
-    3000 # hydra
+#    3000 # hydra
     6667 # bitlbee
     51413 # torrent
   ];
@@ -74,11 +74,11 @@ in {
   services.logcheck.enable = true;
 
   # Hydra
-  services.hydra.enable = false;
-  services.hydra.hydra = (import "${hydra}/release.nix" {}).build.x86_64-linux;
-  services.hydra.hydraURL = "http://psub.eu";
-  services.hydra.port = 3000;
-  services.hydra.notificationSender = "hydra@psub.eu";
+  #services.hydra.enable = false;
+  #services.hydra.hydra = (import "${hydra}/release.nix" {}).build.x86_64-linux;
+  #services.hydra.hydraURL = "http://psub.eu";
+  #services.hydra.port = 3000;
+  #services.hydra.notificationSender = "hydra@psub.eu";
 
   # The OpenSSH daemon.
   services.openssh.enable = true;
