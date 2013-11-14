@@ -229,6 +229,13 @@ in {
        createHome = true;
        shell = "/var/run/current-system/sw/bin/zsh";
     };
+
+    ragnar = {
+       group = "users";
+       home = "/home/ragnar";
+       createHome = true;
+       shell = "/var/run/current-system/sw/bin/zsh";
+    };
+
   };
-  
 }
