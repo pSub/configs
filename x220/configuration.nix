@@ -4,7 +4,17 @@
 
 { config, pkgs, ... }:
 
-{
+let
+
+  # Displays an alert if the battery is below 10%
+  lowBatteryNotifier = pkgs.writeScript "lowBatteryNotifier"
+    ''
+      DISPLAY=:0.0
+      BAT=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)'`
+      test $BAT -le 10 && DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send 'Low Battery'
+    '';
+
+in {
   require =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -102,7 +112,7 @@
   services.cron.mailto = "root";
   services.cron.systemCronJobs = [
     "30 23 * * * pascal DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send 'Time to go to bed'"
-    "* * * * *   pascal DISPLAY=:0.0 BAT=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)'` test $BAT -le 90 && ${pkgs.libnotify}/bin/notify-send 'Low Battery'"
+    "* * * * *   pascal ${lowBatteryNotifier}"
   ];
 
   # Udisks.
