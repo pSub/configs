@@ -162,6 +162,7 @@
   environment = {
     systemPackages = with pkgs; [
       atool
+      dunst
       unzip
       unison
       git
