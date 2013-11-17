@@ -97,9 +97,18 @@
 
   # List services that you want to enable:
 
+  # Cron.
+  services.cron.enable = true;
+  services.cron.mailto = "root";
+  services.cron.systemCronJobs = [
+    "30 23 * * * pascal DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send 'Time to go to bed'"
+    "* * * * *   pascal DISPLAY=:0.0 BAT=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)'` test $BAT -le 90 && ${pkgs.libnotify}/bin/notify-send 'Low Battery'"
+  ];
+
   # Udisks.
   services.udisks.enable = true;
 
+  # Acpi.
   services.acpid.enable = true;
   services.acpid.lidEventCommands = ''
     LID="/proc/acpi/button/lid/LID/state"
