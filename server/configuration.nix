@@ -3,7 +3,15 @@
 
 { config, pkgs, ... }:
 
-let hydra = pkgs.fetchgit { url = https://github.com/NixOS/hydra; rev = "refs/heads/master"; };
+let
+
+  hydra = pkgs.fetchgit { url = https://github.com/NixOS/hydra; rev = "refs/heads/master"; };
+
+  addArchTorrents = pkgs.writeScript "addArchTorrents"
+    ''
+    DATE=`${pkgs.coreutils}/bin/date +'%Y.%m.%d`
+    ${pkgs.transmission}/bin/transmission-remote --add https://www.archlinux.org/iso/$DATE/archlinux-$DATE-dual.iso.torrent
+    '';
 
 in {
   require =
@@ -69,6 +77,9 @@ in {
 
   # Cron daemon.
   services.cron.enable = true;
+  services.cron.systemCronJobs = [
+    "0 22 1 * * transmission ${addArchTorrents}"
+  ];
 
   # Logfile scanner settings.
   services.logcheck.enable = true;
