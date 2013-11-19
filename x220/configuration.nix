@@ -163,6 +163,8 @@ in {
   # MPD
   services.mpd.enable = true;
 
+  system.copySystemConfiguration = true;
+
   # Firewall
   #networking.firewall.enable = true;
 
