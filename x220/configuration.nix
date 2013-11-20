@@ -118,6 +118,18 @@ in {
   # Udisks.
   services.udisks.enable = true;
 
+  # Rsnapshot.
+  services.rsnapshot.enable = true;
+  services.rsnapshot.extraConfig =
+    ''
+    snapshot_root	/backup/x220
+    no_create_root	1
+    retain	weekly	52
+    backup	/home/	.
+    backup	/etc/nixos/	.
+    backup	/var/	.
+    '';
+
   # Acpi.
   services.acpid.enable = true;
   services.acpid.lidEventCommands = ''
