@@ -58,7 +58,7 @@ done
 # Check if there are pending backups.
 for interval in ${intervals[@]}
 do
-  if [ -f ~/.backup-$interval ]; then
+  if [[ -f ~/.backup-$interval || $1 = $interval ]]; then
       createBackup "$interval"
   fi
 done
