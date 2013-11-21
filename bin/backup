@@ -14,8 +14,8 @@
 #
 # Example cronjobs:
 #
-#   @daily ID=daily-backup /usr/bin/touch $HOME/.daily-backup
-#   @weekly ID=weekly-backup /usr/bin/touch $HOME/.weekly-backup
+#   @daily ID=daily-backup /usr/bin/touch $HOME/.backup-daily
+#   @weekly ID=weekly-backup /usr/bin/touch $HOME/.backup-weekly
 #
 
 # The Backup intervals in use.
@@ -46,7 +46,7 @@ do
             rsnapshot $1 &&
             umount /backup &&
             cryptsetup luksClose backup" &&
-            rm ~/.$1-backup
+            rm ~/.backup-$1
             return 0 ;;
         * )
             echo -n "Invalid input! Try again: "
@@ -58,7 +58,7 @@ done
 # Check if there are pending backups.
 for interval in ${intervals[@]}
 do
-  if [ -f ~/.$interval-backup ]; then
+  if [ -f ~/.backup-$interval ]; then
       createBackup "$interval"
   fi
 done
