@@ -207,6 +207,8 @@ in {
 	unison
         msmtp
 	vim
+	# Install only the urxvt terminfo file
+        rxvt_unicode.terminfo
 	zsh
   ];
 
