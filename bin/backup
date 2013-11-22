@@ -46,7 +46,7 @@ do
             rsnapshot $1 &&
             umount /backup &&
             cryptsetup luksClose backup" &&
-            rm ~/.backup-$1
+            rm -f ~/.backup-$1
             return 0 ;;
         * )
             echo -n "Invalid input! Try again: "
