@@ -28,7 +28,7 @@ DEFAULT_PRF=default
 LOCAL_ROOT=$HOME
 
 # Clean up on termination
-trap "rm ${TMP_PROFILE}" SIGINT SIGTERM SIGQUIT SIGKILL EXIT
+trap "rm -f ${TMP_PROFILE}" SIGINT SIGTERM SIGQUIT SIGKILL EXIT
 
 # If arguments are given PROFILES is ignored
 # and the arguments are used as profiles.
