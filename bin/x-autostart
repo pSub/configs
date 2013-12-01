@@ -9,6 +9,5 @@ case $(hostname) in
   'firmin')
       ;;
   'subiectiva' | 'brauchli')
-      thunderbird &
       ;;
 esac
