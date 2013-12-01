@@ -3,6 +3,10 @@
 function precmd() {
   # vcs infos in the prompt
   vcs_info 'prompt'
+
+  # Ring the bell before the prompt is displayed.
+  # This is useful to signal the end of long computations.
+  echo -n "\a"
 }
 
 # Choose the vcs logo as prompt
@@ -30,5 +34,5 @@ if [ $UID -eq 0 ]; then usercolor="red"; else usercolor="cyan"; fi
 if [[ $(who am i) =~ (.+)$ ]]; then hostcolor="magenta"; else hostcolor="green"; fi
 
 # Prompt inspired by Steven Loshs http://stevelosh.com/blog/2010/02/my-extravagant-zsh-prompt/
-export PROMPT='%{$(echo "\a")%}%{$fg[$usercolor]%}%n%{$reset_color%} at %{$fg[$hostcolor]%}%m%{$reset_color%} in %{$fg_bold[green]%}%c%{$reset_color%} $(prompt_char) '
+export PROMPT='%{$fg[$usercolor]%}%n%{$reset_color%} at %{$fg[$hostcolor]%}%m%{$reset_color%} in %{$fg_bold[green]%}%c%{$reset_color%} $(prompt_char) '
 export RPROMPT='${vcs_info_msg_0_} ${vcs_info_msg_2_} ${vcs_info_msg_3_}'
