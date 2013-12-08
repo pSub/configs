@@ -1,41 +1,43 @@
 #!/bin/sh
 
-echo -n "Do you want to synchronize changes? [y/n/d] "
+. $HOME/configs/dmenu_config.sh
 
-while [ 1 ]
+applications=(
+    $HOME/bin/reload-emacs-config
+    $HOME/bin/org-agenda
+    thunderbird
+    )
+
+function prompt {
+    echo -e "y\nn\nd" | dmenu $dmenu_conf -p "Do you want to synchronize changes?"
+}
+
+action=$(prompt)
+case $action in
+    
+    # Synchronize all changes and start the applications
+    # that depend on them.
+    "y" )
+        urxvt -e $HOME/bin/unison-sync
+        break
+        ;;
+    
+    # Do not synchronize, but start the applications
+    # that depend on synchronization.
+    # This option is used if the user is sure that
+    # there are no changes.
+    "n" )
+        break
+        ;;
+
+    # Do not synchronize and do not start any
+    # applications.
+    "d" )
+        exit 0
+        ;;
+esac
+
+for application in ${applications[@]}
 do
-    read action
-    case $action in
-
-        # Synchronize all changes and start the applications
-        # that depend on them.
-        "y" )
-            unison-sync
-            break
-            ;;
-
-        # Do not synchronize, but start the applications
-        # that depend on synchronization.
-        # This option is used if the user is sure that
-        # there are no changes.
-        "n" )
-            break
-            ;;
-
-        # Do not synchronize and do not start any
-        # applications.
-        "d" )
-            exit 0
-            ;;
-
-        * )
-            echo -n "Invalid input! Try again: "
-            ;;
-    esac
+    setsid $application &
 done
-
-# These applications are started after a successful
-# synchronization. It is intended for applications
-# that depend on synchronized data.
-setsid $HOME/bin/reload-emacs-config
-setsid $HOME/bin/org-agenda
