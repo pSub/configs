@@ -9,6 +9,7 @@ PROFILES=(
         projects
         feeds
         fhug
+        mail
         studium
         wallpapers
         web
