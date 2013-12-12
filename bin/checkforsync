@@ -18,8 +18,16 @@ case $action in
     # Synchronize all changes and start the applications
     # that depend on them.
     "y" )
-        urxvt -e $HOME/bin/unison-sync
-        break
+        # Save the exit code of unison in a temporary file to
+        # ensure that the applications depending on synchronized
+        # data are not started if the synchronization failed.
+        TEMP=$(mktemp)
+        urxvt -e sh -c "$HOME/bin/unison-sync; echo \$? > $TEMP"
+        if [ $(cat $TEMP) -eq 0 ]; then
+            break
+        else
+            exit 0
+        fi
         ;;
     
     # Do not synchronize, but start the applications
