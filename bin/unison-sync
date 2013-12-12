@@ -64,6 +64,3 @@ echo "Synchronizing the following profiles: ${PROFILES[@]}"
 unison -ui text $UNISON_PRF -nodeletion $LOCAL_ROOT -ignore "Name ${TMP_NAME}.prf" &&
 unison -ui text $TMP_NAME &&
 unison -ui text $UNISON_PRF -ignore "Name ${TMP_NAME}.prf"
-if [ $? -ne 0 ]; then
-    exit 1
-fi
