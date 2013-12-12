@@ -26,7 +26,7 @@ case $action in
         if [ $(cat $TEMP) -eq 0 ]; then
             break
         else
-            exit 0
+            exit 1
         fi
         ;;
     
