@@ -1,13 +1,13 @@
 #VolumeUp
-"amixer sset Master 1+"
+"amixer -q sset Master 2+"
     XF86AudioRaiseVolume
 
 #VolumeDown
-"amixer sset Master 1-"
+"amixer -q sset Master 2-"
     XF86AudioLowerVolume
 
 #Mute
-"amixer sset Master toggle"
+"amixer -q sset Master toggle"
     XF86AudioMute
 
 #PlayPause
