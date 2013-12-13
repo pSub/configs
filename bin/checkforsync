@@ -6,6 +6,7 @@ applications=(
     $HOME/bin/reload-emacs-config
     $HOME/bin/org-agenda
     thunderbird
+    $HOME/bin/feeds
     )
 
 function prompt {
