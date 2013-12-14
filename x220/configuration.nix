@@ -222,5 +222,9 @@ in {
         target = "ssl/certs/ca-certificates.crt";
       };
     };
+
+    variables = {
+      GTK_IM_MODULE = "xim";
+    };
   };
 }
