@@ -32,6 +32,7 @@ in {
   # This should be move to the hardware configuration file
   boot.kernelModules = [ "tp_smapi" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.tp_smapi ];
+  boot.blacklistedKernelModules = [ "pcspkr" ];
 
   boot.kernelParams = [ "quiet" ];
     
