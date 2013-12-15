@@ -117,6 +117,9 @@ in {
     "@weekly     pascal ${pkgs.coreutils}/bin/touch $HOME/.backup-weekly"
   ];
 
+  # Gernal Purpose Mouse.
+  services.gpm.enable = true;
+
   # Udisks.
   services.udisks.enable = true;
 
