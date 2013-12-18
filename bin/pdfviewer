@@ -3,7 +3,7 @@
 # to the pdfviewer llpp via inotify.
 
 # Start llpp with the given file.
-llpp $1 &
+llpp "$@" &
 
 # Track the PID of the llpp instance.
 pid_llpp=$!
@@ -12,7 +12,7 @@ pid_llpp=$!
 trap "kill ${pid_llpp}" SIGINT SIGTERM SIGQUIT SIGKILL
 
 # Watch for changes on given file.
-inotifywait -m -e close_write $1 | while read; do
+inotifywait -m -e close_write "$@" | while read; do
     kill -HUP $pid_llpp
 done &
 
