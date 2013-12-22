@@ -205,6 +205,7 @@ in {
 	file
 	htop
 	unison
+        git
         msmtp
 	vim
 	# Install only the urxvt terminfo file
