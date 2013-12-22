@@ -9,7 +9,7 @@ let
 
   addArchTorrents = pkgs.writeScript "addArchTorrents"
     ''
-    DATE=`${pkgs.coreutils}/bin/date +'%Y.%m.%d`
+    DATE=`${pkgs.coreutils}/bin/date +'%Y.%m.01'`
     ${pkgs.transmission}/bin/transmission-remote --add https://www.archlinux.org/iso/$DATE/archlinux-$DATE-dual.iso.torrent
     '';
 
