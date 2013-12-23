@@ -42,7 +42,7 @@ do
             read device
             echo -n "Enter root "; suc "
             cryptsetup luksOpen /dev/${device:-sdb1} backup &&
-            mount /dev/mapper/backup/ /backup &&
+            mount /dev/mapper/backup /backup &&
             rsnapshot $1 &&
             umount /backup &&
             cryptsetup luksClose backup" &&
