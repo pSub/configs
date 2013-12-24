@@ -30,10 +30,9 @@ xset b off &
 xset -dpms &
 
 # Set keyboard layout if not on NixOS
-# Temporarily on all systems because of http://bugs.i3wm.org/report/ticket/1100
-#if [[ $(uname -a) != *"NixOS"* ]]; then
+if [[ $(uname -a) != *"NixOS"* ]]; then
   setxkbmap -layout de -variant nodeadkeys &
-#fi
+fi
 
 # Load the xbindkeys configuration
 xbindkeys -f $HOME/.xbindkeysrc &
@@ -66,9 +65,8 @@ while true; do
       sleep 1
 done &
 
-# Lock the screen after startup.
-$HOME/bin/lock
-
 # Start xmodmap before dwm to make sure the changes
-# from xmodmap are applied
-xmodmap $HOME/.Xmodmap && exec dwm
+# from xmodmap are applied. Start the screen locker
+# before xmodmap to work around this issue:
+# http://bugs.i3wm.org/report/ticket/1100
+$HOME/bin/lock && xmodmap $HOME/.Xmodmap && exec dwm
