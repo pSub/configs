@@ -39,6 +39,8 @@ deploy:
 	ln -sf ~/configs/.htoprc ~/.config/htop/htoprc
 	ln -sf ~/configs/cabal-config ~/.cabal/config
 	ln -sf ~/configs/.stylish-haskell.yaml ~/.stylish-haskell.yaml
-	ln -sf ~/configs/dwb-settings ~/.config/dwb/settings
+	ln -sf ~/configs/dwb/settings ~/.config/dwb/settings
+	ln -sf ~/configs/dwb/keys ~/.config/dwb/keys
+	ln -sf ~/configs/dwb/searchengines ~/.config/dwb/searchengines
 
 	chmod +x ~/.xsession
