@@ -13,8 +13,7 @@ function prompt {
     echo -e "y\nn\nd" | dmenu $dmenu_conf -p "Do you want to synchronize changes?"
 }
 
-action=$(prompt)
-case $action in
+case $(prompt) in
     
     # Synchronize all changes and start the applications
     # that depend on them.
@@ -41,7 +40,7 @@ case $action in
 
     # Do not synchronize and do not start any
     # applications.
-    "d" )
+    * )
         exit 0
         ;;
 esac
