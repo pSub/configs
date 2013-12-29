@@ -146,33 +146,12 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      atool
-      dunst
       unzip
-      unison
-      git
-      htop
-      inotifyTools
       transmission_remote_gtk
-      wmname
       zsh
-
-      # Emacs
-      emacs24
-      emacs24Packages.org
-      emacs24Packages.autoComplete
-      emacs24Packages.haskellMode
-      emacs24Packages.magit
-      emacs24Packages.scalaMode
 
       # Xutils
       xclip
-      xbindkeys
-      xlibs.xinput
-
-      # Misc
-      haskellPackages.Agda
-      haskellPackages.AgdaExecutable
     ];
 
     etc = {
