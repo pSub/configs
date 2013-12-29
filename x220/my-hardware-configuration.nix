@@ -5,6 +5,8 @@
     <nixos/modules/installer/scan/not-detected.nix>
   ];
 
+  networking.hostName = "brauchli";
+
   boot.kernelPackages = pkgs.linuxPackages_3_10;
   boot.initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "usb_storage" ];
 
