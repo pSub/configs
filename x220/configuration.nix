@@ -16,59 +16,15 @@ let
 
 in {
   require =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [ # Include settings that depend on specific hardware.
+      ./my-hardware-configuration.nix
     ];
-
-  boot.kernelPackages = pkgs.linuxPackages_3_10;
-
-  boot.initrd.kernelModules =    [
-      # Specify all kernel modules that are necessary for mounting the root
-      # filesystem.
-    ];
-
-  boot.initrd.luks.cryptoModules = ["aes" "sha256" "sha1" "cbc"];
-
-  # This should be move to the hardware configuration file
-  boot.kernelModules = [ "tp_smapi" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.tp_smapi ];
-  boot.blacklistedKernelModules = [ "pcspkr" ];
-
-  boot.kernelParams = [ "quiet" ];
-    
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-
-  # Set LUKS device
-  boot.initrd.luks.devices = [
-    { name = "luksroot"; 
-      device = "/dev/sda2"; 
-      preLVM = true; 
-    }
-  ];
-
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/sda";
 
   networking.hostName = "brauchli"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   # Power Management
   powerManagement.cpuFreqGovernor = "conservative";
-
-  # Add filesystem entries for each partition that you want to see
-  # mounted at boot time.  This should include at least the root
-  # filesystem.
-
-  fileSystems."/".device = "/dev/mapper/vgroup-root";
-  fileSystems."/boot".device = "/dev/sda1";
-  fileSystems."/tmp" = { device = "tmpfs"; fsType = "tmpfs"; };
-
-  # List swap partitions activated at boot time.
-  swapDevices =
-    [ { device = "/dev/mapper/vgroup-swap"; }
-    ];
 
   users.extraUsers.pascal = {
     createHome = true;
