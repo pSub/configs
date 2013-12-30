@@ -8,12 +8,6 @@ batmon(){
 # Load xrandr configuration
 $HOME/bin/xrandr-config
 
-# Load Xdefaults into the database. NixOS does this
-# automatically.
-if [[ $(uname -a) != *"NixOS"* ]]; then
-  xrdb $HOME/.Xdefaults
-fi
-
 # Start urxvt daemon
 urxvtd -q -f -o
 
@@ -29,11 +23,6 @@ xset b off &
 # Set DPMS off
 xset -dpms &
 
-# Set keyboard layout if not on NixOS
-if [[ $(uname -a) != *"NixOS"* ]]; then
-  setxkbmap -layout de -variant nodeadkeys &
-fi
-
 # Load the xbindkeys configuration
 xbindkeys -f $HOME/.xbindkeysrc &
 
@@ -47,11 +36,6 @@ xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 8 6 7 4
 
 # Set window-manager name (useful for java apps)
 wmname LG3D &
-
-# Start gpg-agent if not on NixOS
-if [[ $(uname -a) != *"NixOS"* ]]; then
-  eval "$(gpg-agent --daemon --enable-ssh-support)"
-fi
 
 # Set background / wallpaper
 $HOME/bin/wallpaper &
