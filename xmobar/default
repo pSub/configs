@@ -1,0 +1,9 @@
+-- -*- mode: haskell -*-
+Config { font =  "xft:Dejavu Sans:size=9:antialias=true:hinting=true:hintstyle=hintfull"
+       , border = NoBorder
+       , lowerOnStart = False
+       , commands = [ Run StdinReader ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{<fc=khaki>%date%</fc>"
+       }
