@@ -131,6 +131,19 @@ in {
   services.xserver.displayManager.slim.enable = true;
   services.xserver.displayManager.slim.autoLogin = true;
   services.xserver.displayManager.slim.defaultUser = "pascal";
+
+  services.xserver.windowManager.xmonad.enable = true;
+  services.xserver.windowManager.xmonad.enableContribAndExtras = true;
+  services.xserver.windowManager.xmonad.extraPackages = haskellPackages: [
+	haskellPackages.xmonadContrib
+	haskellPackages.monadLogger
+	haskellPackages.xmobar
+	];
+  services.xserver.windowManager.default = "xmonad";
+
+  services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.desktopManager.default = "none";
+
   services.xserver.startGnuPGAgent = true;
   services.xserver.startOpenSSHAgent = false;
   services.xserver.videoDrivers = [ "intel" "vesa" ];
