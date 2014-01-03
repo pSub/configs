@@ -64,6 +64,9 @@ in {
 
   # List services that you want to enable:
 
+  services.postgresql.enable = true;
+  services.postgresql.package = pkgs.postgresql92;
+
   # Cron.
   services.cron.enable = true;
   services.cron.mailto = "root";
