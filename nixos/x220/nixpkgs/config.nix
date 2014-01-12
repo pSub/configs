@@ -1,6 +1,7 @@
 
 {
 
+  packageOverrides = pkgs : with pkgs; {
    myTexLive = pkgs.texLiveAggregationFun {
      paths = [
        texLive texLiveExtra texLiveBeamer texLiveCMSuper
