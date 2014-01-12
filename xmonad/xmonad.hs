@@ -13,7 +13,7 @@ myWorkspaces =  [ "org", "www", "dev", "docs", "chat", "mail", "misc" ]
 myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
                  , isDialog        --> doCenterFloat
-                 , className =? "Thunderbrid" --> doShift "mail"
+                 , className =? "Thunderbird" --> doShift "mail"
                  , className =? ".dwb-wrapped" --> doShift "www"
                  , className =? "feh" --> doCenterFloat
                  , className =? "llpp" --> doShift "docs"
