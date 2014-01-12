@@ -1,8 +1,6 @@
 
 {
 
-  dwm.patches = [ ./dwm.patch ];
-
   packageOverrides = pkgs : with pkgs; {
     # How can I give that environment a name?
     # Should this be turned into a real environment?
@@ -34,7 +32,6 @@
        dmenu
        dunst
        dwb
-       dwm
        git
        gnupg
        htop
