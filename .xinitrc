@@ -34,23 +34,13 @@ xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 8 1
 xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 8 2
 xinput set-int-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Axes" 8 6 7 4 5
 
-# Set window-manager name (useful for java apps)
-wmname LG3D &
-
 # Set background / wallpaper
 $HOME/bin/wallpaper &
 
 # Autostart applications
 $HOME/bin/x-autostart &
 
-# Refresh the dwm statusbar every second
-while true; do
-      xsetroot -name "[Bat: `batmon`] [`date +'%a %d.%m.%Y  %H:%M'`]"
-      sleep 1
-done &
-
-# Start xmodmap before dwm to make sure the changes
-# from xmodmap are applied. Start the screen locker
-# before xmodmap to work around this issue:
+# Start the screen locker before xmodmap
+# to work around this issue:
 # http://bugs.i3wm.org/report/ticket/1100
-$HOME/bin/lock && xmodmap $HOME/.Xmodmap && exec dwm
+$HOME/bin/lock && xmodmap $HOME/.Xmodmap

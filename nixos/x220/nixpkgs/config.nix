@@ -31,7 +31,6 @@
        udisks_glue
        unison
        weechat
-       wmname
        pinentry
 
        # Emacs
