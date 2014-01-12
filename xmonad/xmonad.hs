@@ -6,6 +6,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
+import XMonad.Layout.PerWorkspace
 import System.IO
 
 myWorkspaces =  [ "org", "www", "dev", "docs", "chat", "mail", "misc" ]
