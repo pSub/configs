@@ -5,6 +5,7 @@ import XMonad.Util.Run (spawnPipe)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
 import System.IO
 
 myWorkspaces =  [ "org", "www", "dev", "docs", "chat", "mail", "misc" ]
@@ -21,7 +22,8 @@ myManageHook = composeAll
 main = do
        xmproc <- spawnPipe "xmobar ~/.xmobar/default "
        xmonad $ defaultConfig
-        { workspaces = myWorkspaces
+        { startupHook = setWMName "LG3D"
+        , workspaces = myWorkspaces
         , modMask = mod3Mask
         , terminal = "urxvt"
         , manageHook = myManageHook
