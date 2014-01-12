@@ -6,6 +6,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.PerWorkspace
 import System.IO
 
@@ -24,7 +25,7 @@ myManageHook = composeAll
 
 main = do
        xmproc <- spawnPipe "xmobar ~/.xmobar/default "
-       xmonad $ defaultConfig
+       xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
         { startupHook = setWMName "LG3D"
         , workspaces = myWorkspaces
         , modMask = mod3Mask
