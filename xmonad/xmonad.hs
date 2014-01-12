@@ -18,6 +18,7 @@ myManageHook = composeAll
                  , className =? ".dwb-wrapped" --> doShift "www"
                  , className =? "feh" --> doCenterFloat
                  , className =? "llpp" --> doShift "docs"
+                 , className =? "Pinentry-gtk-2" --> doCenterFloat
                  ] <+> manageDocks
 
 main = do
