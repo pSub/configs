@@ -2,6 +2,7 @@ import XMonad
 import qualified XMonad.StackSet as W
 import XMonad.Util.EZConfig
 import XMonad.Util.Run (spawnPipe)
+import XMonad.Util.Cursor
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.ManageDocks
@@ -26,7 +27,7 @@ myManageHook = composeAll
 main = do
        xmproc <- spawnPipe "xmobar ~/.xmobar/default "
        xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
-        { startupHook = setWMName "LG3D"
+        { startupHook = setWMName "LG3D" >> setDefaultCursor xC_left_ptr
         , workspaces = myWorkspaces
         , modMask = mod3Mask
         , terminal = "urxvtc"
