@@ -136,8 +136,6 @@ in {
   services.xserver.windowManager.xmonad.enableContribAndExtras = true;
   services.xserver.windowManager.xmonad.extraPackages = haskellPackages: [
 	haskellPackages.xmonadContrib
-	haskellPackages.monadLogger
-	haskellPackages.xmobar
 	];
   services.xserver.windowManager.default = "xmonad";
 
