@@ -20,6 +20,7 @@
        bmon
        calibre
        dmenu
+       transmission_remote_gtk
        dunst
        dwb
        git
@@ -33,6 +34,7 @@
        unison
        weechat
        pinentry
+       unzip
 
        # Emacs
        emacs24
@@ -43,6 +45,7 @@
        emacs24Packages.scalaMode
 
        # Xutils
+       xclip
        xbindkeys
        xlibs.xinput
        xlibs.xmodmap
@@ -51,6 +54,6 @@
        haskellPackages.Agda
      ];
    };
-
+   
   };
 }

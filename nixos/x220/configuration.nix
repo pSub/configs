@@ -160,12 +160,7 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      unzip
-      transmission_remote_gtk
       zsh
-
-      # Xutils
-      xclip
     ];
 
     etc = {
