@@ -83,9 +83,6 @@
   "~/.nix-profile/share/emacs/site-lisp/"
   "~/.nix-profile/share/emacs/site-lisp/org/"
   "~/.nix-profile/share/org/contrib/lisp/"
-; Path for Arch Linux
-  "/usr/local/share/emacs/site-lisp"
-  "~/.elisp"
   ))
   (add-to-list 'load-path (expand-file-name dir)))
 
