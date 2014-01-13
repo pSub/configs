@@ -31,7 +31,7 @@ in {
     createUser = true;
     description = "Pascal Wittmann";
     group = "users";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "networkmanager" ];
     home = "/home/pascal";
     shell = "/var/run/current-system/sw/bin/zsh";
   };
