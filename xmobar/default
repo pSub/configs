@@ -3,8 +3,13 @@ Config { font =  "xft:Dejavu Sans:size=9:antialias=true:hinting=true:hintstyle=h
        , border = NoBorder
        , position = TopW L 98
        , lowerOnStart = False
-       , commands = [ Run StdinReader ]
+       , commands = [ Run StdinReader,  Run BatteryP ["BAT0"]
+                  ["-t", "<acstatus>"
+                  , "-L", "10", "-H", "80"
+                  , "-l", "red", "-h", "green"
+                  , "--", "-O", "Charging", "-o", "Battery: <left>%"
+                  ] 10 ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{<fc=khaki>%date%</fc>"
+       , template = "%StdinReader% }{%battery%   %date%"
        }
