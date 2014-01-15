@@ -1,7 +1,6 @@
 # -*- mode: shell-script -*-
 
 # Aliases
-alias todo="hsgtd"
 alias ls="ls --color=auto"
 alias xfiglatex="xfig -specialtext -latexfonts -startlatexFont default"
 alias unpack="aunpack"
