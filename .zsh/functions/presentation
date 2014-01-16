@@ -1,3 +1,5 @@
+# -*- mode: shell-script -*-
+
 # Disable distracting features during the presentation.
 (xset -dpms; xset s off;
 killall -SIGUSR1 dunst) &&
