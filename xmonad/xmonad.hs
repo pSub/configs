@@ -9,6 +9,7 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.PerWorkspace
+import XMonad.Actions.CycleWS
 import System.IO
 
 myWorkspaces =  [ "org", "www", "dev", "docs", "chat", "mail", "misc" ]
@@ -45,3 +46,4 @@ main = do
         } `additionalKeys`  [((m .|. mod3Mask, k), windows $ f i)
          | (i, k) <- zip myWorkspaces [xK_1 .. xK_9]
          , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+        `additionalKeysP` [ ("M-<Tab>", toggleWS) ]
