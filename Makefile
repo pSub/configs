@@ -20,8 +20,7 @@ deploy:
 	ln -sf ~/configs/.zshrc ~/.zshrc
 	ln -sf ~/configs/.zsh ~/.zsh
 	ln -sf ~/configs/.zprofile ~/.zprofile
-	ln -sf ~/configs/.xinitrc ~/.xinitrc
-	ln -sf ~/configs/.xinitrc ~/.xsession
+	ln -sf ~/configs/.xprofile ~/.xprofile
 	ln -sf ~/configs/.vimrc ~/.vimrc
 	ln -sf ~/configs/.udisks-glue.conf ~/.udisks-glue.conf
 	ln -sf ~/configs/.iptv-channels ~/.iptv-channels
@@ -42,5 +41,3 @@ deploy:
 	ln -sf ~/configs/dwb/settings ~/.config/dwb/settings
 	ln -sf ~/configs/dwb/keys ~/.config/dwb/keys
 	ln -sf ~/configs/dwb/searchengines ~/.config/dwb/searchengines
-
-	chmod +x ~/.xsession
