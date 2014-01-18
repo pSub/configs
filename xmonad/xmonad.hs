@@ -43,6 +43,7 @@ main = do
                         , ppCurrent = xmobarColor "#f5a400" "black" . pad
                         , ppHiddenNoWindows = \w -> xmobarColor "#444" "" (" " ++ w ++ " ")
                         , ppTitle = xmobarColor "green" "" . shorten 50
+                        , ppUrgent = xmobarColor "red" ""
                         }
         } `additionalKeys`  [((m .|. mod3Mask, k), windows $ f i)
          | (i, k) <- zip myWorkspaces [xK_1 .. xK_9]
