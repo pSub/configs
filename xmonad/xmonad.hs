@@ -23,6 +23,7 @@ myManageHook = composeAll
                  , className =? "llpp" --> doShift "docs"
                  , className =? "Pinentry-gtk-2" --> doCenterFloat
                  , className =? "MPlayer" --> doCenterFloat
+                 , title =? "floatwin" --> doCenterFloat
                  ] <+> manageDocks
 
 main = do
@@ -46,4 +47,6 @@ main = do
         } `additionalKeys`  [((m .|. mod3Mask, k), windows $ f i)
          | (i, k) <- zip myWorkspaces [xK_1 .. xK_9]
          , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-        `additionalKeysP` [ ("M-<Tab>", toggleWS) ]
+        `additionalKeysP` [ ("M-<Tab>", toggleWS)
+                          , ("M-C-<Return>", spawn "urxvtc -T floatwin")
+                          ]
