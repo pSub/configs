@@ -20,7 +20,6 @@
        bmon
        calibre
        dmenu
-       transmission_remote_gtk
        dunst
        dwb
        git
@@ -28,13 +27,14 @@
        htop
        i3lock
        inotifyTools
+       pinentry
        rxvt_unicode
        thunderbird
+       transmission_remote_gtk
        udisks_glue
        unison
-       weechat
-       pinentry
        unzip
+       weechat
 
        # Emacs
        emacs24
