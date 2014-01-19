@@ -9,5 +9,5 @@ PROOFGENERAL_OPTIONS="-m iff -m no_brackets"
 export PROOFGENERAL_OPTIONS
 
 # Specify isabelles pdf viewer
-PDF_VIEWER=zathura
+PDF_VIEWER=llpp
 export PDF_VIEWER
