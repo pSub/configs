@@ -11,6 +11,3 @@ export PROOFGENERAL_OPTIONS
 # Specify isabelles pdf viewer
 PDF_VIEWER=zathura
 export PDF_VIEWER
-
-GTK_IM_MODULE=xim
-export GTK_IM_MODULE
