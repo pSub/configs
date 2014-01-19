@@ -1,16 +1,16 @@
-import XMonad
-import qualified XMonad.StackSet as W
-import XMonad.Util.EZConfig
-import XMonad.Util.Run (spawnPipe)
-import XMonad.Util.Cursor
-import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.SetWMName
-import XMonad.Hooks.UrgencyHook
-import XMonad.Layout.PerWorkspace
-import XMonad.Actions.CycleWS
-import System.IO
+import           System.IO
+import           XMonad
+import           XMonad.Actions.CycleWS
+import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.ManageDocks
+import           XMonad.Hooks.ManageHelpers
+import           XMonad.Hooks.SetWMName
+import           XMonad.Hooks.UrgencyHook
+import           XMonad.Layout.PerWorkspace
+import qualified XMonad.StackSet            as W
+import           XMonad.Util.Cursor
+import           XMonad.Util.EZConfig
+import           XMonad.Util.Run            (spawnPipe)
 
 myWorkspaces =  [ "org", "www", "dev", "docs", "chat", "mail", "misc" ]
 
