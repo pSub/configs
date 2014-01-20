@@ -1,10 +1,17 @@
+(add-to-list 'load-path "/home/pascal/structured-haskell-mode/elisp")
+(require 'shm)
+(set-face-background 'shm-current-face "#eee8d5")
+(set-face-background 'shm-quarantine-face "lemonchiffon")
+
+(add-hook 'haskell-mode-hook 'structured-haskell-mode)
+
 (load "haskell-mode-autoloads")
 
 ;; Customization
 (custom-set-variables
  ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
  ;;'(haskell-process-type 'cabal-dev)
-
+ 
  ;; Use notify.el (if you have it installed) at the end of running
  ;; Cabal commands or generally things worth notifying.
  '(haskell-notify-p t)
@@ -17,15 +24,9 @@
 
 (add-hook 'haskell-mode-hook 'haskell-hook)
 (add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 
 ;; Haskell main editing mode key bindings.
 (defun haskell-hook ()
-  ;; Use simple indentation.
-  (turn-on-haskell-simple-indent)
-  (define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
-  (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
-
   ;; Load the current file (and make a session if not already made).
   (define-key haskell-mode-map [?\C-c ?\C-l] 'haskell-process-load-file)
   (define-key haskell-mode-map [f5] 'haskell-process-load-file)
@@ -57,10 +58,6 @@
 
   ;; Jump to the definition of the current symbol.
   (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
-
-  ;; Save the current buffer and generate etags (a TAGS file) for the
-  ;; whole project.
-  (define-key haskell-mode-map (kbd "C-x C-s") 'haskell-mode-save-buffer)
 
   ;; Indent the below lines on columns after the current column.
   (define-key haskell-mode-map (kbd "C-<right>")
