@@ -11,6 +11,8 @@
   (unless (package-installed-p p)
     (package-install p)))
 
+(defalias 'yes-or-no-p 'y-or-n-p)
+
 (require-package 'yasnippet)
 (require-package 'undo-tree)
 (require-package 'flycheck)
