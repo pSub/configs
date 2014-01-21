@@ -20,7 +20,6 @@ in {
       ./my-hardware-configuration.nix
     ];
 
-  #networking.hostName = "brauchli"; # Define your hostname.
   networking.networkmanager.enable = true;
 
   # Power Management
