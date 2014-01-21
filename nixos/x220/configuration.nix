@@ -37,6 +37,8 @@ in {
     home = "/home/pascal";
     shell = "/var/run/current-system/sw/bin/zsh";
   };
+  fileSystems."/home/pascal/downloads" = { device = "tmpfs" ; fsType = "tmpfs"; options = "size=25%"; };
+  fileSystems."/home/pascal/sandbox" = { device = "tmpfs" ; fsType = "tmpfs"; options = "size=25%"; };
 
   # Select internationalisation properties.
   i18n = {
