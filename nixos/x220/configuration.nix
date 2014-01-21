@@ -20,6 +20,9 @@ in {
       ./my-hardware-configuration.nix
     ];
 
+  # Trust hydra. Needed for one-click installations.
+  nix.trustedBinaryCaches = [ "http://hydra.nixos.org" ];
+
   networking.networkmanager.enable = true;
 
   # Power Management
