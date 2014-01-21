@@ -50,7 +50,8 @@
        xlibs.xinput
        xlibs.xmodmap
 
-        # Misc
+       # Misc
+       haskellPackages.zlib
        haskellPackages.Agda
      ];
    };
