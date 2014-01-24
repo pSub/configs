@@ -12,7 +12,7 @@ import           XMonad.Util.Cursor
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Run            (spawnPipe)
 
-myWorkspaces =  [ "org", "www", "dev", "docs", "chat", "mail", "misc" ]
+myWorkspaces =  [ "org", "www", "dev₁", "dev₂", "docs", "chat", "mail" ]
 
 myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
