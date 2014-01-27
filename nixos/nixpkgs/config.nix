@@ -22,7 +22,7 @@
        dmenu
        dunst
        dwb
-       git
+       gitFull
        gnupg
        htop
        i3lock
