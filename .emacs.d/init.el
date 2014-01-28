@@ -106,5 +106,5 @@
 (load "my-vcs")
 ;(load "my-notmuch")
 (load "my-scala")
-;(load "my-agda")
+(load "my-agda")
 (load "my-elfeed")
