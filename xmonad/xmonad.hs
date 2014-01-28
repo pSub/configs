@@ -7,10 +7,10 @@ import           XMonad.Hooks.ManageHelpers
 import           XMonad.Hooks.SetWMName
 import           XMonad.Hooks.UrgencyHook
 import           XMonad.Layout.PerWorkspace
-import qualified XMonad.StackSet            as W
+import qualified XMonad.StackSet                as W
 import           XMonad.Util.Cursor
 import           XMonad.Util.EZConfig
-import           XMonad.Util.Run            (spawnPipe)
+import           XMonad.Util.Run                (spawnPipe)
 
 myWorkspaces =  [ "org", "www", "dev₁", "dev₂", "docs", "chat", "mail" ]
 
@@ -25,6 +25,10 @@ myManageHook = composeAll
                  , className =? "MPlayer" --> doCenterFloat
                  , title =? "floatwin" --> doCenterFloat
                  ] <+> manageDocks
+
+myKeys = [ ("M-<Tab>", toggleWS)
+         , ("M-C-<Return>", spawn "urxvtc -T floatwin")
+         ]
 
 main = do
        xmproc <- spawnPipe "xmobar ~/.xmobar/default "
@@ -48,6 +52,4 @@ main = do
         } `additionalKeys`  [((m .|. mod3Mask, k), windows $ f i)
          | (i, k) <- zip myWorkspaces [xK_1 .. xK_9]
          , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-        `additionalKeysP` [ ("M-<Tab>", toggleWS)
-                          , ("M-C-<Return>", spawn "urxvtc -T floatwin")
-                          ]
+        `additionalKeysP` myKeys
