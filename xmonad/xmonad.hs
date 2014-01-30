@@ -23,6 +23,7 @@ myManageHook = composeAll
                  , className =? "llpp" --> doShift "docs"
                  , className =? "Pinentry-gtk-2" --> doCenterFloat
                  , className =? "MPlayer" --> doCenterFloat
+                 , title =? "Agenda Frame" --> doShift "org"
                  , title =? "floatwin" --> doCenterFloat
                  ] <+> manageDocks
 
