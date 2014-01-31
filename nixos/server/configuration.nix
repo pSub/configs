@@ -189,10 +189,11 @@ in {
     };
 
   # Tor.
-  #services.tor.relay.enable = true;
-  #services.tor.relay.isExit = false;
-  #services.tor.relay.bandwidthRate = 100;
-  #services.tor.relay.bandwidthBurst = 200;
+  services.tor.config = "ControlPort 9051";
+  services.tor.relay.enable = true;
+  services.tor.relay.isExit = false;
+  services.tor.relay.bandwidthRate = 1048576;
+  services.tor.relay.bandwidthBurst = 5242880;
 
   # Sound
   sound.enable = false;
