@@ -13,7 +13,7 @@ zstyle ':vcs_info:*:prompt:*' formats '%u%c' '%s' "on %{$fg[red]%}%b%{$reset_col
 zstyle ':completion::complete:*' rehash true
 zstyle ':completion:*' menu select
 zstyle ':completion:*:kill:*' command 'ps cf -u $USER -o pid,%cpu,cmd'
-
+zstyle -e ':completion:*:-command-:*:commands' list-colors 'reply=( '\''=(#b)('\''$words[CURRENT]'\''|)*-- #(*)=0=38;5;45=38;5;136'\'' '\''=(#b)('\''$words[CURRENT]'\''|)*=0=38;5;45'\'' )'
 zstyle ':completion:retract::::' completer _retract
 
 # Standard unison completion for the unison-sync wrapper
