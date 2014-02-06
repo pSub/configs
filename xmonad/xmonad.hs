@@ -53,6 +53,6 @@ main = do
         }
         `additionalKeys` [((m .|. mod3Mask, k), windows $ f i)
                          | (i, k) <- zip myWorkspaces $ [xK_1 .. xK_4] ++ [xK_8, xK_9, xK_0]
-                         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+                         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
         `removeKeys` [(mod3Mask, k) | k <- [xK_5 .. xK_7]]
         `additionalKeysP` myKeys
