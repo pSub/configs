@@ -11,6 +11,7 @@ import qualified XMonad.StackSet                as W
 import           XMonad.Util.Cursor
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Run                (spawnPipe)
+import           XMonad.Actions.UpdatePointer
 
 myWorkspaces =  [ "org", "www", "dev₁", "dev₂", "docs", "chat", "mail" ]
 
@@ -42,14 +43,16 @@ main = do
         , focusedBorderColor = "#f5a400"
         , manageHook = myManageHook
         , layoutHook = avoidStruts $ layoutHook defaultConfig
-        , logHook = dynamicLogWithPP xmobarPP
-                        { ppOutput = hPutStrLn xmproc
-                        , ppHidden = pad
-                        , ppCurrent = xmobarColor "#f5a400" "black" . pad
-                        , ppHiddenNoWindows = \w -> xmobarColor "#444" "" (" " ++ w ++ " ")
-                        , ppTitle = xmobarColor "green" "" . shorten 50
-                        , ppUrgent = xmobarColor "red" ""
-                        }
+        , logHook = do
+                     updatePointer (Relative 0.5 0.5)
+                     dynamicLogWithPP xmobarPP
+                       { ppOutput = hPutStrLn xmproc
+                       , ppHidden = pad
+                       , ppCurrent = xmobarColor "#f5a400" "black" . pad
+                       , ppHiddenNoWindows = \w -> xmobarColor "#444" "" (" " ++ w ++ " ")
+                       , ppTitle = xmobarColor "green" "" . shorten 50
+                       , ppUrgent = xmobarColor "red" ""
+                       }
         }
         `additionalKeys` [((m .|. mod3Mask, k), windows $ f i)
                          | (i, k) <- zip myWorkspaces $ [xK_1 .. xK_4] ++ [xK_8, xK_9, xK_0]
