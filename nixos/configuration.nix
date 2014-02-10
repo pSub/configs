@@ -18,6 +18,7 @@ in {
   require =
     [ # Include settings that depend on specific hardware.
       ./my-hardware-configuration.nix
+      ./password.nix
     ];
 
   # Trust hydra. Needed for one-click installations.
@@ -28,7 +29,9 @@ in {
   # Power Management
   powerManagement.cpuFreqGovernor = "conservative";
 
+  users.mutableUsers = false;
   users.extraUsers.pascal = {
+    uid = 499;
     createHome = true;
     createUser = true;
     description = "Pascal Wittmann";
