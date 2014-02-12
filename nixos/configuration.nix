@@ -150,8 +150,6 @@ in {
 
   services.xserver.startGnuPGAgent = true;
   services.xserver.startOpenSSHAgent = false;
-  services.mesa.videoDrivers = [ "intel" "vesa" ];
-  services.xserver.vaapiDrivers = [ pkgs.vaapiIntel ];
 
   # MPD
   services.mpd.enable = true;
