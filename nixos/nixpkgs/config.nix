@@ -43,6 +43,7 @@
        emacs24Packages.magit
        emacs24Packages.org
        emacs24Packages.scalaMode
+       emacs24Packages.writeGood
 
        # Xutils
        xclip
