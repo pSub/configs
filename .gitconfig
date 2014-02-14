@@ -66,3 +66,5 @@
     tree = log --graph --pretty=oneline --decorate
 [branch]
 	autosetuprebase = always
+[push]
+	default = simple
