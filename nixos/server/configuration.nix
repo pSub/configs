@@ -17,6 +17,7 @@ in {
   require =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./password.nix
       "${hydra}/hydra-module.nix"
     ];
 
@@ -218,11 +219,13 @@ in {
   environment.noXlibs = true;
   fonts.enableFontConfig = false;
 
+  users.mutableUsers = false;
   users.extraUsers = {
     pascal = {
+      uid = 1000;
       group = "users";
       home = "/home/pascal";
-      extraGroups = [ "lighttpd" ];
+      extraGroups = [ "lighttpd" "mpd" ];
       createHome = true;
       shell = "/var/run/current-system/sw/bin/zsh";
       openssh.authorizedKeys.keys = [
@@ -233,12 +236,14 @@ in {
     };
 
     homepage = {
+       uid = 492;
        home = "/srv/homepage";
        createHome = true;
        shell = "/var/run/current-system/sw/bin/zsh";
     };
 
     qwert = {
+       uid = 1001;
        group = "users";
        home = "/home/qwert";
        createHome = true;
@@ -246,6 +251,7 @@ in {
     };
 
     ragnar = {
+       uid = 493;
        group = "users";
        home = "/home/ragnar";
        createHome = true;
