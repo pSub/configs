@@ -6,6 +6,7 @@
      paths = [
        texLive texLiveExtra texLiveBeamer texLiveCMSuper
      ];  name = "mytexlive"; };
+   ktouchWrapped = kde4.wrapper kde4.ktouch;
 
    # Collection packages required to use my configuration files
    myPackages = pkgs.buildEnv {
