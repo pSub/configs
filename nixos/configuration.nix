@@ -176,6 +176,7 @@ in {
     };
 
     variables = {
+      # Make XCompose work in GTK applications
       GTK_IM_MODULE = "xim";
     };
   };
