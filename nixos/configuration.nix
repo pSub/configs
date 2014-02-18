@@ -167,14 +167,6 @@ in {
       zsh
     ];
 
-    etc = {
-      # This link is used to esablish compatibility to Arch.
-      certificates = {
-        source = "${pkgs.cacert}/etc/ca-bundle.crt";
-        target = "ssl/certs/ca-certificates.crt";
-      };
-    };
-
     variables = {
       # Make XCompose work in GTK applications
       GTK_IM_MODULE = "xim";
