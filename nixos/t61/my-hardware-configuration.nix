@@ -48,4 +48,6 @@
 
   nix.maxJobs = 2;
 
+  hardware.opengl.videoDrivers = [ "intel" "vesa" ];
+
 }
