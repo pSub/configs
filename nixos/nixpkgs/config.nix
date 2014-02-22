@@ -2,10 +2,14 @@
 {
 
   packageOverrides = pkgs : with pkgs; {
+
    myTexLive = pkgs.texLiveAggregationFun {
      paths = [
        texLive texLiveExtra texLiveBeamer texLiveCMSuper
-     ];  name = "mytexlive"; };
+     ];
+     name = "mytexlive";
+   };
+
    ktouchWrapped = kde4.wrapper kde4.ktouch;
 
    # Collection packages required to use my configuration files
