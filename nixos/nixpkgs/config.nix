@@ -36,6 +36,7 @@
        unison
        unzip
        weechat
+       vim
 
        # Emacs
        emacs24
