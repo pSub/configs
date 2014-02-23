@@ -99,6 +99,7 @@
 
 ;(load "my-evil")
 ;(load "my-helm")
+(load "my-nix")
 (load "my-writegood")
 (load "my-auctex")
 (load "my-util")
