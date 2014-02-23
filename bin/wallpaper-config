@@ -1,0 +1,9 @@
+#!/run/current-system/sw/bin/zsh
+
+zmodload zsh/mapfile
+
+# Choose a random picture from reddit earthporn
+# and set it on the second monitor.
+EARTHPORN=($HOME/wallpapers/reddit-earthporn-*(:t))
+WALLPAPER=(${(f)mapfile[$HOME/wallpapers/current]})
+echo "$WALLPAPER[1]\n$EARTHPORN[$RANDOM%$#EARTHPORN+1]" > $HOME/wallpapers/current

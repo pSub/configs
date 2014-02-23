@@ -35,6 +35,8 @@ trayer --edge top --align right --SetDockType true --SetPartialStrut true --expa
 # Start nm-applet
 nm-applet &
 
+$HOME/bin/wallpaper-config &
+
 # Set background / wallpaper
 $HOME/bin/wallpaper &
 
