@@ -82,8 +82,6 @@
 (dolist (dir '(
   "~/.emacs.d/"
 ; Paths for NixOS
-  "~/.nix-profile/share/emacs/site-lisp/"
-  "~/.nix-profile/share/emacs/site-lisp/org/"
   "~/.nix-profile/share/org/contrib/lisp/"
   ))
   (add-to-list 'load-path (expand-file-name dir)))
