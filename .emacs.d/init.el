@@ -82,6 +82,7 @@
   "~/.emacs.d/"
 ; Paths for NixOS
   "~/.nix-profile/share/org/contrib/lisp/"
+  "~/.nix-profile/share/emacs/site-lisp/org/"
   ))
   (add-to-list 'load-path (expand-file-name dir)))
 
