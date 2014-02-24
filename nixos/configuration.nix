@@ -93,6 +93,7 @@ in {
   services.rsnapshot.enable = true;
   services.rsnapshot.extraConfig =
     ''
+    rsync_long_args	--progress
     snapshot_root	/backup/x220
     no_create_root	1
     retain	weekly	52
