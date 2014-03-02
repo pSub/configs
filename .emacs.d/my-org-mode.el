@@ -59,7 +59,6 @@
       org-agenda-start-with-clockreport-mode t
       org-agenda-window-setup 'current-window
       org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 5 :fileskip0 t :compact t))
-      org-startup-indented t
       )
 
 (setq org-agenda-files (list (concat org-directory "agenda/"))
