@@ -110,6 +110,10 @@ in {
   services.bitlbee.authMode = "Registered";
   services.bitlbee.extraSettings = "HostName = im.psub.eu";
 
+  # quassel
+  services.quassel.enable = true;
+  services.quassel.interface = "0.0.0.0";
+
   # lighttpd.
   services.lighttpd.enable = true;
   services.lighttpd.configText = ''
