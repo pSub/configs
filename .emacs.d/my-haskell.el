@@ -1,4 +1,3 @@
-(add-to-list 'load-path "/home/pascal/structured-haskell-mode/elisp")
 (require 'shm)
 (set-face-background 'shm-current-face "#eee8d5")
 (set-face-background 'shm-quarantine-face "lemonchiffon")
