@@ -165,7 +165,9 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
+      unzip
       zsh
+      zip
     ];
 
     variables = {
