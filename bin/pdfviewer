@@ -2,6 +2,12 @@
 # This wrapper provides automatic reloading on file modifications
 # to the pdfviewer llpp via inotify.
 
+# Return with an error if the given file does not exist.
+if [ ! -e "$@" ]; then
+    echo "$@: No such file or directory"
+    exit 1
+fi
+
 # Start llpp with the given file.
 llpp "$@" &
 
