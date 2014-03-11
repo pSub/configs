@@ -2,14 +2,19 @@
 # This wrapper provides automatic reloading on file modifications
 # to the pdfviewer llpp via inotify.
 
+# Prepare parameters.
+pdf="$1"
+shift
+passthrou="$@"
+
 # Return with an error if the given file does not exist.
-if [ ! -e "$@" ]; then
-    echo "$@: No such file or directory"
+if [ ! -e $pdf ]; then
+    echo "$pdf: No such file or directory"
     exit 1
 fi
 
 # Start llpp with the given file.
-llpp "$@" &
+llpp $pdf $passthrou &
 
 # Track the PID of the llpp instance.
 pid_llpp=$!
@@ -21,7 +26,7 @@ trap "kill ${pid_llpp}" SIGINT SIGTERM SIGQUIT SIGKILL
 # to recieve events after the file was deleted.
 inotifywait -m -e close_write "$PWD" | while read dir ev file; do
     # Only refresh on events of the file in question and if this file exists.
-    if [ "$file" = "$@" ] && [ -e "$@" ]; then
+    if [ "$file" = "$pdf" ] && [ -e "$pdf" ]; then
         kill -HUP $pid_llpp
     fi
 done &
