@@ -17,9 +17,13 @@ pid_llpp=$!
 # Kill the llpp instance if the shell script terminates.
 trap "kill ${pid_llpp}" SIGINT SIGTERM SIGQUIT SIGKILL
 
-# Watch for changes on given file.
-inotifywait -m -e close_write "$@" | while read; do
-    kill -HUP $pid_llpp
+# Watch for changes in the directory of the given file. This is necessary
+# to recieve events after the file was deleted.
+inotifywait -m -e close_write "$PWD" | while read dir ev file; do
+    # Only refresh on events of the file in question and if this file exists.
+    if [ "$file" = "$@" ] && [ -e "$@" ]; then
+        kill -HUP $pid_llpp
+    fi
 done &
 
 # Obtain the PID of inotifywait.
