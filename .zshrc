@@ -60,8 +60,8 @@ zle -C retract complete-word _generic
 
 # IRC client like history
 # http://zshwiki.org/home/zle/ircclientlikeinput
-zle -N fake-accept-line
-zle -N down-line-or-history down-or-fake-accept-line
+zle -N _fake-accept-line
+zle -N down-line-or-history _down-or-fake-accept-line
 
 # OPTIONS
 
