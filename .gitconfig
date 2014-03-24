@@ -68,3 +68,5 @@
 	autosetuprebase = always
 [push]
 	default = simple
+[sendemail]
+	smtpserver = /home/pascal/.nix-profile/bin/msmtp
