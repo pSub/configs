@@ -3,11 +3,10 @@
 
   packageOverrides = pkgs : with pkgs; {
 
-   myTexLive = pkgs.texLiveAggregationFun {
+   myTexLive = texLiveAggregationFun {
      paths = [
        texLive texLiveExtra texLiveBeamer texLiveCMSuper
      ];
-     name = "mytexlive";
    };
 
    ktouchWrapped = kde4.wrapper kde4.ktouch;
