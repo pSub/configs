@@ -12,6 +12,7 @@ if (( ! $+functions[compadd] )); then
   compadd() {
     local save oldp="$PREFIX"
     SUFFIX=
+    zparseopts -D -E O:=save
     local i
     for ((i=_comp_backup;i>0;i--)); do
       PREFIX="${PREFIX%?}"
