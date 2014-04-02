@@ -2,7 +2,6 @@
 # This script is started from ~/.xinitrc and provides
 # a host specific autostart for X applications.
 
-$HOME/bin/checkforsync &
 emacs --daemon &
 
 case $(hostname) in
