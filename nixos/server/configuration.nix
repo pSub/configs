@@ -132,8 +132,6 @@ in {
     userdir.path = ""
     userdir.include-user = ( "pascal" )
 
-    index-file.names = ( "index.html", "index.php" )
-
     include "/srv/mimetype.conf"
 
     static-file.exclude-extensions = ( ".fcgi", ".php", ".rb", "~", ".inc" )
@@ -142,21 +140,6 @@ in {
     dir-listing.encoding = "utf-8"
 
     include "/srv/homepage/lighttpd.conf"
-
-    $HTTP["host"] == "hainzenklingen.psub.eu" {
-      server.document-root = "/srv/hainzenklingen/"
-      server.error-handler-404 = "/index.php"
-      fastcgi.server    = ( ".php" => ((
-        "bin-path" => "${pkgs.php}/bin/php-cgi -c /srv/php.ini",
-        "socket" => "/tmp/php.socket",
-        "bin-environment" => ( 
-          "PHP_FCGI_CHILDREN" => "16",
-          "PHP_FCGI_MAX_REQUESTS" => "10000"
-         ),
-        "bin-copy-environment" => (
-          "PATH", "SHELL", "USER" )
-      )))
-    }
   '';
 
   # Systemd service for my homepage
@@ -174,9 +157,6 @@ in {
   # PostgreSQL.
   services.postgresql.enable = true;
   services.postgresql.package = pkgs.postgresql92; 
-
-  # MySQL
-  services.mysql.enable = true;
 
   # Torrent
   services.transmission.enable = true;
