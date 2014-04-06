@@ -50,6 +50,7 @@ in {
     443 # https
 #    3000 # hydra
     6667 # bitlbee
+    9001 # tor
     51413 # torrent
   ];
 
