@@ -199,7 +199,7 @@ in {
       home = "/home/pascal";
       extraGroups = [ "lighttpd" "mpd" ];
       createHome = true;
-      shell = "/var/run/current-system/sw/bin/zsh";
+      useDefaultShell = true;
       openssh.authorizedKeys.keys = [
         "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDK3zOLu2oy3hw1GN2N5BjXrhz+/FEF/KUCYHWuSh2f3FqE+6Nyae+J8mp2z5PPzVpwO3M5l/k5mCcPLODv7EnnNg8dlq2/TwecFp6VfwE4MW4VWldd6Zlqs/V9w8Pk4YvwDRZPZD9+ldTxx6KSm00hXBJ1RHyZBSemRkTrFyVmR/iR03A+NakztVIAe/uklIyos/JL4g6u7pQ8LcveHlcYsqPd6Oa2tHDiprvmXBmzJjxOaZVllynX1T8UOrq4fZFMbx077zD6Z6+TE9EKYQ7B1RbtyDUzab9UKi4MLerCf3PRavPQgqKGkqFr0lW06ssvZvw9H4+hnvjhSaMRGMy3 pascal@obiectiva"
         "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAwj9hapMf+bpedpEYixIbuxUMSUg0H5RngeD/rvASyfK1MOxxdOvsAJaDqJ8zvBr3DHZOdKG2BTfO2kLh1fSo9dWOLmQJEQ1t3vmd+KX1FQC5cnGR5+FrbM5npCpnSJsdMcW8qqJA2HGkrhtVklAFCkIAp5HTAT6a6KMvOIswxr3M4jJemNso1OVwt7d8pvPlSxxQmBMYCGddxQHEfDRMqvextNsgznMGdUDH05uhJ+R4qQfzV7ls5XJxOxoTdJlsuYwO9zIyGWGVeppjtESTTk9ims1Pfg6Jf9XIiokq2L4VzIoeZnpqyo9nGsUUY9M7z9QVLpMyOFqV48+hbF71+Q== pascal@pSub"
@@ -211,7 +211,7 @@ in {
        uid = 492;
        home = "/srv/homepage";
        createHome = true;
-       shell = "/var/run/current-system/sw/bin/zsh";
+       useDefaultShell = true;
     };
 
     qwert = {
@@ -219,7 +219,7 @@ in {
        group = "users";
        home = "/home/qwert";
        createHome = true;
-       shell = "/var/run/current-system/sw/bin/zsh";
+       useDefaultShell = true;
     };
 
     ragnar = {
@@ -227,7 +227,7 @@ in {
        group = "users";
        home = "/home/ragnar";
        createHome = true;
-       shell = "/var/run/current-system/sw/bin/zsh";
+       useDefaultShell = true;
     };
 
   };
