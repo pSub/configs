@@ -5,8 +5,6 @@
 
 let
 
-  hydra = pkgs.fetchgit { url = https://github.com/NixOS/hydra; rev = "refs/heads/master"; };
-
   addArchTorrents = pkgs.writeScript "addArchTorrents"
     ''
     DATE=`${pkgs.coreutils}/bin/date +'%Y.%m.01'`
@@ -18,7 +16,6 @@ in {
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./password.nix
-      "${hydra}/hydra-module.nix"
     ];
 
   boot.kernelPackages = pkgs.linuxPackages_3_10;
@@ -48,7 +45,6 @@ in {
   networking.firewall.allowedTCPPorts = [
     80 # http
     443 # https
-#    3000 # hydra
     6667 # bitlbee
     9001 # tor
     51413 # torrent
@@ -85,13 +81,6 @@ in {
 
   # Logfile scanner settings.
   services.logcheck.enable = true;
-
-  # Hydra
-  #services.hydra.enable = false;
-  #services.hydra.hydra = (import "${hydra}/release.nix" {}).build.x86_64-linux;
-  #services.hydra.hydraURL = "http://psub.eu";
-  #services.hydra.port = 3000;
-  #services.hydra.notificationSender = "hydra@psub.eu";
 
   # The OpenSSH daemon.
   services.openssh.enable = true;
