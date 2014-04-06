@@ -162,9 +162,7 @@ in {
   # Systemd service for my homepage
   systemd.services.homepage = {
       description = "Personal Homepage powered by Yesod";
-      after = [ "network.target" ];
-      wantedBy = [ "multi-user.target" ];
-      requires = [ "lighttpd.service" ];
+      bindsTo = [ "lighttpd.service" ];
       script = ''
         cd /srv/homepage
         /srv/homepage/homepage Production
