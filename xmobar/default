@@ -7,7 +7,7 @@ Config { font =  "xft:Dejavu Sans:size=9:antialias=true:hinting=true:hintstyle=h
                   ["-t", "<acstatus>"
                   , "-L", "10", "-H", "80"
                   , "-l", "red", "-h", "green"
-                  , "--", "-O", "Charging", "-o", "Battery: <left>%"
+                  , "--", "-O", "↑<left>%", "-o", "↓<left>%", "-i", "•<left>%"
                   ] 10 ]
        , sepChar = "%"
        , alignSep = "}{"
