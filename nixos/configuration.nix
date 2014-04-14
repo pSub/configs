@@ -157,9 +157,6 @@ in {
 
   system.copySystemConfiguration = true;
 
-  # Firewall
-  networking.firewall.enable = true;
-
   # Time.
   time.timeZone = "Europe/Berlin";
 
