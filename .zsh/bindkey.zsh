@@ -48,6 +48,9 @@ bindkey '.' global-alias-dot
 bindkey '^X^f' global-alias-dirstack
 bindkey '^H' retract
 
+## bind to shift-tab
+bindkey -s '^[[Z' 'urxvtc -T floatwin &!\n'
+
 # Creates widgets from pacman_bindings and replace-pacman-command
 # and binds them the the given keys
 local i
