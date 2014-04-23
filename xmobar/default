@@ -3,7 +3,7 @@ Config { font =  "xft:Dejavu Sans:size=9:antialias=true:hinting=true:hintstyle=h
        , border = NoBorder
        , position = TopW L 98
        , lowerOnStart = False
-       , commands = [ Run StdinReader,  Run BatteryP ["BAT0"]
+       , commands = [ Run UnsafeStdinReader,  Run BatteryP ["BAT0"]
                   ["-t", "<acstatus>"
                   , "-L", "10", "-H", "80"
                   , "-l", "red", "-h", "green"
@@ -11,5 +11,5 @@ Config { font =  "xft:Dejavu Sans:size=9:antialias=true:hinting=true:hintstyle=h
                   ] 10 ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{%battery%   %date%"
+       , template = "%UnsafeStdinReader% }{%battery%   %date%"
        }
