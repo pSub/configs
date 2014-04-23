@@ -135,7 +135,9 @@ in {
   # Systemd service for my homepage
   systemd.services.homepage = {
       description = "Personal Homepage powered by Yesod";
-      bindsTo = [ "lighttpd.service" ];
+      wantedBy = [ "multi-user.target" ];
+      after = [ "lighttpd.service" "postgresql.service" ];
+      bindsTo = [ "lighttpd.service" "postgresql.service" ];
       script = ''
         cd /srv/homepage
         /srv/homepage/homepage Production
