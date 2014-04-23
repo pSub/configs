@@ -22,13 +22,13 @@ myWorkspaces = clickable . (map xmobarEscape) $ [ "org", "www", "devâ‚", "devâ‚
 myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
                  , isDialog        --> doCenterFloat
-                 , className =? "Thunderbird" --> doShift "mail"
-                 , className =? ".dwb-wrapped" --> doShift "www"
+                 , className =? "Thunderbird" --> doShift (myWorkspaces !! 6)
+                 , className =? ".dwb-wrapped" --> doShift (myWorkspaces !! 1)
                  , className =? "feh" --> doCenterFloat
-                 , className =? "llpp" --> doShift "docs"
+                 , className =? "llpp" --> doShift (myWorkspaces !! 4)
                  , className =? "Pinentry-gtk-2" --> doCenterFloat
                  , className =? "MPlayer" --> doCenterFloat
-                 , title =? "Agenda Frame" --> doShift "org"
+                 , title =? "Agenda Frame" --> doShift (myWorkspaces !! 0)
                  , title =? "floatwin" --> doCenterFloat
                  ] <+> manageDocks
 
