@@ -30,6 +30,7 @@ hi Pmenu guifg=#f6f3e8 guibg=#444444 gui=NONE ctermfg=white ctermbg=darkgray cte
 hi PmenuSel guifg=#000000 guibg=#cae682 gui=NONE ctermfg=black ctermbg=lightgreen cterm=NONE
 syntax enable
 setlocal spell spelllang=de,en
+set nospell
 
 map tt :NERDTreeToggle<CR>
 map <C-J> <C-W>j<C-W>_
