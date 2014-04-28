@@ -93,6 +93,8 @@
 (setq org-capture-templates
       '(("t" "Todo" entry (file (format "%s/agenda/todo.org" org-directory))
          "* TODO %?\n  %i\n  %a")
+        ("T" "Thesis" entry (file (format "%s/agenda/thesis.org" org-directory))
+         "* TODO %?\n  %i\n  %a")
         ("m" "Meeting" entry (file (format "%s/agenda/meetings.org" org-directory))
          "* %?\n %i\n  %a")
         ("x" "Note with Clipboard" entry (file (format "%s/notes.org" org-directory))
