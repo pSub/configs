@@ -150,13 +150,14 @@ in {
   services.xserver.desktopManager.default = "none";
 
   services.xserver.startGnuPGAgent = true;
-  services.xserver.startOpenSSHAgent = false;
 
   # MPD
   services.mpd.enable = true;
 
   system.copySystemConfiguration = true;
 
+  # Do not start ssh-agent, gnupg-agent is used.
+  programs.ssh.startAgent = false;
   # Time.
   time.timeZone = "Europe/Berlin";
 
