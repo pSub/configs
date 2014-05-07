@@ -47,7 +47,7 @@
 
   nix.maxJobs = 4;
 
-  hardware.opengl.videoDrivers = [ "intel" "vesa" ];
+  services.xserver.videoDrivers = [ "intel" "vesa" ];
   services.xserver.vaapiDrivers = [ pkgs.vaapiIntel ];
 
 }
