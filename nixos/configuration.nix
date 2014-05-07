@@ -54,7 +54,7 @@ in {
     enableFontDir = true;
     enableCoreFonts = true;
     enableGhostscriptFonts = true;
-    extraFonts = with pkgs ; [
+    fonts = with pkgs ; [
       liberation_ttf
       ttf_bitstream_vera
       dejavu_fonts
