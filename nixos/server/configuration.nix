@@ -111,6 +111,7 @@ in {
     server.port = 80
     server.username = "lighttpd"
     server.group = "lighttpd"
+    server.follow-symlink = "enable"
     server.modules = (
       "mod_redirect",
       "mod_proxy",
