@@ -158,6 +158,10 @@ in {
 
   # Do not start ssh-agent, gnupg-agent is used.
   programs.ssh.startAgent = false;
+
+  # Firewall
+  networking.firewall.enable = true;
+
   # Time.
   time.timeZone = "Europe/Berlin";
 
