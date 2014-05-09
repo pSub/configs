@@ -69,10 +69,6 @@ in {
     defaultLocale = "en_US.UTF-8";
   };
 
-  # Use zsh globally.
-  programs.bash.enable = false;
-  programs.zsh.enable = true;
-
   # Cron daemon.
   services.cron.enable = true;
   services.cron.systemCronJobs = [
@@ -187,7 +183,6 @@ in {
 	vim
 	# Install only the urxvt terminfo file
         rxvt_unicode.terminfo
-	zsh
   ];
 
   # X-libraries and fonts are not needed on the server.
@@ -195,6 +190,7 @@ in {
   fonts.enableFontConfig = false;
 
   users.mutableUsers = false;
+  users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
   users.extraUsers = {
     pascal = {
       uid = 1000;
