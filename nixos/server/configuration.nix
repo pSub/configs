@@ -69,6 +69,14 @@ in {
     defaultLocale = "en_US.UTF-8";
   };
 
+  # Security - PAM
+  security.pam.loginLimits = [ { domain = "*";
+                                 item = "maxlogins";
+                                 type = "-";
+                                 value = "1";
+                               }
+                             ];
+
   # Cron daemon.
   services.cron.enable = true;
   services.cron.systemCronJobs = [
