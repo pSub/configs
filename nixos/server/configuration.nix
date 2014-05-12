@@ -178,6 +178,8 @@ in {
   # Sound
   sound.enable = false;
 
+  programs.zsh.enable = true;
+
   # Timezone
   time.timeZone = "Europe/Berlin";
 
