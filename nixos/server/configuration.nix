@@ -73,7 +73,7 @@ in {
   security.pam.loginLimits = [ { domain = "*";
                                  item = "maxlogins";
                                  type = "-";
-                                 value = "1";
+                                 value = "3";
                                }
                              ];
 
