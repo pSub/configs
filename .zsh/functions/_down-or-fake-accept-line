@@ -4,6 +4,6 @@
 # http://zshwiki.org/home/zle/ircclientlikeinput
 if (( HISTNO == HISTCMD )) && [[ "$RBUFFER" != *$'\n'* ]];
 then
-  zle fake-accept-line
+  zle _fake-accept-line
 fi
 zle .down-line-or-history "$@"
