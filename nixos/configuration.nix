@@ -38,7 +38,7 @@ in {
     group = "users";
     extraGroups = [ "networkmanager" ];
     home = "/home/pascal";
-    shell = "/var/run/current-system/sw/bin/zsh";
+    shell = "${pkgs.zsh}/bin/zsh";
   };
   fileSystems."/home/pascal/downloads" = { device = "tmpfs" ; fsType = "tmpfs"; options = "size=25%"; };
   fileSystems."/home/pascal/sandbox" = { device = "tmpfs" ; fsType = "tmpfs"; options = "size=25%"; };
@@ -166,9 +166,6 @@ in {
   time.timeZone = "Europe/Berlin";
 
   environment = {
-    systemPackages = with pkgs; [
-      zsh
-    ];
 
     variables = {
       # Make XCompose work in GTK applications
