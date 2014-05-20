@@ -29,9 +29,6 @@ in {
 
   networking.networkmanager.enable = true;
 
-  # Power Management
-  powerManagement.cpuFreqGovernor = "conservative";
-
   users.mutableUsers = false;
   users.extraUsers.pascal = {
     uid = 499;

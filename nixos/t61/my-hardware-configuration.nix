@@ -50,4 +50,7 @@
 
   hardware.opengl.videoDrivers = [ "intel" "vesa" ];
 
+  # Power Management
+  powerManagement.cpuFreqGovernor = "conservative";
+
 }

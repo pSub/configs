@@ -50,4 +50,7 @@
   services.xserver.videoDrivers = [ "intel" "vesa" ];
   services.xserver.vaapiDrivers = [ pkgs.vaapiIntel ];
 
+  # Power Management
+  powerManagement.cpuFreqGovernor = "conservative";
+
 }
