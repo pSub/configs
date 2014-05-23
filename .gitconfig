@@ -64,6 +64,7 @@
     amend = commit --amend -C HEAD
     amendc = commit --amend
     tree = log --graph --pretty=oneline --decorate
+    nixos-version = !git checkout $(nixos-version | awk -F. '{print $4}' | cut -c1-7)
 [branch]
 	autosetuprebase = always
 [push]
