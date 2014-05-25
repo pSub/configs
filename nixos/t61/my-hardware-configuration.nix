@@ -1,5 +1,3 @@
-# This is a generated file.  Do not modify!
-# Make changes to /etc/nixos/configuration.nix instead.
 { config, pkgs, ... }:
 
 {
@@ -11,9 +9,9 @@
 
   boot.kernelPackages = pkgs.linuxPackages_3_10;
 
-#  boot.initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "usb_storage" ];
   boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ata_piix" "ahci" ];
   boot.initrd.luks.cryptoModules = ["aes" "sha512" "sha1" "cbc" "xts"];
+
   # Set LUKS device
   boot.initrd.luks.devices = [
     { name = "luksroot";
@@ -21,9 +19,13 @@
       preLVM = true;
     }
   ];
+
   boot.kernelModules = [ "tp_smapi" "thinkpad_acpi" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.tp_smapi ];
+
+  # Disable beep.
   boot.blacklistedKernelModules = [ "pcspkr" ];
+
   boot.kernelParams = [ "quiet" ];
 
   # Use the GRUB 2 boot loader.
@@ -36,7 +38,6 @@
   # Add filesystem entries for each partition that you want to see
   # mounted at boot time.  This should include at least the root
   # filesystem.
-
   fileSystems."/".device = "/dev/mapper/vgroup-root";
   fileSystems."/boot".device = "/dev/sda1";
   fileSystems."/tmp" = { device = "tmpfs"; fsType = "tmpfs"; };
@@ -51,6 +52,5 @@
   hardware.opengl.videoDrivers = [ "intel" "vesa" ];
 
   # Power Management
-  powerManagement.cpuFreqGovernor = "conservative";
-
+  powerManagement.cpuFreqGovernor = "conservative"; 
 }

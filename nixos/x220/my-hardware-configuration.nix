@@ -10,10 +10,10 @@
   boot.kernelPackages = pkgs.linuxPackages_3_13;
   boot.initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "usb_storage" ];
 
-  # System has i7-2640M thus only the aes module is needed for luks
+  # System has i7-2640M thus only the aes module is needed for luks.
   boot.initrd.luks.cryptoModules = [ "aes" ];
 
-  # Set LUKS device
+  # Set LUKS device.
   boot.initrd.luks.devices = [
     { name = "luksroot";
       device = "/dev/sda2";
@@ -23,7 +23,10 @@
 
   boot.kernelModules = [ "kvm-intel" "tp_smapi" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.tp_smapi ];
+
+  # Disable beep.
   boot.blacklistedKernelModules = [ "pcspkr" ];
+
   boot.kernelParams = [ "quiet" ];
 
   # Use the GRUB 2 boot loader.

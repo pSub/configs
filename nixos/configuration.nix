@@ -27,6 +27,7 @@ in {
   # Trust hydra. Needed for one-click installations.
   nix.trustedBinaryCaches = [ "http://hydra.nixos.org" ];
 
+  # Use the network manager.
   networking.networkmanager.enable = true;
 
   users.mutableUsers = false;
@@ -71,7 +72,7 @@ in {
 
   # List services that you want to enable:
 
-  services.postgresql.enable = true;
+  services.postgresql.enable = false;
   services.postgresql.package = pkgs.postgresql92;
 
   # Cron.
@@ -132,22 +133,22 @@ in {
   services.xserver.enable = true;
   services.xserver.layout = "de";
   services.xserver.xkbVariant = "nodeadkeys";
-  services.xserver.synaptics.enable = true;
-  services.xserver.synaptics.accelFactor = "0.01";
-  services.xserver.synaptics.tapButtons = false;
-  services.xserver.synaptics.vertEdgeScroll = true;
-  services.xserver.displayManager.slim.enable = true;
-  services.xserver.displayManager.slim.autoLogin = true;
-  services.xserver.displayManager.slim.defaultUser = "pascal";
-
-  services.xserver.windowManager.xmonad.enable = true;
-  services.xserver.windowManager.xmonad.enableContribAndExtras = true;
-  services.xserver.windowManager.xmonad.extraPackages = haskellPackages : [
-	];
+  services.xserver.xkbOptions = "";
+  services.xserver.synaptics = { enable = true;
+                                 accelFactor = "0.01";
+                                 tapButtons = false;
+                                 vertEdgeScroll = true;
+                               };
+  services.xserver.displayManager.slim = { enable = true;
+                                           autoLogin = true;
+                                           defaultUser = "pascal";
+                                         };
+  services.xserver.windowManager.xmonad = { enable = true;
+                                            enableContribAndExtras = true;
+                                            extraPackages = haskellPackages : [];
+                                          };
   services.xserver.windowManager.default = "xmonad";
-
   services.xserver.desktopManager.xterm.enable = false;
-  services.xserver.desktopManager.default = "none";
 
   services.xserver.startGnuPGAgent = true;
 
@@ -166,9 +167,8 @@ in {
   time.timeZone = "Europe/Berlin";
 
   environment = {
-
     variables = {
-      # Make XCompose work in GTK applications
+      # Make XCompose work in GTK applications.
       GTK_IM_MODULE = "xim";
     };
   };
