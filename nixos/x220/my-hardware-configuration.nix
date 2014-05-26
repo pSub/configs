@@ -56,4 +56,8 @@
   # Power Management
   powerManagement.cpuFreqGovernor = "conservative";
 
+  # WARNING: Not merged into nixpkgs yet!
+  hardware.trackpoint.enable = true;
+  hardware.trackpoint.sensitivity = 220;
+  hardware.trackpoint.speed = 200;
 }
