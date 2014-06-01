@@ -33,7 +33,7 @@
        inotifyTools
        pinentry
        rxvt_unicode
-       thunderbird
+       thunderbird-bin
        transmission_remote_gtk
        udisks_glue
        unison
