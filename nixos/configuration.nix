@@ -88,7 +88,7 @@ in {
   services.gpm.enable = true;
 
   # Udisks.
-  services.udisks.enable = true;
+  services.udisks2.enable = true;
 
   # Rsnapshot.
   services.rsnapshot.enable = true;
