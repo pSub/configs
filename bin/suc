@@ -1,7 +1,7 @@
 #!/bin/sh
 # A wrapper around su(1): To execute a command as root
 # without the need of surrounding quotes. It runs su
-# again when it fail (e.g. incorrect password), too.
+# again when it fails (e.g. incorrect password), too.
 #
 # Examples of usage
 #   - Setting the pacman_command variable in the
