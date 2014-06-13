@@ -9,29 +9,48 @@ emacs.pointerColor           : #ffffff
 ! --- rxvt-unicode --- !
 urxvt.font                   : xft:inconsolata:pixelsize=13,xft:dejavu sans mono:pixelsize=13,xft:gentium
 
-! Colors are from https://wiki.archlinux.org/index.php/Xdefaults#Terminal_colors
-urxvt.foreground             : #d2d2d2
-urxvt.background             : #1B1D1E
-urxvt.cursorColor            : #FFFFFF
-urxvt.colorUL                : #95e454
-urxvt.color0                 : #000000
-urxvt.color8                 : #555753
-urxvt.color1                 : #ff6565
-urxvt.color9                 : #ff8d8d
-urxvt.color2                 : #93d44f
-urxvt.color10                : #c8e7a8
-urxvt.color3                 : #eab93d
-urxvt.color11                : #ffc123
-urxvt.color4                 : #204a87
-urxvt.color12                : #3465a4
-urxvt.color5                 : #ff7f00
-urxvt.color13                : #f57900
-urxvt.color6                 : #89b6e2
-urxvt.color14                : #46a4ff
-urxvt.color7                 : #cccccc
-urxvt.color15                : #ffffff
+! Slightly modified Solarized color-scheme
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
 
-! To use urgency hints with console programs.
+*background:            #f9f7f3
+*foreground:            S_base00
+*fading:                40
+*fadeColor:             S_base3
+*cursorColor:           S_base01
+*pointerColorBackground:S_base1
+*pointerColorForeground:S_base01
+*color0:                S_base02
+*color8:                S_base03
+*color1:                S_red
+*color9:                S_orange
+*color2:                S_green
+*color10:               S_base01
+*color3:                S_yellow
+*color11:               S_base00
+*color4:                S_blue
+*color12:               S_base0
+*color5:                S_magenta
+*color13:               S_violet
+*color6:                S_cyan
+*color14:               S_base1
+*color7:                S_base2
+*color15:               S_base3
+
 urxvt.urgentOnBell           : true
 
 urxvt.internalBorder         : 3
