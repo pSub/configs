@@ -47,7 +47,7 @@
        emacs24Packages.haskellMode
        emacs24Packages.magit
        emacs24Packages.org
-       emacs24Packages.scalaMode
+       emacs24Packages.scalaMode2
        emacs24Packages.structuredHaskellMode
        emacs24Packages.writeGood
 
