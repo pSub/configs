@@ -32,7 +32,7 @@ SETTER=bgs
 
 # Adds first parameter as prefix to the lines of the second parameter
 # therefore the second parameter must be a file.
-addprefix(){
+addPrefix(){
   for s in $(cat $2)
   do
     echo -n $1$s" "
@@ -41,7 +41,7 @@ addprefix(){
 
 # Set wallpaper
 setWallpaper(){
-  $SETTER $(addprefix $BGPATH/ $BGACTIVE)
+  $SETTER $(addPrefix $BGPATH/ $BGACTIVE)
 }
 
 # Set initial wallpaper
