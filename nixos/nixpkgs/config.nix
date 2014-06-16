@@ -36,6 +36,7 @@
        thunderbird-bin
        transmission_remote_gtk
        udisks_glue
+       mpc_cli
        unison
        unzip
        weechat
