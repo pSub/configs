@@ -4,7 +4,7 @@ Xft.antialias                : true
 Xft.hinting                  : full
 
 ! --- emacs --- !
-emacs.pointerColor           : #ffffff
+emacs.pointerColor           : #000000
 
 ! --- rxvt-unicode --- !
 urxvt.font                   : xft:inconsolata:pixelsize=13,xft:dejavu sans mono:pixelsize=13,xft:gentium
