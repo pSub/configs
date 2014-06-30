@@ -90,9 +90,6 @@
 ;(load "dtrt-indent/dtrt-indent")
 ;(dtrt-indent-mode 1)
 
-;(load "color-theme-molokai/color-theme-molokai")
-;(color-theme-molokai)
-
 (global-undo-tree-mode)
 
 ;(load "my-evil")
