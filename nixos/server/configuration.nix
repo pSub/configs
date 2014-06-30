@@ -47,6 +47,7 @@ in {
     443 # https
     6667 # bitlbee
     9001 # tor
+    4242 # quassel
     51413 # torrent
   ];
 
