@@ -167,6 +167,10 @@ in {
   time.timeZone = "Europe/Berlin";
 
   environment = {
+    systemPackages = with pkgs; [
+      gnome3.dconf
+    ];
+
     variables = {
       # Make XCompose work in GTK applications.
       GTK_IM_MODULE = "xim";
