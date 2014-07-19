@@ -1,6 +1,7 @@
 
 {
 
+  allowUnfree = true;
   packageOverrides = pkgs : with pkgs; {
 
    myTexLive = texLiveAggregationFun {
