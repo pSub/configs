@@ -49,7 +49,7 @@
 
   nix.maxJobs = 2;
 
-  hardware.opengl.videoDrivers = [ "intel" "vesa" ];
+  services.xserver.videoDrivers = [ "intel" "vesa" ];
 
   # Power Management
   powerManagement.cpuFreqGovernor = "conservative"; 
