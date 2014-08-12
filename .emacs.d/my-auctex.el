@@ -17,6 +17,8 @@
     (set-marker to-marker nil)))
 (ad-activate 'LaTeX-fill-region-as-paragraph)
 
+(setq reftex-bibliography-commands '("bibliography" "nobibliography" "addbibresource"))
+
 ;; Set PDF mode as default
 (setq TeX-PDF-mode t)
 
