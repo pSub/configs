@@ -19,6 +19,8 @@
 
 (setq reftex-bibliography-commands '("bibliography" "nobibliography" "addbibresource"))
 
+(setq LaTeX-verbatim-environments-local '("Verbatim" "lstlisting"))
+
 ;; Set PDF mode as default
 (setq TeX-PDF-mode t)
 
