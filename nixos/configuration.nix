@@ -107,6 +107,9 @@ in {
     backup	/var/	.
     '';
 
+  # Tor.
+  services.tor.client.enable = true;
+
   # Acpi.
   services.acpid.enable = true;
   services.acpid.lidEventCommands = ''
