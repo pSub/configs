@@ -24,6 +24,8 @@ in {
       ./password.nix
     ];
 
+  nixpkgs.config.allowUnfree = true;
+
   # Trust hydra. Needed for one-click installations.
   nix.trustedBinaryCaches = [ "http://hydra.nixos.org" ];
 
