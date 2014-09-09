@@ -29,6 +29,8 @@ in {
   # Trust hydra. Needed for one-click installations.
   nix.trustedBinaryCaches = [ "http://hydra.nixos.org" ];
 
+  nix.useChroot = true;
+
   # Use the network manager.
   networking.networkmanager.enable = true;
 
