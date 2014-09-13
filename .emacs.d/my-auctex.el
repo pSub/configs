@@ -39,6 +39,9 @@
 ;; Spellcheck the buffer
 (add-hook 'LaTeX-mode-hook 'flyspell-buffer)
 
+;; Write Good mode
+(add-hook 'LaTeX-mode-hook 'writegood-mode)
+
 ;; Load auto-fill-mode
 (add-hook 'LaTeX-mode-hook 'auto-fill-mode)
 
