@@ -9,9 +9,6 @@ urxvtd -q -f -o
 # Start notification daemon
 dunst &
 
-# Start daemon for plug'n play
-udisks-glue -c $HOME/.udisks-glue.conf &
-
 # Disable beep
 xset b off &
 
