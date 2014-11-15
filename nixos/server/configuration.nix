@@ -173,8 +173,8 @@ in {
   services.tor.config = "ControlPort 9051";
   services.tor.relay.enable = true;
   services.tor.relay.isExit = false;
-  services.tor.relay.bandwidthRate = 1048576;
-  services.tor.relay.bandwidthBurst = 5242880;
+  services.tor.relay.bandwidthRate = 819200;
+  services.tor.relay.bandwidthBurst = 2097152;
 
   # Sound
   sound.enable = false;
