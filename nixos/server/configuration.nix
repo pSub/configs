@@ -121,7 +121,8 @@ in {
       "mod_redirect",
       "mod_proxy",
       "mod_fastcgi",
-      "mod_userdir"
+      "mod_userdir",
+      "mod_auth"
     )
 
     userdir.basepath = "/srv/users/"
