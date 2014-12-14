@@ -18,7 +18,7 @@ in {
       ./password.nix
     ];
 
-  boot.kernelPackages = pkgs.linuxPackages_3_15;
+  boot.kernelPackages = pkgs.linuxPackages_3_17;
 
   boot.initrd.kernelModules =
     [ # Specify all kernel modules that are necessary for mounting the root
