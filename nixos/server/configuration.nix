@@ -171,7 +171,7 @@ in {
     };
 
   # Tor.
-  services.tor.config = "ControlPort 9051";
+  services.tor.controlPort = 9051;
   services.tor.relay.enable = true;
   services.tor.relay.isExit = false;
   services.tor.relay.bandwidthRate = 819200;
