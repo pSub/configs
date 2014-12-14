@@ -175,6 +175,7 @@ in {
   environment = {
     systemPackages = with pkgs; [
       gnome3.dconf
+      bashInteractive
     ];
 
     variables = {
