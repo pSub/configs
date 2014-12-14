@@ -40,7 +40,7 @@ in {
     createHome = true;
     description = "Pascal Wittmann";
     group = "users";
-    extraGroups = [ "networkmanager" ];
+    extraGroups = [ "networkmanager" "vboxusers" ];
     home = "/home/pascal";
     shell = "${pkgs.zsh}/bin/zsh";
   };
