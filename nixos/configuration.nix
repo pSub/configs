@@ -38,7 +38,6 @@ in {
   users.extraUsers.pascal = {
     uid = 499;
     createHome = true;
-    createUser = true;
     description = "Pascal Wittmann";
     group = "users";
     extraGroups = [ "networkmanager" ];
