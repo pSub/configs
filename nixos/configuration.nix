@@ -81,7 +81,7 @@ in {
 
   # Cron.
   services.cron.enable = true;
-  services.cron.mailto = "root";
+  services.cron.mailto = "pascal";
   services.cron.systemCronJobs = [
     "30 23 * * * pascal DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send 'Time to go to bed'"
     "* * * * *   pascal ${lowBatteryNotifier}"
