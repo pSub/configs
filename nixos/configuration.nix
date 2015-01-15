@@ -29,6 +29,7 @@ in {
   # Trust hydra. Needed for one-click installations.
   nix.trustedBinaryCaches = [ "http://hydra.nixos.org" ];
 
+  # Build using chroots to detect more impurities.
   nix.useChroot = true;
 
   # Use the network manager.
@@ -156,11 +157,13 @@ in {
   services.xserver.windowManager.default = "xmonad";
   services.xserver.desktopManager.xterm.enable = false;
 
+  # Use GnuPG agent.
   services.xserver.startGnuPGAgent = true;
 
   # MPD
   services.mpd.enable = true;
 
+  # Copy the system configuration int to nix-store.
   system.copySystemConfiguration = true;
 
   # Do not start ssh-agent, gnupg-agent is used.
