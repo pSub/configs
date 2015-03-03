@@ -24,6 +24,8 @@
 ;; Set PDF mode as default
 (setq TeX-PDF-mode t)
 
+(setq TeX-command "pdftex")
+
 (setq-default TeX-master nil) ; Query for master file.
 
 ;; Set zathura as prefered pdf reader
