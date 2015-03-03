@@ -125,6 +125,10 @@ in {
       "mod_auth"
     )
 
+    auth.debug = 2
+    auth.backend = "plain"
+    auth.backend.plain.userfile = "/srv/passwords"
+
     userdir.basepath = "/srv/users/"
     userdir.path = ""
     userdir.include-user = ( "pascal" )
