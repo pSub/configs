@@ -20,11 +20,6 @@
 
    ktouchWrapped = kde4.wrapper kde4.ktouch;
 
-   game-technology-env = pkgs.myEnvFun {
-         name = "game-technology-env";
-         buildInputs = [ stdenv codeblocks nodejs xlibs.xproto xlibs.libX11 mesa_noglu alsaLib ];
-     };
-
    # Collection packages required to use my configuration files
    myPackages = pkgs.buildEnv {
      name = "myPackages";
