@@ -12,12 +12,6 @@
      ];
    };
 
-   quasselClient = kde4.quassel.override { withKDE = false;
-        monolithic = false;
-        client = true;
-        tag = "-client";
-   };
-
    ktouchWrapped = kde4.wrapper kde4.ktouch;
 
    # Collection packages required to use my configuration files
