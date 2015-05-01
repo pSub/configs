@@ -86,6 +86,7 @@ in {
     "30 23 * * * pascal DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send 'Time to go to bed'"
     "* * * * *   pascal ${lowBatteryNotifier}"
     "@weekly     pascal ${pkgs.coreutils}/bin/touch $HOME/.backup-weekly"
+    "@weekly     root   nix-collect-garbage"
   ];
 
   # Gernal Purpose Mouse.
