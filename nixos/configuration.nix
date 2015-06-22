@@ -178,6 +178,7 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
+      exfat-utils
       gnome3.dconf
       bashInteractive
     ];
