@@ -189,5 +189,7 @@ in {
     };
   };
 
+  services.tlp.enable = true;
+
   services.dbus.enable = true;
 }
