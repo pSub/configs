@@ -188,4 +188,6 @@ in {
       GTK_IM_MODULE = "xim";
     };
   };
+
+  services.dbus.enable = true;
 }
