@@ -26,6 +26,10 @@ in {
 
   nixpkgs.config.allowUnfree = true;
 
+  nix.extraOptions = ''
+    binary-caches-parallel-connections = 1
+  '';
+
   # Trust hydra. Needed for one-click installations.
   nix.trustedBinaryCaches = [ "http://hydra.nixos.org" ];
 
