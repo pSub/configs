@@ -186,6 +186,7 @@ htpasswd_encryption = plain
 	vim
 	# Install only the urxvt terminfo file
         rxvt_unicode.terminfo
+        zile
   ];
 
   # X-libraries and fonts are not needed on the server.
