@@ -83,9 +83,6 @@
   services.openssh.passwordAuthentication = false;
   services.openssh.challengeResponseAuthentication = false;
 
-  # OpenVPN.
-  services.openvpn.enable = false;
-
   # bitlbee.
   services.bitlbee.enable = true;
   services.bitlbee.interface = "0.0.0.0";
