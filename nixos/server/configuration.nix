@@ -49,6 +49,7 @@ in {
     9001 # tor
     4242 # quassel
     51413 # torrent
+    5232 # radicale
   ];
 
   # Add filesystem entries for each partition that you want to see
@@ -173,6 +174,23 @@ in {
       # for users in group "transmission" to have access to torrents
       umask = 2;
     };
+  # Caldav / Cardav
+  services.radicale.enable = true;
+  services.radicale.config = ''
+[server]
+hosts = radicale.psub.eu:5232
+daemon = True
+ssl = True
+protocol = PROTOCOL_SSLv23
+certificate = /srv/cert.pem
+key = /srv/key.pem
+base_prefix = /
+
+[auth]
+type = htpasswd
+htpasswd_filename = /srv/passwords
+htpasswd_encryption = plain
+'';
 
   # Tor.
   services.tor.controlPort = 9051;
