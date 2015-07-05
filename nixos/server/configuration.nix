@@ -3,15 +3,7 @@
 
 { config, pkgs, ... }:
 
-let
-
-  addArchTorrents = pkgs.writeScript "addArchTorrents"
-    ''
-    DATE=`${pkgs.coreutils}/bin/date +'%Y.%m.01'`
-    ${pkgs.transmission}/bin/transmission-remote --add https://www.archlinux.org/iso/$DATE/archlinux-$DATE-dual.iso.torrent
-    '';
-
-in {
+{
   require =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -47,7 +39,6 @@ in {
     443 # https
     6667 # bitlbee
     4242 # quassel
-    51413 # torrent
     5232 # radicale
   ];
 
@@ -80,9 +71,6 @@ in {
 
   # Cron daemon.
   services.cron.enable = true;
-  services.cron.systemCronJobs = [
-    "0 22 1 * * transmission ${addArchTorrents}"
-  ];
 
   # Logfile scanner settings.
   services.logcheck.enable = true;
@@ -161,18 +149,6 @@ in {
   services.postgresql.enable = true;
   services.postgresql.package = pkgs.postgresql92; 
 
-  # Torrent
-  services.transmission.enable = true;
-  services.transmission.settings = 
-    { download-dir = "/srv/torrents";
-      incomplete-dir = "/srv/torrents/.incomplete";
-      incomplete-dir-enabled = true;
-      speed-limit-up = 1000;
-      speed-limit-up-enabled = true;
-
-      # for users in group "transmission" to have access to torrents
-      umask = 2;
-    };
   # Caldav / Cardav
   services.radicale.enable = true;
   services.radicale.config = ''
