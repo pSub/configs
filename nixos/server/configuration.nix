@@ -46,7 +46,6 @@ in {
     80 # http
     443 # https
     6667 # bitlbee
-    9001 # tor
     4242 # quassel
     51413 # torrent
     5232 # radicale
@@ -192,12 +191,6 @@ htpasswd_filename = /srv/passwords
 htpasswd_encryption = plain
 '';
 
-  # Tor.
-  services.tor.controlPort = 9051;
-  services.tor.relay.enable = true;
-  services.tor.relay.isExit = false;
-  services.tor.relay.bandwidthRate = 819200;
-  services.tor.relay.bandwidthBurst = 2097152;
 
   # Sound
   sound.enable = false;
