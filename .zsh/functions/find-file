@@ -1,0 +1,16 @@
+# -*- mode: shell-script -*-
+
+FILE=$(
+while true;
+do
+    OLDPWD=$PWD;
+    SELECTED=$(filemenu);
+    #cd $SELECTED;
+    ACC+=/$SELECTED;
+    [ $OLDPWD = $PWD ] && break;
+done;
+echo $ACC)
+
+LBUFFER+=$FILE
+
+zle reset-prompt

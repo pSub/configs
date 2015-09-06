@@ -1,0 +1,9 @@
+# -*- mode: shell-script -*-
+
+while true; do
+    OLDPWD=$PWD
+    cd $(filemenu)
+    [ $OLDPWD = $PWD ] && break
+done
+
+zle reset-prompt
