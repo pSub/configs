@@ -6,6 +6,7 @@ alias xfiglatex="xfig -specialtext -latexfonts -startlatexFont default"
 alias unpack="aunpack"
 alias pack="apack"
 alias sul="su --login"
+alias filemenu='ls | slmenu -p $PWD; [ $? -ne 0 ] && echo $PWD'
 
 # Suffix aliases
 alias -s {djvu,ps}="background zathura"

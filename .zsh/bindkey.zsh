@@ -45,7 +45,8 @@ bindkey "^@" after-first-word
 bindkey ' ' global-alias-space
 bindkey '~' global-alias-tilde
 bindkey '.' global-alias-dot
-bindkey '^X^f' global-alias-dirstack
+bindkey '^X^g' goto-directory
+bindkey '^X^f' find-file
 bindkey '^H' retract
 
 ## bind to shift-tab

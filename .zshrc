@@ -56,6 +56,8 @@ zle -N global-alias-tilde
 zle -N global-alias-dot
 zle -N global-alias-dirstack
 zle -N after-first-word
+zle -N goto-directory
+zle -N find-file
 zle -C retract complete-word _generic
 
 # IRC client like history
