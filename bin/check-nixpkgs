@@ -1,0 +1,17 @@
+#!/bin/sh
+
+cd ~/nixpkgs
+
+# Search for invalid meta.maintainers entries
+grep -r 'maintainer!s =' *
+grep -r 'maintainers =' * | grep -v '\['
+
+# Search for invalid meta.lincense entries
+grep -r 'licenses =' *
+grep -r 'licences =' *
+grep -r 'licence =' *
+
+grep -r 'url.*\.sourceforge' *
+
+# Find leaf directories that do not occur in all-packages.nix
+find . -type d -links 2 | parallel -N 1 'foo=`grep -L {} top-level/all-packages.nix`;  test -n "$foo" && echo  {}'
