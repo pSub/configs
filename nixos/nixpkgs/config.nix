@@ -2,7 +2,6 @@
 {
 
   allowUnfree = true;
-  dwb.enableAdobeFlash = true;
 
   packageOverrides = pkgs : with pkgs; {
 
