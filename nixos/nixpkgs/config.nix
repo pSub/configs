@@ -1,70 +1,90 @@
-
 {
 
   allowUnfree = true;
 
   packageOverrides = pkgs : with pkgs; {
-
+  
    myTexLive = texLiveAggregationFun {
      paths = [
-       texLive texLiveExtra texLiveBeamer texLiveCMSuper
+       texLive texLiveExtra texLiveBeamer texLiveCMSuper #mathpartir
      ];
    };
 
-   ktouchWrapped = kde4.wrapper kde4.ktouch;
-
-   # Collection packages required to use my configuration files
-   myPackages = pkgs.buildEnv {
-     name = "myPackages";
+   base-env = buildEnv {
+     name = "base";
      paths = [
        acpi
-       aspell
-       aspellDicts.de
-       aspellDicts.en
        atool
        bgs
        bmon
-       calibre
        dmenu
        dunst
-       dwb
-       gitFull
-       gnupg
-       htop
        i3lock
-       inotifyTools
-       pinentry
+       inotify-tools
+       htop
        rxvt_unicode
-       thunderbird-bin
-       transmission_remote_gtk
-       udisks_glue
-       mpc_cli
        unison
-       unzip
-       weechat
-       vim
-
-       # Emacs
-       emacs24
-       emacs24Packages.autoComplete
-       emacs24Packages.haskellMode
-       emacs24Packages.magit
-       emacs24Packages.org
-       emacs24Packages.scalaMode2
-       emacs24Packages.structuredHaskellMode
-       emacs24Packages.writeGood
-
-       # Xutils
+       haskellPackages.xmobar
        xclip
        xbindkeys
        xlibs.xinput
        xlibs.xmodmap
+       zile
+     ];
+   };
 
-       # Misc
-       haskellPackages.zlib
-       haskellPackages.Agda
+   emacs-env = buildEnv {
+     name = "emacs";
+     paths = [
+       emacs24
+       emacs24Packages.autoComplete
+       emacs24Packages.haskellMode
+#       emacs24Packages.magit
+       emacs24Packages.org
+       emacs24Packages.scalaMode2
+       emacs24Packages.structuredHaskellMode
+       emacs24Packages.writeGood
+     ];
+   };
+
+   apps-env = buildEnv {
+     name = "apps";
+     paths = [
+       calibre
+       firefox
+       thunderbird
+     ];
+   };
+
+   spelling-env = buildEnv {
+     name = "spelling";
+     paths = [
+       aspell
+       aspellDicts.de
+       aspellDicts.en
+     ];
+   };
+
+   development-env = buildEnv {
+     name = "development";
+     paths = [
+       gitFull
+     ];
+   };
+
+   security-env = buildEnv {
+     name = "security";
+     paths = [
+       apg
+       gnupg
+       pinentry
      ];
    };
    
   };
 }
+
+
+
+
+
