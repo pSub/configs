@@ -33,13 +33,20 @@
      ];
    };
 
+   tools-env = buildEnv {
+     name = "tools-env";
+     paths = [
+       psmisc
+     ];
+   };
+
    emacs-env = buildEnv {
      name = "emacs";
      paths = [
        emacs24
        emacs24Packages.autoComplete
        emacs24Packages.haskellMode
-#       emacs24Packages.magit
+       emacs24Packages.magit
        emacs24Packages.org
        emacs24Packages.scalaMode2
        emacs24Packages.structuredHaskellMode
