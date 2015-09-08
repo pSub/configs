@@ -27,8 +27,6 @@
     error = cyan
     header = yellow
 
-[merge]
-    tool = diff
 [diff]
     tool = vimdiff
     renames = copy
