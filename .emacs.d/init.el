@@ -78,6 +78,8 @@
 (ido-mode t)
 (show-paren-mode t)
 
+(setq tramp-ssh-controlmaster-options "")
+
 (dolist (dir '(
   "~/.emacs.d/"
 ; Paths for NixOS
