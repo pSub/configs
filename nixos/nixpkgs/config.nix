@@ -28,6 +28,7 @@
        haskellPackages.xmobar
        xclip
        xbindkeys
+       xdotool
        xlibs.xinput
        xlibs.xmodmap
        zile
