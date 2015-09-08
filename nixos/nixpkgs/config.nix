@@ -58,6 +58,7 @@
      name = "apps";
      paths = [
        calibre
+       feh
        firefox
        thunderbird
        pass
