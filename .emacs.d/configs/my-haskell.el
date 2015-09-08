@@ -6,6 +6,10 @@
 
 (load "haskell-mode-autoloads")
 
+(setq haskell-process-type 'ghci
+      haskell-process-path-ghci "nix-shell"
+      haskell-process-args-ghci '("--command" "cabal repl -ferror-spans"))
+
 ;; Customization
 (custom-set-variables
  ;; Use cabal-dev for the GHCi session. Ensures our dependencies are in scope.
@@ -14,6 +18,11 @@
  ;; Use notify.el (if you have it installed) at the end of running
  ;; Cabal commands or generally things worth notifying.
  '(haskell-notify-p t)
+
+ ;; '(haskell-program-name "nix-shell --pure --command "ghci")
+
+  '(haskell-process-wrapper-function (lambda (argv) (append (list \"nix-shell\" \"-I\" \".\" \"--command\" )
+                    (list (mapconcat 'identity argv \" \")))))
 
  ;; To enable tags generation on save.
  '(haskell-tags-on-save t)

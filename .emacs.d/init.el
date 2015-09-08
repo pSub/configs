@@ -81,12 +81,16 @@
 (setq tramp-ssh-controlmaster-options "")
 
 (dolist (dir '(
-  "~/.emacs.d/"
+  "~/.emacs.d/configs/"
 ; Paths for NixOS
   "~/.nix-profile/share/org/contrib/lisp/"
   "~/.nix-profile/share/emacs/site-lisp/org/"
   ))
   (add-to-list 'load-path (expand-file-name dir)))
+
+(add-to-list 'package-directory-list "~/.nix-profile/share/emacs/site-lisp/elpa")
+
+(package-initialize)
 
 ; http://savannah.nongnu.org/projects/dtrt-indent/
 ;(load "dtrt-indent/dtrt-indent")

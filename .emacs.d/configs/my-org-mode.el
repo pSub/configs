@@ -1,7 +1,7 @@
 (require 'org-install)
 (require 'org-contacts)
 (require 'org-habit)
-(require 'org-journal)
+;(require 'org-journal)
 (require 'diary-lib)
 
 (setq solar-n-hemi-seasons
@@ -59,9 +59,12 @@
       org-agenda-start-with-clockreport-mode t
       org-agenda-window-setup 'current-window
       org-agenda-clockreport-parameter-plist (quote (:link t :maxlevel 5 :fileskip0 t :compact t))
+      org-agenda-sticky t
       )
 
-(setq org-agenda-files (list (concat org-directory "agenda/"))
+(setq org-agenda-files (list (concat org-directory "agenda/meetings.org")
+                             (concat org-directory "agenda/todo.org"))
+;;                             (concat org-directory "agenda/habits.org"))
       org-default-notes-file (concat org-directory "notes.org")
       org-contacts-files (list (concat org-directory "contacts.org"))
       org-journal-dir (concat org-directory "journal/"))
