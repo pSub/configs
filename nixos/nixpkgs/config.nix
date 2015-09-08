@@ -22,6 +22,7 @@
        i3lock
        inotify-tools
        htop
+       networkmanagerapplet
        rxvt_unicode
        unison
        haskellPackages.xmobar
