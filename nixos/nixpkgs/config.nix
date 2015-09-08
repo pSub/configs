@@ -53,6 +53,8 @@
        calibre
        firefox
        thunderbird
+       pass
+       quasselClient_qt5
      ];
    };
 
