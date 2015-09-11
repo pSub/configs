@@ -24,6 +24,7 @@
        htop
        networkmanagerapplet
        rxvt_unicode
+       trayer
        unison
        haskellPackages.xmobar
        xclip
@@ -38,7 +39,11 @@
    tools-env = buildEnv {
      name = "tools-env";
      paths = [
+       binutils
+       nox
+       imagemagick
        psmisc
+       xfce.tumbler
      ];
    };
 
@@ -63,7 +68,9 @@
        feh
        firefox
        thunderbird
+       llpp
        pass
+       pcmanfm
        quasselClient_qt5
      ];
    };
