@@ -43,7 +43,9 @@
        nox
        imagemagick
        psmisc
+       pinpoint
        xfce.tumbler
+       xfce.ristretto
      ];
    };
 
