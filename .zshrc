@@ -1,5 +1,8 @@
 # Created by pSub for 4.3.10
 
+# FIXME: Implement this in NixOS
+. ~/.zprofile
+
 # Declaration of config files to
 # be used, which are located in $ZSHDIR
 config_files=(alias
