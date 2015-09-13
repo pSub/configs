@@ -40,8 +40,10 @@
      name = "tools-env";
      paths = [
        binutils
+       file
        nox
        imagemagick
+       parallel
        psmisc
        pinpoint
        xfce.tumbler
