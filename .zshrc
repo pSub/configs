@@ -42,6 +42,8 @@ autoload -U colors && colors
 autoload -U zmv
 autoload -Uz vcs_info
 autoload -U url-quote-magic
+autoload n-list n-cd n-env n-kill n-panelize n-options n-aliases n-functions \
+         n-history n-preview
 
 # Add directory with custom functions to FPATH
 fpath=($fpath $ZSHFUN)
