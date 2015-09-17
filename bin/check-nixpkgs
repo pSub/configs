@@ -4,7 +4,7 @@ cd ~/nixpkgs
 
 # Search for invalid meta.maintainers entries
 grep -r 'maintainer!s =' *
-grep -r 'maintainers =' * | grep -v '\['
+grep -r 'maintainers =' * | grep -Ev '\[|gnome3|import|maintainers\;'
 
 # Search for invalid meta.lincense entries
 grep -r 'licenses =' *
