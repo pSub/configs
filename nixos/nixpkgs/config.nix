@@ -33,6 +33,7 @@
        xlibs.xinput
        xlibs.xmodmap
        zile
+       zip
      ];
    };
 
@@ -41,13 +42,16 @@
      paths = [
        binutils
        file
+       ghostscript
        nox
+       nix-repl
        imagemagick
        parallel
        psmisc
        pinpoint
        xfce.tumbler
        xfce.ristretto
+       zsh-navigation-tools
      ];
    };
 
@@ -69,12 +73,15 @@
      name = "apps";
      paths = [
        calibre
+       chromium
        feh
        firefox
        thunderbird
        llpp
        pass
+       geeqie
        pcmanfm
+       electrum
        quasselClient_qt5
      ];
    };
