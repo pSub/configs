@@ -58,6 +58,6 @@
   powerManagement.cpuFreqGovernor = "conservative";
 
   hardware.trackpoint.enable = true;
-  hardware.trackpoint.sensitivity = 220;
-  hardware.trackpoint.speed = 200;
+  hardware.trackpoint.sensitivity = 180;
+  hardware.trackpoint.speed = 180;
 }
