@@ -14,5 +14,6 @@ grep -r 'licence =' *
 grep -r 'url.*\.sourceforge' *
 
 grep -r 'with platforms;' * | grep -Ev '\+\+|allBut'
+
 # Find leaf directories that do not occur in all-packages.nix
-find . -type d -links 2 | parallel -N 1 'foo=`grep -L {} top-level/all-packages.nix`;  test -n "$foo" && echo  {}'
+find pkgs -type d -links 2 | parallel -N 1 'foo=`grep -L {} top-level/all-packages.nix`;  test -n "$foo" && echo  {}'
