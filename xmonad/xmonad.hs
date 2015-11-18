@@ -7,6 +7,7 @@ import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
 import           XMonad.Hooks.SetWMName
 import           XMonad.Hooks.UrgencyHook
+import           XMonad.Hooks.EwmhDesktops
 import           XMonad.Layout.PerWorkspace
 import qualified XMonad.StackSet              as W
 import           XMonad.Util.Cursor
@@ -40,7 +41,7 @@ myKeys = [ ("M-<Tab>", toggleWS)
 
 main = do
        xmproc <- spawnPipe "xmobar ~/.xmobar/default "
-       xmonad $ withUrgencyHook NoUrgencyHook defaultConfig
+       xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
         { startupHook = setWMName "LG3D" >> setDefaultCursor xC_left_ptr
         , workspaces = myWorkspaces
         , modMask = mod3Mask
@@ -48,6 +49,7 @@ main = do
         , normalBorderColor = "black"
         , focusedBorderColor = "#f5a400"
         , manageHook = myManageHook
+        , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         , logHook = do
                      updatePointer (Relative 0.5 0.5)
