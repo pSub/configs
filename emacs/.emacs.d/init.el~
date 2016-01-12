@@ -43,7 +43,7 @@
 (setq inhibit-startup-message t ; show scratch buffer on start
       inhibit-startup-echo-area-message t)
 
-(global-linum-mode 1) ; line numbers in all buffers
+;(global-linum-mode 1) ; line numbers in all buffers
 (define-key global-map (kbd "RET") 'newline-and-indent)
 (setq next-line-add-newlines t) ; C-n makes new line
 (setq x-menu 'meta)
@@ -78,8 +78,6 @@
 (ido-mode t)
 (show-paren-mode t)
 
-(setq tramp-ssh-controlmaster-options "")
-
 (dolist (dir '(
   "~/.emacs.d/configs/"
 ; Paths for NixOS
@@ -105,9 +103,11 @@
 (load "my-auctex")
 (load "my-util")
 (load "my-haskell")
-(load "my-org-mode")
-(load "my-vcs")
+;(load "my-org-mode")
+(require 'magit)
+(global-set-key (kbd "C-c g") 'magit-status)
+;(load "my-vcs")
 ;(load "my-notmuch")
-(load "my-scala")
-(load "my-agda")
-(load "my-elfeed")
+;(load "my-scala")
+;(load "my-agda")
+;(load "my-elfeed")
