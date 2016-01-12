@@ -52,7 +52,7 @@ main = do
         , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         , logHook = do
-                     updatePointer (Relative 0.5 0.5)
+                     updatePointer (0.5, 0.5) (0, 0)
                      dynamicLogWithPP xmobarPP
                        { ppOutput = hPutStrLn xmproc
                        , ppHidden = pad
