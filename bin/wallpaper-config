@@ -1,4 +1,4 @@
-#!/home/pascal/.nix-profile/bin/zsh
+#!/usr/bin/env zsh
 
 zmodload zsh/mapfile
 
