@@ -11,7 +11,7 @@
    };
 
    base-env = buildEnv {
-     name = "base";
+     name = "base-env";
      paths = [
        acpi
        atool
@@ -65,7 +65,7 @@
    };
 
    emacs-env = buildEnv {
-     name = "emacs";
+     name = "emacs-env";
      paths = [
        emacs24
        emacs24Packages.autoComplete
@@ -79,7 +79,7 @@
    };
 
    apps-env = buildEnv {
-     name = "apps";
+     name = "apps-env";
      paths = [
        calibre
        chromium
@@ -96,7 +96,7 @@
    };
 
    spelling-env = buildEnv {
-     name = "spelling";
+     name = "spelling-env";
      paths = [
        aspell
        aspellDicts.de
@@ -105,14 +105,14 @@
    };
 
    development-env = buildEnv {
-     name = "development";
+     name = "development-env";
      paths = [
        gitFull
      ];
    };
 
    security-env = buildEnv {
-     name = "security";
+     name = "security-env";
      paths = [
        apg
        gnupg
