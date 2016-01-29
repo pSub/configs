@@ -14,7 +14,6 @@
      name = "base-env";
      paths = [
        acpi
-       atool
        bgs
        bmon
        dmenu
