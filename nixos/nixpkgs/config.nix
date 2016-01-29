@@ -49,6 +49,7 @@
        parallel
        psmisc
        pinpoint
+       traceroute
        xfce.tumbler
        xfce.ristretto
        zsh-navigation-tools
