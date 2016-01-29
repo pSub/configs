@@ -41,7 +41,4 @@ $HOME/bin/wallpaper &
 # Autostart applications
 $HOME/bin/x-autostart &
 
-# Start the screen locker before xmodmap
-# to work around this issue:
-# http://bugs.i3wm.org/report/ticket/1100
-$HOME/bin/lock && xmodmap $HOME/.Xmodmap
+xmodmap $HOME/.Xmodmap
