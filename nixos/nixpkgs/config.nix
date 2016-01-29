@@ -89,6 +89,7 @@
        llpp
        pass
        geeqie
+       gnucash
        pcmanfm
        electrum
        quasselClient_qt5
