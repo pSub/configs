@@ -23,6 +23,7 @@
        htop
        networkmanagerapplet
        rxvt_unicode
+       stow
        trayer
        unison
        haskellPackages.xmobar
