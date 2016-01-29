@@ -55,6 +55,15 @@
      ];
    };
 
+   archivers-env = buildEnv {
+     name = "archivers-env";
+     paths = [
+       atool
+       zip
+       unzip
+     ];
+   };
+
    emacs-env = buildEnv {
      name = "emacs";
      paths = [
