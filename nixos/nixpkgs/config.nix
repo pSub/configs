@@ -33,7 +33,6 @@
        xlibs.xinput
        xlibs.xmodmap
        zile
-       zip
      ];
    };
 
