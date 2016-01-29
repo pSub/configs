@@ -85,7 +85,6 @@
        calibre
        chromium
        feh
-       firefox
        thunderbird
        llpp
        pass
