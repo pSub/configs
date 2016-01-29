@@ -39,6 +39,7 @@
    tools-env = buildEnv {
      name = "tools-env";
      paths = [
+       bind
        binutils
        file
        ghostscript
