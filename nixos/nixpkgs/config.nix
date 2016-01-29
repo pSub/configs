@@ -91,6 +91,7 @@
        geeqie
        gnucash
        pcmanfm
+       photoqt
        electrum
        quasselClient_qt5
      ];
