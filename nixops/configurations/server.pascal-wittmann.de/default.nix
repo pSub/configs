@@ -44,9 +44,11 @@
       6667 # bitlbee
       4242 # quassel
       5232 # radicale
+      4040 # subsonic (http)
       4567 # nixpkgs-monitor
       5000 # lint-review
       5672 # celery
+      8443 # subsonic (https)
     ];
 
     # Select internationalisation properties.
@@ -127,6 +129,12 @@ type = htpasswd
 htpasswd_filename = ${./secrets/passwords}
 htpasswd_encryption = plain
       '';
+
+      services.subsonic.enable = true;
+      services.subsonic.defaultMusicFolder = "/srv/music";
+      services.subsonic.defaultPlaylistFolder = "/srv/playlists";
+      services.subsonic.defaultPodcastFolder = "/srv/podcast";
+      services.subsonic.httpsPort = 8443;
 
       # lighttpd.
       services.lighttpd.enable = true;
