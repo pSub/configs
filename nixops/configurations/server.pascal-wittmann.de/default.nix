@@ -112,39 +112,39 @@
     # Caldav / Cardav
     services.radicale.enable = true;
     services.radicale.config = ''
-[server]
-hosts = server.pascal-wittmann.de:5232
-daemon = True
-ssl = True
-protocol = PROTOCOL_SSLv23
-certificate = ${./secrets/cert.pem}
-key = ${./secrets/key.pem}
-base_prefix = /
+      [server]
+      hosts = server.pascal-wittmann.de:5232
+      daemon = True
+      ssl = True
+      protocol = PROTOCOL_SSLv23
+      certificate = ${./secrets/cert.pem}
+      key = ${./secrets/key.pem}
+      base_prefix = /
+      
+      [storage]
+      filesystem_folder = /srv/radicale/collections
+      
+      [auth]
+      type = htpasswd
+      htpasswd_filename = ${./secrets/passwords}
+      htpasswd_encryption = plain
+    '';
 
-[storage]
-filesystem_folder = /srv/radicale/collections
+    services.subsonic.enable = true;
+    services.subsonic.defaultMusicFolder = "/srv/music";
+    services.subsonic.defaultPlaylistFolder = "/srv/playlists";
+    services.subsonic.defaultPodcastFolder = "/srv/podcast";
+    services.subsonic.httpsPort = 8443;
 
-[auth]
-type = htpasswd
-htpasswd_filename = ${./secrets/passwords}
-htpasswd_encryption = plain
-      '';
-
-      services.subsonic.enable = true;
-      services.subsonic.defaultMusicFolder = "/srv/music";
-      services.subsonic.defaultPlaylistFolder = "/srv/playlists";
-      services.subsonic.defaultPodcastFolder = "/srv/podcast";
-      services.subsonic.httpsPort = 8443;
-
-      # lighttpd.
-      services.lighttpd.enable = true;
-      services.lighttpd.configText = ''
-        server.document-root = "/srv/www/"
-        server.port = 80
-        server.username = "lighttpd"
-        server.follow-symlink = "enable"
-
-        server.modules = (
+    # lighttpd.
+    services.lighttpd.enable = true;
+    services.lighttpd.configText = ''
+      server.document-root = "/srv/www/"
+      server.port = 80
+      server.username = "lighttpd"
+      server.follow-symlink = "enable"
+      
+      server.modules = (
           "mod_redirect",
           "mod_proxy",
           "mod_fastcgi",
