@@ -138,22 +138,15 @@
     services.subsonic.defaultPodcastFolder = "/srv/podcast";
     services.subsonic.httpsPort = 8443;
 
-    # lighttpd.
+    # lighttpd
     services.lighttpd.enable = true;
-    services.lighttpd.configText = ''
-      server.document-root = "/srv/www/"
-      server.port = 80
-      server.username = "lighttpd"
+    services.lighttpd.document-root = "/srv/www/";
+    services.lighttpd.port = 80;
+    services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy" "mod_fastcgi"
+      "mod_userdir" "mod_auth" ];
+    services.lighttpd.extraConfig =  ''
       server.follow-symlink = "enable"
       
-      server.modules = (
-          "mod_redirect",
-          "mod_proxy",
-          "mod_fastcgi",
-          "mod_userdir",
-          "mod_auth"
-        )
-
       auth.debug = 2
       auth.backend = "plain"
       auth.backend.plain.userfile = "${./secrets/passwords}"
@@ -161,10 +154,6 @@
       userdir.basepath = "/srv/users/"
       userdir.path = ""
       userdir.include-user = ( "pascal", "qwert" )
-
-      include "${./static/mimetype.conf}"
-
-      static-file.exclude-extensions = ( ".fcgi", ".php", ".rb", "~", ".inc" )
 
       dir-listing.activate = "enable"
       dir-listing.encoding = "utf-8"
