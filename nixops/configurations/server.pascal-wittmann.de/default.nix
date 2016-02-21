@@ -157,10 +157,9 @@
 
       dir-listing.activate = "enable"
       dir-listing.encoding = "utf-8"
-
-      include "/srv/homepage/lighttpd.conf"
     '';
 
+    # Homepage
     services.homepage.enable = true;
 
     # Nixpkgs Monitor

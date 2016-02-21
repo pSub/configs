@@ -21,6 +21,27 @@ in {
       home = "/var/homepage";
     };
 
+    services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy" ];
+    services.lighttpd.extraConfig = ''
+      name = "www.pascal-wittmann.de"
+      protocol = "http"
+      approute = protocol + "://" + name + "/"
+      
+      $HTTP["host"] == "pascal-wittmann.de" {
+        url.redirect = ( "^/(.*)" => approute + "$1")
+      }
+
+      $HTTP["host"] == "www.pascal-wittmann.de" {
+        $SERVER["socket"] == ":443" {
+          ssl.engine                  = "enable"
+          ssl.pemfile                 = "/srv/homepage/ssl/www.pascal-wittmann.de.pem" 
+          ssl.ca-file                 = "/srv/homepage/ssl/ca.crt"
+        }
+        proxy.balance = "hash"
+        proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 3001 )))
+      }
+    '';
+
     systemd.services.homepage = {
       description = "Personal Homepage powered by Yesod";
       wantedBy = [ "multi-user.target" ];
