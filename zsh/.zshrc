@@ -27,14 +27,6 @@ export COLORTERM=yes
 export DIRSTACKSIZE=9
 export DIRSTACKFILE=~/.zdirs
 
-# Keybindings to change pacman commands on the fly
-pacman_bindings=(
-    "^[i" "S"     # Meta-i → install
-    "^[f" "Ss"    # Meta-f → search
-    "^[r" "Rs"    # Meta-r → remove
-    "^[p" "Qi"    # Meta-p → info / properties
-)
-
 # MODULES
 autoload -U compinit && compinit
 autoload -U keeper && keeper
