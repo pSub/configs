@@ -27,9 +27,6 @@ export COLORTERM=yes
 export DIRSTACKSIZE=9
 export DIRSTACKFILE=~/.zdirs
 
-# TODO: Integrate this somehow into NixOS
-fpath=(~/.nix-profile/share/zsh/site-functions $fpath)
-
 # Keybindings to change pacman commands on the fly
 pacman_bindings=(
     "^[i" "S"     # Meta-i → install
