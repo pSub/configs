@@ -6,8 +6,7 @@ let
   cfg = config.services.homepage;
 
   user = "homepage";
-  homepage-app = with (import <nixpkgs> {}).pkgs;
-    haskell.packages.ghc7103.callPackage /home/pascal/web/pascal-wittmann.de { };
+  homepage-app = (import /home/pascal/web/pascal-wittmann.de) { compiler = "ghc7103"; };
 in {
   options = {
     services.homepage.enable = mkEnableOption "Wheter to enable pascal-wittmann.de";
