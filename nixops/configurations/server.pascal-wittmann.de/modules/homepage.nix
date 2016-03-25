@@ -6,7 +6,7 @@ let
   cfg = config.services.homepage;
 
   user = "homepage";
-  homepage-app = (import /home/pascal/web/pascal-wittmann.de) { compiler = "ghc7103"; };
+  homepage-app = (import /home/pascal/web/pascal-wittmann.de) { };
 in {
   options = {
     services.homepage.enable = mkEnableOption "Wheter to enable pascal-wittmann.de";
