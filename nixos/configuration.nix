@@ -164,8 +164,6 @@ in {
   services.xserver.windowManager.default = "xmonad";
   services.xserver.desktopManager.xterm.enable = false;
 
-  # Use GnuPG agent.
-  services.xserver.startGnuPGAgent = true;
 
   # MPD
   services.mpd.enable = true;
