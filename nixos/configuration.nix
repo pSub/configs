@@ -132,6 +132,7 @@ in {
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.hplip ];
 
   # SMART.
   services.smartd.enable = true;
