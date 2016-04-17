@@ -43,12 +43,10 @@ in {
 
   users.mutableUsers = false;
   users.extraUsers.pascal = {
-    uid = 499;
-    createHome = true;
+    uid = 1002;
     description = "Pascal Wittmann";
-    group = "users";
     extraGroups = [ "networkmanager" "vboxusers" ];
-    home = "/home/pascal";
+    isNormalUser = true;
     shell = "${pkgs.zsh}/bin/zsh";
   };
   fileSystems."/home/pascal/downloads" = { device = "tmpfs" ; fsType = "tmpfs"; options = "size=25%"; };
