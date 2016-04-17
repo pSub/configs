@@ -158,7 +158,6 @@ in {
 
   services.xserver.windowManager.xmonad = { enable = true;
                                             enableContribAndExtras = true;
-                                            extraPackages = haskellPackages : [];
                                           };
   services.xserver.windowManager.default = "xmonad";
   services.xserver.desktopManager.xterm.enable = false;
