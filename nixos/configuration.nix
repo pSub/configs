@@ -151,10 +151,11 @@ in {
                                  tapButtons = false;
                                  vertEdgeScroll = true;
                                };
-  services.xserver.displayManager.slim = { enable = true;
-                                           autoLogin = true;
-                                           defaultUser = "pascal";
-                                         };
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.lightdm.extraSeatDefaults = ''
+    autologin-user = pascal
+  '';
+
   services.xserver.windowManager.xmonad = { enable = true;
                                             enableContribAndExtras = true;
                                             extraPackages = haskellPackages : [];
