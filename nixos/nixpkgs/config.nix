@@ -45,14 +45,29 @@
        ghostscript
        nox
        nix-repl
+       mc
        imagemagick
        parallel
        psmisc
        pinpoint
        traceroute
+       telnet
+       tree
        xfce.tumbler
        xfce.ristretto
+       which
        zsh-navigation-tools
+     ];
+   };
+
+   nix-tools-env = buildEnv {
+     name = "nix-tools-env";
+     paths = [
+       cabal2nix
+       dysnomia
+       nix-generate-from-cpan
+       nixops
+       nixpkgs-lint
      ];
    };
 
@@ -82,8 +97,10 @@
    apps-env = buildEnv {
      name = "apps-env";
      paths = [
+       areca
        calibre
        chromium
+       evince
        feh
        thunderbird
        llpp
@@ -91,7 +108,7 @@
        geeqie
        gnucash
        pcmanfm
-       photoqt
+       phototonic
        electrum
        quasselClient_qt5
      ];
@@ -111,6 +128,7 @@
      paths = [
        gitFull
        idea.idea-ultimate
+       subversion
      ];
    };
 
