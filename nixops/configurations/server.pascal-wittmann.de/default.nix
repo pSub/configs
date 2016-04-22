@@ -46,11 +46,9 @@
       6667 # bitlbee
       4242 # quassel
       5232 # radicale
-      4040 # subsonic (http)
       4567 # nixpkgs-monitor
       5000 # lint-review
       5672 # celery
-      8443 # subsonic (https)
     ];
 
     # Select internationalisation properties.
@@ -136,7 +134,25 @@
     services.subsonic.defaultMusicFolder = "/srv/music";
     services.subsonic.defaultPlaylistFolder = "/srv/playlists";
     services.subsonic.defaultPodcastFolder = "/srv/podcast";
-    services.subsonic.httpsPort = 8443;
+    services.subsonic.httpsPort = 0;
+    services.subsonic.listenAddress = "127.0.0.1";
+    #services.subsonic.lighttpd.enable = false;
+    #services.subsonic.lighttpd.hostname = "music.pascal-wittmann.de";
+    #services.subsonic.lighttpd.pemFile = "/srv/homepage/ssl/www.pascal-wittmann.de.pem";
+    #services.subsonic.lighttpd.caFile = "/srv/homepage/ssl/ca.crt";
+
+    #services.lighttpd.enableModules = [ "mod_proxy" ];
+    #services.lighttpd.extraConfig = ''
+    #  $HTTP["host"] == "music.pascal-wittmann.de" {
+    #    $SERVER["socket"] == ":443" {
+    #      ssl.engine                  = "enable"
+    #      ssl.pemfile                 = "/srv/homepage/ssl/www.pascal-wittmann.de.pem"
+    #      ssl.ca-file                 = "/srv/homepage/ssl/ca.crt"
+    #    }
+    #    proxy.balance = "hash"
+    #    proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => ${toString services.subsonic.port} )))
+    #  }
+    #'';
 
     # lighttpd
     services.lighttpd.enable = true;
@@ -157,6 +173,16 @@
 
       dir-listing.activate = "enable"
       dir-listing.encoding = "utf-8"
+
+      $HTTP["host"] == "music.pascal-wittmann.de" {
+        $SERVER["socket"] == ":443" {
+          ssl.engine                  = "enable"
+          ssl.pemfile                 = "/srv/homepage/ssl/www.pascal-wittmann.de.pem"
+          ssl.ca-file                 = "/srv/homepage/ssl/ca.crt"
+        }
+        proxy.balance = "hash"
+        proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 4040 )))
+      }
     '';
 
     # Homepage
