@@ -52,6 +52,8 @@ in {
         PGUSER = user;
         PGPASS = import ../secrets/homepage_database_password;
         PGDATABASE = "homepage_production";
+        GITHUB_OAUTH_CLIENT_ID = "82fa60e9329799fe88f8";
+        GITHUB_OAUTH_CLIENT_SECRET = import ../secrets/github_oauth_client_secret;
       };
       script = ''
         cd /srv/homepage
