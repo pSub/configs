@@ -85,7 +85,7 @@
 
     # Enable the OpenSSH daemon
     services.openssh.enable = true;
-    services.openssh.allowSFTP = false;
+    services.openssh.allowSFTP = true;
     services.openssh.forwardX11 = false;
     services.openssh.permitRootLogin = "yes"; # For deployment via NixOps
     services.openssh.passwordAuthentication = false;
