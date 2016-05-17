@@ -4,10 +4,9 @@
 
   packageOverrides = pkgs : with pkgs; {
   
-   myTexLive = texLiveAggregationFun {
-     paths = [
-       texLive texLiveExtra texLiveBeamer texLiveCMSuper #mathpartir
-     ];
+   myTexLive = texlive.combine {
+     inherit (texlive) scheme-basic koma-script babel-german todonotes xkeyval
+       xcolor collection-pictures ms;
    };
 
    base-env = buildEnv {
