@@ -24,7 +24,7 @@ myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
                  , isDialog        --> doCenterFloat
                  , className =? "Thunderbird" --> doShift (myWorkspaces !! 6)
-                 , className =? ".dwb-wrapped" --> doShift (myWorkspaces !! 1)
+                 , className =? "chromium-browser" --> doShift (myWorkspaces !! 1)
                  , className =? "feh" --> doCenterFloat
                  , className =? "llpp" --> doShift (myWorkspaces !! 4)
                  , className =? "Pinentry-gtk-2" --> doCenterFloat
