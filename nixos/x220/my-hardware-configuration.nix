@@ -51,7 +51,7 @@
   nix.maxJobs = 4;
 
   services.xserver.videoDrivers = [ "intel" "vesa" ];
-  services.xserver.vaapiDrivers = [ pkgs.vaapiIntel ];
+  hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
   hardware.opengl.driSupport32Bit = true;
 
   # Power Management
