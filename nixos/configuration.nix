@@ -125,7 +125,8 @@ in {
   '';
 
   # ClamAV.
-  services.clamav.updater.enable = false;
+  services.clamav.daemon.enable = true;
+  services.clamav.updater.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
