@@ -169,7 +169,7 @@
 
       userdir.basepath = "/srv/users/"
       userdir.path = ""
-      userdir.include-user = ( "pascal", "qwert" )
+      userdir.include-user = ( "pascal", "qwert", "lerke" )
 
       dir-listing.activate = "enable"
       dir-listing.encoding = "utf-8"
