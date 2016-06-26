@@ -33,7 +33,7 @@ in {
                                 "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
 
   # Build using chroots to detect more impurities.
-  nix.useChroot = true;
+  nix.useSandbox = true;
 
   # Use the network manager.
   networking.networkmanager.enable = true;
