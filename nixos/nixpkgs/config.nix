@@ -109,7 +109,7 @@
        pcmanfm
        phototonic
        electrum
-       quasselClient_qt5
+       quasselClient
      ];
    };
 
