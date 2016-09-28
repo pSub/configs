@@ -1,7 +1,5 @@
 (require 'org-install)
-(require 'org-contacts)
 (require 'org-habit)
-;(require 'org-journal)
 (require 'diary-lib)
 
 (setq solar-n-hemi-seasons

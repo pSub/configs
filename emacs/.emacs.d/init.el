@@ -24,22 +24,6 @@
 
 (yas-global-mode 1)
 
-; auto-complete
-(require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/elpa/auto-complete/dict")
-
-(set-default 'ac-sources
-             '(ac-source-abbrev
-               ac-source-dictionary
-               ac-source-yasnippet
-               ac-source-words-in-buffer
-               ac-source-words-in-same-mode-buffers
-               ac-source-semantic))
- 
-(ac-config-default)
- 
-(global-auto-complete-mode t)
-
 (setq inhibit-startup-message t ; show scratch buffer on start
       inhibit-startup-echo-area-message t)
 

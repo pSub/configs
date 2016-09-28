@@ -3,7 +3,7 @@
   allowUnfree = true;
 
   packageOverrides = pkgs : with pkgs; {
-  
+
    myTexLive = texlive.combine {
      inherit (texlive) scheme-basic koma-script babel-german todonotes xkeyval
        xcolor collection-pictures ms;
@@ -82,13 +82,11 @@
    emacs-env = buildEnv {
      name = "emacs-env";
      paths = [
-       emacs24
-       emacs24Packages.autoComplete
-       emacs24Packages.haskellMode
-       emacs24Packages.org
-       emacs24Packages.scalaMode2
-       emacs24Packages.structuredHaskellMode
-       emacs24Packages.writeGood
+       emacs
+       emacsMelpa.haskell-mode
+       emacsMelpa.scala-mode
+       emacsMelpa.shm
+       emacsMelpa.writegood-mode
        emacsMelpa.magit
      ];
    };
