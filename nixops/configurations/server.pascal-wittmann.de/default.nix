@@ -34,6 +34,8 @@
     ];
 
     nix.maxJobs = 2;
+    system.autoUpgrade.enable = true;
+    system.autoUpgrade.channel = https://nixos.org/channels/nixos-16.03;
 
     networking.hostName = "nixos"; # Define your hostname.
 
