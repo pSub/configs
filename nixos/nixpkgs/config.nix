@@ -2,12 +2,17 @@
 
   allowUnfree = true;
 
-  packageOverrides = pkgs : with pkgs; {
+  packageOverrides = pkgs : with pkgs; rec {
 
    myTexLive = texlive.combine {
      inherit (texlive) scheme-basic koma-script babel-german todonotes xkeyval
        xcolor collection-pictures ms;
    };
+
+   all-env = [
+     base-env tools-env nix-tools-env archivers-env emacs-env apps-env
+     spelling-env development-env security-env
+   ];
 
    base-env = buildEnv {
      name = "base-env";
