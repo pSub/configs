@@ -20,7 +20,7 @@ in {
       home = "/var/homepage";
     };
 
-    services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy" ];
+    services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy" "mod_setenv" ];
     services.lighttpd.extraConfig = ''
       name = "www.pascal-wittmann.de"
       protocol = "http"
@@ -37,6 +37,9 @@ in {
           ssl.ca-file                 = "/srv/homepage/ssl/ca.crt"
           ssl.cipher-list = "ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA "
           ssl.dh-file="/srv/homepage/ssl/dhparams.pem"
+        }
+        $HTTP["scheme"] == "https" {
+          setenv.add-response-header = ( "Strict-Transport-Security" => "max-age=63072000; includeSubdomains; ")
         }
         proxy.balance = "hash"
         proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 3001 )))
