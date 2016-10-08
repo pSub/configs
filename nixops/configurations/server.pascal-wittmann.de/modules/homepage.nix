@@ -22,7 +22,7 @@ in {
 
     services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy" "mod_setenv" ];
     services.lighttpd.extraConfig = ''
-      name = "www.pascal-wittmann.de"
+      name = "pascal-wittmann.de"
       protocol = "https"
       approute = protocol + "://" + name + "/"
 
@@ -33,7 +33,7 @@ in {
       }
 
       $HTTP["scheme"] == "https" {
-        $HTTP["host"] == "www.pascal-wittmann.de" {
+        $HTTP["host"] =~ "^(www\.|)pascal-wittmann\.de$" {
           ssl.engine                  = "enable"
           ssl.pemfile                 = "/srv/homepage/ssl/www.pascal-wittmann.de.pem"
           ssl.ca-file                 = "/srv/homepage/ssl/ca.crt"
