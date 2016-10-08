@@ -23,11 +23,13 @@ in {
     services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy" "mod_setenv" ];
     services.lighttpd.extraConfig = ''
       name = "www.pascal-wittmann.de"
-      protocol = "http"
+      protocol = "https"
       approute = protocol + "://" + name + "/"
-      
-      $HTTP["host"] == "pascal-wittmann.de" {
-        url.redirect = ( "^/(.*)" => approute + "$1")
+
+      $HTTP["scheme"] == "http" {
+        $HTTP["host"] =~ "^(www\.|)pascal-wittmann\.de$" {
+          url.redirect = ( "^/(.*)" => approute + "$1")
+        }
       }
 
       $HTTP["host"] == "www.pascal-wittmann.de" {
