@@ -41,7 +41,7 @@ in {
           ssl.dh-file="/srv/homepage/ssl/dhparams.pem"
         }
         $HTTP["scheme"] == "https" {
-          setenv.add-response-header = ( "Strict-Transport-Security" => "max-age=63072000; includeSubdomains; ")
+          setenv.add-response-header = ( "Strict-Transport-Security" => "max-age=63072000; includeSubDomains; ")
         }
         proxy.balance = "hash"
         proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 3001 )))
