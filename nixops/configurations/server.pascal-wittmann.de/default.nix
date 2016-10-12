@@ -202,7 +202,7 @@
 
     # X-libraries and fonts are not needed on the server.
     #  environment.noXlibs = true;
-    fonts.enableFontConfig = false;
+    fonts.fontconfig.enable = false;
 
     users.mutableUsers = false;
     users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
