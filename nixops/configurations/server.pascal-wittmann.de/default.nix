@@ -8,7 +8,7 @@
       ./modules/homepage.nix
       ./users.nix
 
-      /home/pascal/projects/nixpkgs-monitor/service.nix
+      #/home/pascal/projects/nixpkgs-monitor/service.nix
     ];
 
     deployment.targetHost = "server.pascal-wittmann.de";
@@ -191,8 +191,8 @@
     services.homepage.enable = true;
 
     # Nixpkgs Monitor
-    services.nixpkgs-monitor.enable = true;
-    services.nixpkgs-monitor.host = "0.0.0.0";
+#    services.nixpkgs-monitor.enable = true;
+#    services.nixpkgs-monitor.host = "0.0.0.0";
 
     # Sound
     sound.enable = false;
