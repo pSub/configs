@@ -4,9 +4,16 @@ with lib;
 
 let
   cfg = config.services.homepage;
-
+  revision = "ab45143f7c3d47e0f0fcc0aca3a62baebaa242f2";
   user = "homepage";
-  homepage-app = (import /home/pascal/web/pascal-wittmann.de) { };
+
+  homepage-app = (import (pkgs.fetchFromGitHub {
+    owner = "pSub";
+    repo = "pascal-wittmann.de";
+    rev = "ab45143f7c3d47e0f0fcc0aca3a62baebaa242f2";
+    sha256 = "12l4g3k29f6z6v6l7glb7dpbfzsf14rvnw73agf8gsali2bdqpnd";
+  })) { };
+
 in {
   options = {
     services.homepage.enable = mkEnableOption "Wheter to enable pascal-wittmann.de";
