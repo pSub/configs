@@ -25,6 +25,7 @@
        i3lock
        inotify-tools
        htop
+       libnotify
        networkmanagerapplet
        rxvt_unicode
        stow
