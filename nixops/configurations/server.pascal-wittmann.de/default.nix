@@ -57,7 +57,6 @@
       443 # https
       6667 # bitlbee
       4242 # quassel
-      5232 # radicale
       4567 # nixpkgs-monitor
       5000 # lint-review
       5672 # celery
@@ -120,26 +119,17 @@
     services.postgresql.enable = true;
     services.postgresql.package = pkgs.postgresql92;
 
-
     # Caldav / Cardav
     services.radicale.enable = true;
     services.radicale.config = ''
       [server]
-      hosts = server.pascal-wittmann.de:5232
+      hosts = 127.0.0.1:5232
       daemon = True
-      ssl = True
-      protocol = PROTOCOL_SSLv23
-      certificate = ${./secrets/cert.pem}
-      key = ${./secrets/key.pem}
-      base_prefix = /
+      ssl = False
+      base_prefix = /radicale/
       
       [storage]
       filesystem_folder = /srv/radicale/collections
-      
-      [auth]
-      type = htpasswd
-      htpasswd_filename = ${./secrets/passwords}
-      htpasswd_encryption = plain
     '';
 
     services.subsonic.enable = true;
@@ -194,6 +184,16 @@
         }
         proxy.balance = "hash"
         proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 4040 )))
+      }
+
+      $HTTP["url"] =~ "^/radicale" {
+        proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 5232 )))
+        auth.require = (
+          "/radicale" => ( "method" => "basic",
+          "realm"     => "Password protected area",
+          "require"   => "valid-user"
+         )
+        )
       }
     '';
 
