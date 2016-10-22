@@ -37,20 +37,6 @@ in {
 
       $HTTP["scheme"] == "https" {
         $HTTP["host"] =~ "^(www\.|)pascal-wittmann\.de$" {
-          ssl.engine                  = "enable"
-          ssl.pemfile                 = "/srv/homepage/ssl/www.pascal-wittmann.de.pem"
-          ssl.ca-file                 = "/srv/homepage/ssl/ca.crt"
-          ssl.cipher-list = "${import ../static/ssl-cipher-list.txt}"
-          ssl.dh-file = "/srv/homepage/ssl/dhparams.pem"
-
-          setenv.add-response-header = (
-            "Strict-Transport-Security" => "max-age=63072000; includeSubDomains; preload",
-            "X-Content-Type-Options" => "nosniff",
-            "X-Frame-Options" => "DENY",
-            "X-XSS-Protection" => "1; mode=block",
-            "Public-Key-Pins" => "pin-sha256=\"aiHvkTqXNmsZ9V78XaIbP6VHV5O2Q1oN85+N/r3qATA=\"; pin-sha256=\"ZjOx5W+YxpIcqzuFaFr4o0yXxxu1QrUhIq5NFpdy9zY=\"; max-age=5184000; includeSubdomains"
-          )
-
           proxy.balance = "hash"
           proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 3001 )))
         }
