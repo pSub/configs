@@ -55,7 +55,6 @@
     networking.firewall.allowedTCPPorts = [
       80 # http
       443 # https
-      6667 # bitlbee
       4242 # quassel
       4567 # nixpkgs-monitor
       5000 # lint-review
@@ -104,7 +103,7 @@
 
     # bitlbee.
     services.bitlbee.enable = true;
-    services.bitlbee.interface = "0.0.0.0";
+    services.bitlbee.interface = "127.0.0.1";
     services.bitlbee.portNumber = 6667;
     services.bitlbee.authMode = "Registered";
     services.bitlbee.hostName = "server.pascal-wittmann.de";
