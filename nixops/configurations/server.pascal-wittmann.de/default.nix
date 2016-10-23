@@ -37,7 +37,7 @@
     system.autoUpgrade.enable = true;
     system.autoUpgrade.channel = https://nixos.org/channels/nixos-16.03;
     systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
-      all@{ pkgs, lib, ... }: lib.filterAttrs (n: v: n != "deployment") ((import /etc/nixos/current/default.nix).server all)
+      all@{ lib, ... }: lib.filterAttrs (n: v: n != "deployment") ((import /etc/nixos/current/default.nix).server all)
     '';
 
     system.activationScripts = {
