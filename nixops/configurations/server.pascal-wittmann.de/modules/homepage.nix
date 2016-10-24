@@ -4,7 +4,6 @@ with lib;
 
 let
   cfg = config.services.homepage;
-  revision = "ab45143f7c3d47e0f0fcc0aca3a62baebaa242f2";
   user = "homepage";
 
   homepage-app = (import (pkgs.fetchFromGitHub {
