@@ -15,7 +15,7 @@ let
 
 in {
   options = {
-    services.homepage.enable = mkEnableOption "Wheter to enable pascal-wittmann.de";
+    services.homepage.enable = mkEnableOption "Whether to enable pascal-wittmann.de";
   };
 
   config = mkIf cfg.enable {
