@@ -6,6 +6,7 @@
 
     require = [
       ./modules/homepage.nix
+      ./modules/subsonic.nix
       ./users.nix
 
       #/home/pascal/projects/nixpkgs-monitor/service.nix
@@ -138,23 +139,8 @@
     services.subsonic.httpsPort = 0;
     services.subsonic.listenAddress = "127.0.0.1";
     services.subsonic.contextPath = "/music";
-    #services.subsonic.lighttpd.enable = false;
-    #services.subsonic.lighttpd.hostname = "music.pascal-wittmann.de";
-    #services.subsonic.lighttpd.pemFile = "/srv/homepage/ssl/www.pascal-wittmann.de.pem";
-    #services.subsonic.lighttpd.caFile = "/srv/homepage/ssl/ca.crt";
-
-    #services.lighttpd.enableModules = [ "mod_proxy" ];
-    #services.lighttpd.extraConfig = ''
-    #  $HTTP["host"] == "music.pascal-wittmann.de" {
-    #    $SERVER["socket"] == ":443" {
-    #      ssl.engine                  = "enable"
-    #      ssl.pemfile                 = "/srv/homepage/ssl/www.pascal-wittmann.de.pem"
-    #      ssl.ca-file                 = "/srv/homepage/ssl/ca.crt"
-    #    }
-    #    proxy.balance = "hash"
-    #    proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => ${toString services.subsonic.port} )))
-    #  }
-    #'';
+    services.lighttpd.subsonic.enable = true;
+    services.lighttpd.subsonic.hostname = "pascal-wittmann\\.de";
 
     # lighttpd
     services.lighttpd.enable = true;
@@ -189,10 +175,6 @@
         "X-XSS-Protection" => "1; mode=block",
         "Public-Key-Pins" => "pin-sha256=\"aiHvkTqXNmsZ9V78XaIbP6VHV5O2Q1oN85+N/r3qATA=\"; pin-sha256=\"ZjOx5W+YxpIcqzuFaFr4o0yXxxu1QrUhIq5NFpdy9zY=\"; max-age=5184000; includeSubdomains"
       )
-
-      $HTTP["url"] =~ "^/music" {
-        proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 4040 )))
-      }
 
       $HTTP["url"] =~ "^/radicale" {
         proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 5232 )))
