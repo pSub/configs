@@ -24,7 +24,7 @@ in {
     services.lighttpd.enableModules = [ "mod_proxy" ];
     services.lighttpd.extraConfig = ''
       $HTTP["scheme"] == "https" {
-        $HTTP["host"] =~ "^(www\.|)${cfg.hostname}$" {
+        $HTTP["host"] =~ "^(www\.|)${escape ["."] cfg.hostname}$" {
           $HTTP["url"] =~ "^${subsonicContextPath}" {
             proxy.server  = ( "" => (( "host" => "${subsonicHost}", "port" => ${toString subsonicPort} )))
           }

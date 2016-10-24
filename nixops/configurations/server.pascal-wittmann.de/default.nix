@@ -140,7 +140,7 @@
     services.subsonic.listenAddress = "127.0.0.1";
     services.subsonic.contextPath = "/music";
     services.lighttpd.subsonic.enable = true;
-    services.lighttpd.subsonic.hostname = "pascal-wittmann\\.de";
+    services.lighttpd.subsonic.hostname = "pascal-wittmann.de";
 
     # lighttpd
     services.lighttpd.enable = true;
