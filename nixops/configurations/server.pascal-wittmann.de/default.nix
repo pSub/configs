@@ -7,6 +7,7 @@
     require = [
       ./modules/homepage.nix
       ./modules/subsonic.nix
+      ./modules/radicale.nix
       ./users.nix
 
       #/home/pascal/projects/nixpkgs-monitor/service.nix
@@ -175,16 +176,6 @@
         "X-XSS-Protection" => "1; mode=block",
         "Public-Key-Pins" => "pin-sha256=\"aiHvkTqXNmsZ9V78XaIbP6VHV5O2Q1oN85+N/r3qATA=\"; pin-sha256=\"ZjOx5W+YxpIcqzuFaFr4o0yXxxu1QrUhIq5NFpdy9zY=\"; max-age=5184000; includeSubdomains"
       )
-
-      $HTTP["url"] =~ "^/radicale" {
-        proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 5232 )))
-        auth.require = (
-          "/radicale" => ( "method" => "basic",
-          "realm"     => "Password protected area",
-          "require"   => "valid-user"
-         )
-        )
-      }
     '';
 
     # Homepage
