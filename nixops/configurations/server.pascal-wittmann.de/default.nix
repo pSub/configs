@@ -8,6 +8,7 @@
       ./modules/homepage.nix
       ./modules/subsonic.nix
       ./modules/radicale.nix
+      ./modules/h5ai.nix
       ./users.nix
 
       #/home/pascal/projects/nixpkgs-monitor/service.nix
@@ -147,8 +148,9 @@
     services.lighttpd.enable = true;
     services.lighttpd.document-root = "/srv/www/";
     services.lighttpd.port = 80;
-    services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy" "mod_fastcgi"
+    services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy"
       "mod_userdir" "mod_auth" ];
+    services.lighttpd.h5ai.enable = true;
     services.lighttpd.extraConfig =  ''
       server.follow-symlink = "enable"
       
