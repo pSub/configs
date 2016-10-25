@@ -20,7 +20,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.lighttpd.enableModules = [ "mod_proxy" ];
+    services.lighttpd.enableModules = [ "mod_proxy" "mod_auth" ];
     services.lighttpd.extraConfig = ''
       $HTTP["scheme"] == "https" {
         $HTTP["host"] =~ "^(www\.|)${escape ["."] cfg.hostname}$" {
