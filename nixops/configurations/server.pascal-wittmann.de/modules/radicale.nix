@@ -4,7 +4,6 @@ with lib;
 
 let
   cfg = config.services.lighttpd.radicale;
-  subsonicPort = config.services.subsonic.port;
 
 in {
 
