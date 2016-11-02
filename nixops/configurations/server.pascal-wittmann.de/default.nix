@@ -133,6 +133,8 @@
       [storage]
       filesystem_folder = /srv/radicale/collections
     '';
+    services.lighttpd.radicale.enable = true;
+    services.lighttpd.radicale.hostname = "pascal-wittmann.de";
 
     services.subsonic.enable = true;
     services.subsonic.defaultMusicFolder = "/srv/music";
@@ -164,6 +166,7 @@
 
       dir-listing.activate = "enable"
       dir-listing.encoding = "utf-8"
+      $SERVER["socket"] == ":443" {
         ssl.engine                  = "enable"
         ssl.pemfile                 = "/srv/homepage/ssl/www.pascal-wittmann.de.pem"
         ssl.ca-file                 = "/srv/homepage/ssl/ca.crt"
