@@ -37,6 +37,9 @@
     ];
 
     nix.maxJobs = 2;
+    nix.gc.automatic = true;
+    nix.gc.dates = "06:00";
+
     system.autoUpgrade.enable = true;
     system.autoUpgrade.channel = https://nixos.org/channels/nixos-16.03;
     systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
