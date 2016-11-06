@@ -62,9 +62,6 @@
       80 # http
       443 # https
       4242 # quassel
-      4567 # nixpkgs-monitor
-      5000 # lint-review
-      5672 # celery
     ];
 
     # Select internationalisation properties.
