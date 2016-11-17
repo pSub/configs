@@ -9,8 +9,8 @@ let
   homepage-app = (import (pkgs.fetchFromGitHub {
     owner = "pSub";
     repo = "pascal-wittmann.de";
-    rev = "9d407021cae710a97f8b351f6e89210de6c6a1f4";
-    sha256 = "1vx2vjrn3d1yip6farbvf179xdiz987lf51fvss2dkrxjjy1ikac";
+    rev = "7859edfe8e611713d9d1bcfacd21784c80aa7789";
+    sha256 = "0b97s9r2696xssjb46irbvwwc0sszziasyydrcrgk991brik33b4";
   })) { };
 
 in {
