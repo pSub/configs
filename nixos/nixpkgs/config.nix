@@ -140,6 +140,7 @@
      paths = [
        apg
        gnupg
+       gnupg1compat
        pinentry
      ];
    };
