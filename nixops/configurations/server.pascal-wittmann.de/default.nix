@@ -62,12 +62,6 @@
       '';
     };
 
-    nixpkgs.config = {
-      packageOverrides = super: let self = super.pkgs; in {
-        lighttpd = super.lighttpd.override { enableMagnet = true; };
-      };
-    };
-
     networking.hostName = "nixos"; # Define your hostname.
 
     networking.firewall.rejectPackets = true;

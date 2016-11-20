@@ -40,6 +40,12 @@ in {
         }
       }
     '';
+
+    nixpkgs.config = {
+      packageOverrides = super: let self = super.pkgs; in {
+        lighttpd = super.lighttpd.override { enableMagnet = true; };
+      };
+    };
   };
 
 }
