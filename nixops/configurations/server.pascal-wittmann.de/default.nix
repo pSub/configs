@@ -2,16 +2,25 @@
 
   server = { pkgs, ... }:
 
-  {
+  let acmeWebRoot = "/srv/acme";
+      /*monitorCode = (import <nixpkgs> {}).fetchFromGitHub {
+        owner = "pSub";
+        repo = "nixpkgs-monitor";
+        rev = "2fb8f4a3d9af4d9dd5349fa10f81afe725da688c";
+        sha256 = "1q089mz7x9gaif7zfz3hj2dbsqmmbdl7fj5nw1iwn7zahvv9kc37";
+      };*/
+      monitorCode = /home/pascal/projects/nixpkgs-monitor;
+  in {
 
     require = [
       ./modules/homepage.nix
       ./modules/subsonic.nix
       ./modules/radicale.nix
       ./modules/h5ai.nix
+      ./modules/nixpkgs-monitor.nix
       ./users.nix
 
-      #/home/pascal/projects/nixpkgs-monitor/service.nix
+      "${monitorCode}/service.nix"
     ];
 
     deployment.targetHost = "server.pascal-wittmann.de";
@@ -51,6 +60,12 @@
         rm /etc/nixos/current/* #*/
         ln -s ${./.}/* /etc/nixos/current #*/
       '';
+    };
+
+    nixpkgs.config = {
+      packageOverrides = super: let self = super.pkgs; in {
+        lighttpd = super.lighttpd.override { enableMagnet = true; };
+      };
     };
 
     networking.hostName = "nixos"; # Define your hostname.
@@ -95,6 +110,9 @@
 
     # Cron daemon.
     services.cron.enable = true;
+    services.cron.systemCronJobs = [
+      "30 2 * * * root start nixpkgs-monitor-updater"
+    ];
 
     # Enable the OpenSSH daemon
     services.openssh.enable = true;
@@ -187,7 +205,10 @@
     services.homepage.enable = true;
 
     # Nixpkgs Monitor
-#    services.nixpkgs-monitor.enable = true;
+    services.nixpkgs-monitor.enable = true;
+    services.nixpkgs-monitor.baseUrl = "https://pascal-wittmann.de/nixpkgs-monitor/";
+    services.lighttpd.nixpkgs-monitor.enable = true;
+    services.lighttpd.nixpkgs-monitor.hostname = "pascal-wittmann.de";
 #    services.nixpkgs-monitor.host = "0.0.0.0";
 
     # Sound
