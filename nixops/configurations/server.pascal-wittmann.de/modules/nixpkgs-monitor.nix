@@ -35,7 +35,6 @@ in {
                 return
               '';
             }}" )
-#            url.rewrite-once = ( "^/nixpkgs-monitor/(.*)$" => "/$1" )   
             proxy.server  = ( "" => ( "nixpkgs-monitor" => ( "host" => "127.0.0.1", "port" => 4567 )))
           }
         }
