@@ -6,7 +6,7 @@
 pushd `dirname $1` >/dev/null
 pdf=`basename $1`
 shift
-passthrou="$@"
+passthrough="$@"
 
 # Return with an error if the given file does not exist.
 if [ ! -e $pdf ]; then
@@ -15,7 +15,7 @@ if [ ! -e $pdf ]; then
 fi
 
 # Start llpp with the given file.
-llpp $pdf $passthrou &
+llpp $pdf $passthrough &
 
 # Track the PID of the llpp instance.
 pid_llpp=$!
