@@ -33,7 +33,7 @@ inotifywait -m -e close_write "$PWD" -q | while read dir ev file; do
 done &
 
 # Obtain the PID of inotifywait.
-pid_inotify=$(jobs -p | grep -v $pid_llpp)
+pid_inotify=`jobs -p | grep -v $pid_llpp`
 
 # If llpp terminates kill the inotifywait process.
 wait $pid_llpp
