@@ -11,7 +11,7 @@ let
     repo = "pascal-wittmann.de";
     rev = "7859edfe8e611713d9d1bcfacd21784c80aa7789";
     sha256 = "0b97s9r2696xssjb46irbvwwc0sszziasyydrcrgk991brik33b4";
-  })) { };
+  })) { nixpkgs = import (fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-16.03.tar.gz) {}; };
 
 in {
   options = {
