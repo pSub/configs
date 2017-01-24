@@ -27,6 +27,9 @@ in {
         $HTTP["host"] =~ "^(www\.|)${escape ["."] cfg.hostname}$" {
           $HTTP["url"] =~ "^${subsonicContextPath}" {
             proxy.server  = ( "" => (( "host" => "${subsonicHost}", "port" => ${toString subsonicPort} )))
+            setenv.add-response-header = (
+              "X-Frame-Options" => "ALLOW",
+            )
           }
         }
       }
