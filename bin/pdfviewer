@@ -3,7 +3,7 @@
 # to the pdfviewer llpp via inotify.
 
 # Prepare parameters.
-pushd `dirname $1` >/dev/null
+cd `dirname $1`
 pdf=`basename $1`
 shift
 passthrough="$@"
@@ -35,4 +35,4 @@ done &
 # If llpp terminates kill the inotifywait process.
 wait $pid_llpp
 pkill -P $$
-popd >/dev/null
+cd - > /dev/null
