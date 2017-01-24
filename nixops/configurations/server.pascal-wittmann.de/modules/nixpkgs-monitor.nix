@@ -27,7 +27,7 @@ in {
     services.lighttpd.extraConfig = ''
       $HTTP["scheme"] == "https" {
         $HTTP["host"] =~ "^(www\.|)${escape ["."] cfg.hostname}$" {
-          $HTTP["url"] =~ "^/nixpkgs-monitor/" {
+          $HTTP["url"] =~ "^/nixpkgs-monitor" {
             magnet.attract-raw-url-to = ( "${pkgs.writeTextFile {
               name = "lua-rewrite-script";
               text = ''
