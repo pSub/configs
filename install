@@ -7,4 +7,4 @@ cd $(dirname $0:A)
 # Install all dotfiles with stow.
 mkdir -p $HOME/bin
 stow -v -S bin -t $HOME/bin
-stow -v -S emacs git misc x11 zsh -t $HOME
+stow -v -S emacs git misc x11 zsh nix -t $HOME
