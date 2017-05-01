@@ -161,6 +161,7 @@ in {
   services.xserver.windowManager.default = "xmonad";
   services.xserver.desktopManager.xterm.enable = false;
 
+  services.urxvtd.enable = true;
 
   # MPD
   services.mpd.enable = true;

@@ -10,9 +10,6 @@ export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
 # Load xrandr configuration
 $HOME/bin/xrandr-config
 
-# Start urxvt daemon
-urxvtd -q -f -o
-
 # Start notification daemon
 dunst &
 
