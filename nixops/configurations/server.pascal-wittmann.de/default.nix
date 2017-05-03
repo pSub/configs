@@ -17,7 +17,7 @@
       ./modules/subsonic.nix
       ./modules/radicale.nix
       ./modules/h5ai.nix
-      ./modules/nixpkgs-monitor.nix
+#      ./modules/nixpkgs-monitor.nix
       ./users.nix
 
       "${monitorCode}/service.nix"
@@ -204,10 +204,10 @@
     services.homepage.enable = true;
 
     # Nixpkgs Monitor
-    services.nixpkgs-monitor.enable = true;
-    services.nixpkgs-monitor.baseUrl = "https://pascal-wittmann.de/nixpkgs-monitor/";
-    services.lighttpd.nixpkgs-monitor.enable = true;
-    services.lighttpd.nixpkgs-monitor.hostname = "pascal-wittmann.de";
+#    services.nixpkgs-monitor.enable = true;
+#    services.nixpkgs-monitor.baseUrl = "https://pascal-wittmann.de/nixpkgs-monitor/";
+#    services.lighttpd.nixpkgs-monitor.enable = true;
+ #   services.lighttpd.nixpkgs-monitor.hostname = "pascal-wittmann.de";
 #    services.nixpkgs-monitor.host = "0.0.0.0";
 
     # Sound
