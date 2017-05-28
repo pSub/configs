@@ -210,6 +210,8 @@
     services.lighttpd.nixpkgs-monitor.hostname = "pascal-wittmann.de";
     services.nixpkgs-monitor.host = "0.0.0.0";
 
+    services.netdata.enable = true;
+
     # Sound
     sound.enable = false;
 
