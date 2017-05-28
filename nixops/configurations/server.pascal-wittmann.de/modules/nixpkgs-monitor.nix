@@ -3,13 +3,7 @@
 with lib;
 
 let
-  monitorCode = fetchgit {
-    url = "";
-    rev = "57a3500016a810030b47849edd0a9af04ae759d2";
-    sha256 = "16w9xzq3pm2fgg6fx7a6f6g2z5blb4yq6l2kf1dnzjr88nkajmnd";
-  };
   cfg = config.services.lighttpd.nixpkgs-monitor;
-
 in {
 
   options = {

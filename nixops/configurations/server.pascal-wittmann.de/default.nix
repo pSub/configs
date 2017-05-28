@@ -3,13 +3,13 @@
   server = { pkgs, ... }:
 
   let acmeWebRoot = "/srv/acme";
-      /*monitorCode = (import <nixpkgs> {}).fetchFromGitHub {
+      monitorCode = (import <nixpkgs> {}).fetchFromGitHub {
         owner = "pSub";
         repo = "nixpkgs-monitor";
-        rev = "2fb8f4a3d9af4d9dd5349fa10f81afe725da688c";
-        sha256 = "1q089mz7x9gaif7zfz3hj2dbsqmmbdl7fj5nw1iwn7zahvv9kc37";
-      };*/
-      monitorCode = /home/pascal/projects/nixpkgs-monitor;
+        rev = "ea55babb4a6e518eb15f2b6cd0f031edf7bd3881";
+        sha256 = "1kc0h8p9fdlcaa013crjixk8d1p8v27yvcp4g5bi201d3vdd0cjf";
+      };
+      #monitorCode = /home/pascal/projects/nixpkgs-monitor;
   in {
 
     require = [
@@ -17,7 +17,7 @@
       ./modules/subsonic.nix
       ./modules/radicale.nix
       ./modules/h5ai.nix
-#      ./modules/nixpkgs-monitor.nix
+      ./modules/nixpkgs-monitor.nix
       ./users.nix
 
       "${monitorCode}/service.nix"
@@ -204,11 +204,11 @@
     services.homepage.enable = true;
 
     # Nixpkgs Monitor
-#    services.nixpkgs-monitor.enable = true;
-#    services.nixpkgs-monitor.baseUrl = "https://pascal-wittmann.de/nixpkgs-monitor/";
-#    services.lighttpd.nixpkgs-monitor.enable = true;
- #   services.lighttpd.nixpkgs-monitor.hostname = "pascal-wittmann.de";
-#    services.nixpkgs-monitor.host = "0.0.0.0";
+    services.nixpkgs-monitor.enable = true;
+    services.nixpkgs-monitor.baseUrl = "https://pascal-wittmann.de/nixpkgs-monitor/";
+    services.lighttpd.nixpkgs-monitor.enable = true;
+    services.lighttpd.nixpkgs-monitor.hostname = "pascal-wittmann.de";
+    services.nixpkgs-monitor.host = "0.0.0.0";
 
     # Sound
     sound.enable = false;
