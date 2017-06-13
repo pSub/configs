@@ -30,7 +30,6 @@
        rxvt_unicode
        stow
        trayer
-       unison
        haskellPackages.xmobar
        xclip
        xbindkeys
