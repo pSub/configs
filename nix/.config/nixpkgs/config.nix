@@ -113,6 +113,7 @@
        phototonic
        electrum
        quasselClient
+       zim
      ];
    };
 
