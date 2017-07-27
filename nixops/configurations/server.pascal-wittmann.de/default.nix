@@ -196,7 +196,7 @@
         "X-Content-Type-Options" => "nosniff",
         "X-Frame-Options" => "DENY",
         "X-XSS-Protection" => "1; mode=block",
-        "Public-Key-Pins" => "pin-sha256=\"aiHvkTqXNmsZ9V78XaIbP6VHV5O2Q1oN85+N/r3qATA=\"; pin-sha256=\"ZjOx5W+YxpIcqzuFaFr4o0yXxxu1QrUhIq5NFpdy9zY=\"; max-age=5184000; includeSubdomains"
+        "Public-Key-Pins" => "pin-sha256=\"aiHvkTqXNmsZ9V78XaIbP6VHV5O2Q1oN85+N/r3qATA=\"; pin-sha256=\"RPUCPWswD5uxgaTw8iepEkrg9/s/VGJO+c4gZ7bgi0E=\"; max-age=5184000; includeSubdomains"
       )
     '';
 
