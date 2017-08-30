@@ -17,11 +17,11 @@ let
 in {
   require =
     [ # Include settings that depend on specific hardware.
-      ./my-hardware-configuration.nix
+      /etc/nixos/my-hardware-configuration.nix
 
       # Include the file with the hashed passwords. Ensure
       # that permissions are set correctly.
-      ./password.nix
+      /etc/nixos/password.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
