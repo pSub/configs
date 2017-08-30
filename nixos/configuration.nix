@@ -92,19 +92,6 @@ in {
   # Udisks.
   services.udisks2.enable = true;
 
-  # Rsnapshot.
-  services.rsnapshot.enable = true;
-  services.rsnapshot.extraConfig =
-    ''
-    rsync_long_args	--progress
-    snapshot_root	/backup/x220
-    no_create_root	1
-    retain	weekly	52
-    backup	/home/	.
-    backup	/etc/nixos/	.
-    backup	/var/	.
-    '';
-
   # Tor.
   services.tor.client.enable = true;
 
