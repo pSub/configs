@@ -1,4 +1,13 @@
 #!/bin/sh
+###
+# Deprecated!
+#
+# This script is shipped with llpp since release v26. It is located
+# at misc/llpp.inotify in the llpp distribution. Updates and bugfixes
+# will be done primarily in the llpp repository.
+#
+###
+
 # This wrapper provides automatic reloading on file modifications
 # to the pdfviewer llpp via inotify.
 
