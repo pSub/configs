@@ -155,6 +155,11 @@ in {
                                           };
   services.xserver.windowManager.default = "xmonad";
   services.xserver.desktopManager.xterm.enable = false;
+  services.xserver.desktopManager.xfce = {
+    enable = true;
+    enableXfwm = false;
+    noDesktop = true;
+  };
 
   services.urxvtd.enable = true;
 
