@@ -25,7 +25,7 @@ in {
     services.lighttpd.extraConfig = ''
       $HTTP["scheme"] == "https" {
         $HTTP["host"] =~ "^(www\.|)${escape ["."] cfg.hostname}$" {
-          $HTTP["url"] =~ "^${subsonicContextPath}" {
+          $HTTP["url"] =~ "^${subsonicContextPath}(.*)$" {
             proxy.server  = ( "" => (( "host" => "${subsonicHost}", "port" => ${toString subsonicPort} )))
             setenv.add-response-header = (
               "X-Frame-Options" => "ALLOW",
