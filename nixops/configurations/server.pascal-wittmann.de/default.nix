@@ -1,6 +1,10 @@
 {
 
-  server = { pkgs, ... }:
+  network = {
+   enableRollback = true;
+  };
+
+  server = { pkgs, lib, ... }:
 
   let acmeWebRoot = "/srv/acme";
   in {
