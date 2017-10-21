@@ -3,13 +3,6 @@
   server = { pkgs, ... }:
 
   let acmeWebRoot = "/srv/acme";
-      monitorCode = (import <nixpkgs> {}).fetchFromGitHub {
-        owner = "pSub";
-        repo = "nixpkgs-monitor";
-        rev = "ea55babb4a6e518eb15f2b6cd0f031edf7bd3881";
-        sha256 = "1kc0h8p9fdlcaa013crjixk8d1p8v27yvcp4g5bi201d3vdd0cjf";
-      };
-      #monitorCode = /home/pascal/projects/nixpkgs-monitor;
   in {
 
     require = [
@@ -17,10 +10,7 @@
       ./modules/subsonic.nix
       ./modules/radicale.nix
       ./modules/h5ai.nix
-      ./modules/nixpkgs-monitor.nix
       ./users.nix
-
-      "${monitorCode}/service.nix"
     ];
 
     deployment.targetHost = "server.pascal-wittmann.de";
@@ -210,12 +200,6 @@
     # Homepage
     services.homepage.enable = true;
 
-    # Nixpkgs Monitor
-    services.nixpkgs-monitor.enable = true;
-    services.nixpkgs-monitor.baseUrl = "https://pascal-wittmann.de/nixpkgs-monitor/";
-    services.lighttpd.nixpkgs-monitor.enable = true;
-    services.lighttpd.nixpkgs-monitor.hostname = "pascal-wittmann.de";
-    services.nixpkgs-monitor.host = "0.0.0.0";
 
     services.netdata.enable = true;
 
