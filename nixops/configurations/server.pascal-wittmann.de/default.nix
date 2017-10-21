@@ -136,7 +136,7 @@
 
     # PostgreSQL.
     services.postgresql.enable = true;
-    services.postgresql.package = pkgs.postgresql92;
+    services.postgresql.package = pkgs.postgresql94;
     services.postgresql.authentication = lib.mkForce ''
     # Generated file; do not edit!
     # TYPE  DATABASE        USER            ADDRESS                 METHOD
