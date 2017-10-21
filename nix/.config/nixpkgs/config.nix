@@ -11,7 +11,7 @@
 
    all-env = [
      base-env tools-env nix-tools-env archivers-env emacs-env apps-env
-     spelling-env development-env security-env
+     spelling-env development-env security-env work-env
    ];
 
    base-env = buildEnv {
@@ -22,6 +22,7 @@
        bmon
        dmenu
        dunst
+       fsql
        i3lock
        inotify-tools
        htop
@@ -60,6 +61,7 @@
        xfce.tumbler
        xfce.ristretto
        which
+       wget
        zsh-navigation-tools
      ];
    };
@@ -81,6 +83,7 @@
        atool
        zip
        unzip
+       p7zip
      ];
    };
 
@@ -101,16 +104,24 @@
      paths = [
        areca
        calibre
+       clementine
        evince
+       exercism
        feh
+       filezilla
+       firefox
+       homebank
        thunderbird
        llpp
+       libreoffice-fresh
        pass
        geeqie
        pcmanfm
        phototonic
        electrum
        quasselClient
+       viking
+       vlc
        zim
      ];
    };
@@ -128,7 +139,7 @@
      name = "development-env";
      paths = [
        gitFull
-       idea.idea-ultimate
+       #idea.idea-ultimate
        subversion
      ];
    };
@@ -140,6 +151,15 @@
        gnupg
        gnupg1compat
        pinentry
+     ];
+   };
+
+   work-env = buildEnv {
+     name = "work-env";
+     paths = [
+       citrix_receiver
+       docker
+       hamster-time-tracker
      ];
    };
    
