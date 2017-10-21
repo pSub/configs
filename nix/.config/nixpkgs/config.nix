@@ -107,7 +107,6 @@
        llpp
        pass
        geeqie
-       gnucash
        pcmanfm
        phototonic
        electrum
