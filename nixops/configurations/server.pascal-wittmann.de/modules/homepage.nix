@@ -9,8 +9,8 @@ let
   homepage-app = (import (pkgs.fetchFromGitHub {
     owner = "pSub";
     repo = "pascal-wittmann.de";
-    rev = "750251b845a2ea9cd4a1ebb96ce7a792855e19e9";
-    sha256 = "1rspg36gh5myzapib8hsb5p83pwv5fqxqlhb0ikjdjjwgiqhz7lv";
+    rev = "48f0e9c61f89c3bcc5c1f2c4e48aded65d125136";
+    sha256 = "00klh2sdk2l1zr7imdv054aw2gd953nkpbbmlzbd4i1a0kwx5q8d";
   })) { nixpkgs = import (fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-17.03.tar.gz) {}; };
 
 in {
