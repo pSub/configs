@@ -101,7 +101,6 @@
      paths = [
        areca
        calibre
-       chromium
        evince
        feh
        thunderbird
