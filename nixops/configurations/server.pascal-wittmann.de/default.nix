@@ -144,13 +144,12 @@
     services.radicale.config = ''
       [server]
       hosts = 127.0.0.1:5232
-      daemon = True
       ssl = False
-      base_prefix = /radicale/
       
       [storage]
       filesystem_folder = /srv/radicale/collections
     '';
+    services.radicale.package = pkgs.radicale2;
     services.lighttpd.radicale.enable = true;
     services.lighttpd.radicale.hostname = "pascal-wittmann.de";
 
