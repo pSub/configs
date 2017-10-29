@@ -36,7 +36,7 @@ in {
 
       $HTTP["scheme"] == "https" {
         $HTTP["host"] =~ "^(www\.|)pascal-wittmann\.de$" {
-          $HTTP["url"] !~ "^/~(.*)$" {
+          $HTTP["url"] !~ "^/(~|_h5ai|music|nixpkgs-monitor|radicale)(.*)$" {
             proxy.balance = "hash"
             proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 3001 )))
           }
