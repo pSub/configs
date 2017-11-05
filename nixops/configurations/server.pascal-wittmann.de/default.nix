@@ -203,8 +203,21 @@
     # Homepage
     services.homepage.enable = true;
 
-
+    # Netdata
     services.netdata.enable = true;
+
+    # Graylog
+    services.graylog.enable = true;
+    services.graylog.passwordSecret = import ./secrets/graylog-password-secret;
+    services.graylog.rootPasswordSha2 = import ./secrets/graylog-root-password-sha2;
+    services.graylog.elasticsearchHosts = [ "http://127.0.0.1:9200" ];
+    services.elasticsearch.enable = true;
+    services.mongodb.enable = true;
+    services.SystemdJournal2Gelf.enable = true;
+    services.SystemdJournal2Gelf.graylogServer = "127.0.0.1:12201";
+
+    services.syncthing.enable = true;
+    services.syncthing.openDefaultPorts = true;
 
     # Sound
     sound.enable = false;
