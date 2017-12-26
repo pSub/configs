@@ -48,6 +48,7 @@
        binutils
        file
        ghostscript
+       libxml2
        nox
        nix-repl
        mc
