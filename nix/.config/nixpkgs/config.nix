@@ -161,6 +161,7 @@
        citrix_receiver
        docker
        hamster-time-tracker
+        maven
      ];
    };
    
