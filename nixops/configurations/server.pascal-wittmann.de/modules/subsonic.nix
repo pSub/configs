@@ -3,17 +3,16 @@
 with lib;
 
 let
-  cfg = config.services.lighttpd.subsonic;
+  cfg = config.services.subsonic.nginx;
   subsonicPort = config.services.subsonic.port;
   subsonicHost = config.services.subsonic.listenAddress;
-  subsonicContextPath = config.services.subsonic.contextPath;
 
 in {
 
   options = {
-    services.lighttpd.subsonic.enable = mkEnableOption "Whether to enable lighttpd as reverse-proxy for subsonic";
+    services.subsonic.nginx.enable = mkEnableOption "Whether to enable nginx as reverse-proxy for subsonic";
 
-    services.lighttpd.subsonic.hostname = mkOption {
+    services.subsonic.nginx.hostname = mkOption {
       type = types.string;
       example = "example.com";
       description = "";
@@ -21,19 +20,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.lighttpd.enableModules = [ "mod_proxy" ];
-    services.lighttpd.extraConfig = ''
-      $HTTP["scheme"] == "https" {
-        $HTTP["host"] =~ "^(www\.|)${escape ["."] cfg.hostname}$" {
-          $HTTP["url"] =~ "^${subsonicContextPath}(.*)$" {
-            proxy.server  = ( "" => (( "host" => "${subsonicHost}", "port" => ${toString subsonicPort} )))
-            setenv.add-response-header = (
-              "X-Frame-Options" => "ALLOW",
-            )
-          }
-        }
-      }
-    '';
+    services.nginx.virtualHosts = {
+       "${cfg.hostname}" = {
+         forceSSL = true;
+         enableACME = true;
+         locations."/" = { proxyPass = "http://${subsonicHost}:${toString subsonicPort}"; };
+         extraConfig = ''
+           add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+           add_header X-Content-Type-Options nosniff;
+           add_header X-XSS-Protection "1; mode=block";
+           add_header X-Frame-Options SAMEORIGIN;
+         '';
+       };
+    };
   };
 
 }

@@ -150,54 +150,50 @@
       filesystem_folder = /srv/radicale/collections
     '';
     services.radicale.package = pkgs.radicale2;
-    services.lighttpd.radicale.enable = true;
-    services.lighttpd.radicale.hostname = "pascal-wittmann.de";
+    services.radicale.nginx.enable = true;
+    services.radicale.nginx.hostname = "calendar.pascal-wittmann.de";
 
+    # Subsonic
     services.subsonic.enable = true;
     services.subsonic.defaultMusicFolder = "/srv/music";
     services.subsonic.defaultPlaylistFolder = "/srv/playlists";
     services.subsonic.defaultPodcastFolder = "/srv/podcast";
     services.subsonic.httpsPort = 0;
     services.subsonic.listenAddress = "127.0.0.1";
-    services.subsonic.contextPath = "/music";
-    services.lighttpd.subsonic.enable = true;
-    services.lighttpd.subsonic.hostname = "pascal-wittmann.de";
+    services.subsonic.nginx.enable = true;
+    services.subsonic.nginx.hostname = "music.pascal-wittmann.de";
 
-    # lighttpd
-    services.lighttpd.enable = true;
-    services.lighttpd.document-root = "/srv/www/";
-    services.lighttpd.port = 80;
-    services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy"
-      "mod_userdir" "mod_auth" ];
-    services.lighttpd.h5ai.enable = true;
-    services.lighttpd.extraConfig =  ''
-      server.follow-symlink = "enable"
-      
-      auth.debug = 2
-      auth.backend = "plain"
-      auth.backend.plain.userfile = "${./secrets/passwords}"
+    # ngix
+    services.nginx.enable = true;
+    services.nginx.virtualHosts = {
+       "users.pascal-wittmann.de" = {
+         forceSSL = true;
+         enableACME = true;
+         locations."/pascal" = {
+           root = "/srv/users/";
+           extraConfig = ''
+             autoindex on;
+             auth_basic "Password protected area";
+             auth_basic_user_file ${./secrets/passwords};
+           '';
+         };
 
-      userdir.basepath = "/srv/users/"
-      userdir.path = ""
-      userdir.include-user = ( "pascal", "qwert", "lerke" )
-
-      dir-listing.activate = "enable"
-      dir-listing.encoding = "utf-8"
-      $SERVER["socket"] == ":443" {
-        ssl.engine                  = "enable"
-        ssl.pemfile                 = "/srv/homepage/ssl/www.pascal-wittmann.de.pem"
-        ssl.ca-file                 = "/srv/homepage/ssl/ca.crt"
-        ssl.cipher-list = "${import static/ssl-cipher-list.txt}"
-        ssl.dh-file = "/srv/homepage/ssl/dhparams.pem"
-      }
-
-      setenv.add-response-header = (
-        "Strict-Transport-Security" => "max-age=63072000; includeSubDomains; preload",
-        "X-Content-Type-Options" => "nosniff",
-        "X-Frame-Options" => "DENY",
-        "X-XSS-Protection" => "1; mode=block",
-      )
-    '';
+         locations."/lerke" = {
+           root = "/srv/users/";
+           extraConfig = ''
+             autoindex on;
+             auth_basic "Password protected area";
+             auth_basic_user_file ${./secrets/passwords};
+           '';
+         };
+         extraConfig = ''
+           add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+           add_header X-Content-Type-Options nosniff;
+           add_header X-XSS-Protection "1; mode=block";
+           add_header X-Frame-Options DENY;
+         '';
+       };
+    };
 
     # Homepage
     services.homepage.enable = true;

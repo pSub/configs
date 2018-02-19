@@ -26,29 +26,26 @@ in {
       home = "/var/homepage";
     };
 
-    services.lighttpd.enableModules = [ "mod_redirect" "mod_proxy" "mod_setenv" ];
-    services.lighttpd.extraConfig = ''
-      $HTTP["scheme"] == "http" {
-        $HTTP["host"] =~ "^(www\.|)pascal-wittmann\.de$" {
-          url.redirect = (".*" => "https://%0$0")
-        }
-      }
-
-      $HTTP["scheme"] == "https" {
-        $HTTP["host"] =~ "^(www\.|)pascal-wittmann\.de$" {
-          $HTTP["url"] !~ "^/(~|_h5ai|music|nixpkgs-monitor|radicale)(.*)$" {
-            proxy.balance = "hash"
-            proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 3001 )))
-          }
-        }
-      }
-    '';
+  services.nginx.virtualHosts = {
+     "(www.)?pascal-wittmann.de" = {
+       forceSSL = true;
+       sslCertificate = "/srv/homepage/ssl/nginx/ssl-bundle.crt";
+       sslCertificateKey = "/srv/homepage/ssl/nginx/pascal-wittmann.de.key";
+       locations."/" = { proxyPass = "http://127.0.0.1:3001"; };
+       extraConfig = ''
+         add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+         add_header X-Content-Type-Options nosniff;
+         add_header X-XSS-Protection "1; mode=block";
+         add_header X-Frame-Options DENY;
+       '';
+     };
+  };
 
     systemd.services.homepage = {
       description = "Personal Homepage powered by Yesod";
       wantedBy = [ "multi-user.target" ];
       after = [ "lighttpd.service" "postgresql.service" ];
-      bindsTo = [ "lighttpd.service" "postgresql.service" ];
+      bindsTo = [ "nginx.service" "postgresql.service" ];
       environment = {
         APPROOT = "https://www.pascal-wittmann.de";
         PORT = "3001";

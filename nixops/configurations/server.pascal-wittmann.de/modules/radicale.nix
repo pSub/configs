@@ -3,14 +3,14 @@
 with lib;
 
 let
-  cfg = config.services.lighttpd.radicale;
+  cfg = config.services.radicale.nginx;
 
 in {
 
   options = {
-    services.lighttpd.radicale.enable = mkEnableOption "Whether to enable lighttpd as reverse-proxy for radicale";
+    services.radicale.nginx.enable = mkEnableOption "Whether to enable nginx as reverse-proxy for radicale";
 
-    services.lighttpd.radicale.hostname = mkOption {
+    services.radicale.nginx.hostname = mkOption {
       type = types.string;
       example = "example.com";
       description = "";
@@ -19,23 +19,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    services.lighttpd.enableModules = [ "mod_proxy" "mod_auth" ];
-    services.lighttpd.extraConfig = ''
-      $HTTP["scheme"] == "https" {
-        $HTTP["host"] =~ "^(www\.|)${escape ["."] cfg.hostname}$" {
-          $HTTP["url"] =~ "^/radicale/" {
-            proxy.server  = ( "" => (( "host" => "127.0.0.1", "port" => 5232 )))
-            auth.require = (
-              "/radicale" => (
-                "method" => "basic",
-                "realm"     => "Password protected area",
-                "require"   => "valid-user"
-              )
-            )
-          }
-        }
-      }
-    '';
+    services.nginx.virtualHosts = {
+       "${cfg.hostname}" = {
+         forceSSL = true;
+         enableACME = true;
+         locations."/" = { proxyPass = "http://127.0.0.1:5232"; };
+         extraConfig = ''
+           add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+           add_header X-Content-Type-Options nosniff;
+           add_header X-XSS-Protection "1; mode=block";
+           add_header X-Frame-Options DENY;
+         '';
+       };
+    };
   };
 
 }
