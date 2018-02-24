@@ -13,7 +13,7 @@
       uid = 1000;
       group = "users";
       home = "/home/pascal";
-      extraGroups = [ "lighttpd" "mpd" ];
+      extraGroups = [ "mpd" ];
       createHome = true;
       useDefaultShell = true;
       openssh.authorizedKeys.keys = [
