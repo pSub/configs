@@ -4,10 +4,9 @@
    enableRollback = true;
   };
 
-  server = { pkgs, lib, ... }:
+  server = { config, pkgs, lib, ... }:
 
-  in {
-
+  {
     require = [
       ./modules/homepage.nix
       ./modules/subsonic.nix
@@ -42,10 +41,11 @@
     nix.gc.automatic = true;
     nix.gc.dates = "06:00";
 
-    system.autoUpgrade.enable = true;
-    system.autoUpgrade.channel = https://nixos.org/channels/nixos-16.03;
+    system.autoUpgrade.enable = false;
+    system.autoUpgrade.channel = https://nixos.org/channels/nixos-17.09;
+    system.autoUpgrade.dates = "11:00";
     systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
-      all@{ lib, ... }: lib.filterAttrs (n: v: n != "deployment") ((import /etc/nixos/current/default.nix).server all)
+      all@{ config, pkgs, lib, ... }: lib.filterAttrs (n: v: n != "deployment") ((import /etc/nixos/current/default.nix).server all)
     '';
 
     system.activationScripts = {
@@ -54,6 +54,9 @@
         ln -s ${./.}/* /etc/nixos/current #*/
       '';
     };
+
+    # Work around NixOS/nixpkgs#28527
+    systemd.services.nixos-upgrade.path = with pkgs; [  gnutar xz.bin gzip config.nix.package.out ];
 
     networking.hostName = "nixos"; # Define your hostname.
 
