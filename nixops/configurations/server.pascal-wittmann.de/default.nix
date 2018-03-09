@@ -95,12 +95,6 @@
       zile
     ];
 
-    environment.sessionVariables = {
-      # Work around https://github.com/NixOS/nixpkgs/issues/19785
-      TERMINFO_DIRS = "/run/current-system/sw/share/terminfo";
-    };
-
-  
     # List services that you want to enable:
 
     # Cron daemon.
