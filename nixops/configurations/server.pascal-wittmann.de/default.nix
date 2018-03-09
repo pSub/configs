@@ -6,7 +6,6 @@
 
   server = { pkgs, lib, ... }:
 
-  let acmeWebRoot = "/srv/acme";
   in {
 
     require = [
