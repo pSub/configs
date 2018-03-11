@@ -1,2 +1,0 @@
-#!/bin/sh
-emacsclient -a "" -c -F "'(name . \"Feeds Frame\")" -e '(elfeed)'
