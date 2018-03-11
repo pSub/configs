@@ -11,7 +11,6 @@
       ./modules/homepage.nix
       ./modules/subsonic.nix
       ./modules/radicale.nix
-      ./modules/h5ai.nix
       ./users.nix
     ];
 
@@ -165,6 +164,7 @@
        "users.pascal-wittmann.de" = {
          forceSSL = true;
          enableACME = true;
+
          locations."/pascal" = {
            root = "/srv/users/";
            extraConfig = ''
