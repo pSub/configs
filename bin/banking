@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+LANG=de_DE.UTF8 homebank
