@@ -60,10 +60,7 @@
       org-agenda-sticky t
       )
 
-(setq org-agenda-files (list (concat org-directory "agenda/meetings.org")
-                             (concat org-directory "agenda/todo.org"))
-;;                             (concat org-directory "agenda/habits.org"))
-      org-default-notes-file (concat org-directory "notes.org")
+(setq org-default-notes-file (concat org-directory "notes.org")
       org-contacts-files (list (concat org-directory "contacts.org"))
       org-journal-dir (concat org-directory "journal/"))
 
