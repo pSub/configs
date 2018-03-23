@@ -112,6 +112,7 @@
        filezilla
        firefox
        homebank
+       krusader
        thunderbird
        llpp
        libreoffice-fresh
