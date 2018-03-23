@@ -51,7 +51,6 @@
        libxml2
        nox
        nix-repl
-       mc
        imagemagick
        parallel
        psmisc
