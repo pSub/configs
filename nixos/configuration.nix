@@ -114,10 +114,6 @@ in {
   services.smartd.enable = true;
   services.smartd.devices = [ { device = "/dev/sda"; } ];
 
-  # Thinkfan
-  services.thinkfan.enable = true;
-  services.thinkfan.sensor = "/sys/devices/virtual/hwmon/hwmon0/temp1_input";
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   services.xserver.layout = "de";
