@@ -10,8 +10,9 @@ let
   lowBatteryNotifier = pkgs.writeScript "lowBatteryNotifier"
     ''
       DISPLAY=:0.0
-      BAT=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)'`
-      test $BAT -le 10 && DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send 'Low Battery'
+      BAT_PCT=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '[0-9]+(?=%)'`
+      BAT_STA=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '\w+(?=,)'`
+      test $BAT_PCT -le 10 && test $BAT_STA = "Discharging" && DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send 'Low Battery'
     '';
 
 in {
