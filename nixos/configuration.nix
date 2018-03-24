@@ -146,9 +146,6 @@ in {
 
   services.urxvtd.enable = true;
 
-  # MPD
-  services.mpd.enable = true;
-
   # Copy the system configuration int to nix-store.
   system.copySystemConfiguration = true;
 
