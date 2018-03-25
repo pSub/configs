@@ -8,6 +8,8 @@
   networking.hostName = "brauchli";
 
   boot.kernelPackages = pkgs.linuxPackages;
+
+  boot.loader.grub.configurationLimit = 10;
   boot.initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "usb_storage" ];
 
   # System has i7-2640M thus only the aes module is needed for luks.
