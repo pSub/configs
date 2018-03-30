@@ -161,6 +161,12 @@
     # ngix
     services.nginx.enable = true;
     services.nginx.virtualHosts = {
+       "penchy.pascal-wittmann.de" = {
+         forceSSL = true;
+         enableACME = true;
+         root = "/srv/penchy";
+       };
+
        "users.pascal-wittmann.de" = {
          forceSSL = true;
          enableACME = true;
