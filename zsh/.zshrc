@@ -131,7 +131,7 @@ unset config_files
 
 
 ### ZNT's installer added snippet ###
-fpath=( "$fpath[@]" "$HOME/.config/znt/zsh-navigation-tools" )
+fpath=( "$fpath[@]" "$HOME/.nix-profile/share/zsh/site-functions" )
 autoload n-aliases n-cd n-env n-functions n-history n-kill n-list n-list-draw n-list-input n-options n-panelize n-help
 autoload znt-usetty-wrapper znt-history-widget znt-cd-widget znt-kill-widget
 alias naliases=n-aliases ncd=n-cd nenv=n-env nfunctions=n-functions nhistory=n-history
