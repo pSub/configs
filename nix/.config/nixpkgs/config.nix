@@ -96,6 +96,7 @@
        emacsMelpa.shm
        emacsMelpa.writegood-mode
        emacsMelpa.magit
+       emacsMelpa.nix-mode
      ];
    };
 
