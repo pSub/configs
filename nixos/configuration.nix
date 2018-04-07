@@ -38,6 +38,9 @@ in {
   # Use the network manager.
   networking.networkmanager.enable = true;
 
+  # Enable sound
+  sound.enable = true;
+
   users.mutableUsers = false;
   users.extraUsers.pascal = {
     uid = 1002;
