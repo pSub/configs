@@ -176,7 +176,6 @@ in {
     openDefaultPorts = true;
     user = "pascal";
     group = "users";
-    useInotify = true;
     dataDir = "/home/pascal/.syncthing";
   };
 }
