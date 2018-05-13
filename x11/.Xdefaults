@@ -90,4 +90,4 @@ urxvt.pastableTabs           : true
 urxvt.print-pipe             : cat > $HOME/urxvt-screen-dump
 
 ! Charactes which bound the selection on double click.
-urxvt.cutchars               : BACKSLASH `&()*,;<=>?@[]^{|}-""''
+urxvt.cutchars               : BACKSLASH `&()*,;<=>?@[]^{|}-"'"
