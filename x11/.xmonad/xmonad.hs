@@ -42,7 +42,7 @@ myKeys = [ ("M-<Tab>", toggleWS)
 
 main = do
        xmproc <- spawnPipe "xmobar ~/.xmobar/default "
-       xmonad $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
+       xmonad $ docks $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
         { startupHook = setWMName "LG3D" >> setDefaultCursor xC_left_ptr
         , workspaces = myWorkspaces
         , modMask = mod3Mask
