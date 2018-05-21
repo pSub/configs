@@ -101,9 +101,7 @@ in {
   # Acpi.
   services.acpid.enable = true;
 
-  services.logind.extraConfig = ''
-    HandleLidSwitch=suspend
-  '';
+  services.logind.lidSwitch = "suspend";
 
   # ClamAV.
   services.clamav.daemon.enable = true;
