@@ -50,7 +50,6 @@
        ghostscript
        libxml2
        nox
-       nix-repl
        imagemagick
        parallel
        psmisc
