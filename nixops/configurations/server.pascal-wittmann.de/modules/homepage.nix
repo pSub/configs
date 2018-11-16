@@ -27,10 +27,15 @@ in {
     };
 
   services.nginx.virtualHosts = {
-     "(www.)?pascal-wittmann.de" = {
+     "www.pascal-wittmann.de" =  {
        forceSSL = true;
-       sslCertificate = "/srv/homepage/ssl/nginx/ssl-bundle.crt";
-       sslCertificateKey = "/srv/homepage/ssl/nginx/pascal-wittmann.de.key";
+       enableACME = true;
+       globalRedirect = "pascal-wittmann.de";
+     };
+
+     "pascal-wittmann.de" = {
+       forceSSL = true;
+       enableACME = true;
        locations."/" = { proxyPass = "http://127.0.0.1:3001"; };
        extraConfig = ''
          add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
