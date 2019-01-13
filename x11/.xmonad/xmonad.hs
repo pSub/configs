@@ -23,7 +23,7 @@ myWorkspaces = clickable . (map xmobarEscape) $ [ "org", "www", "devâ‚", "devâ‚
 myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
                  , isDialog        --> doCenterFloat
-                 , className =? "Thunderbird" --> doShift (myWorkspaces !! 6)
+                 , className =? "Daily" --> doShift (myWorkspaces !! 6) -- Thunderbird
                  , className =? "Firefox" --> doShift (myWorkspaces !! 1)
                  , className =? "Chromium-browser" --> doShift (myWorkspaces !! 1)
                  , className =? "feh" --> doCenterFloat
