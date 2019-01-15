@@ -30,7 +30,11 @@ in {
      "www.pascal-wittmann.de" =  {
        forceSSL = true;
        enableACME = true;
-       globalRedirect = "pascal-wittmann.de";
+
+       locations."/" = {
+         extraConfig = "return 301 https://pascal-wittmann.de$request_uri;";
+       };
+
      };
 
      "pascal-wittmann.de" = {
