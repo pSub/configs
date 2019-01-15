@@ -54,7 +54,6 @@
        parallel
        psmisc
        pinpoint
-       traceroute
        telnet
        tree
        xfce.tumbler
