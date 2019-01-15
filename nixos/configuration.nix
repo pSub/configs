@@ -152,6 +152,10 @@ in {
   # Firewall
   networking.firewall.enable = true;
 
+  # DNSCrypt
+  services.dnscrypt-proxy.enable = true;
+  networking.nameservers = ["127.0.0.1"];
+
   # Time.
   time.timeZone = "Europe/Berlin";
 
