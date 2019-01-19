@@ -164,6 +164,8 @@ in {
       exfat-utils
       gnome3.dconf
       bashInteractive
+      lsof
+      zile
     ];
 
     variables = {
