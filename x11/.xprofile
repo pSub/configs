@@ -1,11 +1,8 @@
 #!/bin/sh
 
 # GnuPG-Agent
-gpg-connect-agent /bye
-GPG_TTY=$(tty)
-export GPG_TTY
-unset SSH_AGENT_PID
-export SSH_AUTH_SOCK="${HOME}/.gnupg/S.gpg-agent.ssh"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
 
 # Start notification daemon
 dunst &
