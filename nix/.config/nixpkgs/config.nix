@@ -5,8 +5,7 @@
   packageOverrides = pkgs : with pkgs; rec {
 
    myTexLive = texlive.combine {
-     inherit (texlive) scheme-basic koma-script babel-german todonotes xkeyval
-       xcolor collection-pictures ms;
+     inherit (texlive) scheme-full;
    };
 
    all-env = [
@@ -47,7 +46,7 @@
        bind
        binutils
        file
-       ghostscript
+       #ghostscript
        libxml2
        nox
        imagemagick
@@ -102,7 +101,8 @@
      name = "apps-env";
      paths = [
        areca
-       calibre
+
+       #calibre
        clementine
        evince
        exercism
@@ -139,7 +139,7 @@
      name = "development-env";
      paths = [
        gitFull
-       idea.idea-ultimate
+       #idea.idea-ultimate
        subversion
      ];
    };
@@ -166,8 +166,3 @@
    
   };
 }
-
-
-
-
-
