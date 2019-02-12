@@ -139,7 +139,7 @@
      name = "development-env";
      paths = [
        gitFull
-       #idea.idea-ultimate
+       idea.idea-ultimate
        subversion
      ];
    };
