@@ -7,11 +7,10 @@ alias unpack="aunpack"
 alias pack="apack"
 alias sul="su --login"
 alias filemenu='ls | slmenu -p $PWD; [ $? -ne 0 ] && echo $PWD'
-alias pdfviewer='llpp.inotify'
 
 # Suffix aliases
 alias -s {djvu,ps}="background zathura"
-alias -s pdf="background pdfviewer"
+alias -s pdf="background llpp.inotify"
 
 # Global aliases
 alias -g g="| grep"
