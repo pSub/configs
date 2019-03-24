@@ -59,6 +59,11 @@
 
     networking.hostName = "nixos"; # Define your hostname.
 
+    networking.interfaces.ens3.ipv6.addresses =[
+      { address = "2a03:4000:2:70e::42"; prefixLength = 64; }
+    ];
+    networking.defaultGateway6 = { address = "fe80::1"; interface = "ens3"; };
+
     networking.firewall.rejectPackets = true;
     networking.firewall.allowPing = true;
     networking.firewall.autoLoadConntrackHelpers = false;
