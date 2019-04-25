@@ -3,6 +3,7 @@
 # a host specific autostart for X applications.
 
 emacs --daemon &
+zim --plugin trayicon &
 
 case $(hostname) in
   'firmin')
