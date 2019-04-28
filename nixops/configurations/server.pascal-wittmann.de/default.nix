@@ -163,7 +163,7 @@
     services.subsonic.nginx.enable = true;
     services.subsonic.nginx.hostname = "music.pascal-wittmann.de";
 
-    # ngix
+    # nginx
     services.nginx.enable = true;
     services.nginx.virtualHosts = {
        "penchy.pascal-wittmann.de" = {
