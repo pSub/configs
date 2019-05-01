@@ -171,7 +171,7 @@
     services.nextcloud.nginx.enable = true;
     services.nextcloud.https = true;
 
-    # ngix
+    # nginx
     services.nginx.enable = true;
     services.nginx.virtualHosts = {
        "penchy.pascal-wittmann.de" = {
