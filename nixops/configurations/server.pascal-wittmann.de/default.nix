@@ -185,6 +185,24 @@
          enableACME = true;
        };
 
+       "netdata.pascal-wittmann.de" = {
+         forceSSL = true;
+         enableACME = true;
+         locations."/" = { proxyPass = "http://127.0.0.1:19999"; };
+         extraConfig = ''
+           proxy_set_header X-Forwarded-Host $host;
+           proxy_set_header X-Forwarded-Server $host;
+           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+           proxy_http_version 1.1;
+           proxy_pass_request_headers on;
+           proxy_set_header Connection "keep-alive";
+           proxy_store off;
+
+           auth_basic "Password protected area";
+           auth_basic_user_file ${./secrets/passwords};
+         '';
+       };
+
        "users.pascal-wittmann.de" = {
          forceSSL = true;
          enableACME = true;
