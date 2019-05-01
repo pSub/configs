@@ -2,6 +2,9 @@
 
 cd ~/nixpkgs
 
+# Unmaintained files
+find . -type f -name '*.nix' | xargs grep -H -c 'maintainers' | grep 0$ | cut -d':' -f1
+
 # Search for invalid meta.maintainers entries
 grep -r 'maintainer!s =' *
 grep -r 'maintainers =' * | grep -Ev '\[|gnome3|import|maintainers\;'
