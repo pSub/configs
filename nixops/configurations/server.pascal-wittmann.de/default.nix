@@ -163,6 +163,14 @@
     services.subsonic.nginx.enable = true;
     services.subsonic.nginx.hostname = "music.pascal-wittmann.de";
 
+    # nextcloud
+    services.nextcloud.enable = true;
+    services.nextcloud.home = "/srv/nextcloud";
+    services.nextcloud.config.adminpassFile = "${./secrets/nextcloud}";
+    services.nextcloud.hostName = "cloud.pascal-wittmann.de";
+    services.nextcloud.nginx.enable = true;
+    services.nextcloud.https = true;
+
     # ngix
     services.nginx.enable = true;
     services.nginx.virtualHosts = {
@@ -170,6 +178,11 @@
          forceSSL = true;
          enableACME = true;
          root = "/srv/penchy";
+       };
+
+       "cloud.pascal-wittmann.de" = {
+         forceSSL = true;
+         enableACME = true;
        };
 
        "users.pascal-wittmann.de" = {
