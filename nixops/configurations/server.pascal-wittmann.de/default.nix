@@ -237,9 +237,6 @@
     # Netdata
     services.netdata.enable = true;
 
-    services.syncthing.enable = true;
-    services.syncthing.openDefaultPorts = true;
-
     # Sound
     sound.enable = false;
 
