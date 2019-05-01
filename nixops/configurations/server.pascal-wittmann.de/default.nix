@@ -193,8 +193,6 @@
            root = "/srv/users/";
            extraConfig = ''
              autoindex on;
-             auth_basic "Password protected area";
-             auth_basic_user_file ${./secrets/passwords};
            '';
          };
 
