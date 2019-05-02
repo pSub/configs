@@ -139,6 +139,9 @@ in {
     enable = true;
     enableXfwm = false;
     noDesktop = true;
+    thunarPlugins = with pkgs.xfce; [
+      thunar-archive-plugin
+    ];
   };
 
   services.urxvtd.enable = true;
