@@ -34,6 +34,7 @@ myManageHook = composeAll
                  , className =? "MPlayer" --> doCenterFloat
                  , className =? "Eclipse" --> doShift (myWorkspaces !! 2)
                  , className =? "quassel" --> doShift (myWorkspaces !! 5)
+                 , className =? "Zim" --> doShift (myWorkspaces !! 0)
                  , title =? "Agenda Frame" --> doShift (myWorkspaces !! 0)
                  , title =? "floatwin" --> doCenterFloat
                  , appName =? "sun-awt-X11-XWindowPeer" <&&> className =? "jetbrains-idea" --> doIgnore
