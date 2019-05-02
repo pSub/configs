@@ -14,6 +14,8 @@
       ./users.nix
     ];
 
+    nixpkgs.config.allowUnfree = true;
+
     deployment.targetHost = "server.pascal-wittmann.de";
 
     # Use the GRUB 2 boot loader.
