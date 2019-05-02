@@ -1,3 +1,4 @@
+import           Data.List                   (isInfixOf)
 import           System.IO
 import           XMonad
 import           XMonad.Actions.CycleWS
@@ -13,6 +14,7 @@ import qualified XMonad.StackSet              as W
 import           XMonad.Util.Cursor
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Run              (spawnPipe)
+import           XMonad.Hooks.DynamicProperty (dynamicTitle)
 
 myWorkspaces = clickable . (map xmobarEscape) $ [ "org", "www", "dev₁", "dev₂", "docs", "chat", "mail" ]
              where clickable l = [ "<action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action>" | (n, ws) <- zip ([1..4] ++ [8,9,0]) l ]
@@ -37,6 +39,11 @@ myManageHook = composeAll
                  , appName =? "sun-awt-X11-XWindowPeer" <&&> className =? "jetbrains-idea" --> doIgnore
                  ] <+> manageDocks
 
+myDynHook = composeAll
+              [ ("| Trello" `isInfixOf`) `fmap` title   --> doShift (myWorkspaces !! 0)
+              ]
+
+
 myKeys = [ ("M-<Tab>", toggleWS)
          , ("M-C-<Return>", spawn "urxvtc -T floatwin")
          ]
@@ -51,7 +58,10 @@ main = do
         , normalBorderColor = "black"
         , focusedBorderColor = "#f5a400"
         , manageHook = myManageHook
-        , handleEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
+        , handleEventHook = mconcat [ handleEventHook defaultConfig
+                          ,fullscreenEventHook
+                          , dynamicTitle  myDynHook
+                          ]
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         , logHook = do
                      updatePointer (0.5, 0.5) (0, 0)
