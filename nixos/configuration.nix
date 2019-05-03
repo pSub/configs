@@ -157,6 +157,12 @@ in {
 
   # DNSCrypt
   services.dnscrypt-proxy.enable = true;
+  services.dnscrypt-proxy.customResolver = {
+    address = "167.86.90.103";
+    port = 443;
+    name = "2.dnscrypt-cert.dnscrypt.me";
+    key = "325f:58cb:c543:5ddf:2d08:8f32:2d4e:29d2:2fc1:9a72:e7e0:7efb:9f7e:ade0:1a8f:9bc5";
+  };
   networking.nameservers = ["127.0.0.1"];
 
   # Time.
