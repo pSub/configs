@@ -186,12 +186,4 @@ in {
   services.tlp.enable = true;
 
   services.dbus.enable = true;
-
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    user = "pascal";
-    group = "users";
-    dataDir = "/home/pascal/.syncthing";
-  };
 }
