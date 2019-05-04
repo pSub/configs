@@ -116,6 +116,7 @@
        thunderbird
        llpp
        libreoffice-fresh
+       nextcloud-client
        pass
        geeqie
        pcmanfm
