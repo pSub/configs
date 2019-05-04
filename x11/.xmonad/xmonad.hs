@@ -47,6 +47,7 @@ myDynHook = composeAll
 
 myKeys = [ ("M-<Tab>", toggleWS)
          , ("M-C-<Return>", spawn "urxvtc -T floatwin")
+         , ("M-C-p", spawn "passmenu")
          ]
 
 main = do
