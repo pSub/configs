@@ -103,7 +103,7 @@
      paths = [
        areca
 
-       #calibre
+       calibre
        clementine
        evince
        exercism
