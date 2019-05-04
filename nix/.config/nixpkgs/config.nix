@@ -27,6 +27,7 @@
        htop
        libnotify
        networkmanagerapplet
+       networkmanager-openconnect
        rxvt_unicode
        stow
        trayer
