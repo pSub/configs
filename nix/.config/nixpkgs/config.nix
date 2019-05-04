@@ -70,6 +70,7 @@
        cabal2nix
        dysnomia
        nix-generate-from-cpan
+       nix-review
        nixops
        nixpkgs-lint
      ];
