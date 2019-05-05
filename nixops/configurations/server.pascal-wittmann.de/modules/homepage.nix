@@ -6,12 +6,12 @@ let
   cfg = config.services.homepage;
   user = "homepage";
 
-  homepage-app = (import (pkgs.fetchFromGitHub {
+  homepage-app = import (pkgs.fetchFromGitHub {
     owner = "pSub";
     repo = "pascal-wittmann.de";
-    rev = "a1c2fc8b71ecd5aa23342be606a8415ffe8d87bc";
-    sha256 = "0zbh4zjvz5qaf6l4lh4lh0c0k9gm5yv4ph2z25pkhif5yf7zyd0k";
-  })) { nixpkgs = import (fetchTarball https://github.com/NixOS/nixpkgs-channels/archive/nixos-18.03-small.tar.gz) {}; };
+    rev = "572a6ffbebee3be4141db01df1cef7a4aed16459";
+    sha256 = "0a62dff4chk1dn475bzx6a82ymmi00lhf7ba7ivmhvm3w8hbgadr";
+    }) {};
 
 in {
   options = {
