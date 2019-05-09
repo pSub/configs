@@ -113,6 +113,7 @@
        firefox
        homebank
        krusader
+       keepassxc
        thunderbird
        llpp
        libreoffice-fresh
