@@ -1,2 +1,4 @@
-#!/bin/sh
+#! /usr/bin/env nix-shell
+#! nix-shell -i zsh -p i3lock
+
 i3lock -c 000000
