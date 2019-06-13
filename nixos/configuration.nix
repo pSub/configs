@@ -35,6 +35,9 @@ in {
   # Build using chroots to detect more impurities.
   nix.useSandbox = true;
 
+  hardware.sane.enable = true;
+  hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
+
   # Use the network manager.
   networking.networkmanager.enable = true;
 
@@ -45,7 +48,7 @@ in {
   users.extraUsers.pascal = {
     uid = 1002;
     description = "Pascal Wittmann";
-    extraGroups = [ "networkmanager" "vboxusers" ];
+    extraGroups = [ "networkmanager" "vboxusers" "lp" "scanner" ];
     isNormalUser = true;
     shell = "${pkgs.zsh}/bin/zsh";
   };
