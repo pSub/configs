@@ -150,6 +150,7 @@
       
       [storage]
       filesystem_folder = /srv/radicale/collections
+      hook = ${pkgs.git}/bin/git add -A && (${pkgs.git}/bin/git diff --cached --quiet || ${pkgs.git}/bin/git commit -m "Changes by "%(user)s)
     '';
     services.radicale.package = pkgs.radicale2;
     services.radicale.nginx.enable = true;
