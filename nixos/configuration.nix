@@ -161,10 +161,10 @@ in {
   # DNSCrypt
   services.dnscrypt-proxy.enable = true;
   services.dnscrypt-proxy.customResolver = {
-    address = "167.86.90.103";
-    port = 443;
-    name = "2.dnscrypt-cert.dnscrypt.me";
-    key = "325f:58cb:c543:5ddf:2d08:8f32:2d4e:29d2:2fc1:9a72:e7e0:7efb:9f7e:ade0:1a8f:9bc5";
+    address = "46.38.233.231";
+    port = 15200;
+    name = "2.dnscrypt-cert.pascal-wittmann.de";
+    key = "5812:D777:4A2B:4870:4FE5:EB25:D1AC:7255:31D0:A53E:87BE:287C:BE51:249D:8439:3601";
   };
   networking.nameservers = ["127.0.0.1"];
 
