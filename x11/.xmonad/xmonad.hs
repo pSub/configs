@@ -28,6 +28,7 @@ myManageHook = composeAll
                  , className =? "Daily" --> doShift (myWorkspaces !! 6) -- Thunderbird
                  , className =? "Firefox" --> doShift (myWorkspaces !! 1)
                  , className =? "Chromium-browser" --> doShift (myWorkspaces !! 1)
+                 , className =? "Brave-browser" --> doShift (myWorkspaces !! 1)
                  , className =? "feh" --> doCenterFloat
                  , className =? "llpp" --> doShift (myWorkspaces !! 4)
                  , className =? "Pinentry" --> doCenterFloat
