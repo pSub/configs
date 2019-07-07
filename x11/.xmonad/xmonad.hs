@@ -25,6 +25,7 @@ myWorkspaces = clickable . (map xmobarEscape) $ [ "org", "www", "devâ‚", "devâ‚
 myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
                  , isDialog        --> doCenterFloat
+                 , appName =? "trello.com" --> doShift (myWorkspaces !! 0)
                  , className =? "Daily" --> doShift (myWorkspaces !! 6) -- Thunderbird
                  , className =? "Firefox" --> doShift (myWorkspaces !! 1)
                  , className =? "Chromium-browser" --> doShift (myWorkspaces !! 1)
@@ -40,11 +41,6 @@ myManageHook = composeAll
                  , title =? "floatwin" --> doCenterFloat
                  , appName =? "sun-awt-X11-XWindowPeer" <&&> className =? "jetbrains-idea" --> doIgnore
                  ] <+> manageDocks
-
-myDynHook = composeAll
-              [ ("| Trello" `isInfixOf`) `fmap` title   --> doShift (myWorkspaces !! 0)
-              ]
-
 
 myKeys = [ ("M-<Tab>", toggleWS)
          , ("M-C-<Return>", spawn "urxvtc -T floatwin")
@@ -63,7 +59,6 @@ main = do
         , manageHook = myManageHook
         , handleEventHook = mconcat [ handleEventHook defaultConfig
                           ,fullscreenEventHook
-                          , dynamicTitle  myDynHook
                           ]
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         , logHook = do
