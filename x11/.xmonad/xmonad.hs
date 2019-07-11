@@ -45,6 +45,7 @@ myManageHook = composeAll
 myKeys = [ ("M-<Tab>", toggleWS)
          , ("M-C-<Return>", spawn "urxvtc -T floatwin")
          , ("M-C-p", spawn "passmenu")
+         , ("M-C-t", spawn "thunar")
          ]
 
 main = do
