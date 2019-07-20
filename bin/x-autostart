@@ -4,6 +4,7 @@
 
 emacs --daemon &
 zim --plugin trayicon &
+trello &
 
 case $(hostname) in
   'firmin')
