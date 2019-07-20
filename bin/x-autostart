@@ -5,10 +5,3 @@
 emacs --daemon &
 zim --plugin trayicon &
 trello &
-
-case $(hostname) in
-  'firmin')
-      ;;
-  'subiectiva' | 'brauchli')
-      ;;
-esac
