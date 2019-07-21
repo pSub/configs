@@ -1,4 +1,6 @@
-{
+let
+  unstable = import (fetchTarball https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz) {};
+in {
 
   allowUnfree = true;
 
@@ -103,7 +105,7 @@
      name = "apps-env";
      paths = [
        areca
-
+       unstable.pkgs.brave
        calibre
        clementine
        evince
