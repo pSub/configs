@@ -1,10 +1,11 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz) {};
+  stable = import (fetchTarball https://nixos.org/channels/nixos-19.03/nixexprs.tar.xz) {};
 in {
 
   allowUnfree = true;
 
-  packageOverrides = pkgs : with pkgs; rec {
+  packageOverrides = _ : with stable.pkgs; rec {
 
    myTexLive = texlive.combine {
      inherit (texlive) scheme-full;
