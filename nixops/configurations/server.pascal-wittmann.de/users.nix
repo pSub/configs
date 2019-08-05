@@ -27,22 +27,6 @@ pascal@brauchli"
       ];
     };
 
-    qwert = {
-      uid = 1001;
-      group = "users";
-      home = "/home/qwert";
-      createHome = true;
-      useDefaultShell = true;
-    };
-
-    ragnar = {
-      uid = 493;
-      group = "users";
-      home = "/home/ragnar";
-      createHome = true;
-      useDefaultShell = true;
-    };
-
     lerke = {
       uid = 1009;
       home = "/srv/users/lerke";
