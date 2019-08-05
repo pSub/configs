@@ -116,14 +116,6 @@
     services.openssh.passwordAuthentication = false;
     services.openssh.challengeResponseAuthentication = false;
 
-    # bitlbee.
-    services.bitlbee.enable = true;
-    services.bitlbee.interface = "127.0.0.1";
-    services.bitlbee.portNumber = 6667;
-    services.bitlbee.authMode = "Registered";
-    services.bitlbee.hostName = "server.pascal-wittmann.de";
-    services.bitlbee.configDir = "/srv/bitlbee";
-
     # PostgreSQL.
     services.postgresql.enable = true;
     services.postgresql.package = pkgs.postgresql94;
