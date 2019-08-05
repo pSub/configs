@@ -72,7 +72,6 @@
     networking.firewall.allowedTCPPorts = [
       80 # http
       443 # https
-      4242 # quassel
     ];
 
     # Select internationalisation properties.
@@ -124,11 +123,6 @@
     services.bitlbee.authMode = "Registered";
     services.bitlbee.hostName = "server.pascal-wittmann.de";
     services.bitlbee.configDir = "/srv/bitlbee";
-
-    # quassel
-    services.quassel.enable = true;
-    services.quassel.interfaces = [ "0.0.0.0" ];
-    services.quassel.dataDir = "/srv/quassel";
 
     # PostgreSQL.
     services.postgresql.enable = true;
