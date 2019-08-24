@@ -125,6 +125,7 @@ in {
        geeqie
        pcmanfm
        phototonic
+       simple-scan
        electrum
        quasselClient
        viking
