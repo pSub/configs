@@ -225,16 +225,6 @@
     # Netdata
     services.netdata.enable = true;
 
-    services.dnscrypt-wrapper = {
-      enable = true;
-      address = "46.38.233.231";
-      upstream.address = "1.1.1.1";
-      providerName = "2.dnscrypt-cert.pascal-wittmann.de";
-      port = 15200;
-    };
-    networking.firewall.allowedUDPPorts = [ 15200 ];
-
-
     # Sound
     sound.enable = false;
 
