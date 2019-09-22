@@ -107,6 +107,17 @@
     services.cron.systemCronJobs = [
     ];
 
+    # Logrotate
+    services.logrotate.enable = true;
+
+    # FIXME: Integrate rotation into services.postgresqlBackup
+    services.logrotate.config = ''
+    /var/backup/postgresql/homepage_production.sql.gz {
+      size 1K
+      rotate 100
+    }
+    '';
+
     # Enable the OpenSSH daemon
     services.openssh.enable = true;
     services.openssh.allowSFTP = true;
