@@ -125,10 +125,10 @@
     host    all             all             127.0.0.1/32            trust
     host    all             all             ::1/128                 trust
     '';
-   services.postgresqlBackup.backupAll = true;
-   services.postgresqlBackup.enable = true;
-   services.postgresqlBackup.location = "/var/backup/postgresql";
-   services.postgresqlBackup.startAt = "*-*-* 02:15:00";
+    services.postgresqlBackup.databases = [ "homepage_production" ];
+    services.postgresqlBackup.enable = true;
+    services.postgresqlBackup.location = "/var/backup/postgresql";
+    services.postgresqlBackup.startAt = "*-*-* 02:15:00";
 
     # Caldav / Cardav
     services.radicale.enable = true;
