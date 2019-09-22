@@ -105,7 +105,6 @@
     # Cron daemon.
     services.cron.enable = true;
     services.cron.systemCronJobs = [
-      "30 2 * * * root start nixpkgs-monitor-updater"
     ];
 
     # Enable the OpenSSH daemon
