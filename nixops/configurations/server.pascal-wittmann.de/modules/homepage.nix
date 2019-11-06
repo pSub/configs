@@ -53,7 +53,7 @@ in {
     systemd.services.homepage = {
       description = "Personal Homepage powered by Yesod";
       wantedBy = [ "multi-user.target" ];
-      after = [ "lighttpd.service" "postgresql.service" ];
+      after = [ "nginx.service" "postgresql.service" ];
       bindsTo = [ "nginx.service" "postgresql.service" ];
       environment = {
         APPROOT = "https://www.pascal-wittmann.de";
