@@ -130,6 +130,7 @@
     services.postgresql.enable = true;
     services.postgresql.package = pkgs.postgresql95;
     services.postgresql.dataDir = "/var/lib/postgresql/9.5";
+    services.postgresql.superUser = "postgres";
     services.postgresql.authentication = lib.mkForce ''
     # Generated file; do not edit!
     # TYPE  DATABASE        USER            ADDRESS                 METHOD
