@@ -26,6 +26,8 @@ in {
       home = "/var/homepage";
     };
 
+  services.postgresql.ensureDatabases = [ "homepage_production" ];
+
   services.nginx.virtualHosts = {
      "www.pascal-wittmann.de" =  {
        forceSSL = true;
