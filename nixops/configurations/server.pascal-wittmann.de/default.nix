@@ -176,6 +176,14 @@
     services.nextcloud.hostName = "cloud.pascal-wittmann.de";
     services.nextcloud.nginx.enable = true;
     services.nextcloud.https = true;
+    services.nextcloud.config =  {
+      dbtype = "pgsql";
+      dbport = 5432;
+      dbname = "nextcloud";
+      dbuser = "nextcloud";
+      dbpassFile = "${./secrets/database-nextcloud}";
+      dbhost = "127.0.0.1";
+    };
 
     # nginx
     services.nginx.enable = true;
