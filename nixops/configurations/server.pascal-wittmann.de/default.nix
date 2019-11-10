@@ -114,6 +114,7 @@
     services.logrotate.config = ''
     /var/backup/postgresql/homepage_production.sql.gz {
       size 1K
+      copytruncate
       rotate 100
     }
     '';
