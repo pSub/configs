@@ -13,7 +13,7 @@ in {
     services.subsonic.nginx.enable = mkEnableOption "Whether to enable nginx as reverse-proxy for subsonic";
 
     services.subsonic.nginx.hostname = mkOption {
-      type = types.string;
+      type = types.str;
       example = "example.com";
       description = "";
     };

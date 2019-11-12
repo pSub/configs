@@ -11,7 +11,7 @@ in {
     services.radicale.nginx.enable = mkEnableOption "Whether to enable nginx as reverse-proxy for radicale";
 
     services.radicale.nginx.hostname = mkOption {
-      type = types.string;
+      type = types.str;
       example = "example.com";
       description = "";
     };
