@@ -42,9 +42,9 @@
     nix.gc.automatic = true;
     nix.gc.dates = "06:00";
 
-    system.autoUpgrade.enable = false;
-    system.autoUpgrade.channel = https://nixos.org/channels/nixos-17.09;
-    system.autoUpgrade.dates = "11:00";
+    system.autoUpgrade.enable = true;
+    system.autoUpgrade.channel = https://nixos.org/channels/nixos-19.09;
+    system.autoUpgrade.dates = "04:00";
     systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
       all@{ config, pkgs, lib, ... }: lib.filterAttrs (n: v: n != "deployment") ((import /etc/nixos/current/default.nix).server all)
     '';
