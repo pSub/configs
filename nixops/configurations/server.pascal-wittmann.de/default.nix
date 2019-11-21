@@ -103,6 +103,14 @@
 
     # List services that you want to enable:
 
+    networking.defaultMailServer.directDelivery = true;
+    networking.defaultMailServer.domain = "psub.eu";
+    networking.defaultMailServer.hostName = "smtp.gmail.com:587";
+    networking.defaultMailServer.root = "pascal.wittmann@gmail.com";
+    networking.defaultMailServer.useSTARTTLS = true;
+    networking.defaultMailServer.authUser = "pascal.wittmann@gmail.com";
+    networking.defaultMailServer.authPassFile = "${./secrets/smtp}";
+
     # Cron daemon.
     services.cron.enable = true;
     services.cron.systemCronJobs = [
