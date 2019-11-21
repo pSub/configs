@@ -11,6 +11,7 @@
       ./modules/homepage.nix
       ./modules/subsonic.nix
       ./modules/radicale.nix
+      ./modules/systemd-email-notify.nix
       ./users.nix
     ];
 
