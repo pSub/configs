@@ -139,8 +139,8 @@
 
     # PostgreSQL.
     services.postgresql.enable = true;
-    services.postgresql.package = pkgs.postgresql95;
-    services.postgresql.dataDir = "/var/lib/postgresql/9.5";
+    services.postgresql.package = pkgs.postgresql_11;
+    services.postgresql.dataDir = "/var/lib/postgresql/9.11";
     services.postgresql.superUser = "postgres";
     services.postgresql.authentication = lib.mkForce ''
     # Generated file; do not edit!
