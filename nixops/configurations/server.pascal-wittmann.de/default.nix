@@ -142,13 +142,6 @@
     services.postgresql.package = pkgs.postgresql_11;
     services.postgresql.dataDir = "/var/lib/postgresql/9.11";
     services.postgresql.superUser = "postgres";
-    services.postgresql.authentication = lib.mkForce ''
-    # Generated file; do not edit!
-    # TYPE  DATABASE        USER            ADDRESS                 METHOD
-    local   all             all                                     trust
-    host    all             all             127.0.0.1/32            trust
-    host    all             all             ::1/128                 trust
-    '';
     services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" ];
     services.postgresqlBackup.enable = true;
     services.postgresqlBackup.location = "/var/backup/postgresql";
