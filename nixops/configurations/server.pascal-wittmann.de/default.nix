@@ -123,9 +123,12 @@
     # FIXME: Integrate rotation into services.postgresqlBackup
     services.logrotate.config = ''
     /var/backup/postgresql/homepage_production.sql.gz {
-      size 1K
-      copytruncate
       rotate 100
+      missingok
+    }
+    /var/backup/postgresql/nextcloud.sql.gz {
+      rotate 100
+      missingok
     }
     '';
 
