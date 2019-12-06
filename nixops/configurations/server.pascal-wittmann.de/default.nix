@@ -110,7 +110,7 @@
     networking.defaultMailServer.root = "pascal.wittmann@gmail.com";
     networking.defaultMailServer.useSTARTTLS = true;
     networking.defaultMailServer.authUser = "pascal.wittmann@gmail.com";
-    networking.defaultMailServer.authPassFile = "${./secrets/smtp}";
+    networking.defaultMailServer.authPassFile = "/var/keys/smtp";
 
     # Cron daemon.
     services.cron.enable = true;
@@ -178,7 +178,7 @@
     # nextcloud
     services.nextcloud.enable = true;
     services.nextcloud.home = "/srv/nextcloud";
-    services.nextcloud.config.adminpassFile = "${./secrets/nextcloud}";
+    services.nextcloud.config.adminpassFile = "/var/keys/nextcloud";
     services.nextcloud.hostName = "cloud.pascal-wittmann.de";
     services.nextcloud.nginx.enable = true;
     services.nextcloud.https = true;
@@ -187,7 +187,7 @@
       dbport = 5432;
       dbname = "nextcloud";
       dbuser = "nextcloud";
-      dbpassFile = "${./secrets/database-nextcloud}";
+      dbpassFile = "/var/keys/databaseNextcloud";
       dbhost = "127.0.0.1";
     };
 
@@ -219,7 +219,7 @@
            proxy_store off;
 
            auth_basic "Password protected area";
-           auth_basic_user_file ${./secrets/passwords};
+           auth_basic_user_file /var/keys/basicAuth;
          '';
        };
 
@@ -239,7 +239,7 @@
            extraConfig = ''
              autoindex on;
              auth_basic "Password protected area";
-             auth_basic_user_file ${./secrets/passwords};
+             auth_basic_user_file /var/keys/basicAuth;
            '';
          };
          extraConfig = ''
@@ -269,5 +269,25 @@
 
     users.mutableUsers = false;
     users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
+
+    deployment.keys.nextcloud.text = builtins.readFile ./secrets/nextcloud;
+    deployment.keys.nextcloud.destDir = "/var/keys";
+    deployment.keys.nextcloud.user = "nextcloud";
+
+    deployment.keys.databaseNextcloud.text = builtins.readFile ./secrets/database-nextcloud;
+    deployment.keys.databaseNextcloud.destDir = "/var/keys";
+    deployment.keys.databaseNextcloud.user = "nextcloud";
+
+    deployment.keys.basicAuth.text = builtins.readFile ./secrets/passwords;
+    deployment.keys.basicAuth.destDir = "/var/keys";
+    deployment.keys.basicAuth.user = "nginx";
+
+    deployment.keys.smtp.text = builtins.readFile ./secrets/smtp;
+    deployment.keys.smtp.destDir = "/var/keys";
+    deployment.keys.smtp.group = "mail";
+
+    deployment.keys.databaseHomepage.text = builtins.readFile ./secrets/homepage_database_password;
+    deployment.keys.databaseHomepage.destDir = "/var/keys";
+    deployment.keys.databaseHomepage.user = "homepage";
   };
 }

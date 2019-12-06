@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
 {
+  users.groups = {
+    mail = { };
+  };
 
   users.extraUsers = {
     root.openssh.authorizedKeys.keys = [
@@ -13,7 +16,7 @@
       uid = 1000;
       group = "users";
       home = "/home/pascal";
-      extraGroups = [ "mpd" ];
+      extraGroups = [ "mpd" "mail" ];
       createHome = true;
       useDefaultShell = true;
       openssh.authorizedKeys.keys = [
