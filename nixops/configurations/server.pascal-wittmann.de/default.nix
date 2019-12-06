@@ -8,6 +8,7 @@
 
   {
     require = [
+      ./modules/clean-deployment-keys.nix
       ./modules/homepage.nix
       ./modules/subsonic.nix
       ./modules/radicale.nix
