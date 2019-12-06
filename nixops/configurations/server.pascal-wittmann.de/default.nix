@@ -53,8 +53,10 @@
 
     system.activationScripts = {
       configuration = ''
-        rm /etc/nixos/current/* #*/
-        ln -s ${./.}/* /etc/nixos/current #*/
+        rm -f /etc/nixos/current/* #*/
+        shopt -s extglob
+        ln -s ${./.}/!(secrets|\.|\..) /etc/nixos/current #*/
+        shopt -u extglob
       '';
     };
 
