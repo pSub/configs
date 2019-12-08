@@ -73,7 +73,7 @@ in {
         ${homepage-app}/bin/homepage
       '';
       serviceConfig.KillSignal = "SIGINT";
-      serviceConfig.User = "homepage";
+      serviceConfig.User = user;
     };
   };
 }
