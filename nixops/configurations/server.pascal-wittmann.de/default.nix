@@ -71,7 +71,6 @@
     ];
     networking.defaultGateway6 = { address = "fe80::1"; interface = "ens3"; };
 
-    networking.firewall.rejectPackets = true;
     networking.firewall.allowPing = true;
     networking.firewall.autoLoadConntrackHelpers = false;
     networking.firewall.allowedTCPPorts = [
