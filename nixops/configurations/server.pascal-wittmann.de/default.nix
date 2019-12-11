@@ -49,7 +49,15 @@
     system.autoUpgrade.dates = "04:00";
     system.autoUpgrade.allowReboot = true;
     systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
-      all@{ config, pkgs, lib, ... }: lib.filterAttrs (n: v: n != "deployment") ((import /etc/nixos/current/default.nix).server all)
+      all@{ config, pkgs, lib, ... }:
+            let
+              serverConfig = (import /etc/nixos/current/default.nix).server all;
+              withoutDeploymentOptions = builtins.removeAttrs serverConfig [ "deployment" ];
+              withoutDeploymentRequires = lib.overrideExisting withoutDeploymentOptions
+                                                               { require = builtins.filter (filename: ! (lib.hasInfix "deployment" (builtins.toString filename)))
+                                                                                           serverConfig.require;
+                                                               };
+            in withoutDeploymentRequires
     '';
 
     system.activationScripts = {
