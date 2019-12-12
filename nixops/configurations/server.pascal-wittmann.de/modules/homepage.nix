@@ -60,7 +60,7 @@ in {
       bindsTo = [ "nginx.service" "postgresql.service" ];
       onFailure = [ "email@%n.service" ];
       environment = {
-        APPROOT = "https://www.pascal-wittmann.de";
+        APPROOT = "https://pascal-wittmann.de";
         PORT = "3001";
         PGUSER = user;
         PGDATABASE = "homepage_production";
