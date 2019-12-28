@@ -18,8 +18,16 @@ let
       $(systemctl status --full "$2")
       ERRMAIL
     '';
+
   
 in {
+  options = {
+    systemd.emailNotify.services = mkOption {
+      type = types.listOf types.str;
+      default = [];
+      description = "Services for which email notifications are send in case of failure";
+    };
+  };
 
   config = {
     systemd.services."email@" = {
@@ -29,6 +37,10 @@ in {
         Type = "oneshot";
       };
     };
-  };
+  } // (lib.setAttrByPath [ "systemd" "services" ]
+         (lib.genAttrs config.systemd. emailNotify.services
+                       (serviceName: lib.setAttrByPath
+                         [ "serviceConfig" "onFailure" ]
+                         (mkForce [ "email@%n.service" ]))));
 
 }

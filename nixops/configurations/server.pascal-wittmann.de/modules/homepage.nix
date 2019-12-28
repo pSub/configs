@@ -58,7 +58,6 @@ in {
       wantedBy = [ "multi-user.target" ];
       after = [ "nginx.service" "postgresql.service" ];
       bindsTo = [ "nginx.service" "postgresql.service" ];
-      onFailure = [ "email@%n.service" ];
       environment = {
         APPROOT = "https://pascal-wittmann.de";
         PORT = "3001";
