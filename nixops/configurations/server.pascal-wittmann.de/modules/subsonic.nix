@@ -22,7 +22,10 @@ in {
   config = mkIf cfg.enable {
     services.nginx.virtualHosts = {
        "${cfg.hostname}" = {
-         forceSSL = true;
+         # Do not force SSL as the subsonic apps fail with "javax.net.ssl.SSLPeerUnverifiedException: No peer certificate"
+         # on at least Android 4.4.
+         forceSSL = false;
+         addSSL = true;
          enableACME = true;
          locations."/" = { proxyPass = "http://${subsonicHost}:${toString subsonicPort}"; };
          extraConfig = ''
