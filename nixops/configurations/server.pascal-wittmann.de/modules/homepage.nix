@@ -63,8 +63,6 @@ in {
         PORT = "3001";
         PGUSER = user;
         PGDATABASE = "homepage_production";
-        GITHUB_OAUTH_CLIENT_ID = "82fa60e9329799fe88f8";
-        GITHUB_OAUTH_CLIENT_SECRET = import ../secrets/github_oauth_client_secret;
       };
       script = ''
         export PGPASS=`cat /var/keys/databaseHomepage`
