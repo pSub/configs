@@ -30,9 +30,7 @@ in {
 
     systemd.services = lib.mkOption {
       type = with lib.types; attrsOf (submodule {
-        config = {
-          serviceConfig.onFailure = "email@%n.service";
-        };
+        config.onFailure = [ "email@%n.service" ];
       });
     };
   };
