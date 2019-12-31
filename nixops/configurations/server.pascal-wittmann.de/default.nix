@@ -87,8 +87,6 @@
       443 # https
     ];
 
-    systemd.emailNotify.services = [ "homepage" "nixos-upgrade" ];
-
     # Select internationalisation properties.
     i18n = {
       consoleFont = "Lat2-Terminus16";
