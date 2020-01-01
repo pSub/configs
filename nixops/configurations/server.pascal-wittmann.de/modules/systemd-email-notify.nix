@@ -3,7 +3,7 @@
 with lib;
 
 let
-  
+
   sendmail = pkgs.writeScript "sendmail"
     ''
       #!/bin/sh
@@ -19,8 +19,9 @@ let
       ERRMAIL
     '';
 
-  
-in {
+
+in
+{
   options = {
     systemd.emailNotify.services = mkOption {
       type = types.listOf types.str;
@@ -29,9 +30,11 @@ in {
     };
 
     systemd.services = lib.mkOption {
-      type = with lib.types; attrsOf (submodule {
-        config.onFailure = [ "email@%n.service" ];
-      });
+      type = with lib.types; attrsOf (
+        submodule {
+          config.onFailure = [ "email@%n.service" ];
+        }
+      );
     };
   };
 

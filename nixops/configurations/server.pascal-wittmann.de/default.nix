@@ -1,305 +1,310 @@
 {
 
   network = {
-   enableRollback = true;
+    enableRollback = true;
   };
 
   server = { config, pkgs, lib, ... }:
 
-  {
-    require = [
-      ./modules/clean-deployment-keys.nix
-      ./modules/homepage.nix
-      ./modules/subsonic.nix
-      ./modules/radicale.nix
-      ./modules/systemd-email-notify.nix
-      ./users.nix
-    ];
+    {
+      require = [
+        ./modules/clean-deployment-keys.nix
+        ./modules/homepage.nix
+        ./modules/subsonic.nix
+        ./modules/radicale.nix
+        ./modules/systemd-email-notify.nix
+        ./users.nix
+      ];
 
-    nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.allowUnfree = true;
 
-    deployment.targetHost = "server.pascal-wittmann.de";
+      deployment.targetHost = "server.pascal-wittmann.de";
 
-    # Use the GRUB 2 boot loader.
-    boot.loader.grub.enable = true;
-    boot.loader.grub.version = 2;
-    # Define on which hard drive you want to install Grub.
-    boot.loader.grub.device = "/dev/vda";
+      # Use the GRUB 2 boot loader.
+      boot.loader.grub.enable = true;
+      boot.loader.grub.version = 2;
+      # Define on which hard drive you want to install Grub.
+      boot.loader.grub.device = "/dev/vda";
 
-    boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci"
-      "virtio_blk" ];
-    boot.kernelModules = [ ];
-    boot.extraModulePackages = [ ];
+      boot.initrd.availableKernelModules = [
+        "ata_piix"
+        "uhci_hcd"
+        "virtio_pci"
+        "virtio_blk"
+      ];
+      boot.kernelModules = [];
+      boot.extraModulePackages = [];
 
-    fileSystems."/" = {
-      device = "/dev/disk/by-uuid/7d067332-eba7-4a8e-acf7-a463cf50677f";
-      fsType = "ext4";
-    };
+      fileSystems."/" = {
+        device = "/dev/disk/by-uuid/7d067332-eba7-4a8e-acf7-a463cf50677f";
+        fsType = "ext4";
+      };
 
-    swapDevices = [
-      { device = "/dev/disk/by-uuid/279e433e-1ab9-4fd1-9c37-0d7e4e082944"; }
-    ];
+      swapDevices = [
+        { device = "/dev/disk/by-uuid/279e433e-1ab9-4fd1-9c37-0d7e4e082944"; }
+      ];
 
-    nix.maxJobs = 2;
-    nix.gc.automatic = true;
-    nix.gc.dates = "06:00";
+      nix.maxJobs = 2;
+      nix.gc.automatic = true;
+      nix.gc.dates = "06:00";
 
-    system.autoUpgrade.enable = true;
-    system.autoUpgrade.channel = https://nixos.org/channels/nixos-19.09;
-    system.autoUpgrade.dates = "04:00";
-    system.autoUpgrade.allowReboot = true;
-    systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
-      all@{ config, pkgs, lib, ... }:
-            let
-              serverConfig = (import /etc/nixos/current/default.nix).server all;
-              withoutDeploymentOptions = builtins.removeAttrs serverConfig [ "deployment" ];
-              withoutDeploymentRequires = lib.overrideExisting withoutDeploymentOptions
-                                                               { require = builtins.filter (filename: ! (lib.hasInfix "deployment" (builtins.toString filename)))
-                                                                                           serverConfig.require;
-                                                               };
-            in withoutDeploymentRequires
-    '';
-
-    system.activationScripts = {
-      configuration = ''
-        rm -f /etc/nixos/current/* #*/
-        shopt -s extglob
-        ln -s ${./.}/!(secrets|\.|\..) /etc/nixos/current #*/
-        shopt -u extglob
+      system.autoUpgrade.enable = true;
+      system.autoUpgrade.channel = https://nixos.org/channels/nixos-19.09;
+      system.autoUpgrade.dates = "04:00";
+      system.autoUpgrade.allowReboot = true;
+      systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
+        all@{ config, pkgs, lib, ... }:
+              let
+                serverConfig = (import /etc/nixos/current/default.nix).server all;
+                withoutDeploymentOptions = builtins.removeAttrs serverConfig [ "deployment" ];
+                withoutDeploymentRequires = lib.overrideExisting withoutDeploymentOptions
+                                                                 { require = builtins.filter (filename: ! (lib.hasInfix "deployment" (builtins.toString filename)))
+                                                                                             serverConfig.require;
+                                                                 };
+              in withoutDeploymentRequires
       '';
-    };
 
-    # Work around NixOS/nixpkgs#28527
-    systemd.services.nixos-upgrade.path = with pkgs; [  gnutar xz.bin gzip config.nix.package.out ];
+      system.activationScripts = {
+        configuration = ''
+          rm -f /etc/nixos/current/* #*/
+          shopt -s extglob
+          ln -s ${./.}/!(secrets|\.|\..) /etc/nixos/current #*/
+          shopt -u extglob
+        '';
+      };
 
-    networking.hostName = "nixos"; # Define your hostname.
+      # Work around NixOS/nixpkgs#28527
+      systemd.services.nixos-upgrade.path = with pkgs; [ gnutar xz.bin gzip config.nix.package.out ];
 
-    networking.interfaces.ens3.ipv6.addresses =[
-      { address = "2a03:4000:2:70e::42"; prefixLength = 64; }
-    ];
-    networking.defaultGateway6 = { address = "fe80::1"; interface = "ens3"; };
+      networking.hostName = "nixos"; # Define your hostname.
 
-    networking.firewall.enable = true;
-    networking.firewall.allowPing = true;
-    networking.firewall.autoLoadConntrackHelpers = false;
-    networking.firewall.allowedTCPPorts = [
-      80 # http
-      443 # https
-    ];
+      networking.interfaces.ens3.ipv6.addresses = [
+        { address = "2a03:4000:2:70e::42"; prefixLength = 64; }
+      ];
+      networking.defaultGateway6 = { address = "fe80::1"; interface = "ens3"; };
 
-    # Select internationalisation properties.
-    i18n = {
-      consoleFont = "Lat2-Terminus16";
-      consoleKeyMap = "de";
-      defaultLocale = "en_US.UTF-8";
-    };
+      networking.firewall.enable = true;
+      networking.firewall.allowPing = true;
+      networking.firewall.autoLoadConntrackHelpers = false;
+      networking.firewall.allowedTCPPorts = [
+        80 # http
+        443 # https
+      ];
 
-    # Set your time zone.
-    time.timeZone = "Europe/Berlin";
+      # Select internationalisation properties.
+      i18n = {
+        consoleFont = "Lat2-Terminus16";
+        consoleKeyMap = "de";
+        defaultLocale = "en_US.UTF-8";
+      };
 
-    # Security - PAM
-    security.pam.loginLimits = [ {
-      domain = "*";
-      item = "maxlogins";
-      type = "-";
-      value = "3";
-    } ];
+      # Set your time zone.
+      time.timeZone = "Europe/Berlin";
 
-    # List packages installed in system profile. To search by name, run:
-    # $ nix-env -qaP | grep wget
-    environment.systemPackages = with pkgs; [
-      # Install only the urxvt terminfo file
-      rxvt_unicode.terminfo
-      zile
-    ];
+      # Security - PAM
+      security.pam.loginLimits = [
+        {
+          domain = "*";
+          item = "maxlogins";
+          type = "-";
+          value = "3";
+        }
+      ];
 
-    # List services that you want to enable:
+      # List packages installed in system profile. To search by name, run:
+      # $ nix-env -qaP | grep wget
+      environment.systemPackages = with pkgs; [
+        # Install only the urxvt terminfo file
+        rxvt_unicode.terminfo
+        zile
+      ];
 
-    networking.defaultMailServer.directDelivery = true;
-    networking.defaultMailServer.domain = "psub.eu";
-    networking.defaultMailServer.hostName = "smtp.gmail.com:587";
-    networking.defaultMailServer.root = "pascal.wittmann@gmail.com";
-    networking.defaultMailServer.useSTARTTLS = true;
-    networking.defaultMailServer.authUser = "pascal.wittmann@gmail.com";
-    networking.defaultMailServer.authPassFile = "/var/keys/smtp";
+      # List services that you want to enable:
 
-    # Cron daemon.
-    services.cron.enable = true;
-    services.cron.systemCronJobs = [
-    ];
+      networking.defaultMailServer.directDelivery = true;
+      networking.defaultMailServer.domain = "psub.eu";
+      networking.defaultMailServer.hostName = "smtp.gmail.com:587";
+      networking.defaultMailServer.root = "pascal.wittmann@gmail.com";
+      networking.defaultMailServer.useSTARTTLS = true;
+      networking.defaultMailServer.authUser = "pascal.wittmann@gmail.com";
+      networking.defaultMailServer.authPassFile = "/var/keys/smtp";
 
-    # Logrotate
-    services.logrotate.enable = true;
+      # Cron daemon.
+      services.cron.enable = true;
+      services.cron.systemCronJobs = [];
 
-    # FIXME: Integrate rotation into services.postgresqlBackup
-    services.logrotate.config = ''
-    /var/backup/postgresql/homepage_production.sql.gz {
-      rotate 100
-      missingok
-    }
-    /var/backup/postgresql/nextcloud.sql.gz {
-      rotate 100
-      missingok
-    }
-    '';
+      # Logrotate
+      services.logrotate.enable = true;
 
-    # Enable the OpenSSH daemon
-    services.openssh.enable = true;
-    services.openssh.allowSFTP = true;
-    services.openssh.forwardX11 = false;
-    services.openssh.permitRootLogin = "yes"; # For deployment via NixOps
-    services.openssh.passwordAuthentication = false;
-    services.openssh.challengeResponseAuthentication = false;
+      # FIXME: Integrate rotation into services.postgresqlBackup
+      services.logrotate.config = ''
+        /var/backup/postgresql/homepage_production.sql.gz {
+          rotate 100
+          missingok
+        }
+        /var/backup/postgresql/nextcloud.sql.gz {
+          rotate 100
+          missingok
+        }
+      '';
 
-    # PostgreSQL.
-    services.postgresql.enable = true;
-    services.postgresql.package = pkgs.postgresql_11;
-    services.postgresql.dataDir = "/var/lib/postgresql/9.11";
-    services.postgresql.superUser = "postgres";
-    services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" ];
-    services.postgresqlBackup.enable = true;
-    services.postgresqlBackup.location = "/var/backup/postgresql";
-    services.postgresqlBackup.startAt = "*-*-* 02:15:00";
+      # Enable the OpenSSH daemon
+      services.openssh.enable = true;
+      services.openssh.allowSFTP = true;
+      services.openssh.forwardX11 = false;
+      services.openssh.permitRootLogin = "yes"; # For deployment via NixOps
+      services.openssh.passwordAuthentication = false;
+      services.openssh.challengeResponseAuthentication = false;
 
-    # Caldav / Cardav
-    services.radicale.enable = true;
-    services.radicale.config = ''
-      [server]
-      hosts = 127.0.0.1:5232
-      ssl = False
+      # PostgreSQL.
+      services.postgresql.enable = true;
+      services.postgresql.package = pkgs.postgresql_11;
+      services.postgresql.dataDir = "/var/lib/postgresql/9.11";
+      services.postgresql.superUser = "postgres";
+      services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" ];
+      services.postgresqlBackup.enable = true;
+      services.postgresqlBackup.location = "/var/backup/postgresql";
+      services.postgresqlBackup.startAt = "*-*-* 02:15:00";
+
+      # Caldav / Cardav
+      services.radicale.enable = true;
+      services.radicale.config = ''
+        [server]
+        hosts = 127.0.0.1:5232
+        ssl = False
       
-      [storage]
-      filesystem_folder = /srv/radicale/collections
-      hook = ${pkgs.git}/bin/git add -A && (${pkgs.git}/bin/git diff --cached --quiet || ${pkgs.git}/bin/git commit -m "Changes by "%(user)s && GIT_SSH_COMMAND='${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -i /srv/radicale/id_rsa' ${pkgs.git}/bin/git push origin)
-    '';
-    services.radicale.package = pkgs.radicale2;
-    services.radicale.nginx.enable = true;
-    services.radicale.nginx.hostname = "calendar.pascal-wittmann.de";
+        [storage]
+        filesystem_folder = /srv/radicale/collections
+        hook = ${pkgs.git}/bin/git add -A && (${pkgs.git}/bin/git diff --cached --quiet || ${pkgs.git}/bin/git commit -m "Changes by "%(user)s && GIT_SSH_COMMAND='${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -i /srv/radicale/id_rsa' ${pkgs.git}/bin/git push origin)
+      '';
+      services.radicale.package = pkgs.radicale2;
+      services.radicale.nginx.enable = true;
+      services.radicale.nginx.hostname = "calendar.pascal-wittmann.de";
 
-    # Subsonic
-    services.subsonic.enable = true;
-    services.subsonic.defaultMusicFolder = "/srv/music";
-    services.subsonic.defaultPlaylistFolder = "/srv/playlists";
-    services.subsonic.defaultPodcastFolder = "/srv/podcast";
-    services.subsonic.httpsPort = 0;
-    services.subsonic.listenAddress = "127.0.0.1";
-    services.subsonic.nginx.enable = true;
-    services.subsonic.nginx.hostname = "music.pascal-wittmann.de";
+      # Subsonic
+      services.subsonic.enable = true;
+      services.subsonic.defaultMusicFolder = "/srv/music";
+      services.subsonic.defaultPlaylistFolder = "/srv/playlists";
+      services.subsonic.defaultPodcastFolder = "/srv/podcast";
+      services.subsonic.httpsPort = 0;
+      services.subsonic.listenAddress = "127.0.0.1";
+      services.subsonic.nginx.enable = true;
+      services.subsonic.nginx.hostname = "music.pascal-wittmann.de";
 
-    # nextcloud
-    services.nextcloud.enable = true;
-    services.nextcloud.home = "/srv/nextcloud";
-    services.nextcloud.config.adminpassFile = "/var/keys/nextcloud";
-    services.nextcloud.hostName = "cloud.pascal-wittmann.de";
-    services.nextcloud.nginx.enable = true;
-    services.nextcloud.https = true;
-    services.nextcloud.autoUpdateApps.enable = true;
-    services.nextcloud.config =  {
-      dbtype = "pgsql";
-      dbport = 5432;
-      dbname = "nextcloud";
-      dbuser = "nextcloud";
-      dbpassFile = "/var/keys/databaseNextcloud";
-      dbhost = "127.0.0.1";
+      # nextcloud
+      services.nextcloud.enable = true;
+      services.nextcloud.home = "/srv/nextcloud";
+      services.nextcloud.config.adminpassFile = "/var/keys/nextcloud";
+      services.nextcloud.hostName = "cloud.pascal-wittmann.de";
+      services.nextcloud.nginx.enable = true;
+      services.nextcloud.https = true;
+      services.nextcloud.autoUpdateApps.enable = true;
+      services.nextcloud.config = {
+        dbtype = "pgsql";
+        dbport = 5432;
+        dbname = "nextcloud";
+        dbuser = "nextcloud";
+        dbpassFile = "/var/keys/databaseNextcloud";
+        dbhost = "127.0.0.1";
+      };
+
+      # nginx
+      services.nginx.enable = true;
+      services.nginx.virtualHosts = {
+        "penchy.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          root = "/srv/penchy";
+        };
+
+        "cloud.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+        };
+
+        "netdata.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = { proxyPass = "http://127.0.0.1:19999"; };
+          extraConfig = ''
+            proxy_set_header X-Forwarded-Host $host;
+            proxy_set_header X-Forwarded-Server $host;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_http_version 1.1;
+            proxy_pass_request_headers on;
+            proxy_set_header Connection "keep-alive";
+            proxy_store off;
+
+            auth_basic "Password protected area";
+            auth_basic_user_file /var/keys/basicAuth;
+          '';
+        };
+
+        "users.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+
+          locations."/pascal" = {
+            root = "/srv/users/";
+            extraConfig = ''
+              autoindex on;
+            '';
+          };
+
+          locations."/lerke" = {
+            root = "/srv/users/";
+            extraConfig = ''
+              autoindex on;
+              auth_basic "Password protected area";
+              auth_basic_user_file /var/keys/basicAuth;
+            '';
+          };
+          extraConfig = ''
+            add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+            add_header X-Content-Type-Options nosniff;
+            add_header X-XSS-Protection "1; mode=block";
+            add_header X-Frame-Options DENY;
+          '';
+        };
+      };
+
+      # Homepage
+      services.homepage.enable = true;
+
+      # Netdata
+      services.netdata.enable = true;
+
+      # Sound
+      sound.enable = false;
+
+      # Enable zsh
+      programs.zsh.enable = true;
+
+      # X-libraries and fonts are not needed on the server.
+      #  environment.noXlibs = true;
+      fonts.fontconfig.enable = false;
+
+      users.mutableUsers = false;
+      users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
+
+      deployment.keys.nextcloud.text = builtins.readFile ./secrets/nextcloud;
+      deployment.keys.nextcloud.destDir = "/var/keys";
+      deployment.keys.nextcloud.user = "nextcloud";
+
+      deployment.keys.databaseNextcloud.text = builtins.readFile ./secrets/database-nextcloud;
+      deployment.keys.databaseNextcloud.destDir = "/var/keys";
+      deployment.keys.databaseNextcloud.user = "nextcloud";
+
+      deployment.keys.basicAuth.text = builtins.readFile ./secrets/passwords;
+      deployment.keys.basicAuth.destDir = "/var/keys";
+      deployment.keys.basicAuth.user = "nginx";
+
+      deployment.keys.smtp.text = builtins.readFile ./secrets/smtp;
+      deployment.keys.smtp.destDir = "/var/keys";
+      deployment.keys.smtp.group = "mail";
+
+      deployment.keys.databaseHomepage.text = builtins.readFile ./secrets/homepage_database_password;
+      deployment.keys.databaseHomepage.destDir = "/var/keys";
+      deployment.keys.databaseHomepage.user = "homepage";
     };
-
-    # nginx
-    services.nginx.enable = true;
-    services.nginx.virtualHosts = {
-       "penchy.pascal-wittmann.de" = {
-         forceSSL = true;
-         enableACME = true;
-         root = "/srv/penchy";
-       };
-
-       "cloud.pascal-wittmann.de" = {
-         forceSSL = true;
-         enableACME = true;
-       };
-
-       "netdata.pascal-wittmann.de" = {
-         forceSSL = true;
-         enableACME = true;
-         locations."/" = { proxyPass = "http://127.0.0.1:19999"; };
-         extraConfig = ''
-           proxy_set_header X-Forwarded-Host $host;
-           proxy_set_header X-Forwarded-Server $host;
-           proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-           proxy_http_version 1.1;
-           proxy_pass_request_headers on;
-           proxy_set_header Connection "keep-alive";
-           proxy_store off;
-
-           auth_basic "Password protected area";
-           auth_basic_user_file /var/keys/basicAuth;
-         '';
-       };
-
-       "users.pascal-wittmann.de" = {
-         forceSSL = true;
-         enableACME = true;
-
-         locations."/pascal" = {
-           root = "/srv/users/";
-           extraConfig = ''
-             autoindex on;
-           '';
-         };
-
-         locations."/lerke" = {
-           root = "/srv/users/";
-           extraConfig = ''
-             autoindex on;
-             auth_basic "Password protected area";
-             auth_basic_user_file /var/keys/basicAuth;
-           '';
-         };
-         extraConfig = ''
-           add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-           add_header X-Content-Type-Options nosniff;
-           add_header X-XSS-Protection "1; mode=block";
-           add_header X-Frame-Options DENY;
-         '';
-       };
-    };
-
-    # Homepage
-    services.homepage.enable = true;
-
-    # Netdata
-    services.netdata.enable = true;
-
-    # Sound
-    sound.enable = false;
-
-    # Enable zsh
-    programs.zsh.enable = true;
-
-    # X-libraries and fonts are not needed on the server.
-    #  environment.noXlibs = true;
-    fonts.fontconfig.enable = false;
-
-    users.mutableUsers = false;
-    users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
-
-    deployment.keys.nextcloud.text = builtins.readFile ./secrets/nextcloud;
-    deployment.keys.nextcloud.destDir = "/var/keys";
-    deployment.keys.nextcloud.user = "nextcloud";
-
-    deployment.keys.databaseNextcloud.text = builtins.readFile ./secrets/database-nextcloud;
-    deployment.keys.databaseNextcloud.destDir = "/var/keys";
-    deployment.keys.databaseNextcloud.user = "nextcloud";
-
-    deployment.keys.basicAuth.text = builtins.readFile ./secrets/passwords;
-    deployment.keys.basicAuth.destDir = "/var/keys";
-    deployment.keys.basicAuth.user = "nginx";
-
-    deployment.keys.smtp.text = builtins.readFile ./secrets/smtp;
-    deployment.keys.smtp.destDir = "/var/keys";
-    deployment.keys.smtp.group = "mail";
-
-    deployment.keys.databaseHomepage.text = builtins.readFile ./secrets/homepage_database_password;
-    deployment.keys.databaseHomepage.destDir = "/var/keys";
-    deployment.keys.databaseHomepage.user = "homepage";
-  };
 }

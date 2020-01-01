@@ -17,7 +17,8 @@
 
   # Set LUKS device.
   boot.initrd.luks.devices = [
-    { name = "luksroot";
+    {
+      name = "luksroot";
       device = "/dev/disk/by-id/wwn-0x500a07510338a9bf-part2"; #sda2
       preLVM = true;
     }
@@ -47,7 +48,8 @@
 
   # List swap partitions activated at boot time.
   swapDevices =
-    [ { device = "/dev/mapper/vgroup-swap"; }
+    [
+      { device = "/dev/mapper/vgroup-swap"; }
     ];
 
   nix.maxJobs = 4;

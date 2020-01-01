@@ -10,11 +10,12 @@
   boot.kernelPackages = pkgs.linuxPackages_3_10;
 
   boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ata_piix" "ahci" ];
-  boot.initrd.luks.cryptoModules = ["aes" "sha512" "sha1" "cbc" "xts"];
+  boot.initrd.luks.cryptoModules = [ "aes" "sha512" "sha1" "cbc" "xts" ];
 
   # Set LUKS device
   boot.initrd.luks.devices = [
-    { name = "luksroot";
+    {
+      name = "luksroot";
       device = "/dev/sda2";
       preLVM = true;
     }
@@ -44,7 +45,8 @@
 
   # List swap partitions activated at boot time.
   swapDevices =
-    [ { device = "/dev/mapper/vgroup-swap"; }
+    [
+      { device = "/dev/mapper/vgroup-swap"; }
     ];
 
   nix.maxJobs = 2;
@@ -52,5 +54,5 @@
   services.xserver.videoDrivers = [ "intel" "vesa" ];
 
   # Power Management
-  powerManagement.cpuFreqGovernor = "conservative"; 
+  powerManagement.cpuFreqGovernor = "conservative";
 }

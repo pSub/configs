@@ -14,9 +14,11 @@ let
       test $BAT_PCT -le 10 && test $BAT_STA = "Discharging" && DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send 'Low Battery'
     '';
 
-in {
+in
+{
   require =
-    [ # Include settings that depend on specific hardware.
+    [
+      # Include settings that depend on specific hardware.
       /etc/nixos/my-hardware-configuration.nix
 
       # Include the file with the hashed passwords. Ensure
@@ -29,8 +31,10 @@ in {
 
   # Trust hydra. Needed for one-click installations.
   nix.trustedBinaryCaches = [ "http://hydra.nixos.org" ];
-  nix.binaryCachePublicKeys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-                                "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs=" ];
+  nix.binaryCachePublicKeys = [
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
+  ];
 
   # Build using chroots to detect more impurities.
   nix.useSandbox = true;
@@ -52,8 +56,8 @@ in {
     isNormalUser = true;
     shell = "${pkgs.zsh}/bin/zsh";
   };
-  fileSystems."/home/pascal/downloads" = { device = "tmpfs" ; fsType = "tmpfs"; options = [ "size=25%" ]; };
-  fileSystems."/home/pascal/sandbox" = { device = "tmpfs" ; fsType = "tmpfs"; options = [ "size=25%" ]; };
+  fileSystems."/home/pascal/downloads" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "size=25%" ]; };
+  fileSystems."/home/pascal/sandbox" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "size=25%" ]; };
 
   # Select internationalisation properties.
   i18n = {
@@ -107,8 +111,8 @@ in {
   services.logind.lidSwitch = "suspend";
 
   # ClamAV.
-  services.clamav.daemon.enable = true;
-  services.clamav.updater.enable = true;
+  services.clamav.daemon.enable = false;
+  services.clamav.updater.enable = false;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -123,19 +127,21 @@ in {
   services.xserver.layout = "de";
   services.xserver.xkbVariant = "nodeadkeys";
   services.xserver.xkbOptions = "";
-  services.xserver.synaptics = { enable = true;
-                                 accelFactor = "0.01";
-                                 tapButtons = false;
-                                 vertEdgeScroll = true;
-                               };
+  services.xserver.synaptics = {
+    enable = true;
+    accelFactor = "0.01";
+    tapButtons = false;
+    vertEdgeScroll = true;
+  };
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.displayManager.lightdm.extraSeatDefaults = ''
     autologin-user = pascal
   '';
 
-  services.xserver.windowManager.xmonad = { enable = true;
-                                            enableContribAndExtras = true;
-                                          };
+  services.xserver.windowManager.xmonad = {
+    enable = true;
+    enableContribAndExtras = true;
+  };
   services.xserver.windowManager.default = "xmonad";
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.desktopManager.xfce = {
@@ -152,6 +158,10 @@ in {
   # Copy the system configuration int to nix-store.
   system.copySystemConfiguration = true;
 
+  # gpg-agent
+  #  programs.gnupg.agent.enable = true;
+  #  programs.gnupg.agent.enableSSHSupport = true;
+
   # Do not start ssh-agent, gnupg-agent is used.
   programs.ssh.startAgent = false;
 
@@ -160,11 +170,12 @@ in {
 
   # DNSCrypt
   services.dnscrypt-proxy.enable = true;
+  # Picked from https://servers.opennic.org
   services.dnscrypt-proxy.customResolver = {
-    address = "46.38.233.231";
-    port = 15200;
-    name = "2.dnscrypt-cert.pascal-wittmann.de";
-    key = "5812:D777:4A2B:4870:4FE5:EB25:D1AC:7255:31D0:A53E:87BE:287C:BE51:249D:8439:3601";
+    address = "195.10.195.195";
+    port = 5353;
+    name = "2.dnscrypt-cert.opennic2.eth-services.de";
+    key = "F216:C4D3:9424:1F45:9DC0:D886:731B:5C2E:F15E:C0D8:F751:2569:D40F:952F:43FB:EC72";
   };
   networking.nameservers = ["127.0.0.1"];
 
