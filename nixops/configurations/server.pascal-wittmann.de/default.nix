@@ -208,6 +208,15 @@
         dbhost = "127.0.0.1";
       };
 
+      # bitwarden_rs
+      services.bitwarden_rs.enable = true;
+      services.bitwarden_rs.backupDir = "/var/backup/bitwarden";
+      services.bitwarden_rs.config = {
+        domain = "https://bitwarden.pascal-wittmann.de:443";
+        rocketPort = 8222;
+        signupsAllowed = false;
+      };
+
       # nginx
       services.nginx.enable = true;
       services.nginx.virtualHosts = {
@@ -220,6 +229,18 @@
         "cloud.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+        };
+
+        "bitwarden.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = { proxyPass = "http://localhost:8222"; };
+          extraConfig = ''
+            add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+            add_header X-Content-Type-Options nosniff;
+            add_header X-XSS-Protection "1; mode=block";
+            add_header X-Frame-Options SAMEORIGIN;
+          '';
         };
 
         "netdata.pascal-wittmann.de" = {
