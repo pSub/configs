@@ -10,4 +10,4 @@ if [ "$#" -eq 0 ]; then
 fi
 
 # Invoke stow on the dotfiles.
-stow -v $@ scripts emacs git misc x11 zsh nix -t $HOME
+stow --verbose --target=$HOME $@ scripts emacs git misc x11 zsh nix
