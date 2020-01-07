@@ -1,8 +1,0 @@
-#! /usr/bin/env nix-shell
-#! nix-shell -i zsh -p stow
-
-# No matter where we are go where the script is.
-cd $(dirname $0:A)
-
-# Install all dotfiles with stow.
-stow -v -S scripts emacs git misc x11 zsh nix -t $HOME

@@ -1,0 +1,13 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i zsh -p stow
+
+# No matter where we are go where the script is.
+cd $(dirname $0:A)
+
+# Stow the dotfiles by default.
+if [ "$#" -eq 0 ]; then
+  1="--stow"
+fi
+
+# Invoke stow on the dotfiles.
+stow -v $@ scripts emacs git misc x11 zsh nix -t $HOME
