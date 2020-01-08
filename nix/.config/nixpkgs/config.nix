@@ -109,6 +109,7 @@ in
         emacsMelpa.writegood-mode
         emacsMelpa.magit
         emacsMelpa.nix-mode
+        emacsMelpa.markdown-mode
       ];
     };
 
