@@ -102,6 +102,7 @@ in
       name = "emacs-env";
       paths = [
         emacs
+        emacsMelpa.use-package
         emacsMelpa.haskell-mode
         emacsMelpa.scala-mode
         emacsMelpa.shm
