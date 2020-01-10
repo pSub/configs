@@ -19,8 +19,8 @@ let
       ERRMAIL
     '';
 
-
 in
+
 {
   options = {
     systemd.email-notify.mailTo = mkOption {
@@ -35,8 +35,8 @@ in
       description = "Email address from which the service status will be mailed.";
     };
 
-    systemd.services = lib.mkOption {
-      type = with lib.types; attrsOf (
+    systemd.services = mkOption {
+      type = with types; attrsOf (
         submodule {
           config.onFailure = [ "email@%n.service" ];
         }
