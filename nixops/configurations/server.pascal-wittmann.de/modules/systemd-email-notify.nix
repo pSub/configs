@@ -23,12 +23,6 @@ let
 in
 {
   options = {
-    systemd.emailNotify.services = mkOption {
-      type = types.listOf types.str;
-      default = [];
-      description = "Services for which email notifications are send in case of failure";
-    };
-
     systemd.services = lib.mkOption {
       type = with lib.types; attrsOf (
         submodule {
