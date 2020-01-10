@@ -41,6 +41,7 @@ in
   config = {
     systemd.services."email@" = {
       description = "";
+      onFailure = mkForce [];
       serviceConfig = {
         ExecStart = "${sendmail} mail@pascal-wittmann.de %i";
         Type = "oneshot";
