@@ -40,7 +40,7 @@ in
 
   config = {
     systemd.services."email@" = {
-      description = "";
+      description = "Sends a status mail via sendmail on service failures.";
       onFailure = mkForce [];
       serviceConfig = {
         ExecStart = "${sendmail} mail@pascal-wittmann.de %i";
