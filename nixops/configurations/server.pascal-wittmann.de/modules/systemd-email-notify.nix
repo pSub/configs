@@ -10,7 +10,7 @@ let
 
       ${pkgs.system-sendmail}/bin/sendmail -t <<ERRMAIL
       To: $1
-      From: systemd <pascal.wittmann@gmail.com>
+      From: ${config.systemd.email-notify.mailFrom}
       Subject: Status of service $2
       Content-Transfer-Encoding: 8bit
       Content-Type: text/plain; charset=UTF-8
@@ -23,6 +23,18 @@ let
 in
 {
   options = {
+    systemd.email-notify.mailTo = mkOption {
+      type = types.str;
+      default = null;
+      description = "Email address to which the service status will be mailed.";
+    };
+
+    systemd.email-notify.mailFrom = mkOption {
+      type = types.str;
+      default = null;
+      description = "Email address from which the service status will be mailed.";
+    };
+
     systemd.services = lib.mkOption {
       type = with lib.types; attrsOf (
         submodule {
@@ -37,7 +49,7 @@ in
       description = "Sends a status mail via sendmail on service failures.";
       onFailure = mkForce [];
       serviceConfig = {
-        ExecStart = "${sendmail} mail@pascal-wittmann.de %i";
+        ExecStart = "${sendmail} ${config.systemd.email-notify.mailTo} %i";
         Type = "oneshot";
       };
     };

@@ -48,6 +48,9 @@
       nix.gc.automatic = true;
       nix.gc.dates = "06:00";
 
+      systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
+      systemd.email-notify.mailFrom = "systemd <pascal.wittmann@gmail.com>";
+
       system.autoUpgrade.enable = true;
       system.autoUpgrade.channel = https://nixos.org/channels/nixos-19.09;
       system.autoUpgrade.dates = "04:00";
