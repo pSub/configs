@@ -68,11 +68,15 @@
       '';
 
       system.activationScripts = {
-        configuration = ''
-          rm -f /etc/nixos/current/* #*/
-          shopt -s extglob
-          ln -s ${./.}/!(secrets|\.|\..) /etc/nixos/current #*/
-          shopt -u extglob
+        copy-configuration = ''
+          if [ -d /etc/nixos/current ]; then
+             rm -r /etc/nixos/current
+          fi
+          mkdir /etc/nixos/current
+
+          ln -s ${./default.nix} /etc/nixos/current/default.nix
+          ln -s ${./users.nix} /etc/nixos/current/users.nix
+          ln -s ${./modules} /etc/nixos/current/modules
         '';
       };
 
