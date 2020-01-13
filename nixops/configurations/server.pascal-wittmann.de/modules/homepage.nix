@@ -68,6 +68,7 @@ in
     systemd.services.homepage = {
       description = "Personal Homepage powered by Yesod";
       wantedBy = [ "multi-user.target" ];
+      wants = [ "nginx.service" "postgresql.service" ];
       after = [ "nginx.service" "postgresql.service" ];
       bindsTo = [ "nginx.service" "postgresql.service" ];
       environment = {
