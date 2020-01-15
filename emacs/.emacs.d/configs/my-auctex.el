@@ -28,8 +28,7 @@
 
 (setq-default TeX-master nil) ; Query for master file.
 
-;; Set zathura as prefered pdf reader
-(setq TeX-view-program-list '(("pdfviewer" "pdfviewer %o")))
+(setq TeX-view-program-list '(("llpp.inotify" "pdfviewer %o")))
 (setq TeX-view-program-selection '((output-pdf "pdfviewer")))
 
 ;; Load RefTex
