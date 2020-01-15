@@ -3,6 +3,15 @@
 These are the configuration files I actively use. I use them to set up my
 notebook as well as my small server.
 
+## Characteristic Features
+
+* [Xmonad] When a window is in focus the mouse cursor is placed in the center of the window.
+* [NixOps] `system.autoUpgrade` plays nicely together with NixOps (my take on NixOS/nixops/issues/842).
+* [NixOps] Module `systemd-email-notify` that notifies via email when any service fails.
+* [Nixpkgs] Packages are installed in custom environments that are combined in an attribute `all-env`.
+* [Nixpkgs] The channel (nixpkgs version) is defined in `config.nix`.
+* [Xmodmap] Capslock is mapped to (left) control.
+
 ## Installation
 
 As this repository contains configurations for multiple systems, there is no
@@ -50,5 +59,3 @@ configuration.
 Currently I am managing one server via [NixOps](https://nixos.org/nixops/). With a
 little bit of tweaking you should get this configuration running. Some things that
 you will definitely need to adapt: Keys / passwords, hostname and device names.
-
-
