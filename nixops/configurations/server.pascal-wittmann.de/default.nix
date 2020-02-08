@@ -49,7 +49,7 @@
       nix.gc.dates = "06:00";
 
       systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
-      systemd.email-notify.mailFrom = "systemd <pascal.wittmann@gmail.com>";
+      systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
 
       system.autoUpgrade.enable = true;
       system.autoUpgrade.channel = https://nixos.org/channels/nixos-19.09;
@@ -129,11 +129,11 @@
       # List services that you want to enable:
 
       networking.defaultMailServer.directDelivery = true;
-      networking.defaultMailServer.domain = "psub.eu";
-      networking.defaultMailServer.hostName = "smtp.gmail.com:587";
-      networking.defaultMailServer.root = "pascal.wittmann@gmail.com";
+      networking.defaultMailServer.domain = "frey.family";
+      networking.defaultMailServer.hostName = "frey-family.netcup-mail.de:587";
+      networking.defaultMailServer.root = "admin@frey.family";
       networking.defaultMailServer.useSTARTTLS = true;
-      networking.defaultMailServer.authUser = "pascal.wittmann@gmail.com";
+      networking.defaultMailServer.authUser = "admin@frey.family";
       networking.defaultMailServer.authPassFile = "/var/keys/smtp";
 
       # Cron daemon.
