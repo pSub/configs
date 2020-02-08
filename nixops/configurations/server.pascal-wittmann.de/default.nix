@@ -183,6 +183,12 @@
         [storage]
         filesystem_folder = /srv/radicale/collections
         hook = ${pkgs.git}/bin/git add -A && (${pkgs.git}/bin/git diff --cached --quiet || ${pkgs.git}/bin/git commit -m "Changes by "%(user)s && GIT_SSH_COMMAND='${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -i /srv/radicale/id_rsa' ${pkgs.git}/bin/git push origin)
+
+        [auth]
+        type = htpasswd
+        htpasswd_filename = /var/keys/radicale
+        # encryption method used in the htpasswd file
+        htpasswd_encryption = bcrypt
       '';
       services.radicale.package = pkgs.radicale2;
       services.radicale.nginx.enable = true;
@@ -334,5 +340,9 @@
       deployment.keys.databaseHomepage.text = builtins.readFile ./secrets/homepage_database_password;
       deployment.keys.databaseHomepage.destDir = "/var/keys";
       deployment.keys.databaseHomepage.user = "homepage";
+
+      deployment.keys.radicale.text = builtins.readFile ./secrets/radicale;
+      deployment.keys.radicale.destDir = "/var/keys";
+      deployment.keys.radicale.user = "radicale";
     };
 }
