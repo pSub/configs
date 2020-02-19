@@ -8,7 +8,7 @@
 
     {
       require = [
-        ./modules/clean-deployment-keys.nix
+        ./modules/clean-deployment-keys.nixops.nix
         ./modules/homepage.nix
         ./modules/subsonic.nix
         ./modules/radicale.nix
@@ -61,7 +61,7 @@
                 serverConfig = (import /etc/nixos/current/default.nix).server all;
                 withoutDeploymentOptions = builtins.removeAttrs serverConfig [ "deployment" ];
                 withoutDeploymentRequires = lib.overrideExisting withoutDeploymentOptions
-                                                                 { require = builtins.filter (filename: ! (lib.hasInfix "deployment" (builtins.toString filename)))
+                                                                 { require = builtins.filter (filename: ! (lib.hasInfix ".nixops" (builtins.toString filename)))
                                                                                              serverConfig.require;
                                                                  };
               in withoutDeploymentRequires
