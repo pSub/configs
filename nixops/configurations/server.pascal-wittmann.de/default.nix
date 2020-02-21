@@ -173,6 +173,10 @@
       services.postgresqlBackup.location = "/var/backup/postgresql";
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
 
+      # MySQL
+      services.mysql.enable = true;
+      services.mysql.package = pkgs.mysql;
+
       # Caldav / Cardav
       services.radicale.enable = true;
       services.radicale.config = ''
@@ -274,6 +278,18 @@
           '';
         };
 
+        "notes.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = { proxyPass = "http://127.0.0.1:3456/"; };
+          extraConfig = ''
+            add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+            add_header X-Content-Type-Options nosniff;
+            add_header X-XSS-Protection "1; mode=block";
+            add_header X-Frame-Options SAMEORIGIN;
+          '';
+        };
+
         "users.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
@@ -307,6 +323,15 @@
 
       # Netdata
       services.netdata.enable = true;
+
+      # Tiddlywiki
+      services.tiddlywiki.enable = true;
+      services.tiddlywiki.listenOptions = {
+        credentials = "/var/keys/tiddlywiki";
+        port = 3456;
+        readers = "(authenticated)";
+        writers = "(authenticated)";
+      };
 
       # Sound
       sound.enable = false;
@@ -344,5 +369,9 @@
       deployment.keys.radicale.text = builtins.readFile ./secrets/radicale;
       deployment.keys.radicale.destDir = "/var/keys";
       deployment.keys.radicale.user = "radicale";
+
+      deployment.keys.tiddlywiki.text = builtins.readFile ./secrets/tiddlywiki;
+      deployment.keys.tiddlywiki.destDir = "/var/keys";
+      deployment.keys.tiddlywiki.user = "tiddlywiki";
     };
 }
