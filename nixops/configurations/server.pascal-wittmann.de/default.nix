@@ -57,13 +57,21 @@
       system.autoUpgrade.allowReboot = true;
       systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
         all@{ config, pkgs, lib, ... }:
+              with lib; with builtins;
               let
+                modifyPaths = f : paths : map toPath (map f (map toString paths));
+
                 serverConfig = (import /etc/nixos/current/default.nix).server all;
-                withoutDeploymentOptions = builtins.removeAttrs serverConfig [ "deployment" ];
-                withoutDeploymentRequires = lib.overrideExisting withoutDeploymentOptions
-                                                                 { require = builtins.filter (filename: ! (lib.hasInfix ".nixops" (builtins.toString filename)))
-                                                                                             serverConfig.require;
-                                                                 };
+                withoutDeploymentOptions = removeAttrs serverConfig [ "deployment" ];
+                withoutDeploymentRequires = overrideExisting withoutDeploymentOptions
+                                             { require = modifyPaths (require: concatStrings [ "/etc/nixos/current/" (replaceStrings [ "nix/store/"] [ "" ] require) ])
+                                                                             (filter (filename: ! (hasInfix ".nixops" (toString filename)))
+                                                                                              serverConfig.require);
+
+                                               system = serverConfig.system // {
+                                                 activationScripts = removeAttrs serverConfig.system.activationScripts [ "copy-configuration" ];
+                                               };
+                                             };
               in withoutDeploymentRequires
       '';
 
