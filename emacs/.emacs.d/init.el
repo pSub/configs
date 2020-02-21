@@ -56,7 +56,7 @@
 
 (setq url-cache-directory temporary-file-directory)
 
-(setq browse-url-generic-program "dwb"
+(setq browse-url-generic-program "brave"
      browse-url-browser-function 'browse-url-generic)
 
 (ido-mode t)
