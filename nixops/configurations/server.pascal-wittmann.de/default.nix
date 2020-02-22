@@ -161,6 +161,19 @@
           rotate 100
           missingok
         }
+
+        /var/spool/nginx/logs/*.log {
+          daily
+          missingok
+          rotate 31
+          compress
+          delaycompress
+          notifempty
+          sharedscripts
+          postrotate
+                [ -f /var/spool/nginx/logs/nginx.pid ] && kill -USR1 `cat /var/spool/nginx/logs/nginx.pid`
+          endscript
+        }
       '';
 
       # Enable the OpenSSH daemon
