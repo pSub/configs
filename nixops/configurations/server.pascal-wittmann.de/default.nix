@@ -180,7 +180,7 @@
       services.openssh.enable = true;
       services.openssh.allowSFTP = true;
       services.openssh.forwardX11 = false;
-      services.openssh.permitRootLogin = "yes"; # For deployment via NixOps
+      services.openssh.permitRootLogin = "yes"; # For deployment via NixOps, non-root deployments via NixOS/nixops#730
       services.openssh.passwordAuthentication = false;
       services.openssh.challengeResponseAuthentication = false;
 
