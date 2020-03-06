@@ -6,7 +6,7 @@ notebook as well as my small server.
 ## Characteristic Features
 
 * [Xmonad] When a window is in focus the mouse cursor is placed in the center of the window.
-* [NixOps] `system.autoUpgrade` plays nicely together with NixOps (my take on NixOS/nixops/issues/842).
+* [NixOps] `system.autoUpgrade` plays nicely together with NixOps (my take on NixOS/nixops#842).
 * [NixOps] Module `systemd-email-notify` that notifies via email when any service fails.
 * [Nixpkgs] Packages are installed in custom environments that are combined in an attribute `all-env`.
 * [Nixpkgs] The channel (nixpkgs version) is defined in `config.nix`.
