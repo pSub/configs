@@ -1,7 +1,6 @@
 { config, lib, pkgs, ... }:
 
 with lib;
-
 let
   cfg = config.services.homepage;
   user = "homepage";
@@ -11,8 +10,8 @@ let
       pkgs.fetchFromGitHub {
         owner = "pSub";
         repo = "pascal-wittmann.de";
-        rev = "b9538773cebfd46cfe44c6445be5bd68c087f0d3";
-        sha256 = "0ax5v2154hc0gm1qdxx7aqg4jiigljaxjbbmz5ia4jpymrf30viw";
+        rev = "ec1d2befec1a9670ae1b6452ec8b6ead80e348fb";
+        sha256 = "0l04x7xxhn062v57gv8k1izl35kpsh24d9hx42r5jlvrcilwlxfh";
       }
     )
   ) {
@@ -22,7 +21,6 @@ let
     )
       {};
   };
-
 in
 {
   options = {
@@ -61,6 +59,11 @@ in
           add_header X-Content-Type-Options nosniff;
           add_header X-XSS-Protection "1; mode=block";
           add_header X-Frame-Options DENY;
+
+          rewrite ^/datenschutz$ /privacy permanent;
+          rewrite ^/impressum$ /contact permanent;
+          rewrite ^/category/(.+)/entry/(.+)$ /entry/$2 permanent;
+          rewrite ^/category/(.+)/entry/(.+)/reply-to/(\d+)$ /entry/$2/reply-to/$3 permanent;
         '';
       };
     };
