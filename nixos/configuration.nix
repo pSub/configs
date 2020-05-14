@@ -3,9 +3,7 @@
 # or the NixOS manual available on virtual console 8 (Alt+F8).
 
 { config, pkgs, ... }:
-
 let
-
   # Displays an alert if the battery is below 10%
   lowBatteryNotifier = pkgs.writeScript "lowBatteryNotifier"
     ''
@@ -13,7 +11,6 @@ let
       BAT_STA=`${pkgs.acpi}/bin/acpi -b | ${pkgs.gnugrep}/bin/grep -P -o '\w+(?=,)'`
       test $BAT_PCT -le 10 && test $BAT_STA = "Discharging" && DISPLAY=:0.0 ${pkgs.libnotify}/bin/notify-send 'Low Battery'
     '';
-
 in
 {
   require =
@@ -68,9 +65,9 @@ in
 
   fonts = {
     enableFontDir = true;
-    enableCoreFonts = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs ; [
+      corefonts
       liberation_ttf
       ttf_bitstream_vera
       dejavu_fonts
@@ -167,17 +164,6 @@ in
 
   # Firewall
   networking.firewall.enable = true;
-
-  # DNSCrypt
-  services.dnscrypt-proxy.enable = true;
-  # Picked from https://servers.opennic.org
-  services.dnscrypt-proxy.customResolver = {
-    address = "195.10.195.195";
-    port = 5353;
-    name = "2.dnscrypt-cert.opennic2.eth-services.de";
-    key = "F216:C4D3:9424:1F45:9DC0:D886:731B:5C2E:F15E:C0D8:F751:2569:D40F:952F:43FB:EC72";
-  };
-  networking.nameservers = ["127.0.0.1"];
 
   # Time.
   time.timeZone = "Europe/Berlin";
