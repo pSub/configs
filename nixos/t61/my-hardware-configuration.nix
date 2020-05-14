@@ -13,13 +13,11 @@
   boot.initrd.luks.cryptoModules = [ "aes" "sha512" "sha1" "cbc" "xts" ];
 
   # Set LUKS device
-  boot.initrd.luks.devices = [
-    {
-      name = "luksroot";
-      device = "/dev/sda2";
-      preLVM = true;
-    }
-  ];
+  boot.initrd.luks.devices = {
+    name = "luksroot";
+    device = "/dev/sda2";
+    preLVM = true;
+  };
 
   boot.kernelModules = [ "tp_smapi" "thinkpad_acpi" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.tp_smapi ];
