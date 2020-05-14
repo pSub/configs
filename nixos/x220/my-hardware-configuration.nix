@@ -16,8 +16,7 @@
   boot.initrd.luks.cryptoModules = [ "aes" ];
 
   # Set LUKS device.
-  boot.initrd.luks.devices = {
-    name = "luksroot";
+  boot.initrd.luks.devices.luksroot = {
     device = "/dev/disk/by-id/wwn-0x500a07510338a9bf-part2"; #sda2
     preLVM = true;
   };

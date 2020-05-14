@@ -13,8 +13,7 @@
   boot.initrd.luks.cryptoModules = [ "aes" "sha512" "sha1" "cbc" "xts" ];
 
   # Set LUKS device
-  boot.initrd.luks.devices = {
-    name = "luksroot";
+  boot.initrd.luks.devices.luksroot = {
     device = "/dev/sda2";
     preLVM = true;
   };
