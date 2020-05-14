@@ -135,12 +135,12 @@ in
   services.xserver.displayManager.lightdm.extraSeatDefaults = ''
     autologin-user = pascal
   '';
+  services.xserver.displayManager.defaultSession = "none+xmonad";
 
   services.xserver.windowManager.xmonad = {
     enable = true;
     enableContribAndExtras = true;
   };
-  services.xserver.windowManager.default = "xmonad";
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.desktopManager.xfce = {
     enable = true;
