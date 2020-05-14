@@ -124,6 +124,7 @@ in
   services.xserver.layout = "de";
   services.xserver.xkbVariant = "nodeadkeys";
   services.xserver.xkbOptions = "";
+  services.xserver.libinput.enable = false;
   services.xserver.synaptics = {
     enable = true;
     accelFactor = "0.01";
