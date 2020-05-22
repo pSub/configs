@@ -3,7 +3,6 @@
 with lib;
 let
   cfg = config.services.homepage;
-  user = "homepage";
 
   homepage-app = (
     import (
@@ -29,8 +28,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    users.extraUsers = singleton {
-      name = user;
+    users.extraUsers.homepage = {
       uid = 492;
       description = "Homepage pascal-wittmann.de";
       home = "/var/homepage";
@@ -77,7 +75,7 @@ in
       environment = {
         APPROOT = "https://pascal-wittmann.de";
         PORT = "3001";
-        PGUSER = user;
+        PGUSER = "homepage";
         PGDATABASE = "homepage_production";
       };
       script = ''
@@ -86,7 +84,7 @@ in
         ${homepage-app}/bin/homepage
       '';
       serviceConfig.KillSignal = "SIGINT";
-      serviceConfig.User = user;
+      serviceConfig.User = "homepage";
     };
   };
 }

@@ -12,6 +12,7 @@
         ./modules/homepage.nix
         ./modules/subsonic.nix
         ./modules/radicale.nix
+        ./modules/dmn-check-server.nix
         ./modules/systemd-email-notify.nix
         ./users.nix
       ];
@@ -125,6 +126,10 @@
           value = "3";
         }
       ];
+
+      security.acme.email = "contact@pascal-wittmann.de";
+      security.acme.acceptTerms = true;
+
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
@@ -365,6 +370,9 @@
 
       # Homepage
       services.homepage.enable = true;
+
+      # dmn-check-server
+      services.dmn-check-server.enable = true;
 
       # Netdata
       services.netdata.enable = true;
