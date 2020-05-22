@@ -141,13 +141,13 @@
 
       # List services that you want to enable:
 
-      networking.defaultMailServer.directDelivery = true;
-      networking.defaultMailServer.domain = "frey.family";
-      networking.defaultMailServer.hostName = "frey-family.netcup-mail.de:587";
-      networking.defaultMailServer.root = "admin@frey.family";
-      networking.defaultMailServer.useSTARTTLS = true;
-      networking.defaultMailServer.authUser = "admin@frey.family";
-      networking.defaultMailServer.authPassFile = "/var/keys/smtp";
+      services.ssmtp.enable = true;
+      services.ssmtp.domain = "frey.family";
+      services.ssmtp.hostName = "frey-family.netcup-mail.de:587";
+      services.ssmtp.root = "admin@frey.family";
+      services.ssmtp.useSTARTTLS = true;
+      services.ssmtp.authUser = "admin@frey.family";
+      services.ssmtp.authPassFile = "/var/keys/smtp";
 
       # Cron daemon.
       services.cron.enable = true;
