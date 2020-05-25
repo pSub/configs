@@ -237,6 +237,7 @@
 
       # nextcloud
       services.nextcloud.enable = true;
+      services.nextcloud.package = pkgs.nextcloud18;
       services.nextcloud.home = "/srv/nextcloud";
       services.nextcloud.config.adminpassFile = "/var/keys/nextcloud";
       services.nextcloud.hostName = "cloud.pascal-wittmann.de";
