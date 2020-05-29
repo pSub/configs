@@ -49,6 +49,13 @@
       nix.gc.automatic = true;
       nix.gc.dates = "06:00";
 
+
+      # Deploy without root (enable with next nixops release)
+      #nix.trustedUsers = [ "deployer" ];
+      #users.users.deployer.extraGroups = [ "wheel" ];
+      #security.sudo.wheelNeedsPassword = false;
+      #deployment.targetUser = "deployer";
+
       systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
       systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
 
