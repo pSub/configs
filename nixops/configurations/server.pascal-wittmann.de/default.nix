@@ -177,7 +177,7 @@
           notifempty
           sharedscripts
           postrotate
-                [ -f /var/spool/nginx/logs/nginx.pid ] && kill -USR1 `cat /var/spool/nginx/logs/nginx.pid`
+                [ -f /run/nginx/nginx.pid ] && kill -USR1 `cat /run/nginx/nginx.pid`
           endscript
         }
       '';
