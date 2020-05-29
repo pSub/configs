@@ -157,8 +157,11 @@ in
   system.copySystemConfiguration = true;
 
   # gpg-agent
-  #  programs.gnupg.agent.enable = true;
-  #  programs.gnupg.agent.enableSSHSupport = true;
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "gtk2";
+  };
 
   # Do not start ssh-agent, gnupg-agent is used.
   programs.ssh.startAgent = false;
