@@ -386,14 +386,6 @@
       # Netdata
       services.netdata.enable = true;
 
-      # Tiddlywiki
-      services.tiddlywiki.enable = true;
-      services.tiddlywiki.listenOptions = {
-        credentials = "/var/keys/tiddlywiki";
-        port = 3456;
-        readers = "(authenticated)";
-        writers = "(authenticated)";
-      };
 
       # Sound
       sound.enable = false;
@@ -432,8 +424,5 @@
       deployment.keys.radicale.destDir = "/var/keys";
       deployment.keys.radicale.user = "radicale";
 
-      deployment.keys.tiddlywiki.text = builtins.readFile ./secrets/tiddlywiki;
-      deployment.keys.tiddlywiki.destDir = "/var/keys";
-      deployment.keys.tiddlywiki.user = "tiddlywiki";
     };
 }
