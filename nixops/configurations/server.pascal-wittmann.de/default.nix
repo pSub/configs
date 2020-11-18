@@ -258,6 +258,11 @@
         dbhost = "127.0.0.1";
       };
 
+      nixpkgs.config.permittedInsecurePackages = [
+        "nextcloud-18.0.10"
+      ];
+
+
       # bitwarden_rs
       services.bitwarden_rs.enable = true;
       services.bitwarden_rs.backupDir = "/var/backup/bitwarden";
