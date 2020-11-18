@@ -248,7 +248,6 @@
       services.nextcloud.home = "/srv/nextcloud";
       services.nextcloud.config.adminpassFile = "/var/keys/nextcloud";
       services.nextcloud.hostName = "cloud.pascal-wittmann.de";
-      services.nextcloud.nginx.enable = true;
       services.nextcloud.https = true;
       services.nextcloud.autoUpdateApps.enable = true;
       services.nextcloud.config = {
