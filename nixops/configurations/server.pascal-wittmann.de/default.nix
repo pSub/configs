@@ -201,7 +201,6 @@
       services.postgresql.enable = true;
       services.postgresql.package = pkgs.postgresql_11;
       services.postgresql.dataDir = "/var/lib/postgresql/9.11";
-      services.postgresql.superUser = "postgres";
       services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" ];
       services.postgresqlBackup.enable = true;
       services.postgresqlBackup.location = "/var/backup/postgresql";
