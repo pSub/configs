@@ -175,7 +175,7 @@
           missingok
         }
 
-        /var/spool/nginx/logs/*.log {
+        /var/log/nginx/*.log {
           daily
           missingok
           rotate 31
@@ -296,7 +296,7 @@
         '"$request" $status $body_bytes_sent '
         '"$http_referer" "$http_user_agent"';
 
-        access_log /var/spool/nginx/logs/access.log anonymized;
+        access_log /var/log/nginx/access.log anonymized;
       '';
       services.nginx.virtualHosts = {
         "penchy.pascal-wittmann.de" = {
