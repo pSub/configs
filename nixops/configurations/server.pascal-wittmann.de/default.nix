@@ -60,7 +60,7 @@
       systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
 
       system.autoUpgrade.enable = true;
-      system.autoUpgrade.channel = https://nixos.org/channels/nixos-20.03;
+      system.autoUpgrade.channel = https://nixos.org/channels/nixos-20.09;
       system.autoUpgrade.dates = "04:00";
       system.autoUpgrade.allowReboot = true;
       systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
