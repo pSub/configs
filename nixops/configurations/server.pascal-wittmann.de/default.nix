@@ -165,7 +165,7 @@
       services.logrotate.enable = true;
 
       # FIXME: Integrate rotation into services.postgresqlBackup
-      services.logrotate.config = ''
+      services.logrotate.extraConfig = ''
         /var/backup/postgresql/homepage_production.sql.gz {
           rotate 100
           missingok
