@@ -151,7 +151,7 @@
 
       services.ssmtp.enable = true;
       services.ssmtp.domain = "frey.family";
-      services.ssmtp.hostName = "frey-family.netcup-mail.de:587";
+      services.ssmtp.hostName = "frey-family.netcup-mail.de";
       services.ssmtp.root = "admin@frey.family";
       services.ssmtp.useSTARTTLS = true;
       services.ssmtp.authUser = "admin@frey.family";
