@@ -227,7 +227,7 @@
         # encryption method used in the htpasswd file
         htpasswd_encryption = bcrypt
       '';
-      services.radicale.package = pkgs.radicale2;
+      services.radicale.package = pkgs.radicale3;
       services.radicale.nginx.enable = true;
       services.radicale.nginx.hostname = "calendar.pascal-wittmann.de";
 
