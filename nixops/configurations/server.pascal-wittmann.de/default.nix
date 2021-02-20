@@ -346,18 +346,6 @@
           '';
         };
 
-        "notes.pascal-wittmann.de" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:3456/"; };
-          extraConfig = ''
-            add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-            add_header X-Content-Type-Options nosniff;
-            add_header X-XSS-Protection "1; mode=block";
-            add_header X-Frame-Options SAMEORIGIN;
-          '';
-        };
-
         "users.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
@@ -394,7 +382,6 @@
 
       # Netdata
       services.netdata.enable = true;
-
 
       # Sound
       sound.enable = false;
