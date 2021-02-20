@@ -268,9 +268,13 @@
       services.bitwarden_rs.backupDir = "/var/backup/bitwarden";
       services.bitwarden_rs.config = {
         domain = "https://bitwarden.pascal-wittmann.de:443";
+        rocketAddress = "127.0.0.1";
         rocketPort = 8222;
         signupsAllowed = false;
       };
+      systemd.services.bitwarden_rs.wants = [ "nginx.service" ];
+      systemd.services.bitwarden_rs.after = [ "nginx.service" ];
+      systemd.services.bitwarden_rs.bindsTo = [ "nginx.service" ];
 
       # nginx
       services.nginx.enable = true;
@@ -313,8 +317,10 @@
         "bitwarden.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
-          locations."/" = { proxyPass = "http://localhost:8222"; };
+          locations."/" = { proxyPass = "http://127.0.0.1:8222"; };
           extraConfig = ''
+            proxy_read_timeout 90;
+
             add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
             add_header X-Content-Type-Options nosniff;
             add_header X-XSS-Protection "1; mode=block";
