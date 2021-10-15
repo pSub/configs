@@ -178,7 +178,6 @@ in
       paths = [
         citrix_workspace
         docker
-        hamster-time-tracker
         maven
       ];
     };
