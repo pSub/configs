@@ -60,7 +60,7 @@
       systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
 
       system.autoUpgrade.enable = true;
-      system.autoUpgrade.channel = https://nixos.org/channels/nixos-20.09;
+      system.autoUpgrade.channel = https://nixos.org/channels/nixos-21.05;
       system.autoUpgrade.dates = "04:00";
       system.autoUpgrade.allowReboot = true;
       systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
@@ -153,6 +153,7 @@
       services.ssmtp.domain = "frey.family";
       services.ssmtp.hostName = "frey-family.netcup-mail.de";
       services.ssmtp.root = "admin@frey.family";
+      services.ssmtp.useTLS = true;
       services.ssmtp.useSTARTTLS = true;
       services.ssmtp.authUser = "admin@frey.family";
       services.ssmtp.authPassFile = "/var/keys/smtp";
@@ -212,21 +213,24 @@
 
       # Caldav / Cardav
       services.radicale.enable = true;
-      services.radicale.config = ''
-        [server]
-        hosts = 127.0.0.1:5232
-        ssl = False
-      
-        [storage]
-        filesystem_folder = /srv/radicale/collections
-        hook = ${pkgs.git}/bin/git add -A && (${pkgs.git}/bin/git diff --cached --quiet || ${pkgs.git}/bin/git commit -m "Changes by "%(user)s && GIT_SSH_COMMAND='${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -i /srv/radicale/id_rsa' ${pkgs.git}/bin/git push origin)
+      services.radicale.settings = {
+        server = {
+          hosts = [ "127.0.0.1:5232" ];
+          ssl = false;
+        };
 
-        [auth]
-        type = htpasswd
-        htpasswd_filename = /var/keys/radicale
-        # encryption method used in the htpasswd file
-        htpasswd_encryption = bcrypt
-      '';
+        storage = {
+          filesystem_folder = "/srv/radicale/collections";
+          hook = ''${pkgs.git}/bin/git add -A && (${pkgs.git}/bin/git diff --cached --quiet || ${pkgs.git}/bin/git commit -m "Changes by "%(user)s && GIT_SSH_COMMAND='${pkgs.openssh}/bin/ssh -o StrictHostKeyChecking=no -i /srv/radicale/id_rsa' ${pkgs.git}/bin/git push origin)'';
+        };
+
+        auth = {
+          type = "htpasswd";
+          htpasswd_filename = "/var/keys/radicale";
+          # encryption method used in the htpasswd file
+          htpasswd_encryption = "bcrypt";
+        };
+      };
       services.radicale.package = pkgs.radicale3;
       services.radicale.nginx.enable = true;
       services.radicale.nginx.hostname = "calendar.pascal-wittmann.de";
