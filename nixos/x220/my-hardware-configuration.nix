@@ -2,7 +2,7 @@
 
 {
   require = [
-    <nixos/modules/installer/scan/not-detected.nix>
+    <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
   ];
 
   networking.hostName = "brauchli";
