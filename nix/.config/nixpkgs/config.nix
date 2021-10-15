@@ -1,6 +1,6 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {};
-  stable = import (fetchTarball https://nixos.org/channels/nixos-20.09/nixexprs.tar.xz) {};
+  stable = import (fetchTarball https://nixos.org/channels/nixos-21.05/nixexprs.tar.xz) {};
 in
 {
 
@@ -102,14 +102,14 @@ in
       name = "emacs-env";
       paths = [
         emacs
-        emacs26Packages.use-package
-        emacs26Packages.haskell-mode
-        emacs26Packages.scala-mode
-        emacs26Packages.shm
-        emacs26Packages.writegood-mode
-        emacs26Packages.magit
-        emacs26Packages.nix-mode
-        emacs26Packages.markdown-mode
+        emacs.pkgs.use-package
+        emacs.pkgs.haskell-mode
+        emacs.pkgs.scala-mode
+        emacs.pkgs.shm
+        emacs.pkgs.writegood-mode
+        emacs.pkgs.magit
+        emacs.pkgs.nix-mode
+        emacs.pkgs.markdown-mode
       ];
     };
 
