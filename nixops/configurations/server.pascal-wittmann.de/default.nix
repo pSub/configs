@@ -247,7 +247,7 @@
 
       # nextcloud
       services.nextcloud.enable = true;
-      services.nextcloud.package = pkgs.nextcloud20;
+      services.nextcloud.package = pkgs.nextcloud22;
       services.nextcloud.home = "/srv/nextcloud";
       services.nextcloud.config.adminpassFile = "/var/keys/nextcloud";
       services.nextcloud.hostName = "cloud.pascal-wittmann.de";
@@ -260,12 +260,9 @@
         dbuser = "nextcloud";
         dbpassFile = "/var/keys/databaseNextcloud";
         dbhost = "127.0.0.1";
+
+        defaultPhoneRegion = "DE";
       };
-
-      nixpkgs.config.permittedInsecurePackages = [
-        "nextcloud-18.0.10"
-      ];
-
 
       # bitwarden_rs
       services.bitwarden_rs.enable = true;
