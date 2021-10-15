@@ -15,6 +15,7 @@
     pascal = {
       uid = 1000;
       group = "users";
+      isNormalUser = true;
       home = "/home/pascal";
       extraGroups = [ "mpd" "mail" ];
       createHome = true;
