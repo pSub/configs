@@ -132,6 +132,7 @@ in
         llpp
         libreoffice-fresh
         nextcloud-client
+        obsidian
         pass
         geeqie
         pcmanfm
