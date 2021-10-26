@@ -9,17 +9,11 @@ let
       pkgs.fetchFromGitHub {
         owner = "pSub";
         repo = "pascal-wittmann.de";
-        rev = "960a1e57ef68a4e76f36de595e3b6fdc2258c245";
-        sha256 = "1h04wkmldl2sv5jgc8yrnhrmi1rw6l4mml5bwx3rk7sbns5f978v";
+        rev = "8aa3785e19ed83dfbfb6cd2741247419b4222f47";
+        sha256 = "02klyqwr4idm1dfvcjgp1bqmhk1l895m3cy135bajndnfid78ybs";
       }
     )
-  ) {
-    nixpkgs = import (
-      fetchTarball
-        "https://github.com/NixOS/nixpkgs-channels/archive/nixos-20.03-small.tar.gz"
-    )
-      {};
-  };
+  ) {};
 in
 {
   options = {
