@@ -273,6 +273,7 @@
         rocketPort = 8222;
         signupsAllowed = false;
       };
+      services.bitwarden_rs.environmentFile = "/var/backup/bitwarden/bitwarden_rs.env";
       systemd.services.bitwarden_rs.wants = [ "nginx.service" ];
       systemd.services.bitwarden_rs.after = [ "nginx.service" ];
       systemd.services.bitwarden_rs.bindsTo = [ "nginx.service" ];
