@@ -26,6 +26,7 @@ in
       uid = 492;
       description = "Homepage pascal-wittmann.de";
       home = "/var/homepage";
+      group = "homepage";
       extraGroups = [ "mail" ];
     };
 
