@@ -264,19 +264,19 @@
         defaultPhoneRegion = "DE";
       };
 
-      # bitwarden_rs
-      services.bitwarden_rs.enable = true;
-      services.bitwarden_rs.backupDir = "/var/backup/bitwarden";
-      services.bitwarden_rs.config = {
+      # vaultwarden
+      services.vaultwarden.enable = true;
+      services.vaultwarden.backupDir = "/var/backup/bitwarden";
+      services.vaultwarden.config = {
         domain = "https://bitwarden.pascal-wittmann.de:443";
         rocketAddress = "127.0.0.1";
         rocketPort = 8222;
         signupsAllowed = false;
       };
-      services.bitwarden_rs.environmentFile = "/var/backup/bitwarden/bitwarden_rs.env";
-      systemd.services.bitwarden_rs.wants = [ "nginx.service" ];
-      systemd.services.bitwarden_rs.after = [ "nginx.service" ];
-      systemd.services.bitwarden_rs.bindsTo = [ "nginx.service" ];
+      services.vaultwarden.environmentFile = "/var/backup/bitwarden/vaultwarden.env";
+      systemd.services.vaultwarden.wants = [ "nginx.service" ];
+      systemd.services.vaultwarden.after = [ "nginx.service" ];
+      systemd.services.vaultwarden.bindsTo = [ "nginx.service" ];
 
       # nginx
       services.nginx.enable = true;
