@@ -10,7 +10,6 @@
       require = [
         ./modules/clean-deployment-keys.nixops.nix
         ./modules/homepage.nix
-        ./modules/subsonic.nix
         ./modules/radicale.nix
         ./modules/dmn-check-server.nix
         ./modules/systemd-email-notify.nix
@@ -234,16 +233,6 @@
       services.radicale.package = pkgs.radicale3;
       services.radicale.nginx.enable = true;
       services.radicale.nginx.hostname = "calendar.pascal-wittmann.de";
-
-      # Subsonic
-      services.subsonic.enable = true;
-      services.subsonic.defaultMusicFolder = "/srv/music";
-      services.subsonic.defaultPlaylistFolder = "/srv/playlists";
-      services.subsonic.defaultPodcastFolder = "/srv/podcast";
-      services.subsonic.httpsPort = 0;
-      services.subsonic.listenAddress = "127.0.0.1";
-      services.subsonic.nginx.enable = true;
-      services.subsonic.nginx.hostname = "music.pascal-wittmann.de";
 
       # nextcloud
       services.nextcloud.enable = true;
