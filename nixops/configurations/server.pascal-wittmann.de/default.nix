@@ -49,7 +49,7 @@
       nix.gc.dates = "06:00";
 
 
-      # Deploy without root (enable with next nixops release)
+      # Deploy without root (enable with nixops 2.0 release)
       #nix.trustedUsers = [ "deployer" ];
       #users.users.deployer.extraGroups = [ "wheel" ];
       #security.sudo.wheelNeedsPassword = false;
