@@ -139,7 +139,6 @@ in
         phototonic
         simple-scan
         electrum
-        quasselClient
         viking
         vlc
         zim
