@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# Work around issue NixOS/nixpkgs#119513
+if [ -z $_XPROFILE_SOURCED ]; then
+  export _XPROFILE_SOURCED=1
+
 # GnuPG-Agent
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
@@ -47,3 +51,5 @@ $HOME/bin/wallpaper &
 $HOME/bin/x-autostart &
 
 xmodmap $HOME/.Xmodmap
+
+fi
