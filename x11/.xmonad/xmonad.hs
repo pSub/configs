@@ -42,7 +42,7 @@ myManageHook = composeAll
                  ] <+> manageDocks
 
 myKeys = [ ("M-<Tab>", toggleWS)
-         , ("M-C-<Return>", spawn "urxvtc -T floatwin")
+         , ("M-C-<Return>", spawn "alacritty --title floatwin")
          , ("M-C-p", spawn "passmenu")
          , ("M-C-t", spawn "thunar")
          ]
@@ -53,7 +53,7 @@ main = do
         { startupHook = setWMName "LG3D" >> setDefaultCursor xC_left_ptr
         , workspaces = myWorkspaces
         , modMask = mod3Mask
-        , terminal = "urxvtc"
+        , terminal = "alacritty"
         , normalBorderColor = "black"
         , focusedBorderColor = "#f5a400"
         , manageHook = myManageHook

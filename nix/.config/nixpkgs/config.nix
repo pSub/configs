@@ -40,7 +40,7 @@ in
         libnotify
         networkmanagerapplet
         networkmanager-openconnect
-        rxvt_unicode
+        alacritty
         stow
         trayer
         haskellPackages.xmobar
