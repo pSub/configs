@@ -185,6 +185,8 @@ in
       # Make XCompose work in GTK applications.
       GTK_IM_MODULE = "xim";
     };
+
+    homeBinInPath = true;
   };
 
   services.tlp.enable = true;
