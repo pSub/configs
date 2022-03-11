@@ -28,8 +28,8 @@
 
 (setq-default TeX-master nil) ; Query for master file.
 
-(setq TeX-view-program-list '(("llpp.inotify" "pdfviewer %o")))
-(setq TeX-view-program-selection '((output-pdf "pdfviewer")))
+(setq TeX-view-program-list '(("llpp.inotify" "llpp.inotify %o")))
+(setq TeX-view-program-selection '((output-pdf "llpp.inotify")))
 
 ;; Load RefTex
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
