@@ -319,6 +319,34 @@
           '';
         };
 
+        "hackaru.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = { proxyPass = "http://127.0.0.1:3333"; };
+          extraConfig = ''
+            proxy_read_timeout 90;
+
+            add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+            add_header X-Content-Type-Options nosniff;
+            add_header X-XSS-Protection "1; mode=block";
+            add_header X-Frame-Options SAMEORIGIN;
+          '';
+        };
+
+        "hackaru-api.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = { proxyPass = "http://127.0.0.1:3000"; };
+          extraConfig = ''
+            proxy_read_timeout 90;
+
+            add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+            add_header X-Content-Type-Options nosniff;
+            add_header X-XSS-Protection "1; mode=block";
+            add_header X-Frame-Options SAMEORIGIN;
+          '';
+        };
+
         "netdata.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
