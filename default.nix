@@ -6,6 +6,7 @@ in
     src = ./.;
     hooks = {
       nixpkgs-fmt.enable = true;
+      nix-linter.enable = true;
     };
   };
 }

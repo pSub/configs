@@ -4,7 +4,7 @@
     enableRollback = true;
   };
 
-  server = { config, pkgs, lib, ... }:
+  server = { config, pkgs, ... }:
 
     {
       require = [

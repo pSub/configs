@@ -2,7 +2,7 @@
 # the system.  Help is available in the configuration.nix(5) man page
 # or the NixOS manual available on virtual console 8 (Alt+F8).
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 let
   # Displays an alert if the battery is below 10%
   lowBatteryNotifier = pkgs.writeScript "lowBatteryNotifier"
