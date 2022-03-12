@@ -32,8 +32,8 @@
         "virtio_pci"
         "virtio_blk"
       ];
-      boot.kernelModules = [];
-      boot.extraModulePackages = [];
+      boot.kernelModules = [ ];
+      boot.extraModulePackages = [ ];
 
       fileSystems."/" = {
         device = "/dev/disk/by-uuid/7d067332-eba7-4a8e-acf7-a463cf50677f";
@@ -159,7 +159,7 @@
 
       # Cron daemon.
       services.cron.enable = true;
-      services.cron.systemCronJobs = [];
+      services.cron.systemCronJobs = [ ];
 
       # Logrotate
       services.logrotate.enable = true;
@@ -414,6 +414,8 @@
 
       users.mutableUsers = false;
       users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
+
+      virtualisation.docker.enable = true;
 
       deployment.keys.nextcloud.text = builtins.readFile ./secrets/nextcloud;
       deployment.keys.nextcloud.destDir = "/var/keys";
