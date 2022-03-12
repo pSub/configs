@@ -56,6 +56,7 @@ in
     tools-env = buildEnv {
       name = "tools-env";
       paths = [
+        appimage-run
         bind
         binutils
         file
