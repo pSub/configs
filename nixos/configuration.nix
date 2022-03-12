@@ -25,7 +25,6 @@ in
 
   nixpkgs.config.allowUnfree = true;
 
-
   # Trust hydra. Needed for one-click installations.
   nix.trustedBinaryCaches = [ "http://hydra.nixos.org" ];
   nix.binaryCachePublicKeys = [
@@ -117,7 +116,7 @@ in
 
   # SMART.
   services.smartd.enable = true;
-  services.smartd.devices = [ { device = "/dev/sda"; } ];
+  services.smartd.devices = [{ device = "/dev/sda"; }];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;

@@ -2,7 +2,7 @@
 
 {
   users.groups = {
-    mail = {};
+    mail = { };
   };
 
   users.extraUsers = {

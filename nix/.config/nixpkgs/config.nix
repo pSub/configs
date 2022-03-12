@@ -1,6 +1,6 @@
 let
-  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {};
-  stable = import (fetchTarball https://nixos.org/channels/nixos-21.05/nixexprs.tar.xz) {};
+  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
+  stable = import (fetchTarball https://nixos.org/channels/nixos-21.05/nixexprs.tar.xz) { };
 in
 {
 
@@ -177,7 +177,7 @@ in
     work-env = buildEnv {
       name = "work-env";
       paths = [
-        citrix_workspace
+        #citrix_workspace
         docker
         maven
       ];

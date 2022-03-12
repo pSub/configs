@@ -47,7 +47,7 @@ in
   config = {
     systemd.services."email@" = {
       description = "Sends a status mail via sendmail on service failures.";
-      onFailure = mkForce [];
+      onFailure = mkForce [ ];
       serviceConfig = {
         ExecStart = "${sendmail} ${config.systemd.email-notify.mailTo} %i";
         Type = "oneshot";
