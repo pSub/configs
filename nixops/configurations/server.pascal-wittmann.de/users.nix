@@ -38,5 +38,11 @@
         "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAvUZhccMXOGtRGDs/zOYIPKh4W74sMFWElv8/aNSkTlmlHVjRQHhLsLw8mDEYgAREFOhC1qlEeEuk50YfSUpLTvbmGBMqc7XGWw9Z24BXpFtoU+EZk4aWv7vBNm+aghspHCRdLqh6e/Q526XTeLovWNJU5JD/QWlFQIawq2BYGNwYrf1VEcisMn3ZLtMKsxJncbFwArcaWBzv5+f0Bza2x/FrHqRTBhVDzaeegr44g6mPSZuqOJ+HRKmZI8cfrEOQeZaQTri0kQ/Ip8a7OrbY5kyRUDmuh5K98CmCqbpaojPKLz6ELRMGpA/Rl84f12eaqw2t7R3ZG8QbZk+oobA8Ww=="
       ];
     };
+
+    hackaru = {
+      home = "/srv/hackaru";
+      isNormalUser = true;
+      extraGroups = [ "docker" ];
+    };
   };
 }
