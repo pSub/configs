@@ -8,3 +8,4 @@ x11/.xmonad/xmonad-x86_64-linux
 x11/.xmonad/xmonad.errors
 x11/.xmonad/xmonad.hi
 x11/.xmonad/xmonad.o
+.pre-commit-config.yaml
