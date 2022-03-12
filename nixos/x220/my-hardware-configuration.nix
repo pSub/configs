@@ -11,9 +11,10 @@
 
   boot.loader.grub.configurationLimit = 10;
   boot.initrd.kernelModules = [ "ehci_hcd" "ahci" "xhci_hcd" "usb_storage" ];
+  boot.initrd.availableKernelModules = [ "cbc" "hmac" "sha256" "rng" "aes" "encrypted_keys" ];
 
   # System has i7-2640M thus only the aes module is needed for luks.
-  boot.initrd.luks.cryptoModules = [ "aes" ];
+  boot.initrd.luks.cryptoModules = [ "aes" "hmac" "rng" "encrypted_keys" ];
 
   # Set LUKS device.
   boot.initrd.luks.devices.luksroot = {
