@@ -1,6 +1,5 @@
 #!/bin/sh
-# This script is started from ~/.xinitrc and provides
-# a host specific autostart for X applications.
+# This script is started from ~/.xprofile.
 
 emacs --daemon &
 zim --plugin trayicon &
