@@ -30,6 +30,8 @@ in
       extraGroups = [ "mail" ];
     };
 
+    users.extraGroups.homepage.name = "homepage";
+
     services.postgresql.ensureDatabases = [ "homepage_production" ];
 
     services.nginx.virtualHosts = {
