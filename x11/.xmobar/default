@@ -1,7 +1,7 @@
 -- -*- mode: haskell -*-
 Config { font =  "xft:Dejavu Sans:size=9:antialias=true:hinting=true:hintstyle=hintfull"
        , border = NoBorder
-       , position = TopW L 90
+       , position = TopSize L 90 20
        , lowerOnStart = False
        , commands = [ Run UnsafeStdinReader,  Run BatteryP ["BAT0"]
                   ["-t", "<acstatus>"
