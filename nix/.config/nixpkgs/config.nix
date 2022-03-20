@@ -1,6 +1,6 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
-  stable = import (fetchTarball https://nixos.org/channels/nixos-21.05/nixexprs.tar.xz) { };
+  stable = import (fetchTarball https://nixos.org/channels/nixos-21.11/nixexprs.tar.xz) { };
 in
 {
 
