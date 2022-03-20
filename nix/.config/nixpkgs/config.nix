@@ -117,7 +117,6 @@ in
     apps-env = buildEnv {
       name = "apps-env";
       paths = [
-        areca
         unstable.pkgs.brave
         calibre
         clementine
