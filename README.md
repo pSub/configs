@@ -57,5 +57,5 @@ configuration.
 ### NixOps Configuration
 
 Currently, I am managing one server via [NixOps](https://nixos.org/nixops/). With a
-bit of tweaking you should get this configuration running. Some things that you will
+bit of tweaking, you should get this configuration running. Some things that you will
 definitely need to adapt: Keys / passwords, hostname and device names.

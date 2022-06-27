@@ -3,7 +3,7 @@
 # Usually a slash follows directly after a tilde, because tilde is
 # mostly used in paths. Therefore this function automatically appends
 # a slash after a tilde except for two cases:
-# 1) the preceding character is not a whitepsace (e.g. `git reset --hard HEAD~2`)
+# 1) the preceding character is not a whitespace (e.g. `git reset --hard HEAD~2`)
 # 2) when pasting a command (the slash is already there)
 if [[ $PENDING -ge 1 ]] || [[ ${LBUFFER[-1]} != " " ]]; then
    LBUFFER+="~"
