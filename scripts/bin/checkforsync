@@ -1,15 +1,15 @@
 #!/bin/sh
 
-. $HOME/configs/dmenu_config.sh
+. "$HOME"/configs/dmenu_config.sh
 
 applications=(
-    $HOME/bin/reload-emacs-config
-    $HOME/bin/org-agenda
+    "$HOME"/bin/reload-emacs-config
+    "$HOME"/bin/org-agenda
     thunderbird
-    $HOME/bin/feeds
+    "$HOME"/bin/feeds
     )
 
-function prompt {
+prompt() {
     echo -e "y\nn\nd" | dmenu $dmenu_conf -p "Do you want to synchronize changes?"
 }
 
@@ -23,7 +23,7 @@ case $(prompt) in
         # data are not started if the synchronization failed.
         TEMP=$(mktemp)
         urxvt -e sh -c "$HOME/bin/unison-sync; echo \$? > $TEMP"
-        if [ $(cat $TEMP) -eq 0 ]; then
+        if [ "$(cat "$TEMP")" -eq 0 ]; then
             break
         else
             exit 1
@@ -45,7 +45,7 @@ case $(prompt) in
         ;;
 esac
 
-for application in ${applications[@]}
+for application in "${applications[@]}"
 do
-    setsid $application &
+    setsid "$application" &
 done

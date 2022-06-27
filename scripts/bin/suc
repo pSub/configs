@@ -7,7 +7,7 @@
 #   - Setting the pacman_command variable in the
 #     aurget (https://github.com/pbrisbin/aurget) config
 
-while [ 1 ]; do
+while [ true ]; do
     su --command="$*"
 
     # If su fails (e.g. password incorrect)

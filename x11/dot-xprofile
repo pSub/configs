@@ -1,11 +1,12 @@
 #!/bin/sh
 
 # Work around issue NixOS/nixpkgs#119513
-if [ -z $_XPROFILE_SOURCED ]; then
+if [ -z "$_XPROFILE_SOURCED" ]; then
   export _XPROFILE_SOURCED=1
 
 # GnuPG-Agent
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+export SSH_AUTH_SOCK
+SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
 # Start notification daemon
@@ -42,14 +43,14 @@ trayer --edge top \
 nm-applet &
 
 # Configure the wallpaper
-$HOME/bin/wallpaper-config &
+"$HOME"/bin/wallpaper-config &
 
 # Set background / wallpaper
-$HOME/bin/wallpaper &
+"$HOME"/bin/wallpaper &
 
 # Autostart applications
-$HOME/bin/x-autostart &
+"$HOME"/bin/x-autostart &
 
-xmodmap $HOME/.Xmodmap
+xmodmap "$HOME"/.Xmodmap
 
 fi
