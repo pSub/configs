@@ -1,10 +1,14 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
-  stable = import (fetchTarball https://nixos.org/channels/nixos-21.11/nixexprs.tar.xz) { };
+  stable = import (fetchTarball https://nixos.org/channels/nixos-22.05/nixexprs.tar.xz) { };
 in
 {
 
   allowUnfree = true;
+
+  permittedInsecurePackages = [
+    "python2.7-pyjwt-1.7.1"
+  ];
 
   packageOverrides = _: with stable.pkgs; rec {
 
@@ -47,8 +51,8 @@ in
         xclip
         xbindkeys
         xdotool
-        xlibs.xinput
-        xlibs.xmodmap
+        xorg.xinput
+        xorg.xmodmap
         zile
       ];
     };
@@ -67,7 +71,7 @@ in
         parallel
         psmisc
         pinpoint
-        telnet
+        inetutils
         tree
         xfce.tumbler
         xfce.ristretto

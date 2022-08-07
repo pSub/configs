@@ -26,6 +26,8 @@ in
       /etc/nixos/password.nix
     ];
 
+  system.stateVersion = "22.05";
+
   nixpkgs.config.allowUnfree = true;
 
   # Trust hydra. Needed for one-click installations.
@@ -157,8 +159,6 @@ in
     ];
   };
 
-  services.urxvtd.enable = true;
-
   # Copy the system configuration int to nix-store.
   system.copySystemConfiguration = true;
 
@@ -180,8 +180,8 @@ in
 
   environment = {
     systemPackages = with pkgs; [
-      exfat-utils
-      gnome3.dconf
+      exfat
+      dconf
       bashInteractive
       lsof
       zile
