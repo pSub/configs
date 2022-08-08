@@ -2,5 +2,5 @@
 # This script is started from ~/.xprofile.
 
 emacs --daemon &
-zim --plugin trayicon &
+obsidian &
 trello &
