@@ -145,10 +145,6 @@ in
     enable = true;
     enableContribAndExtras = true;
   };
-  #services.xserver.windowManager.xmonad.extraPackages = haskellPackages : [ 
-  #  haskellPackages.xmonad-contrib_0_17_0 
-  #  haskellPackages.xmonad-extras_0_17_0
-  #  ];
   services.xserver.desktopManager.xterm.enable = false;
   services.xserver.desktopManager.xfce = {
     enable = true;
