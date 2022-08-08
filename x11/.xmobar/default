@@ -10,8 +10,11 @@ Config { font =  "xft:Dejavu Sans:size=9:antialias=true:hinting=true:hintstyle=h
                   , "-l", "red", "-h", "green"
                   , "--", "-O", "↑<left>%", "-o", "↓<left>%", "-i", "•<left>%"
                   ] 10
+                    -- Use this workaround until https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Util-Hacks.html#v:trayerPaddingXmobarEventHook
+                    -- is available
+                    , Run Com "/home/pascal/.xmobar/padding-icon.sh" [] "trayerpad" 10
                   ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%UnsafeStdinReader% }{%battery%   %date%"
+       , template = "%UnsafeStdinReader% }{%battery%   %date% %trayerpad%"
        }
