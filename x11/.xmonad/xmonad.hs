@@ -50,7 +50,7 @@ myKeys = [ ("M-<Tab>", toggleWS)
 
 main = do
        xmproc <- spawnPipe "xmobar ~/.xmobar/default "
-       xmonad $ docks $ withUrgencyHook NoUrgencyHook $ ewmh defaultConfig
+       xmonad $ docks $ withUrgencyHook NoUrgencyHook $ ewmhFullscreen def
         { startupHook = setWMName "LG3D" >> setDefaultCursor xC_left_ptr
         , workspaces = myWorkspaces
         , modMask = mod3Mask
@@ -58,11 +58,10 @@ main = do
         , normalBorderColor = "black"
         , focusedBorderColor = "#f5a400"
         , manageHook = myManageHook
-        , handleEventHook = mconcat [ handleEventHook defaultConfig
-                          , fullscreenEventHook
+        , handleEventHook = mconcat [ handleEventHook def
                           , Hacks.trayerAboveXmobarEventHook
                           ]
-        , layoutHook = avoidStruts $ layoutHook defaultConfig
+        , layoutHook = avoidStruts $ layoutHook def
         , logHook = do
                      updatePointer (0.5, 0.5) (0, 0)
                      dynamicLogWithPP xmobarPP
