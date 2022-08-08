@@ -37,7 +37,8 @@ trayer --edge top \
        --transparent true \
        --alpha 0 \
        --tint 0x000000 \
-       --height 20 &
+       --height 20 \
+       -l &
 
 # Start nm-applet
 nm-applet &

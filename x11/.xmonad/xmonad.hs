@@ -14,6 +14,7 @@ import qualified XMonad.StackSet              as W
 import           XMonad.Util.Cursor
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Run              (spawnPipe)
+import qualified XMonad.Util.Hacks as Hacks
 import           XMonad.Hooks.DynamicProperty (dynamicTitle)
 
 myWorkspaces = clickable . (map xmobarEscape) $ [ "org", "www", "dev₁", "dev₂", "docs", "chat", "mail" ]
@@ -58,7 +59,8 @@ main = do
         , focusedBorderColor = "#f5a400"
         , manageHook = myManageHook
         , handleEventHook = mconcat [ handleEventHook defaultConfig
-                          ,fullscreenEventHook
+                          , fullscreenEventHook
+                          , Hacks.trayerAboveXmobarEventHook
                           ]
         , layoutHook = avoidStruts $ layoutHook defaultConfig
         , logHook = do
