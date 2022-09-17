@@ -152,14 +152,17 @@
 
       # List services that you want to enable:
 
-      services.ssmtp.enable = true;
-      services.ssmtp.domain = "frey.family";
-      services.ssmtp.hostName = "frey-family.netcup-mail.de";
-      services.ssmtp.root = "admin@frey.family";
-      services.ssmtp.useTLS = true;
-      services.ssmtp.useSTARTTLS = true;
-      services.ssmtp.authUser = "admin@frey.family";
-      services.ssmtp.authPassFile = "/var/keys/smtp";
+      programs.msmtp = {
+        enable = true;
+        accounts.default = {
+          auth = true;
+          tls = true;
+          host = "frey-family.netcup-mail.de";
+          from = "admin@frey.family";
+          user = "admin@frey.family";
+          passwordeval = "cat /var/keys/smtp";
+        };
+      };
 
       # Cron daemon.
       services.cron.enable = true;
@@ -177,19 +180,6 @@
         /var/backup/postgresql/nextcloud.sql.gz {
           rotate 100
           missingok
-        }
-
-        /var/log/nginx/*.log {
-          daily
-          missingok
-          rotate 31
-          compress
-          delaycompress
-          notifempty
-          sharedscripts
-          postrotate
-                [ -f /run/nginx/nginx.pid ] && kill -USR1 `cat /run/nginx/nginx.pid`
-          endscript
         }
       '';
 

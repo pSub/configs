@@ -13,7 +13,13 @@ let
         sha256 = "1ivr8wlb06ib77bv0yz6jq1zz53df6qqnhvs2rlnicgknzh95qfv";
       }
     )
-  ) { };
+  ) {
+    nixpkgs = import (
+      fetchTarball
+        "https://nixos.org/channels/nixos-21.11/nixexprs.tar.xz"
+    )
+      {};
+   };
 in
 {
   options = {
