@@ -58,6 +58,10 @@
       systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
       systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
 
+      services.journald.extraConfig = ''
+          SystemMaxUse=1G
+      '';
+
       system.autoUpgrade.enable = true;
       system.autoUpgrade.channel = https://nixos.org/channels/nixos-21.11;
       system.autoUpgrade.dates = "04:00";
