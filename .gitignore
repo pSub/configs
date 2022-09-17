@@ -1,4 +1,6 @@
 *~
+*.hi
+*.o
 emacs/.emacs.d/elpa
 emacs/.emacs.d/var
 emacs/.emacs.d/bookmarks
@@ -6,6 +8,4 @@ emacs/.emacs.d/ac-comphist.dat
 emacs/.emacs.d/org-clock-save.el
 x11/.xmonad/xmonad-x86_64-linux
 x11/.xmonad/xmonad.errors
-x11/.xmonad/xmonad.hi
-x11/.xmonad/xmonad.o
 .pre-commit-config.yaml
