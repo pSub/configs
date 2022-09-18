@@ -138,7 +138,7 @@
         }
       ];
 
-      security.acme.email = "contact@pascal-wittmann.de";
+      security.acme.defaults.email = "contact@pascal-wittmann.de";
       security.acme.acceptTerms = true;
 
 
@@ -189,7 +189,7 @@
       services.openssh.forwardX11 = false;
       services.openssh.permitRootLogin = "yes"; # For deployment via NixOps, non-root deployments via NixOS/nixops#730
       services.openssh.passwordAuthentication = false;
-      services.openssh.challengeResponseAuthentication = false;
+      services.openssh.kbdInteractiveAuthentication = false;
 
       # PostgreSQL.
       services.postgresql.enable = true;
