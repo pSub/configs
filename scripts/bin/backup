@@ -1,0 +1,13 @@
+#!/bin/sh
+
+UUID="${UUID:=b5b304cb-4625-4b31-9d6c-334de196d1a1}"
+
+udisksctl mount -b /dev/disk/by-uuid/${UUID}
+
+cd /run/media/${USER}/${UUID}/restic
+
+./create-backup.sh
+
+cd -
+
+udisksctl unmount -b /dev/disk/by-uuid/${UUID}
