@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Detects the width of running window with name given as first
 # argument (xprop name '$1') and creates an XPM icon of that width,
@@ -17,7 +17,7 @@
 # Function to create a transparent Wx1 px XPM icon
 create_xpm_icon () {
 timestamp=$(date)
-pixels=$(for i in `seq $1`; do echo -n "."; done)
+pixels="$(repeat $1 { echo -n "." })"
 
 cat << EOF > "$2"
 /* XPM *
@@ -41,15 +41,15 @@ EOF
 pname=${1:-panel}
 
 # Width of the trayer window
-width=$(xprop -name $pname | grep 'program specified minimum size' | cut -d ' ' -f 5)
+width="$(xprop -name $pname | grep 'program specified minimum size' | cut -d ' ' -f 5)"
 
 # Icon file name
 iconfile="/tmp/$pname-padding-${width:-0}px.xpm"
 
 # If the desired icon does not exist create it
-if [ ! -f $iconfile ]
+if [ ! -f "$iconfile" ]
 then
-    create_xpm_icon $width $iconfile
+    create_xpm_icon "$width" "$iconfile"
 fi
 
 # Output the icon tag for xmobar
