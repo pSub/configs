@@ -11,7 +11,6 @@
         ./modules/clean-deployment-keys.nixops.nix
         ./modules/homepage.nix
         ./modules/radicale.nix
-        ./modules/dmn-check-server.nix
         ./modules/systemd-email-notify.nix
         ./users.nix
       ];
@@ -389,9 +388,6 @@
 
       # Homepage
       services.homepage.enable = true;
-
-      # dmn-check-server
-      services.dmn-check-server.enable = true;
 
       # Netdata
       services.netdata.enable = true;
