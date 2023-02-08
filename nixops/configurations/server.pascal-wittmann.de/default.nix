@@ -233,6 +233,7 @@
       services.nextcloud.hostName = "cloud.pascal-wittmann.de";
       services.nextcloud.https = true;
       services.nextcloud.autoUpdateApps.enable = true;
+      services.nextcloud.enableBrokenCiphersForSSE = false;
       services.nextcloud.config = {
         dbtype = "pgsql";
         dbport = 5432;
@@ -242,6 +243,11 @@
         dbhost = "127.0.0.1";
 
         defaultPhoneRegion = "DE";
+      };
+      services.nextcloud.phpOptions = options.services.nextcloud.phpOptions.default // {
+        "opcache.jit" = "tracing";
+        "opcache.jit_buffer_size" = "100M";
+        "opcache.interned_strings_buffer" = "16";
       };
 
       # vaultwarden
