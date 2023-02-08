@@ -381,6 +381,16 @@
               auth_basic_user_file /var/keys/basicAuth;
             '';
           };
+
+          locations."/red6" = {
+            root = "/srv/users/";
+            extraConfig = ''
+              autoindex on;
+              auth_basic "Password protected area";
+              auth_basic_user_file /var/keys/basicAuth;
+            '';
+          };
+
           extraConfig = ''
             add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
             add_header X-Content-Type-Options nosniff;
