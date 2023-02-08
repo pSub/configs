@@ -169,18 +169,16 @@
 
       # Logrotate
       services.logrotate.enable = true;
-
-      # FIXME: Integrate rotation into services.postgresqlBackup
-      services.logrotate.extraConfig = ''
-        /var/backup/postgresql/homepage_production.sql.gz {
-          rotate 100
-          missingok
-        }
-        /var/backup/postgresql/nextcloud.sql.gz {
-          rotate 100
-          missingok
-        }
-      '';
+      services.logrotate.settings = {
+        "postgresql" = {
+            files = [
+              "/var/backup/postgresql/homepage_production.sql.gz"
+              "/var/backup/postgresql/nextcloud.sql.gz"
+            ];
+            frequency = "daily";
+            rotate = 30;
+        };
+      };
 
       # Enable the OpenSSH daemon
       services.openssh.enable = true;
