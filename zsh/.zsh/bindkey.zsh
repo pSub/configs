@@ -23,12 +23,13 @@ case "$TERM" in
         #bindkey '\e[1;5C' forward-word
         #bindkey '\e[1;5D' backward-word
         ;;
-    *rxvt*)
-        bindkey '\e[7~' beginning-of-line
-        bindkey '\e[8~' end-of-line
+    *alacritty*)
+        bindkey '\e[H'  beginning-of-line
+        bindkey '\e[F'  end-of-line
+        bindkey '\e[3~' delete-char
+
         bindkey '\eOc' forward-word
         bindkey '\eOd' backward-word
-        bindkey '\e[3~' delete-char
         bindkey '\e[2~' overwrite-mode
         ;;
     xterm*)
