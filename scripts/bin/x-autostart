@@ -5,3 +5,4 @@ emacs --daemon &
 obsidian &
 trello &
 nextcloud &
+kdeconnect-indicator &

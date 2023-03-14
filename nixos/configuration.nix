@@ -86,6 +86,14 @@ in
     ];
   };
 
+
+  # KDE Connect
+  networking.firewall = {
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = [ { from = 1714; to = 1764; } ];
+  };
+
+
   # List services that you want to enable:
 
   # Cron.
@@ -167,6 +175,9 @@ in
 
   # Do not start ssh-agent, gnupg-agent is used.
   programs.ssh.startAgent = false;
+
+  #
+  programs.kdeconnect.enable = true;
 
   # Firewall
   networking.firewall.enable = true;
