@@ -108,6 +108,9 @@ in
   # Gernal Purpose Mouse.
   services.gpm.enable = true;
 
+  # Gnome Keyring
+  services.gnome.gnome-keyring.enable = true;
+
   # Udisks.
   services.udisks2.enable = true;
 
