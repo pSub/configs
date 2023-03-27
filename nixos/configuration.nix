@@ -31,14 +31,14 @@ in
   nixpkgs.config.allowUnfree = true;
 
   # Trust hydra. Needed for one-click installations.
-  nix.trustedBinaryCaches = [ "http://hydra.nixos.org" ];
-  nix.binaryCachePublicKeys = [
+  nix.settings.trusted-substituters = [ "http://hydra.nixos.org" ];
+  nix.settings.trusted-public-keys = [
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
   ];
 
   # Build using chroots to detect more impurities.
-  nix.useSandbox = true;
+  nix.settings.sandbox = true;
 
   hardware.sane.enable = true;
   hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
@@ -161,9 +161,6 @@ in
     enable = true;
     enableXfwm = false;
     noDesktop = true;
-    thunarPlugins = with pkgs.xfce; [
-      thunar-archive-plugin
-    ];
   };
 
   # Copy the system configuration int to nix-store.
@@ -181,6 +178,10 @@ in
 
   #
   programs.kdeconnect.enable = true;
+
+  programs.thunar.plugins = with pkgs.xfce; [
+    thunar-archive-plugin
+  ];
 
   # Firewall
   networking.firewall.enable = true;

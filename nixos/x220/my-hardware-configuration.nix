@@ -50,7 +50,7 @@
       { device = "/dev/mapper/vgroup-swap"; }
     ];
 
-  nix.maxJobs = 4;
+  nix.settings.max-jobs = 4;
 
   services.xserver.videoDrivers = [ "intel" "vesa" ];
   hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
