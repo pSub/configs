@@ -406,6 +406,18 @@
       # Netdata
       services.netdata.enable = true;
 
+      # vdirsyncer
+      services.vdirsyncer.enable = true;
+      services.vdirsyncer.jobs.trello = {
+        enable = true;
+        forceDiscover = true;
+        timerConfig = {
+          OnBootSec = "1h";
+          OnUnitActiveSec = "1h";
+        };
+        configFile = ./secrets/vdirsyncer-trello;
+      };
+
       # Sound
       sound.enable = false;
 
