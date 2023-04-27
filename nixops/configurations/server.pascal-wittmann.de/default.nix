@@ -406,7 +406,7 @@
           OnBootSec = "1h";
           OnUnitActiveSec = "1h";
         };
-        configFile = ./secrets/vdirsyncer-trello;
+        configFile = "/var/keys/vdirsyncer-trello";
       };
 
       # Sound
@@ -447,6 +447,9 @@
       deployment.keys.radicale.text = builtins.readFile ./secrets/radicale;
       deployment.keys.radicale.destDir = "/var/keys";
       deployment.keys.radicale.user = "radicale";
+
+      deployment.keys.vdirsyncerTrello.text = builtins.readFile ./secrets/vdirsyncer-trello;
+      deployment.keys.vdirsyncerTrello.destDir = "/var/keys";
 
     };
 }
