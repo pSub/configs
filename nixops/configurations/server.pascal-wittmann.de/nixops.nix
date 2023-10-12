@@ -402,12 +402,14 @@
       services.vdirsyncer.enable = true;
       services.vdirsyncer.jobs.trello = {
         enable = true;
+        user = "vdirsyncerTrelloUser";
+        group = "vdirsyncerTrelloGroup";
         forceDiscover = true;
         timerConfig = {
           OnBootSec = "1h";
           OnUnitActiveSec = "1h";
         };
-        configFile = "/var/keys/vdirsyncer-trello";
+        configFile = "/var/keys/vdirsyncerTrello";
       };
 
       # Sound
@@ -451,6 +453,7 @@
 
       deployment.keys.vdirsyncerTrello.text = builtins.readFile ./secrets/vdirsyncer-trello;
       deployment.keys.vdirsyncerTrello.destDir = "/var/keys";
+      deployment.keys.vdirsyncerTrello.user = "vdirsyncerTrelloUser";
 
     };
 }
