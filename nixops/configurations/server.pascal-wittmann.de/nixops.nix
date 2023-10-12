@@ -22,7 +22,6 @@
 
       # Use the GRUB 2 boot loader.
       boot.loader.grub.enable = true;
-      boot.loader.grub.version = 2;
       # Define on which hard drive you want to install Grub.
       boot.loader.grub.device = "/dev/vda";
 
@@ -44,7 +43,7 @@
         { device = "/dev/disk/by-uuid/279e433e-1ab9-4fd1-9c37-0d7e4e082944"; }
       ];
 
-      nix.maxJobs = 2;
+      nix.settings.max-jobs = 2;
       nix.gc.automatic = true;
       nix.gc.dates = "06:00";
 
@@ -63,7 +62,7 @@
       '';
 
       system.autoUpgrade.enable = true;
-      system.autoUpgrade.channel = https://nixos.org/channels/nixos-22.11;
+      system.autoUpgrade.channel = https://nixos.org/channels/nixos-23.05;
       system.autoUpgrade.dates = "04:00";
       system.autoUpgrade.allowReboot = true;
       systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
@@ -184,10 +183,12 @@
       # Enable the OpenSSH daemon
       services.openssh.enable = true;
       services.openssh.allowSFTP = true;
-      services.openssh.forwardX11 = false;
-      services.openssh.permitRootLogin = "yes"; # For deployment via NixOps, non-root deployments via NixOS/nixops#730
-      services.openssh.passwordAuthentication = false;
-      services.openssh.kbdInteractiveAuthentication = false;
+      services.openssh.settings =  {
+        X11Forwarding = false;
+        PermitRootLogin = "yes"; # For deployment via NixOps, non-root deployments via NixOS/nixops#730
+        PasswordAuthentication = false;
+        KbdInteractiveAuthentication = false;
+      };
 
       # PostgreSQL.
       services.postgresql.enable = true;
@@ -228,7 +229,7 @@
 
       # nextcloud
       services.nextcloud.enable = true;
-      services.nextcloud.package = pkgs.nextcloud25;
+      services.nextcloud.package = pkgs.nextcloud26;
       services.nextcloud.home = "/srv/nextcloud";
       services.nextcloud.config.adminpassFile = "/var/keys/nextcloud";
       services.nextcloud.hostName = "cloud.pascal-wittmann.de";
