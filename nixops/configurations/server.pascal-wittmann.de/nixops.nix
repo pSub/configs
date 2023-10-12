@@ -2,6 +2,7 @@
 
   network = {
     enableRollback = true;
+    storage.legacy = { };
   };
 
   server = { config, pkgs, options, ... }:
@@ -71,7 +72,7 @@
               let
                 modifyPaths = f : paths : map toPath (map f (map toString paths));
 
-                serverConfig = (import /etc/nixos/current/default.nix).server all;
+                serverConfig = (import /etc/nixos/current/nixops.nix).server all;
                 withoutDeploymentOptions = removeAttrs serverConfig [ "deployment" ];
                 withoutDeploymentRequires = overrideExisting withoutDeploymentOptions
                                              { require = modifyPaths (require: concatStrings [ "/etc/nixos/current/" (replaceStrings [ "nix/store/"] [ "" ] require) ])
@@ -92,7 +93,7 @@
           fi
           mkdir /etc/nixos/current
 
-          ln -s ${./default.nix} /etc/nixos/current/default.nix
+          ln -s ${./nixops.nix} /etc/nixos/current/default.nix
           ln -s ${./users.nix} /etc/nixos/current/users.nix
           ln -s ${./modules} /etc/nixos/current/modules
         '';
