@@ -48,11 +48,10 @@
       nix.gc.dates = "06:00";
 
 
-      # Deploy without root (enable with nixops 2.0 release)
-      #nix.trustedUsers = [ "deployer" ];
-      #users.users.deployer.extraGroups = [ "wheel" ];
-      #security.sudo.wheelNeedsPassword = false;
-      #deployment.targetUser = "deployer";
+      # Deploy without root
+      nix.settings.trusted-users = [ "deployer" ];
+      security.sudo.wheelNeedsPassword = false;
+      deployment.targetUser = "deployer";
 
       systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
       systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
@@ -185,7 +184,6 @@
       services.openssh.allowSFTP = true;
       services.openssh.settings =  {
         X11Forwarding = false;
-        PermitRootLogin = "yes"; # For deployment via NixOps, non-root deployments via NixOS/nixops#730
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
       };
