@@ -1,6 +1,6 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
-  stable = import (fetchTarball https://nixos.org/channels/nixos-22.05/nixexprs.tar.xz) { };
+  stable = import (fetchTarball https://nixos.org/channels/nixos-23.05/nixexprs.tar.xz) { };
 in
 {
 
@@ -88,7 +88,7 @@ in
         dysnomia
         nix-generate-from-cpan
         nix-review
-        nixops
+        nixops_unstable
         nixpkgs-lint
       ];
     };
@@ -110,7 +110,7 @@ in
         emacs.pkgs.use-package
         emacs.pkgs.haskell-mode
         emacs.pkgs.scala-mode
-        emacs.pkgs.shm
+#        emacs.pkgs.shm
         emacs.pkgs.writegood-mode
         emacs.pkgs.magit
         emacs.pkgs.nix-mode
@@ -133,11 +133,12 @@ in
         krusader
         keepassxc
         thunderbird
-        llpp
+        #llpp
         libreoffice-fresh
-        nextcloud-client
+        unstable.nextcloud-client
         obsidian
         pass
+        unstable.slack
         geeqie
         pcmanfm
         phototonic
@@ -162,7 +163,7 @@ in
       name = "development-env";
       paths = [
         gitFull
-        idea.idea-ultimate
+        #idea.idea-ultimate
         subversion
       ];
     };
