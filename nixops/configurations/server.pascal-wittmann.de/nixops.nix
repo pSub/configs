@@ -91,7 +91,7 @@
           fi
           mkdir /etc/nixos/current
 
-          ln -s ${./nixops.nix} /etc/nixos/current/default.nix
+          ln -s ${./nixops.nix} /etc/nixos/current/nixops.nix
           ln -s ${./users.nix} /etc/nixos/current/users.nix
           ln -s ${./modules} /etc/nixos/current/modules
         '';
