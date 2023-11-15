@@ -252,14 +252,14 @@
 
       # vaultwarden
       services.vaultwarden.enable = true;
-      services.vaultwarden.backupDir = "/var/backup/bitwarden";
+      services.vaultwarden.backupDir = "/var/backup/vaultwarden";
       services.vaultwarden.config = {
-        domain = "https://bitwarden.pascal-wittmann.de:443";
+        domain = "https://vaultwarden.pascal-wittmann.de:443";
         rocketAddress = "127.0.0.1";
         rocketPort = 8222;
         signupsAllowed = false;
       };
-      services.vaultwarden.environmentFile = "/var/backup/bitwarden/vaultwarden.env";
+      services.vaultwarden.environmentFile = "/var/lib/bitwarden_rs/vaultwarden.env";
       systemd.services.vaultwarden.wants = [ "nginx.service" ];
       systemd.services.vaultwarden.after = [ "nginx.service" ];
       systemd.services.vaultwarden.bindsTo = [ "nginx.service" ];
@@ -302,7 +302,7 @@
           enableACME = true;
         };
 
-        "bitwarden.pascal-wittmann.de" = {
+        "vaultwarden.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
           locations."/" = { proxyPass = "http://127.0.0.1:8222"; };
