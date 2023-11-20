@@ -40,6 +40,8 @@ in
   # Build using chroots to detect more impurities.
   nix.settings.sandbox = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   hardware.sane.enable = true;
   hardware.sane.extraBackends = [ pkgs.hplipWithPlugin ];
 
