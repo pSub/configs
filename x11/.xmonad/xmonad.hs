@@ -27,6 +27,7 @@ myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
                  , isDialog        --> doCenterFloat
                  , appName =? "trello.com" --> doShift (myWorkspaces !! 0)
+                 , appName =? "web.telegram.org__k" --> doShift (myWorkspaces !! 5)
                  , className =? "thunderbird" --> doShift (myWorkspaces !! 6)
                  , className =? "Firefox" --> doShift (myWorkspaces !! 1)
                  , className =? "Chromium-browser" --> doShift (myWorkspaces !! 1)
