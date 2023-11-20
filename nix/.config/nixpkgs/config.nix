@@ -61,6 +61,7 @@ in
       name = "tools-env";
       paths = [
         appimage-run
+        atuin
         bind
         binutils
         file
@@ -77,7 +78,6 @@ in
         xfce.ristretto
         which
         wget
-        zsh-navigation-tools
       ];
     };
 
