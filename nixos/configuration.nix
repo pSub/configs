@@ -55,7 +55,7 @@ in
   users.extraUsers.pascal = {
     uid = 1002;
     description = "Pascal Wittmann";
-    extraGroups = [ "networkmanager" "vboxusers" "lp" "scanner" ];
+    extraGroups = [ "networkmanager" "vboxusers" "lp" "scanner" "wheel" ];
     isNormalUser = true;
     shell = "${pkgs.zsh}/bin/zsh";
   };
