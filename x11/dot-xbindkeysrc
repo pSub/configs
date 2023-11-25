@@ -1,13 +1,13 @@
 #VolumeUp
-"amixer -q sset Master 2+"
+"pamixer --increase 2"
     XF86AudioRaiseVolume
 
 #VolumeDown
-"amixer -q sset Master 2-"
+"pamixer --decrease 2"
     XF86AudioLowerVolume
 
 #Mute
-"amixer -q sset Master toggle"
+"pamixer --toggle-mute"
     XF86AudioMute
 
 #PlayPause
