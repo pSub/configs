@@ -26,7 +26,7 @@ in
       /etc/nixos/password.nix
     ];
 
-  system.stateVersion = "22.05";
+  system.stateVersion = "23.05";
 
   nixpkgs.config.allowUnfree = true;
 
