@@ -1,0 +1,7 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i bash -p rsync
+
+MOUNT_POINT_PHONE=/run/user/1002/gvfs/mtp:host=Fairphone_FP3_A209J8930201
+MOUNT_POINT_DEST=/run/media/pascal/TOSHIBA\ EXT/Pictures/fairphone/
+
+rsync --verbose --progress --recursive --size-only  "$MOUNT_POINT_PHONE"/disk/DCIM "$MOUNT_POINT_DEST"/card
