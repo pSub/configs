@@ -7,6 +7,10 @@
 
   server = { config, pkgs, options, ... }:
 
+    let
+      unstable = import (builtins.fetchTarball "https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz") { config = config.nixpkgs.config; };
+    in
+
     {
       require = [
         ./modules/clean-deployment-keys.nixops.nix
@@ -252,6 +256,7 @@
 
       # vaultwarden
       services.vaultwarden.enable = true;
+      services.vaultwarden.package = unstable.pkgs.vaultwarden;
       services.vaultwarden.backupDir = "/var/backup/vaultwarden";
       services.vaultwarden.config = {
         domain = "https://vaultwarden.pascal-wittmann.de:443";
