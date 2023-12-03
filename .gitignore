@@ -6,6 +6,8 @@ emacs/.emacs.d/var
 emacs/.emacs.d/bookmarks
 emacs/.emacs.d/ac-comphist.dat
 emacs/.emacs.d/org-clock-save.el
+emacs/.emacs.d/eln-cache
+emacs/.emacs.d/transient
 x11/.xmonad/xmonad-x86_64-linux
 x11/.xmonad/xmonad.errors
 .pre-commit-config.yaml
