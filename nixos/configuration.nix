@@ -2,7 +2,7 @@
 # the system.  Help is available in the configuration.nix(5) man page
 # or the NixOS manual available on virtual console 8 (Alt+F8).
 
-{ pkgs, ... }:
+{ pkgs, config, inputs, ... }:
 let
   # Displays an alert if the battery is below 10%
   lowBatteryNotifier = pkgs.writeScript "lowBatteryNotifier"
@@ -13,18 +13,12 @@ let
     '';
 in
 {
-  require =
-    [
-      # Use X220 configuration from https://github.com/NixOS/nixos-hardware
-      <nixos-hardware/lenovo/thinkpad/x220>
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/pascal/.config/sops/age/keys.txt";
 
-      # Include settings that depend on specific hardware.
-      /etc/nixos/my-hardware-configuration.nix
-
-      # Include the file with the hashed passwords. Ensure
-      # that permissions are set correctly.
-      /etc/nixos/password.nix
-    ];
+  sops.secrets."users/pascal".neededForUsers = true;
+  sops.secrets."users/root".neededForUsers = true;
 
   system.stateVersion = "23.05";
 
@@ -61,11 +55,13 @@ in
   services.blueman.enable = true;
 
   users.mutableUsers = false;
+  users.users.root.passwordFile = config.sops.secrets."users/root".path;
   users.extraUsers.pascal = {
     uid = 1002;
     description = "Pascal Wittmann";
     extraGroups = [ "networkmanager" "vboxusers" "lp" "scanner" "wheel" ];
     isNormalUser = true;
+    passwordFile = config.sops.secrets."users/pascal".path;
     shell = "${pkgs.zsh}/bin/zsh";
   };
   fileSystems."/home/pascal/downloads" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "size=25%" ]; };
@@ -173,9 +169,6 @@ in
     enableXfwm = false;
     noDesktop = true;
   };
-
-  # Copy the system configuration int to nix-store.
-  system.copySystemConfiguration = true;
 
   # gpg-agent
   programs.gnupg.agent = {
