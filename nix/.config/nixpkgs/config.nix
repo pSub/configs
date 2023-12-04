@@ -1,6 +1,7 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
   stable = import (fetchTarball https://nixos.org/channels/nixos-23.11/nixexprs.tar.xz) { };
+  last_release = import (fetchTarball https://nixos.org/channels/nixos-23.05/nixexprs.tar.xz) { };
 in
 {
 
@@ -89,7 +90,7 @@ in
         dysnomia
         nix-generate-from-cpan
         nixpkgs-review
-        nixops_unstable
+        last_release.nixops_unstable
         nixpkgs-lint
       ];
     };
