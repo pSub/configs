@@ -7,10 +7,6 @@
 
   server = { config, pkgs, options, ... }:
 
-    let
-      unstable = import (builtins.fetchTarball "https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz") { config = config.nixpkgs.config; };
-    in
-
     {
       require = [
         ./modules/clean-deployment-keys.nixops.nix
@@ -65,7 +61,7 @@
       '';
 
       system.autoUpgrade.enable = true;
-      system.autoUpgrade.channel = https://nixos.org/channels/nixos-23.05;
+      system.autoUpgrade.channel = https://nixos.org/channels/nixos-23.11;
       system.autoUpgrade.dates = "04:00";
       system.autoUpgrade.allowReboot = true;
       systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
@@ -194,8 +190,8 @@
 
       # PostgreSQL.
       services.postgresql.enable = true;
-      services.postgresql.package = pkgs.postgresql_11;
-      services.postgresql.dataDir = "/var/lib/postgresql/9.11";
+      services.postgresql.package = pkgs.postgresql_15;
+      services.postgresql.dataDir = "/var/lib/postgresql/15";
       services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" ];
       services.postgresqlBackup.enable = true;
       services.postgresqlBackup.location = "/var/backup/postgresql";
@@ -231,13 +227,12 @@
 
       # nextcloud
       services.nextcloud.enable = true;
-      services.nextcloud.package = pkgs.nextcloud26;
+      services.nextcloud.package = pkgs.nextcloud27;
       services.nextcloud.home = "/srv/nextcloud";
       services.nextcloud.config.adminpassFile = "/var/keys/nextcloud";
       services.nextcloud.hostName = "cloud.pascal-wittmann.de";
       services.nextcloud.https = true;
       services.nextcloud.autoUpdateApps.enable = true;
-      services.nextcloud.enableBrokenCiphersForSSE = false;
       services.nextcloud.config = {
         dbtype = "pgsql";
         dbport = 5432;
@@ -248,7 +243,7 @@
 
         defaultPhoneRegion = "DE";
       };
-      services.nextcloud.phpOptions = options.services.nextcloud.phpOptions.default // {
+      services.nextcloud.phpOptions = {
         "opcache.jit" = "tracing";
         "opcache.jit_buffer_size" = "100M";
         "opcache.interned_strings_buffer" = "16";
@@ -256,7 +251,7 @@
 
       # vaultwarden
       services.vaultwarden.enable = true;
-      services.vaultwarden.package = unstable.pkgs.vaultwarden;
+      services.vaultwarden.package = pkgs.vaultwarden;
       services.vaultwarden.backupDir = "/var/backup/vaultwarden";
       services.vaultwarden.config = {
         domain = "https://vaultwarden.pascal-wittmann.de:443";
