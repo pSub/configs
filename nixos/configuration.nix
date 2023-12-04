@@ -55,13 +55,13 @@ in
   services.blueman.enable = true;
 
   users.mutableUsers = false;
-  users.users.root.passwordFile = config.sops.secrets."users/root".path;
+  users.users.root.hashedPasswordFile = config.sops.secrets."users/root".path;
   users.extraUsers.pascal = {
     uid = 1002;
     description = "Pascal Wittmann";
     extraGroups = [ "networkmanager" "vboxusers" "lp" "scanner" "wheel" ];
     isNormalUser = true;
-    passwordFile = config.sops.secrets."users/pascal".path;
+    hashedPasswordFile = config.sops.secrets."users/pascal".path;
     shell = "${pkgs.zsh}/bin/zsh";
   };
   fileSystems."/home/pascal/downloads" = { device = "tmpfs"; fsType = "tmpfs"; options = [ "size=25%" ]; };
@@ -77,7 +77,7 @@ in
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs ; [
+    packages = with pkgs ; [
       corefonts
       liberation_ttf
       ttf_bitstream_vera

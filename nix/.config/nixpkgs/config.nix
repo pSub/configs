@@ -1,6 +1,6 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
-  stable = import (fetchTarball https://nixos.org/channels/nixos-23.05/nixexprs.tar.xz) { };
+  stable = import (fetchTarball https://nixos.org/channels/nixos-23.11/nixexprs.tar.xz) { };
 in
 {
 
@@ -70,6 +70,7 @@ in
         nox
         imagemagick
         parallel
+        pamixer
         psmisc
         pinpoint
         inetutils
@@ -87,7 +88,7 @@ in
         cabal2nix
         dysnomia
         nix-generate-from-cpan
-        nix-review
+        nixpkgs-review
         nixops_unstable
         nixpkgs-lint
       ];
