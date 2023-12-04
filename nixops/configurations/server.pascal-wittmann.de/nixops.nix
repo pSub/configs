@@ -150,6 +150,9 @@
 
       # List services that you want to enable:
 
+      # Atuin Sync Server
+      services.atuin.enable = true;
+
       programs.msmtp = {
         enable = true;
         accounts.default = {
@@ -332,6 +335,12 @@
             auth_basic "Password protected area";
             auth_basic_user_file /var/keys/basicAuth;
           '';
+        };
+
+        "atuin.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = { proxyPass = "http://127.0.0.1:8888"; };
         };
 
         "users.pascal-wittmann.de" = {
