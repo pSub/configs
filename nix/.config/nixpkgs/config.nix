@@ -108,7 +108,7 @@ in
     emacs-env = buildEnv {
       name = "emacs-env";
       paths = [
-        emacs
+        emacs29
         emacs.pkgs.use-package
         emacs.pkgs.haskell-mode
         emacs.pkgs.scala-mode
