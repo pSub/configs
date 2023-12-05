@@ -170,14 +170,7 @@ in
     noDesktop = true;
   };
 
-  # gpg-agent
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-    pinentryFlavor = "gtk2";
-  };
-
-  # Do not start ssh-agent, gnupg-agent is used.
+  # Do not start ssh-agent, keyring is used.
   programs.ssh.startAgent = false;
 
   #

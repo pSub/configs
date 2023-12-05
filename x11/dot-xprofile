@@ -4,10 +4,9 @@
 if [ -z "$_XPROFILE_SOURCED" ]; then
   export _XPROFILE_SOURCED=1
 
-# GnuPG-Agent
+# Keyring SSH Support
+eval $(/run/wrappers/bin/gnome-keyring-daemon --start --daemonize)
 export SSH_AUTH_SOCK
-SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
 
 # Start notification daemon
 dunst &
