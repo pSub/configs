@@ -68,7 +68,6 @@ in
         file
         gnupg
         libxml2
-        nox
         imagemagick
         parallel
         pamixer
@@ -77,7 +76,6 @@ in
         inetutils
         tree
         xfce.tumbler
-        xfce.ristretto
         which
         wget
       ];
@@ -90,6 +88,7 @@ in
         dysnomia
         nix-generate-from-cpan
         nixpkgs-review
+        nox
         last_release.nixops_unstable
         nixpkgs-lint
       ];
