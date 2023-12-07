@@ -66,7 +66,7 @@ in
         bind
         binutils
         file
-        #ghostscript
+        gnupg
         libxml2
         nox
         imagemagick
@@ -158,16 +158,6 @@ in
         gitFull
         #idea.idea-ultimate
         subversion
-      ];
-    };
-
-    security-env = buildEnv {
-      name = "security-env";
-      paths = [
-        apg
-        gnupg
-        gnupg1compat
-        pinentry
       ];
     };
 
