@@ -125,30 +125,21 @@ in
       paths = [
         unstable.pkgs.brave
         calibre
-        clementine
         evince
         exercism
         feh
         filezilla
         firefox
-        homebank
-        krusader
-        keepassxc
         thunderbird
-        #llpp
+        llpp
         libreoffice-fresh
-        unstable.nextcloud-client
+        nextcloud-client
         obsidian
-        pass
-        unstable.slack
-        geeqie
-        pcmanfm
         phototonic
         simple-scan
         electrum
         viking
         vlc
-        zim
       ];
     };
 
