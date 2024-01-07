@@ -26,7 +26,6 @@ in
       apps-env
       spelling-env
       development-env
-      security-env
       work-env
     ];
 
