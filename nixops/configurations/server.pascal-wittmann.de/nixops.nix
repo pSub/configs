@@ -176,7 +176,6 @@
             files = [
               "/var/backup/postgresql/homepage_production.sql.gz"
               "/var/backup/postgresql/nextcloud.sql.gz"
-              "/var/backup/postgresql/vikunja.sql.gz"
             ];
             frequency = "daily";
             rotate = 30;
@@ -196,7 +195,7 @@
       services.postgresql.enable = true;
       services.postgresql.package = pkgs.postgresql_15;
       services.postgresql.dataDir = "/var/lib/postgresql/15";
-      services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" "vikunja" ];
+      services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" ];
       services.postgresqlBackup.enable = true;
       services.postgresqlBackup.location = "/var/backup/postgresql";
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
@@ -268,21 +267,6 @@
       systemd.services.vaultwarden.after = [ "nginx.service" ];
       systemd.services.vaultwarden.bindsTo = [ "nginx.service" ];
 
-      # Vikunja
-      services.vikunja.enable = true;
-      services.vikunja.setupNginx = true;
-      services.vikunja.frontendScheme = "https";
-      services.vikunja.frontendHostname = "vikunja.pascal-wittmann.de";
-      services.vikunja.database.type = "postgres";
-      services.vikunja.environmentFiles = [
-        "/var/keys/vikunjaDbPassword"
-      ];
-      services.vikunja.settings = {
-        service = {
-          enableregistration = false;
-        };
-      };
-
       # nginx
       services.nginx.enable = true;
       services.nginx.commonHttpConfig = ''
@@ -333,11 +317,6 @@
             add_header X-XSS-Protection "1; mode=block";
             add_header X-Frame-Options SAMEORIGIN;
           '';
-        };
-
-        "vikunja.pascal-wittmann.de" = {
-          forceSSL = true;
-          enableACME = true;
         };
 
         "netdata.pascal-wittmann.de" = {
@@ -455,10 +434,6 @@
       deployment.keys.vdirsyncerTrello.text = builtins.readFile ./secrets/vdirsyncer-trello;
       deployment.keys.vdirsyncerTrello.destDir = "/var/keys";
       deployment.keys.vdirsyncerTrello.user = "vdirsyncerTrelloUser";
-
-      deployment.keys.vikunjaDbPassword.text = builtins.readFile ./secrets/vikunja-db-password;
-      deployment.keys.vikunjaDbPassword.destDir = "/var/keys";
-      deployment.keys.vikunjaDbPassword.user = "vikunja-api";
 
     };
 }
