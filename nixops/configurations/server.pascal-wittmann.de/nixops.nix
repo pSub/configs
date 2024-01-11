@@ -262,7 +262,7 @@
         rocketPort = 8222;
         signupsAllowed = false;
       };
-      services.vaultwarden.environmentFile = "/var/lib/bitwarden_rs/vaultwarden.env";
+      services.vaultwarden.environmentFile = "/var/keys/vaultwardenEnv";
       systemd.services.vaultwarden.wants = [ "nginx.service" ];
       systemd.services.vaultwarden.after = [ "nginx.service" ];
       systemd.services.vaultwarden.bindsTo = [ "nginx.service" ];
@@ -435,5 +435,8 @@
       deployment.keys.vdirsyncerTrello.destDir = "/var/keys";
       deployment.keys.vdirsyncerTrello.user = "vdirsyncerTrelloUser";
 
+      deployment.keys.vaultwardenEnv.text = builtins.readFile ./secrets/vaultwarden.env;
+      deployment.keys.vaultwardenEnv.destDir = "/var/keys";
+      deployment.keys.vaultwardenEnv.user = "vaultwarden";
     };
 }
