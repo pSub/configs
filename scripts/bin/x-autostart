@@ -3,6 +3,6 @@
 
 emacs --daemon &
 obsidian &
-trello &
+super-productivity &
 nextcloud &
 kdeconnect-indicator &

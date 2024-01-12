@@ -26,7 +26,7 @@ myWorkspaces = clickable . (map xmobarEscape) $ [ "org", "www", "devâ‚", "devâ‚
 myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
                  , isDialog        --> doCenterFloat
-                 , appName =? "trello.com" --> doShift (myWorkspaces !! 0)
+                 , className =? "superProductivity" --> doShift (myWorkspaces !! 0)
                  , appName =? "web.telegram.org__k" --> doShift (myWorkspaces !! 5)
                  , className =? "Signal" --> doShift (myWorkspaces !! 5)
                  , className =? "thunderbird" --> doShift (myWorkspaces !! 6)
