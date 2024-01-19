@@ -270,6 +270,7 @@
 
       # nginx
       services.nginx.enable = true;
+      services.nginx.recommendedGzipSettings = true;
       services.nginx.commonHttpConfig = ''
         map $remote_addr $ip_anonym1 {
         default 0.0.0;
