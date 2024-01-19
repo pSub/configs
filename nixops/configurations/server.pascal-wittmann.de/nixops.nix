@@ -411,6 +411,9 @@
             proxy_set_header Connection "keep-alive";
             proxy_store off;
 
+            ssl_verify_client on;
+            ssl_client_certificate /var/keys/netdataMtls;
+
             auth_basic "Password protected area";
             auth_basic_user_file /var/keys/basicAuth;
           '';
@@ -535,5 +538,9 @@
       deployment.keys.paperlessMtls.text = builtins.readFile ./secrets/paperless-mtls/client.crt;
       deployment.keys.paperlessMtls.destDir = "/var/keys";
       deployment.keys.paperlessMtls.user = "nginx";
+
+      deployment.keys.netdataMtls.text = builtins.readFile ./secrets/netdata-mtls/client.crt;
+      deployment.keys.netdataMtls.destDir = "/var/keys";
+      deployment.keys.netdataMtls.user = "nginx";
     };
 }
