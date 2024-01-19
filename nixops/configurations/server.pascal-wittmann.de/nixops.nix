@@ -182,6 +182,65 @@
         };
       };
 
+      # fail2ban
+      services.fail2ban.enable = true;
+      services.fail2ban.bantime-increment.enable = true;
+      services.fail2ban.jails = {
+        sshd.settings = {
+          enabled = true;
+        };
+
+        nginx-http-auth = ''
+          enabled  = true
+          port     = http,https
+          logpath  = /var/log/nginx/*.log
+          backend  = polling
+          journalmatch =
+        '';
+
+        nginx-bad-request = ''
+          enabled  = true
+          port     = http,https
+          logpath  = /var/log/nginx/*.log
+          backend  = polling
+          journalmatch =
+        '';
+
+        nginx-botsearch = ''
+          enabled  = true
+          port     = http,https
+          logpath  = /var/log/nginx/*.log
+          backend  = polling
+          journalmatch =
+        '';
+
+        vaultwarden = ''
+          enabled  = true
+        '';
+
+        radicale = ''
+          enabled = true
+        '';
+      };
+
+      environment.etc = {
+        "fail2ban/filter.d/vaultwarden.conf".text = ''
+             [Definition]
+             failregex = ^.*Username or password is incorrect\. Try again\. IP: <ADDR>\. Username: <F-USER>.*</F-USER>\.$
+
+             ignoreregex =
+             journalmatch = _SYSTEMD_UNIT=vaultwarden.service + _COMM=vaultwarden
+        '';
+
+        "fail2ban/filter.d/radicale.conf".text = ''
+             [Definition]
+             failregex = ^.*Failed login attempt from .+ \(forwarded for '<ADDR>'\): '<F-USER>.+</F-USER>$
+             ignoreregex =
+
+             journalmatch = _SYSTEMD_UNIT=radicale.service + _COMM=radicale
+        '';
+      };
+
       # Enable the OpenSSH daemon
       services.openssh.enable = true;
       services.openssh.allowSFTP = true;
@@ -307,12 +366,22 @@
           enableACME = true;
         };
 
+        "calendar.pascal-wittmann.de" = {
+          extraConfig = ''
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+          '';
+        };
+
         "vaultwarden.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
           locations."/" = { proxyPass = "http://127.0.0.1:8222"; };
           extraConfig = ''
             proxy_read_timeout 90;
+
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
             add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
             add_header X-Content-Type-Options nosniff;
