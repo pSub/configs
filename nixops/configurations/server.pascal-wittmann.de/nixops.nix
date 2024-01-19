@@ -189,6 +189,7 @@
         X11Forwarding = false;
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
+        PermitRootLogin = "no";
       };
 
       # PostgreSQL.
