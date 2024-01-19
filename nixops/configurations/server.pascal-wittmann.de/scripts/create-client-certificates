@@ -1,0 +1,24 @@
+#! /usr/bin/env nix-shell
+#! nix-shell -i zsh -p openssl
+
+# This script creates certificates that can be used for mTLS
+# authentication. The file `client.pfx` is used on the client
+# and the file `client.crt` is used on the server.
+
+# If the server is nginx under NixOS the configuration cloud
+# look like this:
+#
+#   serives.nginx.virtualhosts."example.com".extraConfig = ''
+#     ssl_verify_client on;
+#     ssl_client_certificate /path/to/client.crt;
+#   '';
+
+set -e
+
+DEST_DIR="$1"
+
+mkdir -p "$DEST_DIR"
+cd "$DEST_DIR"
+openssl genrsa -out client.key 4096
+openssl req -new -x509 -days 365 -key client.key -out client.crt
+openssl pkcs12 -export -in client.crt -inkey client.key -out client.pfx
