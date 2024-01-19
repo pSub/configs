@@ -312,6 +312,14 @@
         "opcache.interned_strings_buffer" = "16";
       };
 
+      # paperless
+      services.paperless.enable = true;
+      services.paperless.dataDir = "/srv/paperless";
+      services.paperless.passwordFile = "/var/keys/paperless";
+      services.paperless.extraConfig = {
+        PAPERLESS_URL = "https://paperless.pascal-wittmann.de";
+      };
+
       # vaultwarden
       services.vaultwarden.enable = true;
       services.vaultwarden.package = pkgs.vaultwarden;
@@ -414,6 +422,16 @@
           locations."/" = { proxyPass = "http://127.0.0.1:8888"; };
         };
 
+        "paperless.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          extraConfig = ''
+            ssl_verify_client on;
+            ssl_client_certificate /var/keys/paperlessMtls;
+          '';
+          locations."/" = { proxyPass = "http://127.0.0.1:28981"; };
+        };
+
         "users.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
@@ -509,5 +527,13 @@
       deployment.keys.vaultwardenEnv.text = builtins.readFile ./secrets/vaultwarden.env;
       deployment.keys.vaultwardenEnv.destDir = "/var/keys";
       deployment.keys.vaultwardenEnv.user = "vaultwarden";
+
+      deployment.keys.paperless.text = builtins.readFile ./secrets/paperless;
+      deployment.keys.paperless.destDir = "/var/keys";
+      deployment.keys.paperless.user = "paperless";
+
+      deployment.keys.paperlessMtls.text = builtins.readFile ./secrets/paperless-mtls/client.crt;
+      deployment.keys.paperlessMtls.destDir = "/var/keys";
+      deployment.keys.paperlessMtls.user = "nginx";
     };
 }
