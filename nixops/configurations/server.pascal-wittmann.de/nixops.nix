@@ -143,8 +143,8 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
-        # Install only the urxvt terminfo file
-        rxvt_unicode.terminfo
+        # Install only the alacritty terminfo file
+        alacritty.terminfo
         zile
       ];
 
