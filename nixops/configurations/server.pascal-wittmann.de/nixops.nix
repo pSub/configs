@@ -153,6 +153,9 @@
         zile
       ];
 
+      # What breaks with this option?
+      environment.defaultPackages = lib.mkForce [];
+
       # List services that you want to enable:
 
       # Atuin Sync Server
