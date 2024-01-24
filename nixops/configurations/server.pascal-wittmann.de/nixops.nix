@@ -471,6 +471,17 @@
 
       # Netdata
       services.netdata.enable = true;
+      services.netdata.config = {
+        global = {
+          "debug log" = "syslog";
+          "access log" = "syslog";
+          "error log" = "syslog";
+        };
+      };
+
+      services.netdata.configDir = {
+       "health_alarm_notify.conf" = "/var/keys/netdataTelegramNotify";
+      };
 
       # vdirsyncer
       services.vdirsyncer.enable = true;
@@ -544,5 +555,9 @@
       deployment.keys.netdataMtls.text = builtins.readFile ./secrets/netdata-mtls/client.crt;
       deployment.keys.netdataMtls.destDir = "/var/keys";
       deployment.keys.netdataMtls.user = "nginx";
+
+      deployment.keys.netdataTelegramNotify.text = builtins.readFile ./secrets/netdata-telegram-notify;
+      deployment.keys.netdataTelegramNotify.destDir = "/var/keys";
+      deployment.keys.netdataTelegramNotify.user = "netdata";
     };
 }
