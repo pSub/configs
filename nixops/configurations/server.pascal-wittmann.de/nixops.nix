@@ -5,7 +5,7 @@
     storage.legacy = { };
   };
 
-  server = { config, pkgs, options, ... }:
+  server = { config, pkgs, options, lib, ... }:
 
     {
       require = [
