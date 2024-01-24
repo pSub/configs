@@ -43,15 +43,13 @@
         { device = "/dev/disk/by-uuid/279e433e-1ab9-4fd1-9c37-0d7e4e082944"; }
       ];
 
+      nix.settings.allowed-users = [ ];
       nix.settings.max-jobs = 2;
       nix.gc.automatic = true;
       nix.gc.dates = "06:00";
 
-      nix.allowedUsers = [ "@wheel" ];
-
-
       # Deploy without root
-      nix.settings.trusted-users = [ "deployer" ];
+      nix.settings.trusted-users = [ "root" "deployer" ];
       security.sudo.wheelNeedsPassword = false;
       deployment.targetUser = "deployer";
 
