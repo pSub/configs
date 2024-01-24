@@ -47,6 +47,8 @@
       nix.gc.automatic = true;
       nix.gc.dates = "06:00";
 
+      nix.allowedUsers = [ "@wheel" ];
+
 
       # Deploy without root
       nix.settings.trusted-users = [ "deployer" ];
