@@ -151,6 +151,9 @@
         # Install only the alacritty terminfo file
         alacritty.terminfo
         zile
+
+        # Needed for NixOps
+        rsync
       ];
 
       # What breaks with this option?
