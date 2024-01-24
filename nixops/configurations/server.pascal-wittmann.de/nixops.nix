@@ -55,6 +55,9 @@
       security.sudo.wheelNeedsPassword = false;
       deployment.targetUser = "deployer";
 
+      security.sudo.execWheelOnly = true;
+
+
       systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
       systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
 
