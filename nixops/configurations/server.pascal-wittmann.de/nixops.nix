@@ -261,6 +261,12 @@
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
       };
+      services.openssh.extraConfig = ''
+        AllowTcpForwarding yes
+        AllowAgentForwarding no
+        AllowStreamLocalForwarding no
+        AuthenticationMethods publickey
+      '';
 
       # PostgreSQL.
       services.postgresql.enable = true;
