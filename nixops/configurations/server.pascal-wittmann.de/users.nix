@@ -3,7 +3,6 @@
 {
   users.groups = {
     mail = { };
-    vdirsyncerTrelloGroup = { };
   };
 
   users.extraUsers = {
@@ -33,11 +32,6 @@
       home = "/srv/hackaru";
       isNormalUser = true;
       extraGroups = [ "docker" ];
-    };
-
-    vdirsyncerTrelloUser = {
-      isSystemUser = true;
-      group = "vdirsyncerTrelloGroup";
     };
 
     deployer = {

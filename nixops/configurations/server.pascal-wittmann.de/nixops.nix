@@ -498,20 +498,6 @@
        "health_alarm_notify.conf" = "/var/keys/netdataTelegramNotify";
       };
 
-      # vdirsyncer
-      services.vdirsyncer.enable = true;
-      services.vdirsyncer.jobs.trello = {
-        enable = true;
-        user = "vdirsyncerTrelloUser";
-        group = "vdirsyncerTrelloGroup";
-        forceDiscover = true;
-        timerConfig = {
-          OnBootSec = "1h";
-          OnUnitActiveSec = "1h";
-        };
-        configFile = "/var/keys/vdirsyncerTrello";
-      };
-
       # Sound
       sound.enable = false;
 
@@ -550,10 +536,6 @@
       deployment.keys.radicale.text = builtins.readFile ./secrets/radicale;
       deployment.keys.radicale.destDir = "/var/keys";
       deployment.keys.radicale.user = "radicale";
-
-      deployment.keys.vdirsyncerTrello.text = builtins.readFile ./secrets/vdirsyncer-trello;
-      deployment.keys.vdirsyncerTrello.destDir = "/var/keys";
-      deployment.keys.vdirsyncerTrello.user = "vdirsyncerTrelloUser";
 
       deployment.keys.vaultwardenEnv.text = builtins.readFile ./secrets/vaultwarden.env;
       deployment.keys.vaultwardenEnv.destDir = "/var/keys";
