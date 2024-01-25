@@ -112,6 +112,7 @@
 
       networking.firewall.enable = true;
       networking.firewall.allowPing = true;
+      networking.firewall.pingLimit = "--limit 1/minute --limit-burst 5";
       networking.firewall.autoLoadConntrackHelpers = false;
       networking.firewall.allowedTCPPorts = [
         80 # http
