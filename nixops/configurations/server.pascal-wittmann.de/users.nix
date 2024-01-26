@@ -16,7 +16,7 @@
       createHome = true;
       useDefaultShell = true;
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC1+OlW8gz0XLwOf/Smt7KNApfoUu1Hz48eOmW9R9GnJ mail@pascal-wittmann.de"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC1+OlW8gz0XLwOf/Smt7KNApfoUu1Hz48eOmW9R9GnJ pascal@pascal-wittmann.de"
       ];
     };
 
@@ -39,7 +39,7 @@
       isNormalUser = true;
       group = "wheel";
       openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC1+OlW8gz0XLwOf/Smt7KNApfoUu1Hz48eOmW9R9GnJ mail@pascal-wittmann.de"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIObCG2o/yDrsEc/uHMAL2TDxRWvSmf1zL1zT7CG15kbE deployer@pascal-wittmann.de"
       ];
     };
   };
