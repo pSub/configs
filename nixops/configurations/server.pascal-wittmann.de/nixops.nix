@@ -54,6 +54,11 @@
       deployment.targetUser = "deployer";
 
       security.sudo.execWheelOnly = true;
+      security.loginDefs.settings = {
+        # Used values from https://github.com/dev-sec/ansible-collection-hardening/issues/365
+        SHA_CRYPT_MIN_ROUNDS = 640000;
+        SHA_CRYPT_MAX_ROUNDS = 640000;
+      };
 
 
       systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
