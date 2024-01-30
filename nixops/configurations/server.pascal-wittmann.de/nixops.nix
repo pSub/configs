@@ -264,13 +264,14 @@
         PasswordAuthentication = false;
         KbdInteractiveAuthentication = false;
         PermitRootLogin = "no";
+        MaxSessions = 2;
+        MaxAuthTries = 3;
+        ClientAliveCountMax = 2;
+        AllowTcpForwarding = "no";
+        AllowAgentForwarding = "no";
+        AllowStreamLocalForwarding = "no";
+        AuthenticationMethods = "publickey";
       };
-      services.openssh.extraConfig = ''
-        AllowTcpForwarding yes
-        AllowAgentForwarding no
-        AllowStreamLocalForwarding no
-        AuthenticationMethods publickey
-      '';
 
       # PostgreSQL.
       services.postgresql.enable = true;
