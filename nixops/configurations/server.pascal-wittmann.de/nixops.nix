@@ -35,6 +35,48 @@
       boot.kernelModules = [ ];
       boot.extraModulePackages = [ ];
 
+      boot.blacklistedKernelModules = [
+        # Obscure network protocols
+        "ax25"
+        "netrom"
+        "rose"
+
+        # Old or rare or insufficiently audited filesystems
+        "adfs"
+        "affs"
+        "bfs"
+        "befs"
+        "cramfs"
+        "efs"
+        "erofs"
+        "exofs"
+        "freevxfs"
+        "f2fs"
+        "hfs"
+        "hpfs"
+        "jfs"
+        "minix"
+        "nilfs2"
+        "ntfs"
+        "omfs"
+        "qnx4"
+        "qnx6"
+        "sysv"
+        "ufs"
+
+        "tipc"
+        "sctp"
+        "dccp"
+        "rds"
+      ];
+
+      boot.extraModprobeConfig = ''
+        install tipc ${pkgs.coreutils}/bin/true
+        install sctp ${pkgs.coreutils}/bin/true
+        install dccp ${pkgs.coreutils}/bin/true
+        install rds  ${pkgs.coreutils}/bin/true
+      '';
+
       boot.kernel.sysctl = with lib; {
         "net.ipv4.conf.all.log_martians" = mkDefault true;
         "net.ipv4.conf.default.log_martians" = mkDefault true;
