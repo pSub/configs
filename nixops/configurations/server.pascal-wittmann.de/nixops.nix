@@ -271,6 +271,7 @@
         AllowAgentForwarding = "no";
         AllowStreamLocalForwarding = "no";
         AuthenticationMethods = "publickey";
+        TCPKeepAlive = "no";
       };
 
       # PostgreSQL.
