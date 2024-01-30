@@ -454,6 +454,7 @@
           extraConfig = ''
             ssl_verify_client on;
             ssl_client_certificate /var/keys/paperlessMtls;
+            client_max_body_size 0;
           '';
           locations."/" = { proxyPass = "http://127.0.0.1:28981"; };
         };
