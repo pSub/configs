@@ -71,10 +71,10 @@
       ];
 
       boot.extraModprobeConfig = ''
-        install tipc ${pkgs.coreutils}/bin/true
-        install sctp ${pkgs.coreutils}/bin/true
-        install dccp ${pkgs.coreutils}/bin/true
-        install rds  ${pkgs.coreutils}/bin/true
+        install tipc /bin/true
+        install sctp /bin/true
+        install dccp /bin/true
+        install rds  /bin/true
       '';
 
       boot.kernel.sysctl = with lib; {
