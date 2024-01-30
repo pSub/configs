@@ -25,6 +25,7 @@
       # Define on which hard drive you want to install Grub.
       boot.loader.grub.device = "/dev/vda";
 
+      boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
       boot.initrd.availableKernelModules = [
         "ata_piix"
         "uhci_hcd"
