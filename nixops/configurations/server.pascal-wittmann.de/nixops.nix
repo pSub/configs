@@ -35,6 +35,33 @@
       boot.kernelModules = [ ];
       boot.extraModulePackages = [ ];
 
+      boot.kernel.sysctl = with lib; {
+        "net.ipv4.conf.all.log_martians" = mkDefault true;
+        "net.ipv4.conf.default.log_martians" = mkDefault true;
+        "net.ipv6.conf.all.accept_redirects" = mkDefault false;
+        "net.ipv6.conf.default.accept_redirects" = mkDefault false;
+        "net.ipv4.conf.default.accept_redirects" = mkDefault false;
+        "net.ipv4.conf.all.secure_redirects" = mkDefault false;
+        "net.ipv4.conf.all.rp_filter" = mkDefault "1";
+
+        # Somehow this option does not apply…
+        "net.ipv4.conf.all.forwarding" = mkDefault "0";
+
+        "net.ipv4.conf.all.send_redirects" = mkDefault "0";
+        "net.core.bpf_jit_harden" = mkDefault "2";
+        "kernel.yama.ptrace_scope" = mkOverride 500 1;
+        "kernel.unprivileged_bpf_disabled" = mkDefault "1";
+        "kernel.sysrq" = mkDefault "0";
+        "kernel.perf_event_paranoid" = mkDefault "3";
+        "kernel.modules_disabled" = mkDefault "1";
+        "kernel.kptr_restrict" = mkOverride 500 "2";
+        "kernel.dmesg_restrict" = mkDefault "1";
+        "fs.suid_dumpable" = mkDefault "0";
+        "fs.protected_regular" = mkDefault "2";
+        "fs.protected_fifos" = mkDefault "2";
+        "dev.tty.ldisc_autoload" = mkDefault "0";
+      };
+
       fileSystems."/" = {
         device = "/dev/disk/by-uuid/7d067332-eba7-4a8e-acf7-a463cf50677f";
         fsType = "ext4";
