@@ -258,7 +258,7 @@
 
       # Enable the OpenSSH daemon
       services.openssh.enable = true;
-      services.openssh.allowSFTP = false;
+      services.openssh.allowSFTP = true;
       services.openssh.settings =  {
         X11Forwarding = false;
         PasswordAuthentication = false;
