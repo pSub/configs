@@ -68,6 +68,8 @@
         "sctp"
         "dccp"
         "rds"
+
+        "usb-storage"
       ];
 
       boot.extraModprobeConfig = ''
@@ -75,6 +77,8 @@
         install sctp /bin/true
         install dccp /bin/true
         install rds  /bin/true
+
+        install usb-storage /bin/true
       '';
 
       boot.kernel.sysctl = with lib; {
