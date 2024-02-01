@@ -136,6 +136,23 @@
       };
 
 
+      services.restic.backups.server-data = {
+        repository = "sftp://u388595.your-storagebox.de:23/nixos";
+        paths = [ "/home" "/var" "/srv" "/root" ];
+        passwordFile = "/var/keys/resticServerData";
+        timerConfig = {
+          OnCalendar = "daily";
+          Persistent = true;
+        };
+        pruneOpts = [
+          "--keep-daily 7"
+          "--keep-weekly 4"
+          "--keep-monthly 3"
+          "--keep-yearly 1"
+        ];
+        initialize = true;
+      };
+
       systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
       systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
 
@@ -640,6 +657,10 @@
       deployment.keys.netdataTelegramNotify.text = builtins.readFile ./secrets/netdata-telegram-notify;
       deployment.keys.netdataTelegramNotify.destDir = "/var/keys";
       deployment.keys.netdataTelegramNotify.user = "netdata";
+
+      deployment.keys.resticServerData.text = builtins.readFile ./secrets/restic-server-data;
+      deployment.keys.resticServerData.destDir = "/var/keys";
+      deployment.keys.resticServerData.user = "root";
 
       deployment.keys.grubAdminPassword.text = builtins.readFile ./secrets/grub-admin-password;
       deployment.keys.grubAdminPassword.destDir = "/var/keys";
