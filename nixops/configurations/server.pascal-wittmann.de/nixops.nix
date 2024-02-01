@@ -24,6 +24,7 @@
       boot.loader.grub.enable = true;
       # Define on which hard drive you want to install Grub.
       boot.loader.grub.device = "/dev/vda";
+      boot.loader.grub.users.admin.hashedPasswordFile = "/var/keys/grubAdminPassword";
 
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
       boot.initrd.availableKernelModules = [
@@ -639,5 +640,9 @@
       deployment.keys.netdataTelegramNotify.text = builtins.readFile ./secrets/netdata-telegram-notify;
       deployment.keys.netdataTelegramNotify.destDir = "/var/keys";
       deployment.keys.netdataTelegramNotify.user = "netdata";
+
+      deployment.keys.grubAdminPassword.text = builtins.readFile ./secrets/grub-admin-password;
+      deployment.keys.grubAdminPassword.destDir = "/var/keys";
+      deployment.keys.grubAdminPassword.user = "root";
     };
 }
