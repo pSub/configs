@@ -84,6 +84,8 @@
       '';
 
       boot.kernel.sysctl = with lib; {
+        "net.ipv6.conf.ens3.accept_ra_defrtr" = mkDefault false;
+
         "net.ipv4.conf.all.log_martians" = mkDefault true;
         "net.ipv4.conf.default.log_martians" = mkDefault true;
         "net.ipv6.conf.all.accept_redirects" = mkDefault false;
