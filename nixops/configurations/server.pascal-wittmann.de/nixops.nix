@@ -19,6 +19,7 @@
       nixpkgs.config.allowUnfree = true;
 
       deployment.targetHost = "server.pascal-wittmann.de";
+      deployment.targetPort = 10801;
 
       # Use the GRUB 2 boot loader.
       boot.loader.grub.enable = true;
@@ -214,6 +215,7 @@
       networking.firewall.allowedTCPPorts = [
         80 # http
         443 # https
+        10801 # ssh
       ];
 
       # Select internationalisation properties.
@@ -350,6 +352,7 @@
 
       # Enable the OpenSSH daemon
       services.openssh.enable = true;
+      services.openssh.ports = [ 10801 ];
       services.openssh.allowSFTP = true;
       services.openssh.settings =  {
         X11Forwarding = false;
