@@ -453,6 +453,7 @@
       services.paperless.passwordFile = "/var/keys/paperless";
       services.paperless.extraConfig = {
         PAPERLESS_URL = "https://paperless.pascal-wittmann.de";
+        PAPERLESS_OCR_LANGUAGE = "deu+eng";
       };
 
       # vaultwarden
