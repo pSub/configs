@@ -136,6 +136,21 @@
         SHA_CRYPT_MAX_ROUNDS = 640000;
       };
 
+      security.auditd.enable = true;
+      security.audit.enable = true;
+      security.audit.rules = [
+        "-a exit,always -F arch=b64 -S execve"
+      ];
+      environment.etc."audit/auditd.conf".text = ''
+        space_left = 10%
+        space_left_action = ignore
+        admin_space_left = 5%
+        admin_space_left_action = email
+        action_mail_acct = admin@frey.family
+        num_logs = 10
+        max_log_file = 100
+        max_log_file_action = rotate
+      '';
 
       services.restic.backups.server-data = {
         repository = "sftp://u388595.your-storagebox.de:23/nixos";
