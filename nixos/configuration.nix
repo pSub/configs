@@ -19,10 +19,14 @@ in
 
   sops.secrets."users/pascal".neededForUsers = true;
   sops.secrets."users/root".neededForUsers = true;
+  sops.secrets."restic/cloud" = {};
 
   system.stateVersion = "23.05";
 
   nixpkgs.config.allowUnfree = true;
+
+  services.flatpak.enable = true;
+  xdg.portal.enable = true;
 
   # Trust hydra. Needed for one-click installations.
   nix.settings.trusted-substituters = [ "http://hydra.nixos.org" ];
@@ -30,6 +34,7 @@ in
     "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
     "hydra.nixos.org-1:CNHJZBh9K4tP3EKF6FkkgeVYsS3ohTl+oS0Qa8bezVs="
   ];
+  nix.settings.trusted-users = [ "root" "pascal" ];
 
   # Build using chroots to detect more impurities.
   nix.settings.sandbox = true;
@@ -51,17 +56,20 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
     jack.enable = true;
+    wireplumber.enable = true;
   };
 
   hardware.bluetooth.enable = true;
   services.blueman.enable = true;
+
+  virtualisation.docker.enable = true;
 
   users.mutableUsers = false;
   users.users.root.hashedPasswordFile = config.sops.secrets."users/root".path;
   users.extraUsers.pascal = {
     uid = 1002;
     description = "Pascal Wittmann";
-    extraGroups = [ "networkmanager" "vboxusers" "lp" "scanner" "wheel" ];
+    extraGroups = [ "networkmanager" "vboxusers" "lp" "scanner" "wheel" "docker" ];
     isNormalUser = true;
     hashedPasswordFile = config.sops.secrets."users/pascal".path;
     shell = "${pkgs.zsh}/bin/zsh";
@@ -105,6 +113,19 @@ in
 
   # List services that you want to enable:
 
+  services.restic.backups.cloud-backup = {
+    repository = "sftp://u388595.your-storagebox.de:23/x220";
+    paths = [ "/home" ];
+    exclude = [
+      "*.tmp"
+      "*.temp"
+      "/home/*/.cache"
+      ".git"
+    ];
+    passwordFile = config.sops.secrets."restic/cloud".path;
+    initialize = true;
+  };
+
   # Cron.
   services.cron.enable = true;
   services.cron.mailto = "pascal";
@@ -142,6 +163,11 @@ in
   # SMART.
   services.smartd.enable = true;
   services.smartd.devices = [{ device = "/dev/sda"; }];
+
+  # Mopidy
+  services.mopidy.enable = true;
+  services.mopidy.extensionPackages = with pkgs; [ mopidy-mpd mopidy-subidy ];
+  services.mopidy.extraConfigFiles = [ "/etc/nixos/mopidy-subidy.conf" ];
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
