@@ -86,8 +86,29 @@ in
         cd /srv/homepage
         ${homepage-app}/bin/homepage
       '';
-      serviceConfig.KillSignal = "SIGINT";
-      serviceConfig.User = "homepage";
+      serviceConfig = {
+        KillSignal = "SIGINT";
+        User = "homepage";
+        KeyringMode = "private";
+        LockPersonality = true;
+        MemoryDenyWriteExecute = true;
+        NoNewPrivileges = true;
+        PrivateMounts = "yes";
+        PrivateTmp = "yes";ProtectControlGroups = true;
+        ProtectHome = "yes";
+        ProtectHostname = true;
+        ProtectKernelModules = true;
+        ProtectKernelTunables = true;
+        ProtectSystem = "strict";
+        ReadWritePaths = [ "/srv/homepage" ];
+        RemoveIPC = true;
+        RestrictAddressFamilies = [ "AF_UNIX" "AF_INET" "AF_INET6" ];
+        RestrictNamespaces = true;
+        RestrictRealtime = true;
+        RestrictSUIDSGID = true;
+        SystemCallFilter = "@system-service @clock";
+        SystemCallArchitectures = "native";
+      };
     };
   };
 }
