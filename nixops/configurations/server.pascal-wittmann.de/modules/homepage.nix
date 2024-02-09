@@ -9,17 +9,11 @@ let
       pkgs.fetchFromGitHub {
         owner = "pSub";
         repo = "pascal-wittmann.de";
-        rev = "fc29777f58a9aae3d9f025c87355fa8ca824c30e";
-        hash = "sha256-NkNk4HB7+8+U2cOM5kjEYmC3hMJ2WSckM3KKbzl/+rk=";
+        rev = "0f9c2f3e3eafbe7b1798d40d87a56e93778ed0f9";
+        hash = "sha256-3B56tuy4n5jEjQy182cxf4XdijhlFwzRh7peEG3qvcs=";
       }
     )
-  ) {
-    nixpkgs = import (
-      fetchTarball
-        "https://nixos.org/channels/nixos-21.11/nixexprs.tar.xz"
-    )
-      {};
-   };
+  ) {};
 in
 {
   options = {
