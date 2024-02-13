@@ -13,6 +13,7 @@
         ./modules/homepage.nix
         ./modules/radicale.nix
         ./modules/systemd-email-notify.nix
+        ./secrets/adguard-users.nix
         ./users.nix
       ];
 
@@ -232,7 +233,11 @@
       networking.firewall.allowedTCPPorts = [
         80 # http
         443 # https
+        853 # adguard
         10801 # ssh
+      ];
+      networking.firewall.allowedUDPPorts = [
+        853 # adguard
       ];
 
       # Select internationalisation properties.
@@ -275,6 +280,40 @@
       environment.defaultPackages = lib.mkForce [];
 
       # List services that you want to enable:
+
+      # AdGuard
+      services.adguardhome.enable = true;
+      services.adguardhome.settings = {
+        auth_attempts = 3;
+        block_auth_min = 10;
+        http.address = "127.0.0.1:3000";
+
+        dns = {
+          protection_enabled = true;
+          parental_enabled = false;
+          bind_hosts = [ "0.0.0.0" ];
+        };
+
+        statistics = {
+          enabled = true;
+          interval = "8760h";
+        };
+        dhcp.enabled = false;
+        tls = {
+          enabled = true;
+          server_name = "adguard.pascal-wittmann.de";
+          port_https = 0;
+          port_dns_over_tls = 853;
+          certificate_path = "/run/credentials/adguardhome.service/fullchain.pem";
+          private_key_path = "/run/credentials/adguardhome.service/key.pem";
+        };
+      };
+      systemd.services.adguardhome.serviceConfig = {
+        LoadCredential = [
+          "fullchain.pem:/var/lib/acme/adguard.pascal-wittmann.de/fullchain.pem"
+          "key.pem:/var/lib/acme/adguard.pascal-wittmann.de/key.pem"
+        ];
+      };
 
       # Atuin Sync Server
       services.atuin.enable = true;
@@ -557,6 +596,16 @@
           '';
         };
 
+        "adguard.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = { proxyPass = "http://127.0.0.1:3000"; };
+          extraConfig = ''
+            ssl_verify_client on;
+            ssl_client_certificate /var/keys/adguardMtls;
+          '';
+        };
+
         "atuin.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
@@ -686,5 +735,9 @@
       deployment.keys.grubAdminPassword.text = builtins.readFile ./secrets/grub-admin-password;
       deployment.keys.grubAdminPassword.destDir = "/var/keys";
       deployment.keys.grubAdminPassword.user = "root";
+
+      deployment.keys.adguardMtls.text = builtins.readFile ./secrets/adguard-mtls/client.crt;
+      deployment.keys.adguardMtls.destDir = "/var/keys";
+      deployment.keys.adguardMtls.user = "nginx";
     };
 }
