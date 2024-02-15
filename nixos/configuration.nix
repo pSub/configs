@@ -126,6 +126,21 @@ in
     initialize = true;
   };
 
+  services.resolved = {
+    enable = true;
+    dnssec = "true";
+    domains = [ "~." ]; # "use as default interface for all requests"
+    extraConfig = ''
+        DNSOverTLS=opportunistic
+        MulticastDNS=resolve
+    '';
+    llmnr = "true";
+  };
+
+  networking.nameservers = [
+    "46.38.233.231#adguard.pascal-wittmann.de"
+  ];
+
   # Cron.
   services.cron.enable = true;
   services.cron.mailto = "pascal";

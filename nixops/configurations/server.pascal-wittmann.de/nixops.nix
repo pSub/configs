@@ -216,7 +216,7 @@
 
           mkdir /etc/nixos/current/secrets
 
-          ln -s ${./secrets/adguard-users.nix} /etc/nixos/current/secrets
+          ln -s ${./secrets/adguard-users.nix} /etc/nixos/current/secrets/adguard-users.nix
         '';
       };
 
