@@ -213,6 +213,10 @@
           ln -s ${./nixops.nix} /etc/nixos/current/nixops.nix
           ln -s ${./users.nix} /etc/nixos/current/users.nix
           ln -s ${./modules} /etc/nixos/current/modules
+
+          mkdir /etc/nixos/current/secrets
+
+          ln -s ${./secrets/adguard-users.nix} /etc/nixos/current/secrets
         '';
       };
 
