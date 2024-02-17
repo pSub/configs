@@ -438,6 +438,19 @@
       services.postgresqlBackup.location = "/var/backup/postgresql";
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
 
+      # invidious
+      services.invidious.enable = true;
+      services.invidious.port = 3042;
+      services.invidious.domain = "invidious.pascal-wittmann.de";
+      services.invidious.nginx.enable = true;
+      services.invidious.database.passwordFile = "/run/credentials/invidious.service/invidiousDb";
+      systemd.services.invidious.serviceConfig = {
+        LoadCredential = [
+          "invidiousDb:/var/keys/invidiousDb"
+        ];
+      };
+
+
       # MySQL
       services.mysql.enable = true;
       services.mysql.package = pkgs.mysql;
@@ -610,6 +623,13 @@
           '';
         };
 
+        "invidious.pascal-wittmann.de" = {
+          extraConfig = ''
+            ssl_verify_client on;
+            ssl_client_certificate /var/keys/invidiousMtls;
+          '';
+        };
+
         "atuin.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
@@ -743,5 +763,13 @@
       deployment.keys.adguardMtls.text = builtins.readFile ./secrets/adguard-mtls/client.crt;
       deployment.keys.adguardMtls.destDir = "/var/keys";
       deployment.keys.adguardMtls.user = "nginx";
+
+      deployment.keys.invidiousDb.text = builtins.readFile ./secrets/invidious-db;
+      deployment.keys.invidiousDb.destDir = "/var/keys";
+      deployment.keys.invidiousDb.user = "root";
+
+      deployment.keys.invidiousMtls.text = builtins.readFile ./secrets/invidious-mtls/client.crt;
+      deployment.keys.invidiousMtls.destDir = "/var/keys";
+      deployment.keys.invidiousMtls.user = "nginx";
     };
 }
