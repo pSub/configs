@@ -345,6 +345,7 @@
             files = [
               "/var/backup/postgresql/homepage_production.sql.gz"
               "/var/backup/postgresql/nextcloud.sql.gz"
+              "/var/backup/postgresql/invidious.sql.gz"
             ];
             frequency = "daily";
             rotate = 30;
@@ -433,7 +434,7 @@
       services.postgresql.enable = true;
       services.postgresql.package = pkgs.postgresql_15;
       services.postgresql.dataDir = "/var/lib/postgresql/15";
-      services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" ];
+      services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" "invidious" ];
       services.postgresqlBackup.enable = true;
       services.postgresqlBackup.location = "/var/backup/postgresql";
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
