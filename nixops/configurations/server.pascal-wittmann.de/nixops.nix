@@ -450,11 +450,6 @@
         ];
       };
 
-
-      # MySQL
-      services.mysql.enable = true;
-      services.mysql.package = pkgs.mysql;
-
       # Caldav / Cardav
       services.radicale.enable = true;
       services.radicale.settings = {
