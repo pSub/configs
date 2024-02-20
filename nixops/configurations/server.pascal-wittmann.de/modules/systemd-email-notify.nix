@@ -58,6 +58,10 @@ in
     systemd.services."email@" = {
       description = "Sends a status mail via sendmail on service failures.";
       onFailure = mkForce [ ];
+      unitConfig = {
+        StartLimitIntervalSec = "5m";
+        StartLimitBurst = 1;
+      };
       serviceConfig = {
         ExecCondition = "${checkConditions} %i";
         ExecStart = "${sendmail} ${config.systemd.email-notify.mailTo} %i";
