@@ -4,6 +4,16 @@ with lib;
 
 let
 
+  checkConditions = pkgs.writeScript "checkConditions" ''
+    #!/bin/sh
+    STATUS=$(systemctl status --full "$1")
+
+    case "$STATUS" in
+      *"activating (auto-restart) (Result: timeout)"*) exit 1 ;;
+      *) exit 0 ;;
+    esac
+    '';
+
   sendmail = pkgs.writeScript "sendmail"
     ''
       #!/bin/sh
@@ -49,6 +59,7 @@ in
       description = "Sends a status mail via sendmail on service failures.";
       onFailure = mkForce [ ];
       serviceConfig = {
+        ExecCondition = "${checkConditions} %i";
         ExecStart = "${sendmail} ${config.systemd.email-notify.mailTo} %i";
         Type = "oneshot";
       };
