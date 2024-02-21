@@ -118,6 +118,16 @@
         fsType = "ext4";
       };
 
+      fileSystems."/srv/pictures" = {
+        device = "//u388595.your-storagebox.de/u388595-sub2";
+        fsType = "cifs";
+        options = let
+          # this line prevents hanging on network split
+          automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+        in ["${automount_opts},credentials=/var/keys/cifsStorageboxPictures,uid=nextcloud,gid=nextcloud"];
+      };
+
       swapDevices = [
         { device = "/dev/disk/by-uuid/279e433e-1ab9-4fd1-9c37-0d7e4e082944"; }
       ];
@@ -274,6 +284,8 @@
       environment.systemPackages = with pkgs; [
         # Install only the alacritty terminfo file
         alacritty.terminfo
+
+        cifs-utils
         zile
 
         # Needed for NixOps
@@ -767,5 +779,9 @@
       deployment.keys.invidiousMtls.text = builtins.readFile ./secrets/invidious-mtls/client.crt;
       deployment.keys.invidiousMtls.destDir = "/var/keys";
       deployment.keys.invidiousMtls.user = "nginx";
+
+      deployment.keys.cifsStorageboxPictures.text = builtins.readFile ./secrets/cifs-storagebox-pictures;
+      deployment.keys.cifsStorageboxPictures.destDir = "/var/keys";
+      deployment.keys.cifsStorageboxPictures.user = "root";
     };
 }
