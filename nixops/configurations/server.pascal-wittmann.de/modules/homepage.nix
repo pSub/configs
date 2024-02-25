@@ -9,8 +9,8 @@ let
       pkgs.fetchFromGitHub {
         owner = "pSub";
         repo = "pascal-wittmann.de";
-        rev = "0f9c2f3e3eafbe7b1798d40d87a56e93778ed0f9";
-        hash = "sha256-3B56tuy4n5jEjQy182cxf4XdijhlFwzRh7peEG3qvcs=";
+        rev = "9e6d381652d7c2987a18145c64990e2819bac057";
+        hash = "sha256-iMyV0FIR5ntmjUVKDe8bZIRPTRaqMtqzWc+o4AgAAKs=";
       }
     )
   ) {};
