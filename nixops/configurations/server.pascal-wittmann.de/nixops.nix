@@ -510,6 +510,21 @@
         "opcache.jit_buffer_size" = "100M";
         "opcache.interned_strings_buffer" = "16";
       };
+      services.nextcloud.phpExtraExtensions = all: [ all.redis ];
+
+      services.redis.servers.nextcloud = {
+        enable = true;
+        unixSocket = "/var/run/redis-nextcloud/redis.sock";
+      };
+
+      systemd.services.nextcloud-setup.serviceConfig.ExecStartPost = pkgs.writeScript "nextcloud-redis.sh" ''
+          #!${pkgs.runtimeShell}
+          nextcloud-occ config:system:set filelocking.enabled --value true --type bool
+          nextcloud-occ config:system:set redis 'host' --value '/var/run/redis-nextcloud/redis.sock' --type string
+          nextcloud-occ config:system:set redis 'port' --value 0 --type integer
+          nextcloud-occ config:system:set memcache.local --value '\OC\Memcache\Redis' --type string
+          nextcloud-occ config:system:set memcache.locking --value '\OC\Memcache\Redis' --type string
+      '';
 
       # paperless
       services.paperless.enable = true;
