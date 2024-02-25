@@ -506,9 +506,20 @@
         defaultPhoneRegion = "DE";
       };
       services.nextcloud.phpOptions = {
-        "opcache.jit" = "tracing";
-        "opcache.jit_buffer_size" = "100M";
+        "opcache.enable" = "1";
+        "opcache.enable_cli" = "1";
+        "opcache.jit" = "1255";
+        "opcache.jit_buffer_size" = "256M";
         "opcache.interned_strings_buffer" = "16";
+        "opcache.validate_timestamps" = "0";
+        "opcache.save_comments" = "1";
+
+        "pm" = "dynamic";
+        "pm.max_children" = "50";
+        "pm.start_servers" = "15";
+        "pm.min_spare_servers" = "15";
+        "pm.max_spare_servers" = "25";
+        "pm.max_requests" = "500";
       };
       services.nextcloud.phpExtraExtensions = all: [ all.redis ];
 
