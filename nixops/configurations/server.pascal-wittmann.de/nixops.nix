@@ -290,6 +290,9 @@
 
         # Needed for NixOps
         rsync
+
+        # TOOD: Why do I have to install this globally for Nextcloud Memories to work?
+        ffmpeg
       ];
 
       # What breaks with this option?
@@ -502,8 +505,14 @@
         dbuser = "nextcloud";
         dbpassFile = "/var/keys/databaseNextcloud";
         dbhost = "127.0.0.1";
+        dbtableprefix = "oc_";
 
         defaultPhoneRegion = "DE";
+      };
+      services.nextcloud.extraOptions = {
+        "memories.exiftool" = "${lib.getExe pkgs.exiftool}";
+        "memories.vod.ffmpeg" = "${pkgs.ffmpeg-headless}/bin/ffmpeg";
+        "memories.vod.ffprobe" = "${pkgs.ffmpeg-headless}/bin/ffprobe";
       };
       services.nextcloud.phpOptions = {
         "opcache.enable" = "1";
