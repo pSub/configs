@@ -534,6 +534,7 @@
 
       services.redis.servers.nextcloud = {
         enable = true;
+        user = "nextcloud";
         unixSocket = "/var/run/redis-nextcloud/redis.sock";
       };
 
