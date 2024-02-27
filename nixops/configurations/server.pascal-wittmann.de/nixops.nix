@@ -554,6 +554,7 @@
       services.paperless.extraConfig = {
         PAPERLESS_URL = "https://paperless.pascal-wittmann.de";
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
+        PAPERLESS_OCR_USER_ARGS=''{"invalidate_digital_signatures": true}'';
       };
 
       # vaultwarden
