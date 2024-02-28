@@ -19,7 +19,7 @@ in
 
   sops.secrets."users/pascal".neededForUsers = true;
   sops.secrets."users/root".neededForUsers = true;
-  sops.secrets."restic/cloud" = {};
+  sops.secrets.restic = {};
 
   system.stateVersion = "23.05";
 
@@ -120,9 +120,16 @@ in
       "*.tmp"
       "*.temp"
       "/home/*/.cache"
+      "/home/pascal/audiobooks"
+      "/home/pascal/pictures"
+      "/home/pascal/nixpkgs"
+      "/home/pascal/go"
+      "/home/pascal/studium"
+      "/home/pascal/calibre"
       ".git"
     ];
-    passwordFile = config.sops.secrets."restic/cloud".path;
+    timerConfig = null;
+    passwordFile = config.sops.secrets.restic.path;
     initialize = true;
   };
 
