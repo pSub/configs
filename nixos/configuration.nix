@@ -145,7 +145,7 @@ in
   };
 
   networking.nameservers = [
-    "46.38.233.231#adguard.pascal-wittmann.de"
+    "152.53.0.129#adguard.pascal-wittmann.de"
   ];
 
   # Cron.
