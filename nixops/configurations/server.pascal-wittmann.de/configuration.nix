@@ -15,7 +15,7 @@
 
       system.stateVersion = "23.11";
 
-      sops.defaultSopsFile = ./secrets/secrets.yaml;
+      sops.defaultSopsFile = ./secrets.yaml;
       sops.defaultSopsFormat = "yaml";
       sops.age.keyFile = "/nix/secret/sops/age/keys.txt";
 
