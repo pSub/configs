@@ -1,6 +1,7 @@
 [user]
     name = Pascal Wittmann
     email = mail@pascal-wittmann.de
+	signingkey = 32F433A020D40E2A
 
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space
@@ -69,3 +70,5 @@
 	default = simple
 [sendemail]
 	smtpserver = /home/pascal/.nix-profile/bin/msmtp
+[commit]
+	gpgsign = true

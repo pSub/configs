@@ -5,6 +5,7 @@
     {
       require = [
         ./modules/hardware.nix
+        ./modules/baralga.nix
         ./modules/homepage.nix
         ./modules/radicale.nix
         ./modules/systemd-email-notify.nix
@@ -148,7 +149,8 @@
         "kernel.unprivileged_bpf_disabled" = mkDefault "1";
         "kernel.sysrq" = mkDefault "0";
         "kernel.perf_event_paranoid" = mkDefault "3";
-     #   "kernel.modules_disabled" = mkDefault "1";
+        # This breaks the boot somehow
+ #       "kernel.modules_disabled" = mkDefault "1";
         "kernel.kptr_restrict" = mkOverride 500 "2";
         "kernel.dmesg_restrict" = mkDefault "1";
         "fs.suid_dumpable" = mkDefault "0";
@@ -453,6 +455,12 @@
       services.openssh.enable = true;
       services.openssh.ports = [ 10801 ];
       services.openssh.allowSFTP = true;
+      services.openssh.hostKeys = [
+        {
+          path = "/nix/secret/initrd/ssh_host_ed25519_key";
+          type = "ed25519";
+        }
+      ];
       services.openssh.settings =  {
         X11Forwarding = false;
         PasswordAuthentication = false;
@@ -749,6 +757,9 @@
       # Homepage
       services.homepage.enable = true;
 
+      # Baralga
+      services.baralga.enable = false;
+
       # Netdata
       services.netdata.enable = true;
       services.netdata.config = {
@@ -770,7 +781,7 @@
       programs.zsh.enable = true;
 
       # X-libraries and fonts are not needed on the server.
-      #  environment.noXlibs = true;
+      #environment.noXlibs = true;
       fonts.fontconfig.enable = false;
 
       users.mutableUsers = false;

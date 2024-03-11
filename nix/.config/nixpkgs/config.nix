@@ -54,6 +54,7 @@ in
         xorg.xinput
         xorg.xmodmap
         zile
+        zsh
       ];
     };
 
@@ -65,7 +66,9 @@ in
         bind
         binutils
         file
+        ffmpeg
         gnupg
+        gnome.gnome-keyring
         libxml2
         imagemagick
         parallel
@@ -77,6 +80,7 @@ in
         xfce.tumbler
         which
         wget
+        veracrypt
       ];
     };
 
@@ -128,16 +132,23 @@ in
         feh
         filezilla
         firefox
+        gimp
         thunderbird
+        k3b
         llpp
         libreoffice-fresh
         nextcloud-client
         obsidian
         phototonic
+        pavucontrol
         simple-scan
+        signal-desktop
+        unstable.pkgs.super-productivity
         electrum
         viking
         vlc
+        vscode
+        ymuse
       ];
     };
 
@@ -154,6 +165,7 @@ in
       name = "development-env";
       paths = [
         gitFull
+        pre-commit
         #idea.idea-ultimate
         subversion
       ];

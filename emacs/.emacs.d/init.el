@@ -1,7 +1,7 @@
 ;; Use the emacs package manager
 (require 'package)
-(dolist (source '(("marmalade" . "http://marmalade-repo.org/packages/")))
-  (add-to-list 'package-archives source))
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 (package-initialize)
 (unless package-archive-contents
@@ -17,7 +17,7 @@
 (require-package 'undo-tree)
 (require-package 'flycheck)
 (require-package 'ghc)
-(require-package 'ghci-completion)
+;(require-package 'ghci-completion)
 (require-package 'auctex)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -117,10 +117,22 @@
  '(org-entities-user
    (quote
     (("ballot" "\\ballot" nil "✗" "" "" "✗")
-     ("" "" nil "" "" "" "")))))
+     ("" "" nil "" "" "" ""))))
+ '(package-selected-packages
+   (quote
+    (grip-mode markdown-mode writegood-mode use-package shm scala-mode nix-mode magit yasnippet undo-tree ghci-completion ghc flycheck auctex))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "pandoc"))
