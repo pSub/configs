@@ -67,10 +67,22 @@
         defaultGateway6 = { address = "fe80::1"; interface = "enp3s0"; };
       };
 
-      environment.etc."ssh/ssh_host_rsa_key".source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
-      environment.etc."ssh/ssh_host_rsa_key.pub".source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
-      environment.etc."ssh/ssh_host_ed25519_key".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
-      environment.etc."ssh/ssh_host_ed25519_key.pub".source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
+      environment.etc."ssh/ssh_host_rsa_key" = {
+        source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
+        mode = "0400";
+      };
+      environment.etc."ssh/ssh_host_rsa_key.pub" = {
+        source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
+        mode = "0400";
+      };
+      environment.etc."ssh/ssh_host_ed25519_key" = {
+        source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
+        mode = "0400";
+      };
+      environment.etc."ssh/ssh_host_ed25519_key.pub" = {
+        source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
+        mode = "0400";
+      };
       environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
 
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
