@@ -6,7 +6,7 @@
       export LANG=C
       YOUR_CITY="Hamburg"
       TELEGRAM_CHAT_ID="-4111240472"
-      TELEGRAM_BOT_TOKEN="***REMOVED***"
+      TELEGRAM_BOT_TOKEN=""
       LOGGED_USER="$(/usr/bin/whoami)"
       LOGGED_HOST="$(/usr/bin/hostname -f)"
       SERVER_IP="$(/usr/bin/hostname -I | /usr/bin/cut -d ' ' -f 1)"
