@@ -32,4 +32,4 @@ jobs:
 
   deploy-server:
     needs: update-flake-lock
-    uses: pSub/configs/.github/workflows/deploy-server.yml
+    uses: ./.github/workflows/deploy-server.yml
