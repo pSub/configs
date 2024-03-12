@@ -12,7 +12,7 @@ Config { font =  "Fixed 10"
                   ] 10
                     -- Use this workaround until https://xmonad.github.io/xmonad-docs/xmonad-contrib/XMonad-Util-Hacks.html#v:trayerPaddingXmobarEventHook
                     -- is available
-                    , Run Com "/home/pascal/.xmobar/padding-icon.sh" [] "trayerpad" 10
+                    , Run Com "/home/pascal/.xmobar/padding-icon.sh" ["panel"] "trayerpad" 10
                     , Run Date "%a %b %d (%V) %T %Z %Y" "date" 10
                   ]
        , sepChar = "%"

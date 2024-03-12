@@ -1,32 +1,99 @@
-{
+{ config, pkgs, options, lib, ... }:
 
-  network = {
-    enableRollback = true;
-    storage.legacy = { };
-  };
-
-  server = { config, pkgs, options, lib, ... }:
+  # TODO: https://github.com/nix-community/impermanence/
 
     {
       require = [
-        ./modules/clean-deployment-keys.nixops.nix
+        ./modules/hardware.nix
+        ./modules/baralga.nix
         ./modules/homepage.nix
         ./modules/radicale.nix
         ./modules/systemd-email-notify.nix
-        ./secrets/adguard-users.nix
         ./users.nix
       ];
 
       nixpkgs.config.allowUnfree = true;
 
-      deployment.targetHost = "server.pascal-wittmann.de";
-      deployment.targetPort = 10801;
+      system.stateVersion = "23.11";
 
-      # Use the GRUB 2 boot loader.
-      boot.loader.grub.enable = true;
-      # Define on which hard drive you want to install Grub.
-      boot.loader.grub.device = "/dev/vda";
-      boot.loader.grub.users.admin.hashedPasswordFile = "/var/keys/grubAdminPassword";
+      sops.defaultSopsFile = ./secrets.yaml;
+      sops.defaultSopsFormat = "yaml";
+      sops.age.keyFile = "/nix/secret/sops/age/keys.txt";
+
+      sops.secrets = {
+        "basicauth/passwords" = { owner = "nginx"; };
+        "cifs/pictures" = {};
+        "netdata/telegram" = { owner = "netdata"; };
+        "nextcloud/admin" = { owner = "nextcloud"; };
+        "nextcloud/db" = { owner = "nextcloud"; };
+        "homepage/db" = { owner = "homepage"; };
+        "invidious/db" = {};
+        "paperless/admin" = { owner = "paperless"; };
+        "radicale" = { owner = "radicale"; };
+        "restic/data" = {};
+        "vaultwarden/env" = { owner = "vaultwarden"; };
+        "mtls/adguard/crt" = { owner = "nginx"; };
+        "mtls/invidious/crt" = { owner = "nginx"; };
+        "mtls/netdata/crt" = { owner = "nginx"; };
+        "mtls/paperless/crt" = { owner = "nginx"; };
+        "smtp" = { group = "mail"; };
+      };
+
+      # Use the systemd-boot EFI boot loader.
+      boot.loader.systemd-boot.enable = true;
+      boot.loader.efi.canTouchEfiVariables = true;
+
+      # We need networking in the initrd
+      boot.initrd.network = {
+        enable = true;
+        ssh = {
+          enable = true;
+          port = 10801;
+          authorizedKeys = config.users.users.deployer.openssh.authorizedKeys.keys;
+          hostKeys = [ "/nix/secret/initrd/ssh_host_ed25519_key" ];
+        };
+      };
+
+      # IP:<ignore>:GATEWAY:NETMASK:HOSTNAME:NIC:AUTCONF?
+      # See: https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt
+      boot.kernelParams = [ "ip=152.53.0.129::152.53.0.1:152.53.3.255:v22024034028258810.nicesrv.de:enp3s0:off" ];
+      networking = {
+        useDHCP = false;
+        interfaces."enp3s0" = {
+          ipv4.addresses = [{ address = "152.53.0.129"; prefixLength = 22; }];
+          ipv6.addresses = [{ address = "fe80::145a:1bff:fe4a:510d"; prefixLength = 64; }];
+        };
+        defaultGateway = "152.53.0.1";
+        defaultGateway6 = { address = "fe80::1"; interface = "enp3s0"; };
+      };
+
+      environment.etc."ssh/ssh_host_rsa_key" = {
+        source = "/nix/persist/etc/ssh/ssh_host_rsa_key";
+        mode = "0400";
+      };
+      environment.etc."ssh/ssh_host_rsa_key.pub" = {
+        source = "/nix/persist/etc/ssh/ssh_host_rsa_key.pub";
+        mode = "0400";
+      };
+      environment.etc."ssh/ssh_host_ed25519_key" = {
+        source = "/nix/persist/etc/ssh/ssh_host_ed25519_key";
+        mode = "0400";
+      };
+      environment.etc."ssh/ssh_host_ed25519_key.pub" = {
+        source = "/nix/persist/etc/ssh/ssh_host_ed25519_key.pub";
+        mode = "0400";
+      };
+      environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
+
+      environment.etc."ssh/ssh_backup_ed25519" = {
+        source = "/nix/persist/etc/ssh/ssh_backup_ed25519";
+        mode = "0400";
+      };
+
+      environment.etc."ssh/ssh_backup_ed25519.pub" = {
+        source = "/nix/persist/etc/ssh/ssh_backup_ed25519.pub";
+        mode = "0400";
+      };
 
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
       boot.initrd.availableKernelModules = [
@@ -96,7 +163,7 @@
         "net.ipv4.conf.all.rp_filter" = mkDefault "1";
 
         # Somehow this option does not apply…
-        "net.ipv4.conf.all.forwarding" = mkDefault "0";
+#        "net.ipv4.conf.all.forwarding" = mkDefault "0";
 
         "net.ipv4.conf.all.send_redirects" = mkDefault "0";
         "net.core.bpf_jit_harden" = mkDefault "2";
@@ -104,7 +171,8 @@
         "kernel.unprivileged_bpf_disabled" = mkDefault "1";
         "kernel.sysrq" = mkDefault "0";
         "kernel.perf_event_paranoid" = mkDefault "3";
-        "kernel.modules_disabled" = mkDefault "1";
+        # This breaks the boot somehow
+ #       "kernel.modules_disabled" = mkDefault "1";
         "kernel.kptr_restrict" = mkOverride 500 "2";
         "kernel.dmesg_restrict" = mkDefault "1";
         "fs.suid_dumpable" = mkDefault "0";
@@ -112,25 +180,6 @@
         "fs.protected_fifos" = mkDefault "2";
         "dev.tty.ldisc_autoload" = mkDefault "0";
       };
-
-      fileSystems."/" = {
-        device = "/dev/disk/by-uuid/7d067332-eba7-4a8e-acf7-a463cf50677f";
-        fsType = "ext4";
-      };
-
-      fileSystems."/srv/pictures" = {
-        device = "//u388595.your-storagebox.de/u388595-sub2";
-        fsType = "cifs";
-        options = let
-          # this line prevents hanging on network split
-          automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-
-        in ["${automount_opts},credentials=/var/keys/cifsStorageboxPictures,uid=nextcloud,gid=nextcloud"];
-      };
-
-      swapDevices = [
-        { device = "/dev/disk/by-uuid/279e433e-1ab9-4fd1-9c37-0d7e4e082944"; }
-      ];
 
       nix.settings.allowed-users = [ ];
       nix.settings.max-jobs = 2;
@@ -140,7 +189,6 @@
       # Deploy without root
       nix.settings.trusted-users = [ "root" "deployer" ];
       security.sudo.wheelNeedsPassword = false;
-      deployment.targetUser = "deployer";
 
       security.sudo.execWheelOnly = true;
       security.loginDefs.settings = {
@@ -166,9 +214,13 @@
       '';
 
       services.restic.backups.server-data = {
-        repository = "sftp://u388595.your-storagebox.de:23/nixos";
-        paths = [ "/home" "/var" "/srv" "/root" ];
-        passwordFile = "/var/keys/resticServerData";
+        repository = "sftp://u388595.your-storagebox.de:23/server";
+        paths = [ "/nix/persist" ];
+        exclude = [ "/srv/pictures" ];
+        passwordFile = "/run/secrets/restic/data";
+        extraOptions = [
+            "sftp.command='ssh u388595-sub3@u388595.your-storagebox.de -p 23 -i /nix/persist/etc/ssh/ssh_backup_ed25519 -s sftp'"
+        ];
         timerConfig = {
           OnCalendar = "daily";
           Persistent = true;
@@ -189,7 +241,7 @@
           SystemMaxUse=1G
       '';
 
-      system.autoUpgrade.enable = true;
+      system.autoUpgrade.enable = false;
       system.autoUpgrade.channel = https://nixos.org/channels/nixos-23.11;
       system.autoUpgrade.dates = "04:00";
       system.autoUpgrade.allowReboot = true;
@@ -199,7 +251,7 @@
               let
                 modifyPaths = f : paths : map toPath (map f (map toString paths));
 
-                serverConfig = (import /etc/nixos/current/nixops.nix).server all;
+                serverConfig = (import /etc/nixos/current/configuration.nix).server all;
                 withoutDeploymentOptions = removeAttrs serverConfig [ "deployment" ];
                 withoutDeploymentRequires = overrideExisting withoutDeploymentOptions
                                              { require = modifyPaths (require: concatStrings [ "/etc/nixos/current/" (replaceStrings [ "nix/store/"] [ "" ] require) ])
@@ -220,25 +272,18 @@
           fi
           mkdir /etc/nixos/current
 
-          ln -s ${./nixops.nix} /etc/nixos/current/nixops.nix
+          ln -s ${./configuration.nix} /etc/nixos/current/configuration.nix
           ln -s ${./users.nix} /etc/nixos/current/users.nix
           ln -s ${./modules} /etc/nixos/current/modules
-
-          mkdir /etc/nixos/current/secrets
-
-          ln -s ${./secrets/adguard-users.nix} /etc/nixos/current/secrets/adguard-users.nix
         '';
+
       };
 
       # Work around NixOS/nixpkgs#28527
       systemd.services.nixos-upgrade.path = with pkgs; [ gnutar xz.bin gzip config.nix.package.out ];
 
       networking.hostName = "nixos"; # Define your hostname.
-
-      networking.interfaces.ens3.ipv6.addresses = [
-        { address = "2a03:4000:2:70e::42"; prefixLength = 64; }
-      ];
-      networking.defaultGateway6 = { address = "fe80::1"; interface = "ens3"; };
+      networking.nameservers = [ "1.1.1.1" ];
 
       networking.firewall.enable = true;
       networking.firewall.allowPing = true;
@@ -286,6 +331,7 @@
         alacritty.terminfo
 
         cifs-utils
+	htop
         zile
 
         # Needed for NixOps
@@ -327,6 +373,7 @@
           private_key_path = "/run/credentials/adguardhome.service/key.pem";
         };
       };
+      
       systemd.services.adguardhome.serviceConfig = {
         LoadCredential = [
           "fullchain.pem:/var/lib/acme/adguard.pascal-wittmann.de/fullchain.pem"
@@ -337,6 +384,7 @@
       # Atuin Sync Server
       services.atuin.enable = true;
 
+      # Mail
       programs.msmtp = {
         enable = true;
         accounts.default = {
@@ -345,7 +393,7 @@
           host = "frey-family.netcup-mail.de";
           from = "admin@frey.family";
           user = "admin@frey.family";
-          passwordeval = "cat /var/keys/smtp";
+          passwordeval = "cat /run/secrets/smtp";
         };
       };
 
@@ -355,9 +403,12 @@
 
       # Logrotate
       services.logrotate.enable = true;
+      # See https://discourse.nixos.org/t/logrotate-config-fails-due-to-missing-group-30000/28501
+      services.logrotate.checkConfig = false;
       services.logrotate.settings = {
         "postgresql" = {
             files = [
+	      "/var/backup/postgresql/atuin.sql.gz"
               "/var/backup/postgresql/homepage_production.sql.gz"
               "/var/backup/postgresql/nextcloud.sql.gz"
               "/var/backup/postgresql/invidious.sql.gz"
@@ -430,6 +481,16 @@
       services.openssh.enable = true;
       services.openssh.ports = [ 10801 ];
       services.openssh.allowSFTP = true;
+      services.openssh.hostKeys = [
+        {
+          path = "/nix/secret/initrd/ssh_host_ed25519_key";
+          type = "ed25519";
+        }
+      ];
+      services.openssh.knownHosts.storageBox = {
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
+        hostNames = [ "u388595.your-storagebox.de" ];
+      };
       services.openssh.settings =  {
         X11Forwarding = false;
         PasswordAuthentication = false;
@@ -449,7 +510,7 @@
       services.postgresql.enable = true;
       services.postgresql.package = pkgs.postgresql_15;
       services.postgresql.dataDir = "/var/lib/postgresql/15";
-      services.postgresqlBackup.databases = [ "homepage_production" "nextcloud" "invidious" ];
+      services.postgresqlBackup.databases = [ "atuin" "homepage_production" "nextcloud" "invidious" ];
       services.postgresqlBackup.enable = true;
       services.postgresqlBackup.location = "/var/backup/postgresql";
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
@@ -462,7 +523,7 @@
       services.invidious.database.passwordFile = "/run/credentials/invidious.service/invidiousDb";
       systemd.services.invidious.serviceConfig = {
         LoadCredential = [
-          "invidiousDb:/var/keys/invidiousDb"
+          "invidiousDb:/run/secrets/invidious/db"
         ];
       };
 
@@ -481,7 +542,7 @@
 
         auth = {
           type = "htpasswd";
-          htpasswd_filename = "/var/keys/radicale";
+          htpasswd_filename = "/run/secrets/radicale";
           # encryption method used in the htpasswd file
           htpasswd_encryption = "bcrypt";
         };
@@ -494,7 +555,7 @@
       services.nextcloud.enable = true;
       services.nextcloud.package = pkgs.nextcloud27;
       services.nextcloud.home = "/srv/nextcloud";
-      services.nextcloud.config.adminpassFile = "/var/keys/nextcloud";
+      services.nextcloud.config.adminpassFile = "/run/secrets/nextcloud/admin";
       services.nextcloud.hostName = "cloud.pascal-wittmann.de";
       services.nextcloud.https = true;
       services.nextcloud.autoUpdateApps.enable = true;
@@ -503,7 +564,7 @@
         dbport = 5432;
         dbname = "nextcloud";
         dbuser = "nextcloud";
-        dbpassFile = "/var/keys/databaseNextcloud";
+        dbpassFile = "/run/secrets/nextcloud/db";
         dbhost = "127.0.0.1";
         dbtableprefix = "oc_";
 
@@ -550,7 +611,7 @@
       # paperless
       services.paperless.enable = true;
       services.paperless.dataDir = "/srv/paperless";
-      services.paperless.passwordFile = "/var/keys/paperless";
+      services.paperless.passwordFile = "/run/secrets/paperless/admin";
       services.paperless.extraConfig = {
         PAPERLESS_URL = "https://paperless.pascal-wittmann.de";
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
@@ -567,7 +628,7 @@
         rocketPort = 8222;
         signupsAllowed = false;
       };
-      services.vaultwarden.environmentFile = "/var/keys/vaultwardenEnv";
+      services.vaultwarden.environmentFile = "/run/secrets/vaultwarden/env";
       systemd.services.vaultwarden.wants = [ "nginx.service" ];
       systemd.services.vaultwarden.after = [ "nginx.service" ];
       systemd.services.vaultwarden.bindsTo = [ "nginx.service" ];
@@ -651,10 +712,10 @@
             proxy_store off;
 
             ssl_verify_client on;
-            ssl_client_certificate /var/keys/netdataMtls;
+            ssl_client_certificate /run/secrets/mtls/netdata/crt;
 
             auth_basic "Password protected area";
-            auth_basic_user_file /var/keys/basicAuth;
+            auth_basic_user_file /run/secrets/basicauth/passwords;
           '';
         };
 
@@ -664,17 +725,17 @@
           locations."/" = { proxyPass = "http://127.0.0.1:3000"; };
           extraConfig = ''
             ssl_verify_client on;
-            ssl_client_certificate /var/keys/adguardMtls;
+            ssl_client_certificate /run/secrets/mtls/adguard/crt;
           '';
         };
 
         "invidious.pascal-wittmann.de" = {
           extraConfig = ''
             ssl_verify_client on;
-            ssl_client_certificate /var/keys/invidiousMtls;
+            ssl_client_certificate /run/secrets/mtls/invidious/crt;
           '';
         };
-
+	
         "atuin.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
@@ -686,7 +747,7 @@
           enableACME = true;
           extraConfig = ''
             ssl_verify_client on;
-            ssl_client_certificate /var/keys/paperlessMtls;
+            ssl_client_certificate /run/secrets/mtls/paperless/crt;
             client_max_body_size 0;
           '';
           locations."/" = { proxyPass = "http://127.0.0.1:28981"; };
@@ -708,9 +769,10 @@
             extraConfig = ''
               autoindex on;
               auth_basic "Password protected area";
-              auth_basic_user_file /var/keys/basicAuth;
+              auth_basic_user_file /run/secrets/basicauth/passwords;
             '';
           };
+          
 
           extraConfig = ''
             add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
@@ -719,10 +781,14 @@
             add_header X-Frame-Options DENY;
           '';
         };
+
       };
 
       # Homepage
       services.homepage.enable = true;
+
+      # Baralga
+      services.baralga.enable = false;
 
       # Netdata
       services.netdata.enable = true;
@@ -735,7 +801,7 @@
       };
 
       services.netdata.configDir = {
-       "health_alarm_notify.conf" = "/var/keys/netdataTelegramNotify";
+       "health_alarm_notify.conf" = "/run/secrets/netdata/telegram";
       };
 
       # Sound
@@ -745,80 +811,11 @@
       programs.zsh.enable = true;
 
       # X-libraries and fonts are not needed on the server.
-      #  environment.noXlibs = true;
+      #environment.noXlibs = true;
       fonts.fontconfig.enable = false;
 
       users.mutableUsers = false;
       users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
 
       virtualisation.docker.enable = true;
-
-      deployment.keys.nextcloud.text = builtins.readFile ./secrets/nextcloud;
-      deployment.keys.nextcloud.destDir = "/var/keys";
-      deployment.keys.nextcloud.user = "nextcloud";
-
-      deployment.keys.databaseNextcloud.text = builtins.readFile ./secrets/database-nextcloud;
-      deployment.keys.databaseNextcloud.destDir = "/var/keys";
-      deployment.keys.databaseNextcloud.user = "nextcloud";
-
-      deployment.keys.basicAuth.text = builtins.readFile ./secrets/passwords;
-      deployment.keys.basicAuth.destDir = "/var/keys";
-      deployment.keys.basicAuth.user = "nginx";
-
-      deployment.keys.smtp.text = builtins.readFile ./secrets/smtp;
-      deployment.keys.smtp.destDir = "/var/keys";
-      deployment.keys.smtp.group = "mail";
-
-      deployment.keys.databaseHomepage.text = builtins.readFile ./secrets/homepage_database_password;
-      deployment.keys.databaseHomepage.destDir = "/var/keys";
-      deployment.keys.databaseHomepage.user = "homepage";
-
-      deployment.keys.radicale.text = builtins.readFile ./secrets/radicale;
-      deployment.keys.radicale.destDir = "/var/keys";
-      deployment.keys.radicale.user = "radicale";
-
-      deployment.keys.vaultwardenEnv.text = builtins.readFile ./secrets/vaultwarden.env;
-      deployment.keys.vaultwardenEnv.destDir = "/var/keys";
-      deployment.keys.vaultwardenEnv.user = "vaultwarden";
-
-      deployment.keys.paperless.text = builtins.readFile ./secrets/paperless;
-      deployment.keys.paperless.destDir = "/var/keys";
-      deployment.keys.paperless.user = "paperless";
-
-      deployment.keys.paperlessMtls.text = builtins.readFile ./secrets/paperless-mtls/client.crt;
-      deployment.keys.paperlessMtls.destDir = "/var/keys";
-      deployment.keys.paperlessMtls.user = "nginx";
-
-      deployment.keys.netdataMtls.text = builtins.readFile ./secrets/netdata-mtls/client.crt;
-      deployment.keys.netdataMtls.destDir = "/var/keys";
-      deployment.keys.netdataMtls.user = "nginx";
-
-      deployment.keys.netdataTelegramNotify.text = builtins.readFile ./secrets/netdata-telegram-notify;
-      deployment.keys.netdataTelegramNotify.destDir = "/var/keys";
-      deployment.keys.netdataTelegramNotify.user = "netdata";
-
-      deployment.keys.resticServerData.text = builtins.readFile ./secrets/restic-server-data;
-      deployment.keys.resticServerData.destDir = "/var/keys";
-      deployment.keys.resticServerData.user = "root";
-
-      deployment.keys.grubAdminPassword.text = builtins.readFile ./secrets/grub-admin-password;
-      deployment.keys.grubAdminPassword.destDir = "/var/keys";
-      deployment.keys.grubAdminPassword.user = "root";
-
-      deployment.keys.adguardMtls.text = builtins.readFile ./secrets/adguard-mtls/client.crt;
-      deployment.keys.adguardMtls.destDir = "/var/keys";
-      deployment.keys.adguardMtls.user = "nginx";
-
-      deployment.keys.invidiousDb.text = builtins.readFile ./secrets/invidious-db;
-      deployment.keys.invidiousDb.destDir = "/var/keys";
-      deployment.keys.invidiousDb.user = "root";
-
-      deployment.keys.invidiousMtls.text = builtins.readFile ./secrets/invidious-mtls/client.crt;
-      deployment.keys.invidiousMtls.destDir = "/var/keys";
-      deployment.keys.invidiousMtls.user = "nginx";
-
-      deployment.keys.cifsStorageboxPictures.text = builtins.readFile ./secrets/cifs-storagebox-pictures;
-      deployment.keys.cifsStorageboxPictures.destDir = "/var/keys";
-      deployment.keys.cifsStorageboxPictures.user = "root";
-    };
-}
+    }

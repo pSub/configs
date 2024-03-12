@@ -13,7 +13,7 @@ let
         hash = "sha256-iMyV0FIR5ntmjUVKDe8bZIRPTRaqMtqzWc+o4AgAAKs=";
       }
     )
-  ) {};
+  ) { nixpkgs = pkgs; };
 in
 {
   options = {
@@ -76,9 +76,9 @@ in
         PGDATABASE = "homepage_production";
       };
       script = ''
-        export PGPASS=`cat /var/keys/databaseHomepage`
+        export PGPASS=`cat /run/secrets/homepage/db`
         cd /srv/homepage
-        ${homepage-app}/bin/homepage
+	${homepage-app}/bin/homepage
       '';
       serviceConfig = {
         KillSignal = "SIGINT";
