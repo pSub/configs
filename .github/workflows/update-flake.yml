@@ -33,3 +33,4 @@ jobs:
   deploy-server:
     needs: update-flake-lock
     uses: ./.github/workflows/deploy-server.yml
+    secrets: inherit
