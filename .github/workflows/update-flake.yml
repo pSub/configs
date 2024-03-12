@@ -16,8 +16,8 @@ jobs:
           fetch-depth: 0
 
       - uses: cachix/install-nix-action@v20
-
       - run: nix flake update
+        working-directory: ./nixos/server
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
