@@ -9,6 +9,13 @@ on:
 
   workflow_dispatch:
   workflow_call:
+      secrets:
+        SSH_PRIVATE_KEY:
+          required: true
+        SSH_CONFIG:
+          required: true
+        KNOWN_HOSTS:
+          required: true
 
 jobs:
   deploy-server:
