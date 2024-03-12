@@ -85,6 +85,16 @@
       };
       environment.etc."machine-id".source = "/nix/persist/etc/machine-id";
 
+      environment.etc."ssh/ssh_backup_ed25519" = {
+        source = "/nix/persist/etc/ssh/ssh_backup_ed25519";
+        mode = "0400";
+      };
+
+      environment.etc."ssh/ssh_backup_ed25519.pub" = {
+        source = "/nix/persist/etc/ssh/ssh_backup_ed25519.pub";
+        mode = "0400";
+      };
+
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
       boot.initrd.availableKernelModules = [
         "ata_piix"
@@ -203,10 +213,14 @@
         max_log_file_action = rotate
       '';
 
-  /*    services.restic.backups.server-data = {
-        repository = "sftp://u388595.your-storagebox.de:23/nixos";
-        paths = [ "/home" "/var" "/srv" "/root" ];
+      services.restic.backups.server-data = {
+        repository = "sftp://u388595.your-storagebox.de:23/server";
+        paths = [ "/nix/persist" ];
+        exclude = [ "/srv/pictures" ];
         passwordFile = "/run/secrets/restic/data";
+        extraOptions = [
+            "sftp.command='ssh u388595-sub3@u388595.your-storagebox.de -p 23 -i /nix/persist/etc/ssh/ssh_backup_ed25519 -s sftp'"
+        ];
         timerConfig = {
           OnCalendar = "daily";
           Persistent = true;
@@ -219,7 +233,7 @@
         ];
         initialize = true;
       };
-*/
+
       systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
       systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
 
@@ -473,6 +487,10 @@
           type = "ed25519";
         }
       ];
+      services.openssh.knownHosts.storageBox = {
+        publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
+        hostNames = [ "u388595.your-storagebox.de" ];
+      };
       services.openssh.settings =  {
         X11Forwarding = false;
         PasswordAuthentication = false;
