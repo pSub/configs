@@ -1,0 +1,33 @@
+name: Deploy Server
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'nixos/server'
+
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  update-flake-lock:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVAT_KEY }}
+          name: id_rsa # optional
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          config: ${{ secrets.SSH_CONFIG }} # ssh_config; optional
+          if_key_exists: fail
+
+      - uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: 0
+
+      - uses: cachix/install-nix-action@v20
+
+      - run: ./nixos/server/scripts/deploy.sh
