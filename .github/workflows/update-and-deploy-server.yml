@@ -24,7 +24,7 @@ jobs:
           commit_message: Bump flake.lock
           branch: master
           commit_options: '--no-verify --signoff'
-          file_pattern: flake.lock
+          file_pattern: nixos/server/flake.lock
           commit_user_name: Flake Bot
           commit_author: Flake Bot <actions@github.com>
           skip_dirty_check: false    
