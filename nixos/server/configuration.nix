@@ -290,7 +290,8 @@
         alacritty.terminfo
 
         cifs-utils
-	htop
+        htop
+        lynis
         zile
 
         # Needed for NixOps
