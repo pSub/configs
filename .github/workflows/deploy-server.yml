@@ -38,5 +38,5 @@ jobs:
       - uses: cachix/install-nix-action@v20
         with:
           nix_path: nixpkgs=channel:nixos-23.11
-      - run: ./nixos/server/scripts/deploy.sh
+      - run: ./scripts/deploy.sh
         working-directory: ./nixos/server
