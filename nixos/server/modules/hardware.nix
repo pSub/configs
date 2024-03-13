@@ -34,9 +34,11 @@
 
   boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/dfb8a329-404f-4c38-9637-959165f66bc0";
 
-  fileSystems."/build" =
+  # Mount whole /tmp on disk as long as it is not possible to modify the build dir of nixos-rebuild
+  # see https://github.com/NixOS/nixpkgs/issues/293114
+  fileSystems."/tmp" =
     {
-      device = "/nix/persist/build";
+      device = "/nix/persist/tmp";
       fsType = "none";
       options = [ "bind" ];
    };
