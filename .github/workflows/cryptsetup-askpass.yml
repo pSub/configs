@@ -1,4 +1,4 @@
-name: Deploy Server
+name: Unlock LUKS
 
 on:
   workflow_dispatch:
