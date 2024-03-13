@@ -241,47 +241,6 @@
           SystemMaxUse=1G
       '';
 
-      system.autoUpgrade.enable = false;
-      system.autoUpgrade.channel = https://nixos.org/channels/nixos-23.11;
-      system.autoUpgrade.dates = "04:00";
-      system.autoUpgrade.allowReboot = true;
-      systemd.services.nixos-upgrade.environment.NIXOS_CONFIG = pkgs.writeText "configuration.nix" ''
-        all@{ config, pkgs, lib, ... }:
-              with lib; with builtins;
-              let
-                modifyPaths = f : paths : map toPath (map f (map toString paths));
-
-                serverConfig = (import /etc/nixos/current/configuration.nix).server all;
-                withoutDeploymentOptions = removeAttrs serverConfig [ "deployment" ];
-                withoutDeploymentRequires = overrideExisting withoutDeploymentOptions
-                                             { require = modifyPaths (require: concatStrings [ "/etc/nixos/current/" (replaceStrings [ "nix/store/"] [ "" ] require) ])
-                                                                             (filter (filename: ! (hasInfix ".nixops" (toString filename)))
-                                                                                              serverConfig.require);
-
-                                               system = serverConfig.system // {
-                                                 activationScripts = removeAttrs serverConfig.system.activationScripts [ "copy-configuration" ];
-                                               };
-                                             };
-              in withoutDeploymentRequires
-      '';
-
-      system.activationScripts = {
-        copy-configuration = ''
-          if [ -d /etc/nixos/current ]; then
-             rm -r /etc/nixos/current
-          fi
-          mkdir /etc/nixos/current
-
-          ln -s ${./configuration.nix} /etc/nixos/current/configuration.nix
-          ln -s ${./users.nix} /etc/nixos/current/users.nix
-          ln -s ${./modules} /etc/nixos/current/modules
-        '';
-
-      };
-
-      # Work around NixOS/nixpkgs#28527
-      systemd.services.nixos-upgrade.path = with pkgs; [ gnutar xz.bin gzip config.nix.package.out ];
-
       networking.hostName = "nixos"; # Define your hostname.
       networking.nameservers = [ "1.1.1.1" ];
 
