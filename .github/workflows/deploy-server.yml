@@ -35,8 +35,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: cachix/install-nix-action@v20
-        with:
-          nix_path: nixpkgs=channel:nixos-23.11
-      - run: ./scripts/deploy.sh
+    - uses: cachix/install-nix-action@v18
+      with:
+        nix_path: nixpkgs=channel:nixos-23.11
+    - uses: workflow/nix-shell-action@v3
+      with:
+        packages: nixos-rebuild
         working-directory: ./nixos/server
+        script: |
+          nixos-rebuild switch --verbose --fast --flake ".#nixos" --use-remote-sudo --target-host "deployer@152.53.0.129" --build-host "deployer@152.53.0.129" --builders "ssh://deployer@152.53.0.129 aarch64-linux"
+          nixos-rebuild switch --verbose --fast --flake ".#nixos" --use-remote-sudo --target-host "deployer@152.53.0.129" --build-host "deployer@152.53.0.129" --builders '"ssh://deployer@152.53.0.129 aarch64-linux"'
