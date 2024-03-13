@@ -1,4 +1,4 @@
-name: Update Servers flake.lock
+name: Update and Deploy Server
 
 on:
   schedule:
