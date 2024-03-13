@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'nixos/server'
+      - 'nixos/server/**'
 
   workflow_dispatch:
   workflow_call:
