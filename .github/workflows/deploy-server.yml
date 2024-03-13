@@ -39,3 +39,4 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-23.11
       - run: ./nixos/server/scripts/deploy.sh
+        working-directory: ./nixos/server
