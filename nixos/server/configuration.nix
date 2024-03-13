@@ -61,7 +61,7 @@
         useDHCP = false;
         interfaces."enp3s0" = {
           ipv4.addresses = [{ address = "152.53.0.129"; prefixLength = 22; }];
-          ipv6.addresses = [{ address = "2a0a:4cc0:0:10a5::"; prefixLength = 64; }];
+          ipv6.addresses = [{ address = "2a0a:4cc0:0:10a5::1"; prefixLength = 64; }];
         };
         defaultGateway = "152.53.0.1";
         defaultGateway6 = { address = "fe80::1"; interface = "enp3s0"; };
