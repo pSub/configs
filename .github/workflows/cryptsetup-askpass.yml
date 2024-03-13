@@ -20,4 +20,4 @@ jobs:
       - shell: bash
         env:
           LUKS_PASSPHRASE: ${{ secrets.LUKS_PASSPHRASE }}
-        run: echo "$LUKS_PASSPHRASE" | ssh root@152.53.0.129 cryptsetup-askpass
+        run: echo "$LUKS_PASSPHRASE" | ssh -i /home/runner/.ssh/id_rsa root@152.53.0.129 cryptsetup-askpass
