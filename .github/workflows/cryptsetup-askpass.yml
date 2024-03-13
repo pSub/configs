@@ -1,0 +1,23 @@
+name: Deploy Server
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cryptsetup-askpass:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          name: id_rsa # optional
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
+          config: ${{ secrets.SSH_CONFIG }}
+          if_key_exists: fail
+
+      - shell: bash
+        env:
+          LUKS_PASSPHRASE: ${{ secrets.LUKS_PASSPHRASE }}
+        run: echo "$LUKS_PASSPHRASE" | ssh root@152.53.0.129 cryptsetup-askpass
