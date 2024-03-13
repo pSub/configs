@@ -294,9 +294,6 @@
         lynis
         zile
 
-        # Needed for NixOps
-        rsync
-
         # TOOD: Why do I have to install this globally for Nextcloud Memories to work?
         ffmpeg
       ];
