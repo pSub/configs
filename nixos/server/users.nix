@@ -28,12 +28,6 @@
       ];
     };
 
-    hackaru = {
-      home = "/srv/hackaru";
-      isNormalUser = true;
-      extraGroups = [ "docker" ];
-    };
-
     deployer = {
       home = "/home/deployer";
       isNormalUser = true;
