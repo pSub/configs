@@ -183,6 +183,7 @@
 
       nix.settings.allowed-users = [ ];
       nix.settings.max-jobs = 2;
+      nix.optimise.automatic = true;
       nix.gc.automatic = true;
       nix.gc.dates = "06:00";
 
