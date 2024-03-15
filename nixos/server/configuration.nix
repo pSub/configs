@@ -32,6 +32,7 @@
         "radicale" = { owner = "radicale"; };
         "restic/data" = {};
         "vaultwarden/env" = { owner = "vaultwarden"; };
+        "mtls/actual/crt" = { owner = "nginx"; };
         "mtls/adguard/crt" = { owner = "nginx"; };
         "mtls/invidious/crt" = { owner = "nginx"; };
         "mtls/netdata/crt" = { owner = "nginx"; };
@@ -698,6 +699,16 @@
           forceSSL = true;
           enableACME = true;
           locations."/" = { proxyPass = "http://127.0.0.1:8888"; };
+        };
+
+        "actual.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = { proxyPass = "http://127.0.0.1:5006"; };
+          extraConfig = ''
+            ssl_verify_client on;
+            ssl_client_certificate /run/secrets/mtls/actual/crt;
+          '';
         };
 
         "paperless.pascal-wittmann.de" = {
