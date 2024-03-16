@@ -44,6 +44,7 @@ jobs:
           nix_path: nixpkgs=channel:nixos-23.11
 
       - uses: DeterminateSystems/magic-nix-cache-action@v4
+      - uses: DeterminateSystems/flake-checker-action@v5
 
       - uses: workflow/nix-shell-action@v3.3.0
         with:
