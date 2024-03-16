@@ -190,7 +190,10 @@
 
       # Deploy without root
       nix.settings.trusted-users = [ "root" "deployer" ];
-      security.sudo.wheelNeedsPassword = false;
+      security.sudo.enable = true;
+
+      # TODO: Separate keys for root and deployer
+      users.users.root.openssh.authorizedKeys.keys = config.users.users.deployer.openssh.authorizedKeys.keys;
 
       security.sudo.execWheelOnly = true;
       security.loginDefs.settings = {
@@ -272,6 +275,8 @@
       time.timeZone = "Europe/Berlin";
 
       # Security - PAM
+      security.pam.enableSSHAgentAuth = true;
+      security.pam.services.sudo.sshAgentAuth = true;
       security.pam.loginLimits = [
         {
           domain = "*";
@@ -459,7 +464,7 @@
         MaxAuthTries = 3;
         ClientAliveCountMax = 2;
         AllowTcpForwarding = "no";
-        AllowAgentForwarding = "no";
+        AllowAgentForwarding = "yes";
         AllowStreamLocalForwarding = "no";
         AuthenticationMethods = "publickey";
         TCPKeepAlive = "no";
