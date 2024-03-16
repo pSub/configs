@@ -22,7 +22,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: DeterminateSystems/magic-nix-cache-action@main
       - uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -43,6 +42,8 @@ jobs:
       - uses: cachix/install-nix-action@v18
         with:
           nix_path: nixpkgs=channel:nixos-23.11
+
+      - uses: DeterminateSystems/magic-nix-cache-action@main
 
       - uses: workflow/nix-shell-action@v3.3.0
         with:
