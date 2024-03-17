@@ -6,6 +6,9 @@ on:
 
   workflow_dispatch:
 
+env:
+  COMMIT_MSG: "[nixos/server] Bump flake.lock"
+
 jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
@@ -24,7 +27,7 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "[nixos/server] Bump flake.lock"
+          commit_message: ${{ env.COMMIT_MSG }}
           commit_options: '--no-verify --signoff'
           file_pattern: nixos/server/flake.lock
           commit_user_name: Flake Bot
@@ -34,5 +37,6 @@ jobs:
 
   deploy-server:
     needs: update-flake-lock
+    if: ${{ env.COMMIT_MSG == github.event.head_commit.message }}
     uses: ./.github/workflows/deploy-server.yml
     secrets: inherit
