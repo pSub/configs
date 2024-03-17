@@ -27,7 +27,7 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: ${{ env.COMMIT_MSG }}
+          commit_message: "[nixos/server] Bump flake.lock"
           commit_options: '--no-verify --signoff'
           file_pattern: nixos/server/flake.lock
           commit_user_name: Flake Bot
@@ -37,6 +37,6 @@ jobs:
 
   deploy-server:
     needs: update-flake-lock
-    if: ${{ env.COMMIT_MSG == github.event.head_commit.message }}
+    if: ${{ '[nixos/server] Bump flake.lock' == github.event.head_commit.message }}
     uses: ./.github/workflows/deploy-server.yml
     secrets: inherit
