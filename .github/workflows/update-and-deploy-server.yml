@@ -12,6 +12,8 @@ env:
 jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
+    outputs:
+      head_commit_message: ${{ steps.get_head_commit_message.outputs.head_commit_message }}
 
     steps:
       - uses: noirbizarre/need-checks@main
@@ -34,9 +36,11 @@ jobs:
           commit_author: Flake Bot <actions@github.com>
           skip_dirty_check: false    
           skip_fetch: true
+      - id: get_head_commit_message
+        run: echo "head_commit_message=$(git show -s --format=%s)" >> "$GITHUB_OUTPUT"
 
   deploy-server:
     needs: update-flake-lock
-    if: ${{ '[nixos/server] Bump flake.lock' == github.event.head_commit.message }}
+    if: ${{ contains(needs.update-flake-lock.outputs.head_commit_message, '[nixos/server] Bump flake.lock') }}
     uses: ./.github/workflows/deploy-server.yml
     secrets: inherit
