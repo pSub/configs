@@ -35,7 +35,7 @@ jobs:
           config: ${{ secrets.SSH_CONFIG }} # ssh_config; optional
           if_key_exists: fail
 
-      - uses: actions/checkout@v3.5.0
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
