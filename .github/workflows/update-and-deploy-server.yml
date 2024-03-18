@@ -6,9 +6,6 @@ on:
 
   workflow_dispatch:
 
-env:
-  COMMIT_MSG: "[nixos/server] Bump flake.lock"
-
 jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
