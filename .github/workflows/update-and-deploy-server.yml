@@ -16,9 +16,11 @@ jobs:
       head_commit_message: ${{ steps.get_head_commit_message.outputs.head_commit_message }}
 
     steps:
-      - uses: noirbizarre/need-checks@main
+      - if: ${{ github.event_name == 'schedule' }}
+        uses: noirbizarre/need-checks@main
         with:
           conclusions: success
+          
       - uses: actions/checkout@v3.5.0
         with:
           fetch-depth: 0
