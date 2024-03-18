@@ -13,17 +13,22 @@ jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
     outputs:
-      head_commit_message: ${{ steps.get_head_commit_message.outputs.head_commit_message }}
+      previous_hash: ${{ steps.previous_commit.outputs.previous_hash }}
+      current_hash: ${{ steps.current_commit.outputs.current_hash }}
+      commit_message: ${{ steps.current_commit.outputs.commit_message }}
 
     steps:
       - if: ${{ github.event_name == 'schedule' }}
         uses: noirbizarre/need-checks@main
         with:
           conclusions: success
-          
+
       - uses: actions/checkout@v3.5.0
         with:
           fetch-depth: 0
+
+      - id: previous_commit
+        run: echo "previous_hash=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - uses: cachix/install-nix-action@v20
       - run: nix flake update --no-warn-dirty
@@ -38,11 +43,15 @@ jobs:
           commit_author: Flake Bot <actions@github.com>
           skip_dirty_check: false    
           skip_fetch: true
-      - id: get_head_commit_message
-        run: echo "head_commit_message=$(git show -s --format=%s)" >> "$GITHUB_OUTPUT"
+      - id: current_commit
+        run: |
+          echo "current_hash=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          echo "commit_message=$(git show -s --format=%s)" >> "$GITHUB_OUTPUT"
 
   deploy-server:
     needs: update-flake-lock
-    if: ${{ contains(needs.update-flake-lock.outputs.head_commit_message, '[nixos/server] Bump flake.lock') }}
+    if: |
+     contains(needs.update-flake-lock.outputs.commit_message, '[nixos/server] Bump flake.lock') &&
+     needs.update-flake-lock.outputs.current_hash != needs.update-flake-lock.outputs.previous_hash
     uses: ./.github/workflows/deploy-server.yml
     secrets: inherit
