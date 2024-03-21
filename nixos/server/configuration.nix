@@ -727,6 +727,12 @@
           locations."/" = { proxyPass = "http://127.0.0.1:28981"; };
         };
 
+        "wakapi.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = { proxyPass = "http://127.0.0.1:3043"; };
+        };
+
         "users.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
