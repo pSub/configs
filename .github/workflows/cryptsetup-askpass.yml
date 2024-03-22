@@ -3,6 +3,8 @@ name: Unlock LUKS
 on:
   workflow_dispatch:
 
+permissions: read-all
+
 jobs:
   cryptsetup-askpass:
     runs-on: ubuntu-latest

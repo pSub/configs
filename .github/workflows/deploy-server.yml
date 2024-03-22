@@ -17,9 +17,14 @@ on:
         KNOWN_HOSTS:
           required: true
 
+permissions: read-all
+
 jobs:
   deploy-server:
     runs-on: ubuntu-latest
+
+    permissions:
+      statuses: write
 
     steps:
       - uses: webfactory/ssh-agent@v0.9.0

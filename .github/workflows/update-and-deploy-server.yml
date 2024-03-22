@@ -6,6 +6,8 @@ on:
 
   workflow_dispatch:
 
+permissions: read-all
+
 jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
@@ -13,6 +15,9 @@ jobs:
       previous_hash: ${{ steps.previous_commit.outputs.previous_hash }}
       current_hash: ${{ steps.current_commit.outputs.current_hash }}
       commit_message: ${{ steps.current_commit.outputs.commit_message }}
+
+    permissions:
+      contents: write
 
     steps:
       - if: ${{ github.event_name == 'schedule' }}
