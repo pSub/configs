@@ -1,8 +1,0 @@
-#!/bin/sh
-
-unison-sync $(find $HOME/.unison \
-    -type f \
-    -name '*.prf' \
-    -not -name "unison.prf" \
-    -not -name "default.prf" \
-    -exec sh -c 'basename {} | cut -f1 -d \.' \;)
