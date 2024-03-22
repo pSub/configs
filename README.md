@@ -5,12 +5,11 @@ notebook as well as my small server.
 
 ## Characteristic Features
 
-* [Xmonad] When a window is in focus, the mouse cursor is placed in the center of the window.
-* [NixOps] `system.autoUpgrade` plays nicely together with NixOps (my take on NixOS/nixops#842).
-* [NixOps] Module `systemd-email-notify` that notifies via email when any service fails.
-* [Nixpkgs] Packages are installed in custom environments that are combined in an attribute `all-env`.
-* [Nixpkgs] The channel (nixpkgs version) is defined in `config.nix`.
-* [Xmodmap] Capslock is mapped to (left) control.
+* Xmonad: When a window is in focus, the mouse cursor is placed in the center of the window.
+* Server: Module `systemd-email-notify` that notifies via email when any service fails.
+* Nixpkgs: Packages are installed in custom environments that are combined in an attribute `all-env`.
+* Nixpkgs: The channel (nixpkgs version) is defined in `config.nix`.
+* Xmodmap: Capslock is mapped to (left) control.
 
 ## Installation
 
@@ -47,15 +46,15 @@ or to remove all links that were created by GNU stow.
 ./stow-it --delete
 ```
 
-### NixOS Configuration
+### NixOS Configuration for Thinkpad X220
 
 I have one [NixOS](https://nixos.org/nixos/) [configuration](nixos/configuration.nix)
 file and separate files with hardware configurations for different notebooks. As
 this is structure is very static, you have to copy the files by hand to use my
 configuration.
 
-### NixOps Configuration
+### NixOS Configuration for ARM64 Server
 
-Currently, I am managing one server via [NixOps](https://nixos.org/nixops/). With a
+Currently, I am managing one server via `nixos-rebuild` and Github Actions. With a
 bit of tweaking, you should get this configuration running. Some things that you will
 definitely need to adapt: Keys / passwords, hostname and device names.
