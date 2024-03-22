@@ -247,7 +247,11 @@
       '';
 
       networking.hostName = "nixos"; # Define your hostname.
-      networking.nameservers = [ "1.1.1.1" ];
+      networking.nameservers = [
+        "46.38.225.225#root-dns.netcup.net"
+        "37.221.199.199#second-dns.netcup.net"
+        "188.68.63.68#third-dns.netcup.net"
+      ];
 
       networking.firewall.enable = true;
       networking.firewall.allowPing = true;
