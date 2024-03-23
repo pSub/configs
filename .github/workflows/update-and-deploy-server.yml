@@ -52,6 +52,8 @@ jobs:
 
   deploy-server:
     needs: update-flake-lock
+    permissions:
+      statuses: write
     if: |
      contains(needs.update-flake-lock.outputs.commit_message, '[nixos/server] Bump flake.lock') &&
      needs.update-flake-lock.outputs.current_hash != needs.update-flake-lock.outputs.previous_hash
