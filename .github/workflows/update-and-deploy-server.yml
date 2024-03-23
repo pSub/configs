@@ -6,8 +6,6 @@ on:
 
   workflow_dispatch:
 
-permissions: read-all
-
 jobs:
   update-flake-lock:
     runs-on: ubuntu-latest
@@ -15,9 +13,6 @@ jobs:
       previous_hash: ${{ steps.previous_commit.outputs.previous_hash }}
       current_hash: ${{ steps.current_commit.outputs.current_hash }}
       commit_message: ${{ steps.current_commit.outputs.commit_message }}
-
-    permissions:
-      contents: write
 
     steps:
       - if: ${{ github.event_name == 'schedule' }}
@@ -52,21 +47,6 @@ jobs:
 
   deploy-server:
     needs: update-flake-lock
-    permissions:
-      statuses: write
-      # FIXME: Is there a way to make this more concise?
-      actions: read
-      checks: read
-      contents: read
-      deployments: read
-      discussions: read
-      issues: read
-      packages: read
-      pages: read
-      pull-requests: read
-      repository-projects: read
-      security-events: read
-      id-token: read
     if: |
      contains(needs.update-flake-lock.outputs.commit_message, '[nixos/server] Bump flake.lock') &&
      needs.update-flake-lock.outputs.current_hash != needs.update-flake-lock.outputs.previous_hash
