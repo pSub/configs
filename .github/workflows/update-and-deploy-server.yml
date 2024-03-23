@@ -54,6 +54,19 @@ jobs:
     needs: update-flake-lock
     permissions:
       statuses: write
+      # FIXME: Is there a way to make this more concise?
+      actions: read
+      checks: read
+      contents: read
+      deployments: read
+      discussions: read
+      issues: read
+      packages: read
+      pages: read
+      pull-requests: read
+      repository-projects: read
+      security-events: read
+      id-token: read
     if: |
      contains(needs.update-flake-lock.outputs.commit_message, '[nixos/server] Bump flake.lock') &&
      needs.update-flake-lock.outputs.current_hash != needs.update-flake-lock.outputs.previous_hash
