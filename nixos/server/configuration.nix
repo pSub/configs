@@ -38,6 +38,7 @@
         "mtls/netdata/crt" = { owner = "nginx"; };
         "mtls/paperless/crt" = { owner = "nginx"; };
         "smtp" = { group = "mail"; };
+        "geoip/key" = { };
       };
 
       # Use the systemd-boot EFI boot loader.
@@ -600,6 +601,20 @@
       systemd.services.vaultwarden.wants = [ "nginx.service" ];
       systemd.services.vaultwarden.after = [ "nginx.service" ];
       systemd.services.vaultwarden.bindsTo = [ "nginx.service" ];
+
+      # geoip update
+      services.geoipupdate.enable = true;
+      services.geoipupdate.settings = {
+        EditionIDs = [
+          "GeoLite2-ASN"
+          "GeoLite2-City"
+          "GeoLite2-Country"
+        ];
+        AccountID = 995265;
+        LicenseKey = {
+          _secret = "/run/secrets/geoip/key";
+        };
+      };
 
       # nginx
       services.nginx.enable = true;
