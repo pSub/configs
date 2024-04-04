@@ -620,7 +620,34 @@
       services.nginx.recommendedGzipSettings = true;
       services.nginx.recommendedOptimisation = true;
       services.nginx.recommendedTlsSettings = true;
+      services.nginx.additionalModules = with pkgs.nginxModules; [
+        geoip2
+      ];
+
       services.nginx.commonHttpConfig = ''
+       geoip2 /var/lib/GeoIP/GeoLite2-Country.mmdb {
+          $geoip2_data_country_iso_code country iso_code;
+        }
+
+        map $geoip2_data_country_iso_code $allowed_country {
+          default 0;
+          DE 1;
+        }
+
+        geo $allowed_ip {
+          default 0;
+          # TODO: Create this file automatically
+          include /var/db/IPv4andIPv6.txt;
+        }
+
+
+        map "$allowed_country$allowed_ip" $is_allowed {
+          default 0;
+          11 1;
+          10 1;
+          01 1;
+        }
+
         map $remote_addr $ip_anonym1 {
         default 0.0.0;
         "~(?P<ip>(\d+)\.(\d+))\.(\d+)\.\d+" $ip;
@@ -666,7 +693,14 @@
         "vaultwarden.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:8222"; };
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8222";
+            extraConfig = ''
+              if ($is_allowed = 0) {
+                return 403;
+              }
+            '';
+          };
           extraConfig = ''
             proxy_read_timeout 90;
 
@@ -683,7 +717,14 @@
         "netdata.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:19999"; };
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:19999";
+            extraConfig = ''
+              if ($is_allowed = 0) {
+                return 403;
+              }
+            '';
+          };
           extraConfig = ''
             proxy_set_header X-Forwarded-Host $host;
             proxy_set_header X-Forwarded-Server $host;
@@ -704,7 +745,14 @@
         "adguard.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:3000"; };
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3000";
+            extraConfig = ''
+              if ($is_allowed = 0) {
+                return 403;
+              }
+            '';
+          };
           extraConfig = ''
             ssl_verify_client on;
             ssl_client_certificate /run/secrets/mtls/adguard/crt;
@@ -727,7 +775,14 @@
         "actual.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:5006"; };
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:5006";
+            extraConfig = ''
+              if ($is_allowed = 0) {
+                return 403;
+              }
+            '';
+          };
           extraConfig = ''
             ssl_verify_client on;
             ssl_client_certificate /run/secrets/mtls/actual/crt;
@@ -742,13 +797,27 @@
             ssl_client_certificate /run/secrets/mtls/paperless/crt;
             client_max_body_size 0;
           '';
-          locations."/" = { proxyPass = "http://127.0.0.1:28981"; };
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:28981";
+            extraConfig = ''
+              if ($is_allowed = 0) {
+                return 403;
+              }
+            '';
+          };
         };
 
         "wakapi.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
-          locations."/" = { proxyPass = "http://127.0.0.1:3043"; };
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3043";
+            extraConfig = ''
+              if ($is_allowed = 0) {
+                return 403;
+              }
+            '';
+          };
         };
 
         "users.pascal-wittmann.de" = {
