@@ -249,9 +249,8 @@
 
       networking.hostName = "nixos"; # Define your hostname.
       networking.nameservers = [
-        "46.38.225.225#root-dns.netcup.net"
-        "37.221.199.199#second-dns.netcup.net"
-        "188.68.63.68#third-dns.netcup.net"
+        "9.9.9.9"
+        "149.112.112.112"
       ];
 
       networking.firewall.enable = true;
