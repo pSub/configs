@@ -632,6 +632,7 @@
         map $geoip2_data_country_iso_code $allowed_country {
           default 0;
           DE 1;
+          AT 1;
         }
 
         geo $allowed_ip {
