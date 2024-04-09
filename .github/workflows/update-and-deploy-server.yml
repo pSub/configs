@@ -15,23 +15,30 @@ jobs:
       commit_message: ${{ steps.current_commit.outputs.commit_message }}
 
     steps:
-      - if: ${{ github.event_name == 'schedule' }}
+      - name: Ensure that the previous run was successfull, if run is unsupervised
+        if: ${{ github.event_name == 'schedule' }}
         uses: noirbizarre/need-checks@main
         with:
           conclusions: success,skipped
 
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - id: previous_commit
+      - name: Save hash of HEAD
+        id: previous_commit
         run: echo "previous_hash=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
-      - uses: cachix/install-nix-action@v26
-      - run: nix flake update --no-warn-dirty
+      - name: Install nix
+        uses: cachix/install-nix-action@v26
+
+      - name: Update flake lock file
+        run: nix flake update --no-warn-dirty
         working-directory: ./nixos/server
 
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Commit changes to flake lock file
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "[nixos/server] Bump flake.lock"
           commit_options: '--no-verify --signoff'
@@ -40,7 +47,9 @@ jobs:
           commit_author: Flake Bot <actions@github.com>
           skip_dirty_check: false    
           skip_fetch: true
-      - id: current_commit
+
+      - name: Save hash of HEAD
+        id: current_commit
         run: |
           echo "current_hash=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
           echo "commit_message=$(git show -s --format=%s)" >> "$GITHUB_OUTPUT"

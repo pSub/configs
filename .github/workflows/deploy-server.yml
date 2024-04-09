@@ -22,7 +22,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: webfactory/ssh-agent@v0.9.0
+      - name: Setup ssh-agent
+        uses: webfactory/ssh-agent@v0.9.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
@@ -35,20 +36,26 @@ jobs:
           config: ${{ secrets.SSH_CONFIG }} # ssh_config; optional
           if_key_exists: fail
 
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: cachix/install-nix-action@v26
+      - name: Install nix
+        uses: cachix/install-nix-action@v26
         with:
           nix_path: nixpkgs=channel:nixos-23.11
 
-      - uses: DeterminateSystems/magic-nix-cache-action@v4
-      - uses: DeterminateSystems/flake-checker-action@v5
+      - name: Use magix nix cache
+        uses: DeterminateSystems/magic-nix-cache-action@v4
+
+      - name: Check flake lock file
+        uses: DeterminateSystems/flake-checker-action@v5
         with:
           flake-lock-path: nixos/server/flake.lock
 
-      - uses: workflow/nix-shell-action@v3.3.0
+      - name: Run nixos-rebuild
+        uses: workflow/nix-shell-action@v3.3.0
         with:
           packages: nixos-rebuild
           working-directory: nixos/server
