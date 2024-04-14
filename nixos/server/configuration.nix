@@ -823,6 +823,19 @@
           };
         };
 
+        "wanderer.pascal-wittmann.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3045";
+            extraConfig = ''
+              if ($is_allowed = 0) {
+                return 403;
+              }
+            '';
+          };
+        };
+
         "immich.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
