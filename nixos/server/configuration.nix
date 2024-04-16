@@ -316,6 +316,7 @@ in  {
         # Install only the alacritty terminfo file
         alacritty.terminfo
 
+        chkrootkit
         cifs-utils
         htop
         lynis
