@@ -263,6 +263,7 @@ in  {
       '';
 
       networking.hostName = "nixos"; # Define your hostname.
+      networking.domain = "pascal-wittmann.de";
       networking.nameservers = [
         "9.9.9.9"
         "149.112.112.112"
