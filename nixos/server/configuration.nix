@@ -2,7 +2,12 @@
 
   # TODO: https://github.com/nix-community/impermanence/
 
-    {
+let
+  issueFile = pkgs.writeText "issue" ''
+    Attention, by continuing to connect to this system, you consent to the owner storing a log of all activity.
+    Unauthorized access is prohibited.
+  '';
+in  {
       require = [
         ./modules/hardware.nix
         ./modules/baralga.nix
@@ -95,6 +100,16 @@
       environment.etc."ssh/ssh_backup_ed25519.pub" = {
         source = "/nix/persist/etc/ssh/ssh_backup_ed25519.pub";
         mode = "0400";
+      };
+
+      environment.etc."issue" = {
+        source = issueFile;
+        mode = "0444";
+      };
+
+      environment.etc."issue.net" = {
+        source = issueFile;
+        mode = "0444";
       };
 
       boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_hardened;
