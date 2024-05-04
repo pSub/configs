@@ -240,7 +240,7 @@ in  {
         exclude = [ "/srv/pictures" ];
         passwordFile = "/run/secrets/restic/data";
         extraOptions = [
-            "sftp.command='ssh u388595-sub3@u388595.your-storagebox.de -p 23 -i /nix/persist/etc/ssh/ssh_backup_ed25519 -s sftp'"
+            "sftp.command='ssh u388595-sub3@u388595.your-storagebox.de -p 23 -i /nix/persist/etc/ssh/ssh_backup_ed25519 -o IdentitiesOnly=yes -s sftp'"
         ];
         timerConfig = {
           OnCalendar = "daily";
