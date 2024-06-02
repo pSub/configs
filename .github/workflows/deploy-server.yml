@@ -50,7 +50,7 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@v4
 
       - name: Check flake lock file
-        uses: DeterminateSystems/flake-checker-action@v5
+        uses: DeterminateSystems/flake-checker-action@v7
         with:
           flake-lock-path: nixos/server/flake.lock
 
