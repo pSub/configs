@@ -125,7 +125,6 @@ in
     apps-env = buildEnv {
       name = "apps-env";
       paths = [
-        unstable.pkgs.brave
         calibre
         evince
         exercism
