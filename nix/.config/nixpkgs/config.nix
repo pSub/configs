@@ -1,14 +1,10 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
-  stable = import (fetchTarball https://nixos.org/channels/nixos-23.11/nixexprs.tar.xz) { };
+  stable = import (fetchTarball https://nixos.org/channels/nixos-24.05/nixexprs.tar.xz) { };
 in
 {
 
   allowUnfree = true;
-
-  permittedInsecurePackages = [
-    "python2.7-pyjwt-1.7.1"
-  ];
 
   packageOverrides = _: with stable.pkgs; rec {
 
