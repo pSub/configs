@@ -230,6 +230,13 @@ in
     thunar-archive-plugin
   ];
 
+  # Firefox with PWAs
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox;
+    nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
+  };
+
   # Firewall
   networking.firewall.enable = true;
 
@@ -241,6 +248,7 @@ in
       exfat
       dconf
       bashInteractive
+      firefoxpwa
       lsof
       zile
     ];

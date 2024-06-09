@@ -124,7 +124,6 @@ in
         exercism
         feh
         filezilla
-        firefox
         gimp
         thunderbird
         k3b
