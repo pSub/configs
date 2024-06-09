@@ -282,6 +282,13 @@ in  {
       networking.firewall.allowedUDPPorts = [
         853 # adguard
       ];
+      networking.firewall.extraCommands = ''
+        iptables -I INPUT -p tcp --dport 10801 -m state --state NEW -m recent --set
+        iptables -I INPUT -p tcp --dport 10801 -m state --state NEW -m recent --update --seconds 10 --hitcount 10 -j DROP
+        ip6tables -I INPUT -p tcp --dport 10801 -m state --state NEW -m recent --set
+        ip6tables -I INPUT -p tcp --dport 10801 -m state --state NEW -m recent --update --seconds 10 --hitcount 10 -j DROP
+      '';
+
 
       # Select internationalisation properties.
       i18n.defaultLocale = "en_US.UTF-8";
