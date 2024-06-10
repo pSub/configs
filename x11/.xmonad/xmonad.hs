@@ -15,7 +15,6 @@ import           XMonad.Util.Cursor
 import           XMonad.Util.EZConfig
 import           XMonad.Util.Run              (spawnPipe)
 import qualified XMonad.Util.Hacks as Hacks
-import           XMonad.Hooks.DynamicProperty (dynamicTitle)
 
 myWorkspaces = clickable . (map xmobarEscape) $ [ "org", "www", "dev₁", "dev₂", "docs", "chat", "mail" ]
              where clickable l = [ "<action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action>" | (n, ws) <- zip ([1..4] ++ [8,9,0]) l ]
