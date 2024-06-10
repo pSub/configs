@@ -204,6 +204,8 @@ in  {
       nix.gc.automatic = true;
       nix.gc.dates = "06:00";
 
+      nixpkgs.config.allowBroken = true;
+
       # Deploy without root
       nix.settings.trusted-users = [ "root" "deployer" ];
       security.sudo.enable = true;
