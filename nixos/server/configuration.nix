@@ -204,6 +204,8 @@ in  {
       nix.gc.automatic = true;
       nix.gc.dates = "06:00";
 
+      nixpkgs.config.allowBroken = true;
+
       # Deploy without root
       nix.settings.trusted-users = [ "root" "deployer" ];
       security.sudo.enable = true;
@@ -302,7 +304,7 @@ in  {
       time.timeZone = "Europe/Berlin";
 
       # Security - PAM
-      security.pam.enableSSHAgentAuth = true;
+      security.pam.sshAgentAuth.enable = true;
       security.pam.services.sudo.sshAgentAuth = true;
       security.pam.loginLimits = [
         {
@@ -508,10 +510,11 @@ in  {
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
 
       # invidious
-      services.invidious.enable = true;
+      services.invidious.enable = false;
       services.invidious.port = 3042;
       services.invidious.domain = "invidious.pascal-wittmann.de";
       services.invidious.nginx.enable = true;
+      services.invidious.settings.db.user = "invidious";
       services.invidious.database.passwordFile = "/run/credentials/invidious.service/invidiousDb";
       systemd.services.invidious.serviceConfig = {
         LoadCredential = [
@@ -553,16 +556,14 @@ in  {
       services.nextcloud.autoUpdateApps.enable = true;
       services.nextcloud.config = {
         dbtype = "pgsql";
-        dbport = 5432;
         dbname = "nextcloud";
         dbuser = "nextcloud";
         dbpassFile = "/run/secrets/nextcloud/db";
-        dbhost = "127.0.0.1";
+        dbhost = "127.0.0.1:5432";
         dbtableprefix = "oc_";
-
-        defaultPhoneRegion = "DE";
       };
-      services.nextcloud.extraOptions = {
+      services.nextcloud.settings = {
+        "default_phone_region" = "DE";
         "memories.exiftool" = "${lib.getExe pkgs.exiftool}";
         "memories.vod.ffmpeg" = "${pkgs.ffmpeg-headless}/bin/ffmpeg";
         "memories.vod.ffprobe" = "${pkgs.ffmpeg-headless}/bin/ffprobe";
@@ -604,7 +605,7 @@ in  {
       services.paperless.enable = true;
       services.paperless.dataDir = "/srv/paperless";
       services.paperless.passwordFile = "/run/secrets/paperless/admin";
-      services.paperless.extraConfig = {
+      services.paperless.settings = {
         PAPERLESS_URL = "https://paperless.pascal-wittmann.de";
         PAPERLESS_OCR_LANGUAGE = "deu+eng";
         PAPERLESS_OCR_USER_ARGS=''{"invalidate_digital_signatures": true}'';
