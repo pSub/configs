@@ -193,10 +193,10 @@ in
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "de";
-  services.xserver.xkbVariant = "nodeadkeys";
-  services.xserver.xkbOptions = "";
-  services.xserver.libinput.enable = false;
+  services.xserver.xkb.layout = "de";
+  services.xserver.xkb.variant = "nodeadkeys";
+  services.xserver.xkb.options = "";
+  services.libinput.enable = false;
   services.xserver.synaptics = {
     enable = true;
     accelFactor = "0.01";
@@ -207,7 +207,7 @@ in
   services.xserver.displayManager.lightdm.extraSeatDefaults = ''
     autologin-user = pascal
   '';
-  services.xserver.displayManager.defaultSession = "none+xmonad";
+  services.displayManager.defaultSession = "none+xmonad";
 
   services.xserver.windowManager.xmonad = {
     enable = true;
@@ -230,6 +230,13 @@ in
     thunar-archive-plugin
   ];
 
+  # Firefox with PWAs
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox;
+    nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
+  };
+
   # Firewall
   networking.firewall.enable = true;
 
@@ -241,6 +248,7 @@ in
       exfat
       dconf
       bashInteractive
+      firefoxpwa
       lsof
       zile
     ];

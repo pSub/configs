@@ -27,7 +27,7 @@ myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
                  , isDialog        --> doCenterFloat
                  , className =? "superProductivity" --> doShift (myWorkspaces !! 0)
-                 , appName =? "web.telegram.org__k" --> doShift (myWorkspaces !! 5)
+                 , className =? "FFPWA-01HZZDRGJ9MS83HN6YA8K68FMG" --> doShift (myWorkspaces !! 5)
                  , className =? "Signal" --> doShift (myWorkspaces !! 5)
                  , className =? "thunderbird" --> doShift (myWorkspaces !! 6)
                  , className =? "firefox" --> doShift (myWorkspaces !! 1)

@@ -42,15 +42,15 @@ jobs:
           fetch-depth: 0
 
       - name: Install nix
-        uses: cachix/install-nix-action@v26
+        uses: cachix/install-nix-action@V27
         with:
           nix_path: nixpkgs=channel:nixos-23.11
 
       - name: Use magix nix cache
-        uses: DeterminateSystems/magic-nix-cache-action@v4
+        uses: DeterminateSystems/magic-nix-cache-action@v6
 
       - name: Check flake lock file
-        uses: DeterminateSystems/flake-checker-action@v5
+        uses: DeterminateSystems/flake-checker-action@v7
         with:
           flake-lock-path: nixos/server/flake.lock
 

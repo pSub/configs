@@ -1,15 +1,10 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
-  stable = import (fetchTarball https://nixos.org/channels/nixos-23.11/nixexprs.tar.xz) { };
-  last_release = import (fetchTarball https://nixos.org/channels/nixos-23.05/nixexprs.tar.xz) { };
+  stable = import (fetchTarball https://nixos.org/channels/nixos-24.05/nixexprs.tar.xz) { };
 in
 {
 
   allowUnfree = true;
-
-  permittedInsecurePackages = [
-    "python2.7-pyjwt-1.7.1"
-  ];
 
   packageOverrides = _: with stable.pkgs; rec {
 
@@ -92,7 +87,6 @@ in
         nix-generate-from-cpan
         nixpkgs-review
         nox
-        last_release.nixops_unstable
         nixpkgs-lint
       ];
     };
@@ -125,13 +119,11 @@ in
     apps-env = buildEnv {
       name = "apps-env";
       paths = [
-        unstable.pkgs.brave
         calibre
         evince
         exercism
         feh
         filezilla
-        firefox
         gimp
         thunderbird
         k3b
