@@ -17,6 +17,9 @@ on:
         KNOWN_HOSTS:
           required: true
 
+concurrency:
+  group: ${{ github.head_ref ||  github.ref }}
+
 jobs:
   deploy-server:
     runs-on: ubuntu-latest
