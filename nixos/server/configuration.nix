@@ -330,9 +330,6 @@ in  {
         htop
         lynis
         zile
-
-        # TOOD: Why do I have to install this globally for Nextcloud Memories to work?
-        ffmpeg
       ];
 
       # What breaks with this option?
@@ -564,9 +561,6 @@ in  {
       };
       services.nextcloud.settings = {
         "default_phone_region" = "DE";
-        "memories.exiftool" = "${lib.getExe pkgs.exiftool}";
-        "memories.vod.ffmpeg" = "${pkgs.ffmpeg-headless}/bin/ffmpeg";
-        "memories.vod.ffprobe" = "${pkgs.ffmpeg-headless}/bin/ffprobe";
       };
       services.nextcloud.phpOptions = {
         "opcache.enable" = "1";
