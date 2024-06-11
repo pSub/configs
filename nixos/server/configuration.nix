@@ -510,7 +510,7 @@ in  {
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
 
       # invidious
-      services.invidious.enable = false;
+      services.invidious.enable = true;
       services.invidious.port = 3042;
       services.invidious.domain = "invidious.pascal-wittmann.de";
       services.invidious.nginx.enable = true;
