@@ -223,6 +223,8 @@ in  {
         SHA_CRYPT_MAX_ROUNDS = 640000;
       };
 
+      security.protectKernelImage = lib.mkDefault true;
+
       security.auditd.enable = true;
       security.audit.enable = true;
       security.audit.rules = [
