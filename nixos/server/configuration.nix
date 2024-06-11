@@ -63,7 +63,10 @@ in  {
 
       # IP:<ignore>:GATEWAY:NETMASK:HOSTNAME:NIC:AUTCONF?
       # See: https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt
-      boot.kernelParams = [ "ip=152.53.0.129::152.53.0.1:152.53.3.255:v22024034028258810.nicesrv.de:enp3s0:off" ];
+      boot.kernelParams = [
+        "ip=152.53.0.129::152.53.0.1:152.53.3.255:v22024034028258810.nicesrv.de:enp3s0:off"
+        "debugfs=off"
+      ];
       networking = {
         useDHCP = false;
         interfaces."enp3s0" = {
