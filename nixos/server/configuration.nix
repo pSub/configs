@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, options, lib, ... }:
 
   # TODO: https://github.com/nix-community/impermanence/
 

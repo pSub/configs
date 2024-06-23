@@ -6,7 +6,7 @@
   inputs.sops-nix.url = "github:Mic92/sops-nix";
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = inputs @ { nixpkgs, nixos-hardware, sops-nix }:
+  outputs = inputs @ { self, nixpkgs, nixos-hardware, sops-nix }:
     let system = "x86_64-linux"; in {
       nixosConfigurations = {
         x220 = nixpkgs.lib.nixosSystem {

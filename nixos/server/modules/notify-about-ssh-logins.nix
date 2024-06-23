@@ -1,4 +1,4 @@
-{ ... }:
+{ config, lib, pkgs, ... }:
 {
   environment.etc."ssh/sshrc" = {
     mode = "750";
