@@ -12,3 +12,4 @@ jobs:
       - uses: cachix/cachix-action@v15
         with:
           name: deadnix
+      - uses: astro/deadnix-action@main
