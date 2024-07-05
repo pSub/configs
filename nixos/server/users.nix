@@ -12,7 +12,7 @@
       group = "users";
       isNormalUser = true;
       home = "/home/pascal";
-      extraGroups = [ "mpd" "mail" ];
+      extraGroups = [ "mail" ];
       createHome = true;
       useDefaultShell = true;
       openssh.authorizedKeys.keys = [
