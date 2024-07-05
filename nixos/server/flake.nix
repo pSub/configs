@@ -3,7 +3,7 @@
   inputs.sops-nix.url = "github:Mic92/sops-nix";
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-  outputs = { nixpkgs, sops-nix }:
+  outputs = { nixpkgs, sops-nix, ... }:
     let
       system = "aarch64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
