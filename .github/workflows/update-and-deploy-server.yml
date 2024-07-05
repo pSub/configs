@@ -15,6 +15,11 @@ jobs:
       commit_message: ${{ steps.current_commit.outputs.commit_message }}
 
     steps:
+      - name: Harden Runner
+        uses: step-security/harden-runner@17d0e2bd7d51742c71671bd19fa12bdc9d40a3d6 # v2.8.1
+        with:
+          egress-policy: audit
+
       - name: Ensure that the previous run was successfull, if run is unsupervised
         if: ${{ github.event_name == 'schedule' }}
         uses: noirbizarre/need-checks@9f33845b14d91e9a16a5df79c92a17e351dfdd8b # main
