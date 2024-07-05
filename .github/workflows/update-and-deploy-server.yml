@@ -17,12 +17,12 @@ jobs:
     steps:
       - name: Ensure that the previous run was successfull, if run is unsupervised
         if: ${{ github.event_name == 'schedule' }}
-        uses: noirbizarre/need-checks@main
+        uses: noirbizarre/need-checks@9f33845b14d91e9a16a5df79c92a17e351dfdd8b # main
         with:
           conclusions: success,skipped
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
         with:
           fetch-depth: 0
 
@@ -31,14 +31,14 @@ jobs:
         run: echo "previous_hash=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Install nix
-        uses: cachix/install-nix-action@V27
+        uses: cachix/install-nix-action@ba0dd844c9180cbf77aa72a116d6fbc515d0e87b # V27
 
       - name: Update flake lock file
         run: nix flake update --no-warn-dirty
         working-directory: ./nixos/server
 
       - name: Commit changes to flake lock file
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@8621497c8c39c72f3e2a999a26b4ca1b5058a842 # v5.0.1
         with:
           commit_message: "[nixos/server] Bump flake.lock"
           commit_options: '--no-verify --signoff'

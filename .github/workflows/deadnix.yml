@@ -7,9 +7,9 @@ jobs:
     name: Deadnix
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: cachix/install-nix-action@V27
-      - uses: cachix/cachix-action@v15
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
+      - uses: cachix/install-nix-action@ba0dd844c9180cbf77aa72a116d6fbc515d0e87b # V27
+      - uses: cachix/cachix-action@ad2ddac53f961de1989924296a1f236fcfbaa4fc # v15
         with:
           name: deadnix
-      - uses: astro/deadnix-action@main
+      - uses: astro/deadnix-action@fb6b1107a2192f33d065855dc6af631a25b98c4c # main
