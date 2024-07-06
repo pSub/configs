@@ -52,7 +52,7 @@ jobs:
       - name: Install nix
         uses: cachix/install-nix-action@ba0dd844c9180cbf77aa72a116d6fbc515d0e87b # V27
         with:
-          nix_path: nixpkgs=channel:nixos-23.11
+          nix_path: nixpkgs=channel:nixos-24.05
 
       - name: Use magix nix cache
         uses: DeterminateSystems/magic-nix-cache-action@b46e247b898aa56e6d2d2e728dc6df6c84fdb738 # v7
