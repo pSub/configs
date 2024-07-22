@@ -3,6 +3,6 @@
 
 emacs --daemon &
 obsidian &
-super-productivity &
+io.github.alainm23.planify &
 nextcloud &
 kdeconnect-indicator &

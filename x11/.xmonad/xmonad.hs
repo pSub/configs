@@ -26,6 +26,7 @@ myManageHook = composeAll
                  [ isFullscreen    --> doFullFloat
                  , isDialog        --> doCenterFloat
                  , className =? "superProductivity" --> doShift (myWorkspaces !! 0)
+                 , className =? "io.github.alainm23.planify" --> doShift (myWorkspaces !! 0)
                  , className =? "FFPWA-01HZZDRGJ9MS83HN6YA8K68FMG" --> doShift (myWorkspaces !! 5)
                  , className =? "Signal" --> doShift (myWorkspaces !! 5)
                  , className =? "thunderbird" --> doShift (myWorkspaces !! 6)
