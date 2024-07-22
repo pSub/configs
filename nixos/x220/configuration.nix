@@ -47,6 +47,37 @@ in
   # Use the network manager.
   networking.networkmanager.enable = true;
 
+  security.pki.certificates = [
+    # fritz.box certificate
+    # Howto generate the certificate:
+    # https://stackoverflow.com/questions/59738140/why-is-firefox-not-trusting-my-self-signed-certificate
+    ''
+-----BEGIN CERTIFICATE-----
+MIID1zCCAr+gAwIBAgIUJdXu3fQRPXyMvZzQIXsRXIpDmGQwDQYJKoZIhvcNAQEL
+BQAwezELMAkGA1UEBhMCREUxEDAOBgNVBAgMB0hhbWJ1cmcxEDAOBgNVBAcMB0hh
+bWJ1cmcxEjAQBgNVBAoMCWZyaXR6LmJveDERMA8GA1UEAwwIZml0ei5ib3gxITAf
+BgkqhkiG9w0BCQEWEnBhc2NhbEBmcmV5LmZhbWlseTAeFw0yNDA3MjIyMTQxMTRa
+Fw0yNDA4MjEyMTQxMTRaMHsxCzAJBgNVBAYTAkRFMRAwDgYDVQQIDAdIYW1idXJn
+MRAwDgYDVQQHDAdIYW1idXJnMRIwEAYDVQQKDAlmcml0ei5ib3gxETAPBgNVBAMM
+CGZpdHouYm94MSEwHwYJKoZIhvcNAQkBFhJwYXNjYWxAZnJleS5mYW1pbHkwggEi
+MA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDHWdPVWR6pAwGtd0D4atqb4Wzh
+wiqez7qtTDkH7jUY3KUg4+SmIrYfyRlLxz+Y/zgPtfKR5PYeezFc/CP7LD67su/o
+dIfCYmKeVa4OzJ2K3O6xA5ntOr7LTEUO4L6nU+10XsOwrghYfpEYaSgRsr5zQJA8
+yaYw0ak074By1mzv+jnC78D7RSISzak6PpkHowkzURpKfwX08hwmvJjFaNFjS76t
+RqhsnILjaQWFCcZQuG+82RlFgVcRMKxLeFcvKVpaBNvrqO73u5doqk4mIA7O5t1K
+Iv7u8NxzV/XT+e+lDPMDJvYBuQ5g3RPSQXtS+DPgkNhRH05Gt25QpPjsuqz3AgMB
+AAGjUzBRMB0GA1UdDgQWBBTVVXBjwqhUma5ZOPeeyD87K6eqazAfBgNVHSMEGDAW
+gBTVVXBjwqhUma5ZOPeeyD87K6eqazAPBgNVHRMBAf8EBTADAQH/MA0GCSqGSIb3
+DQEBCwUAA4IBAQBPtduTW3c7Og7YSFfbYNVbZyO4ikQ/Vj9hRfgEsK2RJaAXgpbU
+Oz/cKzqcqRXUA94+54r4aJxqy1NljVKhQOJijjlfhcveE5kw2kVX/zvzWZv1WEvJ
+htwJM+HTZQRwtV5r8p/JLXImKlPjeXKOVzvvWnIyqxCOc8/rFxSKOYI3AH8Uobja
+QZ9kCM0c4IveXeKEbAn6DoLrQ5vKfSCQ7+ZspyR8QYiCa0ycsPTHxzqc8SkfnGcB
+PXXg2VN1AN9QqCQox8Rki3p74ATVuzGc7t5228bG2NmTZ3YcE0SduRTQObxmBYSf
+4tRD5pu2v2kzsTx2DiiJJ5m/4Kvdudzebfsq
+-----END CERTIFICATE-----
+    ''
+  ];
+
   # Enable sound
   security.rtkit.enable = true;
   sound.enable = false;
