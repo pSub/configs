@@ -179,6 +179,10 @@ PXXg2VN1AN9QqCQox8Rki3p74ATVuzGc7t5228bG2NmTZ3YcE0SduRTQObxmBYSf
     "152.53.0.129#adguard.pascal-wittmann.de"
   ];
 
+  networking.hosts = {
+    "192.168.178.1" = [ "fritz.box" ];
+  };
+
   # Cron.
   services.cron.enable = true;
   services.cron.mailto = "pascal";
