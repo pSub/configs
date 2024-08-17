@@ -582,6 +582,8 @@ in  {
         "pm.min_spare_servers" = "15";
         "pm.max_spare_servers" = "25";
         "pm.max_requests" = "500";
+
+        "maintenance_window_start" = "3"; # UTC
       };
       services.nextcloud.phpExtraExtensions = all: [ all.redis ];
 
