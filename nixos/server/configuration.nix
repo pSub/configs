@@ -177,6 +177,7 @@ in  {
         "net.ipv4.conf.all.log_martians" = mkDefault true;
         "net.ipv4.conf.default.log_martians" = mkDefault true;
         "net.ipv6.conf.all.accept_redirects" = mkDefault false;
+        "net.ipv6.conf.enp3s0.accept_ra" = mkDefault "0";
         "net.ipv6.conf.default.accept_redirects" = mkDefault false;
         "net.ipv4.conf.default.accept_redirects" = mkDefault false;
         "net.ipv4.conf.all.secure_redirects" = mkDefault false;
