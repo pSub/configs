@@ -404,7 +404,7 @@ in  {
       services.logrotate.settings = {
         "postgresql" = {
             files = [
-	      "/var/backup/postgresql/atuin.sql.gz"
+	          "/var/backup/postgresql/atuin.sql.gz"
               "/var/backup/postgresql/homepage_production.sql.gz"
               "/var/backup/postgresql/nextcloud.sql.gz"
               "/var/backup/postgresql/invidious.sql.gz"
