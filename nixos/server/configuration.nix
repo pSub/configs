@@ -32,14 +32,12 @@ in  {
         "nextcloud/admin" = { owner = "nextcloud"; };
         "nextcloud/db" = { owner = "nextcloud"; };
         "homepage/db" = { owner = "homepage"; };
-        "invidious/db" = {};
         "paperless/admin" = { owner = "paperless"; };
         "radicale" = { owner = "radicale"; };
         "restic/data" = {};
         "vaultwarden/env" = { owner = "vaultwarden"; };
         "mtls/actual/crt" = { owner = "nginx"; };
         "mtls/adguard/crt" = { owner = "nginx"; };
-        "mtls/invidious/crt" = { owner = "nginx"; };
         "mtls/netdata/crt" = { owner = "nginx"; };
         "mtls/paperless/crt" = { owner = "nginx"; };
         "smtp" = { group = "mail"; };
@@ -411,7 +409,6 @@ in  {
 	          "/var/backup/postgresql/atuin.sql.gz"
               "/var/backup/postgresql/homepage_production.sql.gz"
               "/var/backup/postgresql/nextcloud.sql.gz"
-              "/var/backup/postgresql/invidious.sql.gz"
             ];
             frequency = "daily";
             rotate = 30;
@@ -510,23 +507,10 @@ in  {
       services.postgresql.enable = true;
       services.postgresql.package = pkgs.postgresql_15;
       services.postgresql.dataDir = "/var/lib/postgresql/15";
-      services.postgresqlBackup.databases = [ "atuin" "homepage_production" "nextcloud" "invidious" ];
+      services.postgresqlBackup.databases = [ "atuin" "homepage_production" "nextcloud" ];
       services.postgresqlBackup.enable = true;
       services.postgresqlBackup.location = "/var/backup/postgresql";
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
-
-      # invidious
-      services.invidious.enable = true;
-      services.invidious.port = 3042;
-      services.invidious.domain = "invidious.pascal-wittmann.de";
-      services.invidious.nginx.enable = true;
-      services.invidious.settings.db.user = "invidious";
-      services.invidious.database.passwordFile = "/run/credentials/invidious.service/invidiousDb";
-      systemd.services.invidious.serviceConfig = {
-        LoadCredential = [
-          "invidiousDb:/run/secrets/invidious/db"
-        ];
-      };
 
       # Caldav / Cardav
       services.radicale.enable = true;
@@ -791,13 +775,6 @@ in  {
           '';
         };
 
-        "invidious.pascal-wittmann.de" = {
-          extraConfig = ''
-            ssl_verify_client on;
-            ssl_client_certificate /run/secrets/mtls/invidious/crt;
-          '';
-        };
-	
         "atuin.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
