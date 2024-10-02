@@ -63,7 +63,7 @@ jobs:
           flake-lock-path: nixos/server/flake.lock
 
       - name: Run nixos-rebuild
-        uses: workflow/nix-shell-action@10ebd4e80eae8a5bc5147c0a36ebb568d1b277bd # v3.3.2
+        uses: workflow/nix-shell-action@5fdff26c1325df635247f72cba79ffc370303fdb # v3.4.0
         with:
           packages: nixos-rebuild
           working-directory: nixos/server
