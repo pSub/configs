@@ -22,7 +22,7 @@ jobs:
 
       - name: Ensure that the previous run was successfull, if run is unsupervised
         if: ${{ github.event_name == 'schedule' }}
-        uses: noirbizarre/need-checks@9f33845b14d91e9a16a5df79c92a17e351dfdd8b # main
+        uses: noirbizarre/need-checks@6cac344b29ae24e28fc2542ce067a7756ea333af # main
         with:
           conclusions: success,skipped
 
