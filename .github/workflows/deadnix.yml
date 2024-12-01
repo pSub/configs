@@ -17,4 +17,4 @@ jobs:
       - uses: cachix/cachix-action@ad2ddac53f961de1989924296a1f236fcfbaa4fc # v15
         with:
           name: deadnix
-      - uses: astro/deadnix-action@fb6b1107a2192f33d065855dc6af631a25b98c4c # main
+      - uses: astro/deadnix-action@ee2dbf0e5d720af59156d620d843fe4964d794ca # main
