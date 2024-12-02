@@ -1,5 +1,8 @@
 on: [push]
 
+permissions:
+  contents: read
+
 name: Dead code analysis
 
 jobs:
