@@ -1,5 +1,7 @@
 name: Update and Deploy Server
 
+permissions: read-all
+
 on:
   schedule:
     - cron: "45 1 * * *"
@@ -8,6 +10,8 @@ on:
 
 jobs:
   update-flake-lock:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     outputs:
       previous_hash: ${{ steps.previous_commit.outputs.previous_hash }}
