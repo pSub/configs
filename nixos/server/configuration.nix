@@ -555,7 +555,6 @@ in  {
         dbuser = "nextcloud";
         dbpassFile = "/run/secrets/nextcloud/db";
         dbhost = "127.0.0.1:5432";
-        dbtableprefix = "oc_";
       };
       services.nextcloud.settings = {
         "default_phone_region" = "DE";
