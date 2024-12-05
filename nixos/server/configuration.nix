@@ -7,6 +7,11 @@ let
     Attention, by continuing to connect to this system, you consent to the owner storing a log of all activity.
     Unauthorized access is prohibited.
   '';
+  uptimeRobotWhitelistUpstream = pkgs.fetchurl {
+    url = "https://uptimerobot.com/inc/files/ips/IPv4andIPv6.txt";
+    hash = "sha256-QEtFJDNtYhGAWoPuq7JZFDd2A+kFZGAS6Wq5xnqRwNk=";
+  };
+  uptimeRobotWhitelist = with builtins; toFile "uptimeRobotWhitelist.txt" (replaceStrings ["\r"] [" 1;"] (readFile uptimeRobotWhitelistUpstream));
 in  {
       require = [
         ./modules/hardware.nix
@@ -650,10 +655,8 @@ in  {
 
         geo $allowed_ip {
           default 0;
-          # TODO: Create this file automatically
-          include /var/db/IPv4andIPv6.txt;
+          include ${uptimeRobotWhitelist};
         }
-
 
         map "$allowed_country$allowed_ip" $is_allowed {
           default 0;
