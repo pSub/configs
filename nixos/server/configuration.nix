@@ -931,9 +931,6 @@ in  {
        "health_alarm_notify.conf" = "/run/secrets/netdata/telegram";
       };
 
-      # Sound
-      sound.enable = false;
-
       # Enable zsh
       programs.zsh.enable = true;
 
