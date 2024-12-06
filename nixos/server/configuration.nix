@@ -38,6 +38,7 @@ in  {
         "nextcloud/db" = { owner = "nextcloud"; };
         "homepage/db" = { owner = "homepage"; };
         "paperless/admin" = { owner = "paperless"; };
+        "wakapi/passwordSalt" = {  };
         "radicale" = { owner = "radicale"; };
         "restic/data" = {};
         "vaultwarden/env" = { owner = "vaultwarden"; };
@@ -342,6 +343,7 @@ in  {
         htop
         lynis
         zile
+        pgloader
       ];
 
       # What breaks with this option?
@@ -512,7 +514,7 @@ in  {
       services.postgresql.enable = true;
       services.postgresql.package = pkgs.postgresql_15;
       services.postgresql.dataDir = "/var/lib/postgresql/15";
-      services.postgresqlBackup.databases = [ "atuin" "homepage_production" "nextcloud" ];
+      services.postgresqlBackup.databases = [ "atuin" "homepage_production" "nextcloud" "wakapi" ];
       services.postgresqlBackup.enable = true;
       services.postgresqlBackup.location = "/var/backup/postgresql";
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
@@ -592,6 +594,25 @@ in  {
           nextcloud-occ config:system:set memcache.local --value '\OC\Memcache\Redis' --type string
           nextcloud-occ config:system:set memcache.locking --value '\OC\Memcache\Redis' --type string
       '';
+
+      # wakapi
+      services.wakapi = {
+        enable = true;
+        passwordSaltFile = "/run/secrets/wakapi/passwordSalt";
+        database.createLocally = true;
+        settings = {
+          server = {
+            port = 3043;
+          };
+          db = {
+            host = "127.0.0.1";
+            port = 5432;
+            user = "wakapi";
+            name = "wakapi";
+            dialect = "postgres";
+          };
+        };
+      };
 
       # paperless
       services.paperless.enable = true;
