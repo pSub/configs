@@ -611,6 +611,9 @@ in  {
             name = "wakapi";
             dialect = "postgres";
           };
+          security = {
+            allow_signup = false;
+          };
         };
       };
 
