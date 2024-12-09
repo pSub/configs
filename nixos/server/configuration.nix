@@ -510,6 +510,9 @@ in  {
         TCPKeepAlive = "no";
       };
 
+      # Sysstat
+      services.sysstat.enable = true;
+
       # PostgreSQL.
       services.postgresql.enable = true;
       services.postgresql.package = pkgs.postgresql_15;
