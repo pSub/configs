@@ -277,11 +277,19 @@ in  {
           SystemMaxUse=1G
       '';
 
+      services.resolved = {
+        enable = true;
+        dnssec = "true";
+        dnsovertls = "true";
+        domains = [ "~." ]; # use as default interface for all requests
+        llmnr = "false";
+      };
+
       networking.hostName = "nixos"; # Define your hostname.
       networking.domain = "pascal-wittmann.de";
       networking.nameservers = [
-        "9.9.9.9"
-        "149.112.112.112"
+        "9.9.9.9#dns.quad9.net"
+        "149.112.112.112#dns.quad9.net"
       ];
 
       networking.firewall.enable = true;
