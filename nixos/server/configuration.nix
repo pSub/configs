@@ -324,6 +324,9 @@ in  {
       # Set your time zone.
       time.timeZone = "Europe/Berlin";
 
+      # qemu guest agent
+      services.qemuGuest.enable = true;
+
       # Security - PAM
       security.pam.sshAgentAuth.enable = true;
       security.pam.services.sudo.sshAgentAuth = true;
