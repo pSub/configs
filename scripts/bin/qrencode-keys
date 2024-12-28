@@ -18,4 +18,11 @@ for PUB_KEY_PATH in "$SSH_DIR"/id*.pub; do
     qrencode "$PRIV_KEY" -o "$QR_DIR"/"$PRIV_KEY".svg
 done
 
-convert "$QR_DIR"/*.svg "$SSH_DIR"/keys-as-qr-codes.pdf
+montage -label %f \
+        -tile 3x \
+        -page a4 \
+        -geometry 500x500 \
+        -mode frame \
+        -pointsize 20 \
+        "$QR_DIR"/*.svg \
+        "$SSH_DIR"/keys-as-qr-codes.pdf
