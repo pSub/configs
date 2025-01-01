@@ -55,6 +55,7 @@ in
           add_header X-XSS-Protection "1; mode=block";
           add_header X-Frame-Options DENY;
           add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), fullscreen=()";
+          add_header Referrer-Policy "strict-origin-when-cross-origin" always;
 
           rewrite ^/datenschutz$ /privacy permanent;
           rewrite ^/impressum$ /contact permanent;
