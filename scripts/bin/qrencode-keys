@@ -13,9 +13,9 @@ trap cleanup SIGINT
 
 for PUB_KEY_PATH in "$SSH_DIR"/id*.pub; do
     PUB_KEY=$(basename "$PUB_KEY_PATH")
-    qrencode "$PUB_KEY" -o "$QR_DIR"/"$PUB_KEY".svg
+    qrencode -r "$PUB_KEY" -o "$QR_DIR"/"$PUB_KEY".svg
     PRIV_KEY=${PUB_KEY:r}
-    qrencode "$PRIV_KEY" -o "$QR_DIR"/"$PRIV_KEY".svg
+    qrencode -r "$PRIV_KEY" -o "$QR_DIR"/"$PRIV_KEY".svg
 done
 
 montage -label %f \
