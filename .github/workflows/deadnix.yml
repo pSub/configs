@@ -21,3 +21,5 @@ jobs:
         with:
           name: deadnix
       - uses: astro/deadnix-action@ee2dbf0e5d720af59156d620d843fe4964d794ca # main
+        with:
+          flags: --no-lambda-arg  
