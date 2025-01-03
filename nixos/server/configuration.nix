@@ -22,6 +22,8 @@ in  {
         ./users.nix
       ];
 
+      nixpkgs.overlays = [ (import ./overlays/paperless-ngx.nix) ];
+
       nixpkgs.config.allowUnfree = true;
 
       system.stateVersion = "23.11";
@@ -626,6 +628,7 @@ in  {
 
       # paperless
       services.paperless.enable = true;
+      services.paperless.package = pkgs.paperless-ngx-without-tests;
       services.paperless.dataDir = "/srv/paperless";
       services.paperless.passwordFile = "/run/secrets/paperless/admin";
       services.paperless.settings = {
