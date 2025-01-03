@@ -80,7 +80,6 @@ skRh4A2bjJHJGz2Z/EoAj4wcZzmXT+jMnWZtGnA=
 
   # Enable sound
   security.rtkit.enable = true;
-  sound.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
