@@ -52,8 +52,8 @@
   nix.settings.max-jobs = 4;
 
   services.xserver.videoDrivers = [ "modesetting" "vesa" ];
-  hardware.opengl.extraPackages = [ pkgs.vaapiIntel ];
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.extraPackages = [ pkgs.vaapiIntel ];
+  hardware.graphics.driSupport32Bit = true;
 
   # Power Management
   powerManagement.cpuFreqGovernor = "conservative";
