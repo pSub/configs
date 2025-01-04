@@ -159,7 +159,6 @@ in
         gitFull
         pre-commit
         #idea.idea-ultimate
-        subversion
       ];
     };
 
