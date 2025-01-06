@@ -70,6 +70,7 @@ in
         pamixer
         psmisc
         pinpoint
+        planify
         inetutils
         tree
         xfce.tumbler
