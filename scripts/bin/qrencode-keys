@@ -1,5 +1,5 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i zsh -p qrencode imagemagick
+#! nix-shell -i zsh -p zsh qrencode imagemagick
 
 SSH_DIR=$HOME/.ssh
 QR_DIR=$(mktemp -d --tmpdir="$SSH_DIR")
@@ -20,9 +20,15 @@ done
 
 montage -label %f \
         -tile 3x \
-        -page a4 \
         -geometry 500x500 \
         -mode frame \
         -pointsize 20 \
         "$QR_DIR"/*.svg \
+	 miff:- \
+| \
+magick - \
+	-page a4 \
+	-bordercolor white -border 100 \
         "$SSH_DIR"/keys-as-qr-codes.pdf
+
+
