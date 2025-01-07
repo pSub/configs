@@ -1,6 +1,13 @@
 #! /usr/bin/env nix-shell
 #! nix-shell -i zsh -p zsh qrencode imagemagick
 
+# qrencode-keys generates for each public, private key pair
+# in $HOME/.ssh a qr-code and creates a A4 PDF file containing
+# all qr-codes. The qr-codes have the filename as a caption.
+#
+# You can store the resulting PDF file at a secure location and
+# restore your ssh keys easily by using your smartphone.
+
 SSH_DIR=$HOME/.ssh
 QR_DIR=$(mktemp -d --tmpdir="$SSH_DIR")
 
