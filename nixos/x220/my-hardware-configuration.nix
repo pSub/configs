@@ -53,7 +53,7 @@
 
   services.xserver.videoDrivers = [ "modesetting" "vesa" ];
   hardware.graphics.extraPackages = [ pkgs.vaapiIntel ];
-  hardware.graphics.driSupport32Bit = true;
+  hardware.graphics.enable32Bit = true;
 
   # Power Management
   powerManagement.cpuFreqGovernor = "conservative";
