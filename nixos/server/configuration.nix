@@ -395,6 +395,15 @@ in  {
       # Atuin Sync Server
       services.atuin.enable = true;
 
+      # changedetection.io
+      services.changedetection-io = {
+        enable = true;
+        behindProxy = true;
+        port = 3060;
+        chromePort = 3061;
+        baseURL = "https://changedetection.frey.family";
+      };
+
       # Mail
       programs.msmtp = {
         enable = true;
@@ -926,6 +935,21 @@ in  {
                 return 403;
               }
 
+              # Set headers
+              proxy_set_header Host              $host;
+              proxy_set_header X-Real-IP         $remote_addr;
+              proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+          '';
+          };
+        };
+
+        "changedetection.frey.family" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3060";
+            extraConfig = ''
               # Set headers
               proxy_set_header Host              $host;
               proxy_set_header X-Real-IP         $remote_addr;
