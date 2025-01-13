@@ -325,6 +325,7 @@ in  {
       # Security - PAM
       security.pam.sshAgentAuth.enable = true;
       security.pam.services.sudo.sshAgentAuth = true;
+      security.pam.services.login.logFailures = true;
       security.pam.loginLimits = [
         {
           domain = "*";
@@ -400,8 +401,30 @@ in  {
         enable = true;
         behindProxy = true;
         port = 3060;
-        chromePort = 3061;
+        #chromePort = 3061;
+        environmentFile = pkgs.writeText "changedetection-environment" ''
+          PLAYWRIGHT_DRIVER_URL=ws://127.0.0.1:3061/?stealth=1&--disable-web-security=true&blockAds=true
+        '';
         baseURL = "https://changedetection.frey.family";
+      };
+
+      virtualisation = {
+        oci-containers.containers = lib.mkMerge [
+          { changedetection-io-playwright-ghcr = {
+            image = "ghcr.io/browserless/chromium:latest";
+            environment = {
+              SCREEN_WIDTH = "1920";
+              SCREEN_HEIGHT = "1024";
+              SCREEN_DEPTH = "16";
+              ENABLE_DEBUGGER = "false";
+              CONCURRENT = "10";
+              TIMEOUT = "60000";
+            };
+            ports = [
+              "127.0.0.1:3061:3000"
+            ];
+          };} 
+        ];
       };
 
       # Mail
@@ -1021,4 +1044,7 @@ in  {
       users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
 
       virtualisation.docker.enable = true;
+      virtualisation.docker.daemon.settings = { 
+        dns = [ "8.8.8.8" ];
+      };
     }
