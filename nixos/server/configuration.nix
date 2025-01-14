@@ -35,6 +35,7 @@ in  {
       sops.secrets = {
         "basicauth/passwords" = { owner = "nginx"; };
         "cifs/pictures" = {};
+        "changedetection" = { "changedetection-io" };
         "netdata/telegram" = { owner = "netdata"; };
         "nextcloud/admin" = { owner = "nextcloud"; };
         "nextcloud/db" = { owner = "nextcloud"; };
@@ -50,6 +51,13 @@ in  {
         "mtls/paperless/crt" = { owner = "nginx"; };
         "smtp" = { group = "mail"; };
         "geoip/key" = { };
+      };
+      
+      sops.templates = { 
+        "changedetection.environment".content = ''
+          PLAYWRIGHT_DRIVER_URL=ws://127.0.0.1:3061/?stealth=1&--disable-web-security=true&blockAds=true
+          SALTED_PASS="${config.sops.placeholder.changedetection}"
+        '';
       };
 
       # Use the systemd-boot EFI boot loader.
@@ -401,10 +409,7 @@ in  {
         enable = true;
         behindProxy = true;
         port = 3060;
-        #chromePort = 3061;
-        environmentFile = pkgs.writeText "changedetection-environment" ''
-          PLAYWRIGHT_DRIVER_URL=ws://127.0.0.1:3061/?stealth=1&--disable-web-security=true&blockAds=true
-        '';
+        environmentFile = "${config.sops.templates."changedetection.environment".path}";
         baseURL = "https://changedetection.frey.family";
       };
 
