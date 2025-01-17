@@ -220,6 +220,7 @@ in  {
       };
 
       nix.settings.allowed-users = [ ];
+      nix.settings.experimental-features = [ "flakes" ];
       nix.settings.max-jobs = 2;
       nix.optimise.automatic = true;
       nix.gc = {
