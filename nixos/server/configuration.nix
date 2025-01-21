@@ -50,6 +50,7 @@ in  {
         "mtls/netdata/crt" = { owner = "nginx"; };
         "mtls/paperless/crt" = { owner = "nginx"; };
         "smtp" = { group = "mail"; };
+        "searx" = { owner = "uwsgi"; };
         "geoip/key" = { };
       };
       
@@ -679,6 +680,19 @@ in  {
         PAPERLESS_OCR_USER_ARGS=''{"invalidate_digital_signatures": true}'';
       };
 
+      # SearxNG
+      services.searx = {
+        enable = true;
+        runInUwsgi = true;
+        environmentFile = "/run/secrets/searx";
+        settings = {
+          server.port = 3070; # TODO: Has no effect, maybe because of runInUwsgi = true
+          server.bind_address = "127.0.0.1";
+          server.secret_key = "@SEARX_SECRET_KEY@";
+          use_default_settings.engines.remove = [ "soundcloud" ];
+        };
+      };
+
       # vaultwarden
       services.vaultwarden.enable = true;
       services.vaultwarden.package = pkgs.vaultwarden;
@@ -989,6 +1003,21 @@ in  {
               proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
               proxy_set_header X-Forwarded-Proto $scheme;
           '';
+          };
+        };
+
+        "search.frey.family" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:8080";
+            extraConfig = ''
+              # Set headers
+              proxy_set_header Host              $host;
+              proxy_set_header X-Real-IP         $remote_addr;
+              proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+            '';
           };
         };
 
