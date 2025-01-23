@@ -351,7 +351,7 @@ in  {
 
       security.acme.defaults.email = "contact@pascal-wittmann.de";
       security.acme.acceptTerms = true;
-      security.acme.server = "https://api.buypass.com/acme/directory";
+      security.acme.defaults.server = "https://api.buypass.com/acme/directory";
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
