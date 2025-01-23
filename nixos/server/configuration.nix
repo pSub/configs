@@ -57,7 +57,7 @@ in  {
       sops.templates = { 
         "changedetection.environment" = {
           content = ''
-            PLAYWRIGHT_DRIVER_URL=ws://127.0.0.1:3061/?stealth=1&--disable-web-security=true&blockAds=true
+            PLAYWRIGHT_DRIVER_URL=ws://127.0.0.1:3061/?stealth=1&--disable-web-security=true&blockAds=true&--accept-lang=de-DE,de
             SALTED_PASS="${config.sops.placeholder.changedetection}"
           '';
           owner = "changedetection-io";
