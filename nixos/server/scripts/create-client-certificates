@@ -5,7 +5,7 @@
 # authentication. The file `client.pfx` is used on the client
 # and the file `client.crt` is used on the server.
 
-# If the server is nginx under NixOS the configuration cloud
+# If the server is nginx under NixOS the configuration could
 # look like this:
 #
 #   serives.nginx.virtualhosts."example.com".extraConfig = ''
@@ -20,5 +20,6 @@ DEST_DIR="$1"
 mkdir -p "$DEST_DIR"
 cd "$DEST_DIR"
 openssl genrsa -out client.key 4096
-openssl req -new -x509 -days 365 -key client.key -out client.crt
+openssl req -new -x509 -days 365 -key client.key -out client.crt \
+  -subj "/CN=$(basename $DEST_DIR)/O=pascal-wittmann.de"
 openssl pkcs12 -export -in client.crt -inkey client.key -out client.pfx
