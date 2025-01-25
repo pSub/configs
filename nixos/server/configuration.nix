@@ -20,6 +20,7 @@ in  {
         ./modules/radicale.nix
         ./modules/systemd-email-notify.nix
         ./users.nix
+        ./secrets.nix
       ];
 
       nixpkgs.overlays = [ (import ./overlays/paperless-ngx.nix) ];
@@ -48,13 +49,12 @@ in  {
         "mtls/actual/crt" = { owner = "nginx"; };
         "mtls/adguard/crt" = { owner = "nginx"; };
         "mtls/netdata/crt" = { owner = "nginx"; };
-        "mtls/paperless/crt" = { owner = "nginx"; };
         "smtp" = { group = "mail"; };
         "searx" = { owner = "uwsgi"; };
         "geoip/key" = { };
       };
-      
-      sops.templates = { 
+
+      sops.templates = {
         "changedetection.environment" = {
           content = ''
             PLAYWRIGHT_DRIVER_URL=ws://127.0.0.1:3061/?stealth=1&--disable-web-security=true&blockAds=true&--accept-lang=de-DE,de
@@ -895,7 +895,7 @@ in  {
           enableACME = true;
           extraConfig = ''
             ssl_verify_client on;
-            ssl_client_certificate /run/secrets/mtls/paperless/crt;
+            ssl_client_certificate /run/secrets/mtls/paperless;
             client_max_body_size 0;
           '';
           locations."/" = {

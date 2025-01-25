@@ -15,11 +15,19 @@
 
 set -e
 
-DEST_DIR="$1"
+DECLARED_CERTS=($(awk '{if(/ssl_client_certificate/) print $2}' configuration.nix))
+echo $DECLARED_CERTS
 
-mkdir -p "$DEST_DIR"
-cd "$DEST_DIR"
-openssl genrsa -out client.key 4096
-openssl req -new -x509 -days 365 -key client.key -out client.crt \
-  -subj "/CN=$(basename $DEST_DIR)/O=pascal-wittmann.de"
-openssl pkcs12 -export -in client.crt -inkey client.key -out client.pfx
+for d in "${DECLARED_CERTS[@]}"; do
+    echo $d;
+
+done;
+
+#DEST_DIR="$1"
+
+#mkdir -p "$DEST_DIR"
+#cd "$DEST_DIR"
+#openssl genrsa -out client.key 4096
+#openssl req -new -x509 -days 365 -key client.key -out client.crt \
+#  -subj "/CN=$(basename $DEST_DIR)/O=pascal-wittmann.de"
+#openssl pkcs12 -export -in client.crt -inkey client.key -out client.pfx
