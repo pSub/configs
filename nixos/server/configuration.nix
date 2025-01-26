@@ -20,7 +20,7 @@ in  {
         ./modules/radicale.nix
         ./modules/systemd-email-notify.nix
         ./users.nix
-        ./secrets.nix
+        ./mtls-secrets.nix
       ];
 
       nixpkgs.overlays = [ (import ./overlays/paperless-ngx.nix) ];
@@ -46,9 +46,6 @@ in  {
         "radicale" = { owner = "radicale"; };
         "restic/data" = {};
         "vaultwarden/env" = { owner = "vaultwarden"; };
-        "mtls/actual/crt" = { owner = "nginx"; };
-        "mtls/adguard/crt" = { owner = "nginx"; };
-        "mtls/netdata/crt" = { owner = "nginx"; };
         "smtp" = { group = "mail"; };
         "searx" = { owner = "uwsgi"; };
         "geoip/key" = { };
@@ -843,7 +840,7 @@ in  {
             proxy_store off;
 
             ssl_verify_client on;
-            ssl_client_certificate /run/secrets/mtls/netdata/crt;
+            ssl_client_certificate /run/secrets/mtls/netdata;
 
             auth_basic "Password protected area";
             auth_basic_user_file /run/secrets/basicauth/passwords;
@@ -863,7 +860,7 @@ in  {
           };
           extraConfig = ''
             ssl_verify_client on;
-            ssl_client_certificate /run/secrets/mtls/adguard/crt;
+            ssl_client_certificate /run/secrets/mtls/adguard;
           '';
         };
 
@@ -886,7 +883,7 @@ in  {
           };
           extraConfig = ''
             ssl_verify_client on;
-            ssl_client_certificate /run/secrets/mtls/actual/crt;
+            ssl_client_certificate /run/secrets/mtls/actual;
           '';
         };
 

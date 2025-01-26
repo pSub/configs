@@ -11,3 +11,5 @@ emacs/.emacs.d/transient
 x11/.xmonad/xmonad-x86_64-linux
 x11/.xmonad/xmonad.errors
 .pre-commit-config.yaml
+
+nixos/server/mtls/certs

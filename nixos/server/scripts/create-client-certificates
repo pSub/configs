@@ -1,33 +1,65 @@
 #! /usr/bin/env nix-shell
-#! nix-shell -i zsh -p openssl
+#! nix-shell --pure -i zsh -p zsh openssl sops gawk
 
-# This script creates certificates that can be used for mTLS
-# authentication. The file `client.pfx` is used on the client
-# and the file `client.crt` is used on the server.
-
-# If the server is nginx under NixOS the configuration could
-# look like this:
+# This script creates mTLS certificates for services you run
+# through nginx on NixOS.
 #
-#   serives.nginx.virtualhosts."example.com".extraConfig = ''
+# Just define the certificate like so in your configuration.nix
+#
+#   serives.nginx.virtualhosts."app.example.com".extraConfig = ''
 #     ssl_verify_client on;
-#     ssl_client_certificate /path/to/client.crt;
+#     ssl_client_certificate /run/secrets/mtls/app;
 #   '';
+#
+# This script will search for all occurances of ssl_client_certificate
+# and use the last element of the pass as an identifier for the
+# certificate. This identifier has to be unique.
+#
+# Using this identifier the script generates certificates, encrpts the
+# server certificate with sops and provides a nix-sops file.
 
 set -e
 
-DECLARED_CERTS=($(awk '{if(/ssl_client_certificate/) print $2}' configuration.nix))
-echo $DECLARED_CERTS
+echo -n "Password: "
+read -s PASS
 
-for d in "${DECLARED_CERTS[@]}"; do
-    echo $d;
+BASE=${0:a:h}/..
 
+DECLARED_CERTS=($(awk '{if(/ssl_client_certificate/) print $2}' configuration.nix | sort))
+
+for DECLARED_CERT in "${DECLARED_CERTS[@]}"; do
+    APP=$(basename $DECLARED_CERT | tr -d ';')
+
+    DEST_DIR="$BASE/mtls/certs/$APP"
+
+    mkdir -p "$DEST_DIR"
+    cd "$DEST_DIR"
+
+    # Create key, client and server certificate
+    openssl genrsa -out client.key 4096
+    openssl req -new -x509 -days 365 -key client.key -out client.crt \
+      -subj "/CN=$APP/O=pascal-wittmann.de"
+    openssl pkcs12 -export -in client.crt -inkey client.key -out client.pfx -password pass:"$PASS"
+
+    # Encrypt server certificate
+    sops --encrypt client.crt > $BASE/mtls/$APP.yaml
 done;
 
-#DEST_DIR="$1"
+# Create file for nix-sops
+cat > $BASE/mtls-secrets.nix << EOF
+{
+  sops.secrets = {
+$(
+for DECLARED_CERT in "${DECLARED_CERTS[@]}"; do
+    APP=$(basename $DECLARED_CERT | tr -d ';')
 
-#mkdir -p "$DEST_DIR"
-#cd "$DEST_DIR"
-#openssl genrsa -out client.key 4096
-#openssl req -new -x509 -days 365 -key client.key -out client.crt \
-#  -subj "/CN=$(basename $DEST_DIR)/O=pascal-wittmann.de"
-#openssl pkcs12 -export -in client.crt -inkey client.key -out client.pfx
+    echo "    \"mtls/$APP\" = {
+      sopsFile = ./mtls/$APP.yaml;
+      format = \"binary\";
+      owner = \"nginx\";
+     };"
+done
+)
+  };
+}
+EOF
