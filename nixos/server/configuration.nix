@@ -251,7 +251,8 @@ in  {
         "-a exit,always -F arch=b64 -S execve"
       ];
       environment.etc."audit/auditd.conf".text = ''
-        log_file = /var/log/audit/audit.log # can be removed once https://github.com/CISOfy/lynis/pull/1594 is merged
+        # can following line be removed once https://github.com/CISOfy/lynis/pull/1594 is merged
+        log_file = /var/log/audit/audit.log
         space_left = 10%
         space_left_action = ignore
         admin_space_left = 5%
