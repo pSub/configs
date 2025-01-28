@@ -459,11 +459,7 @@ in  {
       services.logrotate.checkConfig = false;
       services.logrotate.settings = {
         "postgresql" = {
-            files = [
-	          "/var/backup/postgresql/atuin.sql.gz"
-              "/var/backup/postgresql/homepage_production.sql.gz"
-              "/var/backup/postgresql/nextcloud.sql.gz"
-            ];
+            files = lib.map (x: "/var/backup/postgresql/" + x + ".sql.gz") config.services.postgresqlBackup.databases;
             frequency = "daily";
             rotate = 30;
         };
