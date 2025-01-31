@@ -428,6 +428,7 @@ in  {
               ENABLE_DEBUGGER = "false";
               CONCURRENT = "10";
               TIMEOUT = "60000";
+              LANGUAGE = "de";
             };
             ports = [
               "127.0.0.1:3061:3000"
