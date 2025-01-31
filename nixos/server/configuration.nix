@@ -1096,7 +1096,4 @@ in  {
       users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
 
       virtualisation.docker.enable = true;
-      virtualisation.docker.daemon.settings = { 
-        dns = [ "8.8.8.8" ];
-      };
     }
