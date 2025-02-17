@@ -198,7 +198,7 @@ in  {
         "net.ipv4.conf.all.secure_redirects" = mkDefault false;
         "net.ipv4.conf.all.rp_filter" = mkDefault "1";
 
-        # Somehow this option does not apply…
+        # Needs to be enabled as long as I use docker.
 #        "net.ipv4.conf.all.forwarding" = mkDefault "0";
 
         "net.ipv4.conf.all.send_redirects" = mkDefault "0";
