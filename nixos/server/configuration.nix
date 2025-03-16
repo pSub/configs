@@ -365,7 +365,7 @@ in  {
         pgloader
       ];
 
-      # What breaks with this option?
+      # Ensure there are no packages except the ones explicitly defined in this config
       environment.defaultPackages = lib.mkForce [];
 
       # List services that you want to enable:
