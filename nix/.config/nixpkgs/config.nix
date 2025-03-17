@@ -127,7 +127,7 @@ in
         filezilla
         gimp
         thunderbird
-        k3b
+        #k3b
         llpp
         libreoffice-fresh
         nextcloud-client

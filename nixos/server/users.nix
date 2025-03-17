@@ -38,5 +38,14 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDc9ad0nrS23JRQeEwSvGp106YnbOQ0Rfjcmh7AX5iij Pascal Wittmann <pascal.wittmann@red6-es.de>"
       ];
     };
+
+    github = {
+      home = "/home/github";
+      isNormalUser = true;
+      group = "wheel";
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGiS9rptVuc7SSZRFLHRUo2Hv7lN9hHQEyCFLNP9o9HC pascal@github_deploy_server"
+      ];
+    };
   };
 }

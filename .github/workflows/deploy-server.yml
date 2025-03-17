@@ -68,5 +68,5 @@ jobs:
           working-directory: nixos/server
           script: |
             sudo cp -r $HOME/.ssh /root
-            nixos-rebuild switch --fast --flake ".#nixos" --use-remote-sudo --target-host "deployer@152.53.0.129" --build-host "deployer@152.53.0.129" --builders "ssh://deployer@152.53.0.129 aarch64-linux"  || true
-            nixos-rebuild switch --fast --flake ".#nixos" --use-remote-sudo --target-host "deployer@152.53.0.129" --build-host "deployer@152.53.0.129" --builders '"ssh://deployer@152.53.0.129 aarch64-linux"'
+            nixos-rebuild switch --fast --flake ".#nixos" --use-remote-sudo --target-host "github@152.53.0.129" --build-host "github@152.53.0.129" --builders "ssh://github@152.53.0.129 aarch64-linux"  || true
+            nixos-rebuild switch --fast --flake ".#nixos" --use-remote-sudo --target-host "github@152.53.0.129" --build-host "github@152.53.0.129" --builders '"ssh://github@152.53.0.129 aarch64-linux"'

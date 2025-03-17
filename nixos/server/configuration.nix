@@ -71,7 +71,8 @@ in  {
         ssh = {
           enable = true;
           port = 10801;
-          authorizedKeys = config.users.users.deployer.openssh.authorizedKeys.keys;
+          authorizedKeys = config.users.users.deployer.openssh.authorizedKeys.keys ++
+                           config.users.users.github.openssh.authorizedKeys.keys ;
           hostKeys = [ "/nix/secret/initrd/ssh_host_ed25519_key" ];
         };
       };
@@ -230,11 +231,12 @@ in  {
       nixpkgs.config.allowBroken = true;
 
       # Deploy without root
-      nix.settings.trusted-users = [ "root" "deployer" ];
+      nix.settings.trusted-users = [ "root" "deployer" "github" ];
       security.sudo.enable = true;
 
       # TODO: Separate keys for root and deployer
-      users.users.root.openssh.authorizedKeys.keys = config.users.users.deployer.openssh.authorizedKeys.keys;
+      users.users.root.openssh.authorizedKeys.keys = config.users.users.deployer.openssh.authorizedKeys.keys ++
+                                                     config.users.users.github.openssh.authorizedKeys.keys;
 
       security.sudo.execWheelOnly = true;
       security.loginDefs.settings = {
@@ -465,6 +467,11 @@ in  {
             rotate = 30;
         };
       };
+
+#      environment.etc."logrotate.conf" = {
+#        source = "${config.services.logrotate.configFile}";
+#      };
+
 
       # fail2ban
       services.fail2ban.enable = true;

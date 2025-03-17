@@ -2,7 +2,7 @@
 # the system.  Help is available in the configuration.nix(5) man page
 # or the NixOS manual available on virtual console 8 (Alt+F8).
 
-{ pkgs, config, ... }:
+{ pkgs, unstable, config, ... }:
 let
   # Displays an alert if the battery is below 10%
   lowBatteryNotifier = pkgs.writeScript "lowBatteryNotifier"
@@ -268,7 +268,7 @@ skRh4A2bjJHJGz2Z/EoAj4wcZzmXT+jMnWZtGnA=
   programs.firefox = {
     enable = true;
     package = pkgs.firefox;
-    nativeMessagingHosts.packages = [ pkgs.firefoxpwa ];
+    nativeMessagingHosts.packages = [ unstable.firefoxpwa ];
   };
 
   # Firewall
