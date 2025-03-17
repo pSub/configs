@@ -468,9 +468,9 @@ in  {
         };
       };
 
-#      environment.etc."logrotate.conf" = {
-#        source = "${config.services.logrotate.configFile}";
-#      };
+      environment.etc."logrotate.conf" = {
+        source = "${config.services.logrotate.configFile}";
+      };
 
 
       # fail2ban
