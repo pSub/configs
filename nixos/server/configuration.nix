@@ -15,7 +15,6 @@ let
 in  {
       require = [
         ./modules/hardware.nix
-        ./modules/baralga.nix
         ./modules/homepage.nix
         ./modules/radicale.nix
         ./modules/systemd-email-notify.nix
