@@ -2,8 +2,9 @@
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
   inputs.sops-nix.url = "github:Mic92/sops-nix";
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.phare-nix.url = "github:pSub/phare-nix";
 
-  outputs = { nixpkgs, sops-nix, ... }:
+  outputs = { nixpkgs, sops-nix, phare-nix, ... }:
     let
       system = "aarch64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -20,6 +21,7 @@
         modules = [
           ./configuration.nix
           sops-nix.nixosModules.sops
+          phare-nix.nixosModules.phare
         ];
       };
     };

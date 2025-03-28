@@ -48,6 +48,7 @@ in  {
         "smtp" = { group = "mail"; };
         "searx" = { owner = "uwsgi"; };
         "geoip/key" = { };
+        "phare/token" = { };
       };
 
       sops.templates = {
@@ -1071,11 +1072,33 @@ in  {
 
       };
 
+      services.phare = {
+        enable = true;
+        tokenFile = "/run/secrets/phare/token";
+        monitors = {
+          homepage = {
+            alertPolicyId = 16870;
+            request = {
+              method = "GET";
+              url = "https://pascal-wittmann.de";
+            };
+          };
+
+          immich = {
+            alertPolicyId = 16870;
+            request = {
+              method = "GET";
+              url = "https://immich.pascal-wittmann.de";
+            };
+          };
+        };
+      };
+
       # Homepage
       services.homepage.enable = true;
 
       # Baralga
-      services.baralga.enable = false;
+      #services.baralga.enable = false;
 
       # Netdata
       services.netdata.enable = true;
