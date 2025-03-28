@@ -48,7 +48,7 @@ in  {
         "smtp" = { group = "mail"; };
         "searx" = { owner = "uwsgi"; };
         "geoip/key" = { };
-        "phare/token" = { };
+        "phare/token" = { group = "wheel"; mode = "0440"; };
       };
 
       sops.templates = {
