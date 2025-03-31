@@ -742,6 +742,14 @@ in  {
         };
       };
 
+      # phare
+      services.phare =  {
+        enable = true;
+        alertPolicyId = 16870;
+        regions = [ "eu-deu-fra" ];
+        tokenFile = "/run/secrets/phare/token";
+      };
+
       # nginx
       services.nginx.enable = true;
       services.nginx.recommendedGzipSettings = true;
@@ -801,12 +809,14 @@ in  {
         "penchy.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
           root = "/srv/penchy";
         };
 
         "cloud.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
         };
 
         "calendar.pascal-wittmann.de" = {
@@ -819,6 +829,7 @@ in  {
         "vaultwarden.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:8222";
             proxyWebsockets = true;
@@ -890,6 +901,7 @@ in  {
         "atuin.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
           locations."/" = { proxyPass = "http://127.0.0.1:8888"; };
         };
 
@@ -931,17 +943,9 @@ in  {
         "wakapi.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3043";
-
-          };
-        };
-
-        "agenda.pascal-wittmann.de" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:3049";
 
           };
         };
@@ -949,6 +953,7 @@ in  {
         "wanderer.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3045";
             extraConfig = ''
@@ -962,6 +967,7 @@ in  {
         "immich.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:2283";
             extraConfig = ''
@@ -995,6 +1001,7 @@ in  {
         "solidtime.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3050";
             extraConfig = ''
@@ -1014,6 +1021,7 @@ in  {
         "changedetection.frey.family" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3060";
             extraConfig = ''
@@ -1029,6 +1037,7 @@ in  {
         "search.frey.family" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:8080";
             extraConfig = ''
@@ -1044,6 +1053,7 @@ in  {
         "users.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
+          enablePhare = true;
 
           locations."/pascal" = {
             root = "/srv/users/";
@@ -1070,28 +1080,6 @@ in  {
           '';
         };
 
-      };
-
-      services.phare = {
-        enable = true;
-        tokenFile = "/run/secrets/phare/token";
-        monitors = {
-          homepage = {
-            alertPolicyId = 16870;
-            request = {
-              method = "GET";
-              url = "https://pascal-wittmann.de";
-            };
-          };
-
-          immich = {
-            alertPolicyId = 16870;
-            request = {
-              method = "GET";
-              url = "https://immich.pascal-wittmann.de";
-            };
-          };
-        };
       };
 
       # Homepage
