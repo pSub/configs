@@ -748,6 +748,23 @@ in  {
         alertPolicyId = 16870;
         regions = [ "eu-deu-fra" ];
         tokenFile = "/run/secrets/phare/token";
+        monitors = {
+          ssh = {
+            protocol = "tcp";
+            request = {
+              host = config.networking.domain;
+              port = builtins.elemAt config.services.openssh.ports 0;
+            };
+          };
+
+          adguard = {
+            protocol = "tcp";
+            request = {
+              host = config.networking.domain;
+              port = 853;
+            };
+          };
+        };
       };
 
       # nginx
