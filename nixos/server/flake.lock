@@ -56,11 +56,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1743599304,
-        "narHash": "sha256-kL9mbvOKloLjpdJHwQi9AJjvgBQ66ECquVTKwqWtCp0=",
+        "lastModified": 1743713644,
+        "narHash": "sha256-TFMPA+TA9MhlQ8wxmadJTfyUsAGjyngb3eyW92sjPfg=",
         "owner": "pSub",
         "repo": "phare-nix",
-        "rev": "c496219eb4e3f15860c54d41879850c46dee9257",
+        "rev": "26a4b21e98efa173d08cae3225fc98a525d49668",
         "type": "github"
       },
       "original": {
