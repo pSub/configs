@@ -1130,4 +1130,8 @@ in  {
       users.defaultUserShell = "${pkgs.zsh}/bin/zsh";
 
       virtualisation.docker.enable = true;
-    }
+
+      # Was enabled by changedetection.io, not sure why it seems to work without it.
+      # If dns_enabled is true it leads to conflicts between aardvark and adguard.
+      virtualisation.podman.defaultNetwork.settings.dns_enabled = lib.mkForce false;
+}
