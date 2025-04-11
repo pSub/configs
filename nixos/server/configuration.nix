@@ -753,7 +753,7 @@ in  {
             protocol = "tcp";
             request = {
               host = config.networking.domain;
-              port = builtins.elemAt config.services.openssh.ports 0;
+              port = builtins.toString (builtins.elemAt config.services.openssh.ports 0);
             };
           };
 
@@ -761,7 +761,7 @@ in  {
             protocol = "tcp";
             request = {
               host = config.networking.domain;
-              port = 853;
+              port = "853";
             };
           };
         };
