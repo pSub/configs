@@ -7,11 +7,6 @@ let
     Attention, by continuing to connect to this system, you consent to the owner storing a log of all activity.
     Unauthorized access is prohibited.
   '';
-  uptimeRobotWhitelistUpstream = pkgs.fetchurl {
-    url = "https://uptimerobot.com/inc/files/ips/IPv4andIPv6.txt";
-    hash = "sha256-QEtFJDNtYhGAWoPuq7JZFDd2A+kFZGAS6Wq5xnqRwNk=";
-  };
-  uptimeRobotWhitelist = with builtins; toFile "uptimeRobotWhitelist.txt" (replaceStrings ["\r"] [" 1;"] (readFile uptimeRobotWhitelistUpstream));
 in  {
       require = [
         ./modules/hardware.nix
@@ -781,22 +776,10 @@ in  {
           $geoip2_data_country_iso_code country iso_code;
         }
 
-        map $geoip2_data_country_iso_code $allowed_country {
+        map $geoip2_data_country_iso_code $is_allowed {
           default 0;
           DE 1;
           AT 1;
-        }
-
-        geo $allowed_ip {
-          default 0;
-          include ${uptimeRobotWhitelist};
-        }
-
-        map "$allowed_country$allowed_ip" $is_allowed {
-          default 0;
-          11 1;
-          10 1;
-          01 1;
         }
 
         map $remote_addr $ip_anonym1 {
