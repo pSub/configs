@@ -743,6 +743,7 @@ in  {
         enable = true;
         alertPolicyId = 16870;
         regions = [ "eu-deu-fra" ];
+        interval = 180;
         tokenFile = "/run/secrets/phare/token";
         monitors = {
           ssh = {
@@ -751,6 +752,7 @@ in  {
               host = config.networking.domain;
               port = builtins.toString (builtins.elemAt config.services.openssh.ports 0);
             };
+            interval = 60;
           };
 
           adguard = {
