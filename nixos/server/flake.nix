@@ -18,6 +18,11 @@
 
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = {
+          pharePkgs = {
+            docs = phare-nix.packages.${system}.phareNixDocs;
+          };
+        };
         modules = [
           ./configuration.nix
           sops-nix.nixosModules.sops

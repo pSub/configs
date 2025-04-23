@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, system, pharePkgs, ... }:
 
   # TODO: https://github.com/nix-community/impermanence/
 
@@ -1051,6 +1051,17 @@ in  {
               proxy_set_header X-Forwarded-Proto $scheme;
             '';
           };
+        };
+
+        "phare-nix.quine.de" = {
+          forceSSL = true;
+          enableACME = true;
+          enablePhare = true;
+          phare.request = {
+            method = "GET";
+            url = "https://phare-nix.quine.de/nixos-options/";
+          };
+          root = "${pharePkgs.docs}";
         };
 
         "users.pascal-wittmann.de" = {
