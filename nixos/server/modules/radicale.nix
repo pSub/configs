@@ -25,10 +25,7 @@ in
         forceSSL = true;
         enableACME = true;
         enablePhare = true;
-        phare.request = {
-          method = "GET";
-          url = "https://calendar.pascal-wittmann.de/.web/";
-        };
+        phare.request.url = "https://calendar.pascal-wittmann.de/.web/";
         locations."/" = { proxyPass = "http://127.0.0.1:5232"; };
         extraConfig = ''
           add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;

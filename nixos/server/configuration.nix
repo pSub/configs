@@ -1057,10 +1057,7 @@ in  {
           forceSSL = true;
           enableACME = true;
           enablePhare = true;
-          phare.request = {
-            method = "GET";
-            url = "https://phare-nix.quine.de/nixos-options/";
-          };
+          phare.request.url = "https://phare-nix.quine.de/nixos-options/";
           root = "${pharePkgs.docs}";
         };
 
