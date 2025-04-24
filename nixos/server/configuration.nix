@@ -550,13 +550,12 @@ in  {
         MaxSessions = 2;
         MaxAuthTries = 3;
         ClientAliveCountMax = 2;
+        ClientAliveInterval = 300;
         AllowTcpForwarding = "no";
         AllowAgentForwarding = "yes";
         AllowStreamLocalForwarding = "no";
         AuthenticationMethods = "publickey";
         TCPKeepAlive = "no";
-        ClientAliveInterval = 300;
-        ClientAliveCountMax = 3;
       };
 
       # Sysstat
