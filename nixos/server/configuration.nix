@@ -555,6 +555,8 @@ in  {
         AllowStreamLocalForwarding = "no";
         AuthenticationMethods = "publickey";
         TCPKeepAlive = "no";
+        ClientAliveInterval = 300;
+        ClientAliveCountMax = 3;
       };
 
       # Sysstat
