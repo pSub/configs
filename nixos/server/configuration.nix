@@ -263,7 +263,7 @@ in  {
       services.restic.backups.server-data = {
         repository = "sftp://u388595.your-storagebox.de:23/server";
         paths = [ "/nix/persist" ];
-        exclude = [ "/srv/pictures" "/nix/perist/srv/pictures" ];
+        exclude = [ "/srv/pictures" "/nix/persist/srv/pictures" ];
         passwordFile = "/run/secrets/restic/data";
         extraOptions = [
             "sftp.command='ssh u388595-sub3@u388595.your-storagebox.de -p 23 -i /nix/persist/etc/ssh/ssh_backup_ed25519 -o IdentitiesOnly=yes -s sftp'"
