@@ -40,7 +40,7 @@ jobs:
         run: echo "previous_hash=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Install nix
-        uses: cachix/install-nix-action@526118121621777ccd86f79b04685a9319637641 # V31.3.0
+        uses: cachix/install-nix-action@17fe5fb4a23ad6cbbe47d6b3f359611ad276644c # V31.4.0
 
       - name: Update flake lock file
         run: nix flake update --no-warn-dirty
