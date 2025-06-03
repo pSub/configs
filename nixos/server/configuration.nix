@@ -17,7 +17,10 @@ in  {
         ./mtls-secrets.nix
       ];
 
-      nixpkgs.overlays = [ (import ./overlays/paperless-ngx.nix) ];
+      nixpkgs.overlays = [
+        (import ./overlays/paperless-ngx.nix) 
+        (import ./overlays/pam_ssh_agent_auth.nix)
+      ];
 
       nixpkgs.config.allowUnfree = true;
 
