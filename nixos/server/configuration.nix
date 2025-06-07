@@ -1009,6 +1009,7 @@ in  {
           forceSSL = true;
           enableACME = true;
           enablePhare = true;
+          phare.request.url = "https://solidtime.pascal-wittmann.de/login";
           locations."/" = {
             proxyPass = "http://127.0.0.1:3050";
             extraConfig = ''
