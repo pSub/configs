@@ -47,6 +47,7 @@ in  {
         "searx" = { owner = "uwsgi"; };
         "geoip/key" = { };
         "phare/token" = { group = "wheel"; mode = "0440"; };
+        "users/root" = { };
       };
 
       sops.templates = {
@@ -232,6 +233,7 @@ in  {
       nix.settings.trusted-users = [ "root" "deployer" "github" ];
       security.sudo.enable = true;
 
+      users.users.root.hashedPasswordFile = "/run/secrets/users/root";
       # TODO: Separate keys for root and deployer
       users.users.root.openssh.authorizedKeys.keys = config.users.users.deployer.openssh.authorizedKeys.keys ++
                                                      config.users.users.github.openssh.authorizedKeys.keys;
