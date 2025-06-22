@@ -18,7 +18,7 @@
 
   # Set LUKS device.
   boot.initrd.luks.devices.luksroot = {
-    device = "/dev/disk/by-id/wwn-0x500a07510338a9bf-part2"; #sda2
+    device = "/dev/disk/by-id/ata-WD_Green_2.5_1000GB_251439800584-part2";
     preLVM = true;
   };
 
@@ -34,20 +34,15 @@
   boot.loader.grub.enable = true;
 
   # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = "/dev/disk/by-id/wwn-0x500a07510338a9bf";
+  boot.loader.grub.device = "/dev/disk/by-id/ata-WD_Green_2.5_1000GB_251439800584";
+  #boot.loader.grub.device = "/dev/sda1";
 
   # Add filesystem entries for each partition that you want to see
   # mounted at boot time.  This should include at least the root
   # filesystem.
-  fileSystems."/".device = "/dev/mapper/vgroup-root";
-  fileSystems."/boot".device = "/dev/disk/by-id/wwn-0x500a07510338a9bf-part1";
+  fileSystems."/".device = "/dev/mapper/vg0-root";
+  fileSystems."/boot".device = "/dev/disk/by-id/ata-WD_Green_2.5_1000GB_251439800584-part1";
   fileSystems."/tmp" = { device = "tmpfs"; fsType = "tmpfs"; };
-
-  # List swap partitions activated at boot time.
-  swapDevices =
-    [
-      { device = "/dev/mapper/vgroup-swap"; }
-    ];
 
   nix.settings.max-jobs = 4;
 
