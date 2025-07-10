@@ -217,6 +217,7 @@ in  {
         "dev.tty.ldisc_autoload" = mkDefault "0";
       };
 
+      nix.settings.build-dir = "/var/tmp";
       nix.settings.allowed-users = [ ];
       nix.settings.experimental-features = [ "flakes" ];
       nix.settings.max-jobs = 2;
