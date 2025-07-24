@@ -28,7 +28,6 @@ jobs:
         if: ${{ github.event_name == 'schedule' }}
         uses: noirbizarre/need-checks@c3c25343c2a00798e4e9cbc78f6f047a8d14d838 # main
         with:
-          workflow: deploy-server.yml
           conclusions: success,skipped
 
       - name: Checkout repository
