@@ -933,7 +933,7 @@ in  {
           forceSSL = true;
           enableACME = true;
           extraConfig = ''
-            ssl_verify_client on;
+            ssl_verify_client off;
             ssl_client_certificate /run/secrets/mtls/paperless;
             client_max_body_size 0;
           '';
@@ -1064,6 +1064,14 @@ in  {
           enablePhare = true;
           phare.request.url = "https://phare-nix.quine.de/nixos-options/";
           root = "${pharePkgs.docs}";
+        };
+
+        "koillection.quine.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3046";
+          };
         };
 
         "users.pascal-wittmann.de" = {
