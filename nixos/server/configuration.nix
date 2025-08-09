@@ -566,8 +566,8 @@ in  {
 
       # PostgreSQL.
       services.postgresql.enable = true;
-      services.postgresql.package = pkgs.postgresql_15;
-      services.postgresql.dataDir = "/var/lib/postgresql/15";
+      services.postgresql.package = pkgs.postgresql_16;
+      services.postgresql.dataDir = "/var/lib/postgresql/16";
       services.postgresql.authentication = lib.mkForce ''
       # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
