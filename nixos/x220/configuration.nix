@@ -218,7 +218,8 @@ skRh4A2bjJHJGz2Z/EoAj4wcZzmXT+jMnWZtGnA=
 
   # SMART.
   services.smartd.enable = true;
-  services.smartd.devices = [{ device = "/dev/sda"; }];
+  services.smartd.autodetect = false;
+  services.smartd.devices = [{ device = "/dev/disk/by-id/ata-WD_Green_2.5_1000GB_251439800584"; }];
 
   # Mopidy
   services.mopidy.enable = true;
