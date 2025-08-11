@@ -53,7 +53,7 @@ in
         extraConfig = ''
           add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
           add_header X-Content-Type-Options nosniff;
-          add_header Access-Control-Allow-Origin: https://pascal-wittmann.de
+          add_header Access-Control-Allow-Origin "https://pascal-wittmann.de";
           add_header X-Frame-Options DENY;
           add_header Permissions-Policy "camera=(), microphone=(), geolocation=(), fullscreen=()";
           add_header Referrer-Policy "strict-origin-when-cross-origin" always;
