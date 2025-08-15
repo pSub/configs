@@ -136,7 +136,6 @@ in
         pavucontrol
         simple-scan
         signal-desktop
-        unstable.pkgs.super-productivity
         electrum
         viking
         vlc
