@@ -1,6 +1,6 @@
 let
   unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
-  stable = import (fetchTarball https://nixos.org/channels/nixos-24.11/nixexprs.tar.xz) { };
+  stable = import (fetchTarball https://nixos.org/channels/nixos-25.05/nixexprs.tar.xz) { };
 in
 {
 
@@ -63,7 +63,7 @@ in
         file
         ffmpeg
         gnupg
-        gnome.gnome-keyring
+        gnome-keyring
         libxml2
         imagemagick
         parallel
@@ -105,14 +105,14 @@ in
     emacs-env = buildEnv {
       name = "emacs-env";
       paths = [
-        emacs29
+        emacs30
         emacs.pkgs.use-package
         emacs.pkgs.haskell-mode
-        emacs.pkgs.scala-mode
+#        emacs.pkgs.scala-mode
 #        emacs.pkgs.shm
-        emacs.pkgs.writegood-mode
-        emacs.pkgs.magit
-        emacs.pkgs.nix-mode
+#        emacs.pkgs.writegood-mode
+#        emacs.pkgs.magit
+#        emacs.pkgs.nix-mode
         emacs.pkgs.markdown-mode
       ];
     };
@@ -159,7 +159,7 @@ in
       paths = [
         gitFull
         pre-commit
-        #idea.idea-ultimate
+        jetbrains.idea-ultimate
       ];
     };
 
