@@ -31,6 +31,7 @@ in  {
       sops.age.keyFile = "/nix/secret/sops/age/keys.txt";
 
       sops.secrets = {
+        "acmeenv" = { group = config.security.acme.defaults.group; };
         "basicauth/passwords" = { owner = "nginx"; };
         "cifs/pictures" = {};
         "changedetection" = { owner = "changedetection-io"; };
@@ -349,7 +350,8 @@ in  {
 
       security.acme.defaults.email = "contact@pascal-wittmann.de";
       security.acme.acceptTerms = true;
-      security.acme.defaults.server = "https://api.buypass.com/acme/directory";
+      security.acme.defaults.server = "https://acme-api.actalis.com/acme/directory";
+      security.acme.defaults.environmentFile = "/run/secrets/acmeenv" ;
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
