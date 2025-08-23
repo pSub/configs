@@ -31,7 +31,8 @@ in  {
       sops.age.keyFile = "/nix/secret/sops/age/keys.txt";
 
       sops.secrets = {
-        "acmeenv" = { group = config.security.acme.defaults.group; };
+        "acme/kid" = { group = config.security.acme.defaults.group; };
+        "acme/hmac" = { group = config.security.acme.defaults.group; };
         "basicauth/passwords" = { owner = "nginx"; };
         "cifs/pictures" = {};
         "changedetection" = { owner = "changedetection-io"; };
@@ -58,6 +59,14 @@ in  {
             SALTED_PASS="${config.sops.placeholder.changedetection}"
           '';
           owner = "changedetection-io";
+        };
+        "acme.environment" = {
+          content = ''
+            LEGO_EAB=true
+            LEGO_EAB_KID='${config.sops.placeholder."acme/kid"}'
+            LEGO_EAB_HMAC='${config.sops.placeholder."acme/hmac"}'
+          '';
+          group = config.security.acme.defaults.group;
         };
       };
 
@@ -351,7 +360,7 @@ in  {
       security.acme.defaults.email = "contact@pascal-wittmann.de";
       security.acme.acceptTerms = true;
       security.acme.defaults.server = "https://acme-api.actalis.com/acme/directory";
-      security.acme.defaults.environmentFile = "/run/secrets/acmeenv" ;
+      security.acme.defaults.environmentFile = "${config.sops.templates."acme.environment".path}";
 
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
