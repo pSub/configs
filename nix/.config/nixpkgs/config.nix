@@ -130,7 +130,7 @@ in
         #k3b
         llpp
         libreoffice-fresh
-        nextcloud-client
+        unstable.nextcloud-client
         obsidian
         phototonic
         pavucontrol
