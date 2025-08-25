@@ -579,6 +579,7 @@ in  {
       services.postgresql.enable = true;
       services.postgresql.package = pkgs.postgresql_16;
       services.postgresql.dataDir = "/var/lib/postgresql/16";
+      services.postgrest.settings.server-host = "127.0.0.1,172.17.0.1";
       services.postgresql.authentication = lib.mkForce ''
       # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
@@ -589,7 +590,7 @@ in  {
       # IPv6 local connections:
       host    all             all             ::1/128                 trust
 
-      local    solidtime       solidtime                              scram-sha-256
+      host    all             all             172.17.0.1/16           scram-sha-256
 
       # Allow replication connections from localhost, by a user with the
       # replication privilege.
