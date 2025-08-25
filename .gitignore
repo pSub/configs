@@ -1,6 +1,9 @@
+
 *~
 *.hi
 *.o
+.idea
+emacs.bak
 emacs/.emacs.d/elpa
 emacs/.emacs.d/var
 emacs/.emacs.d/bookmarks
