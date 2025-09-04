@@ -1058,7 +1058,7 @@ in  {
           };
         };
 
-        "search.frey.family" = {
+        "search.quine.de" = {
           forceSSL = true;
           enableACME = true;
           enablePhare = true;
