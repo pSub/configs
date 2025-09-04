@@ -601,7 +601,8 @@ in  {
       host    replication     all             127.0.0.1/32            trust
       host    replication     all             ::1/128                 trust
       '';
-      services.postgresqlBackup.databases = [ "atuin" "homepage_production" "nextcloud" "wakapi" "solidtime" ];
+      services.postgresqlBackup.databases = [ "atuin" "homepage_production" "nextcloud" "wakapi" "solidtime"
+        "dawarich" "koillection" ];
       services.postgresqlBackup.enable = true;
       services.postgresqlBackup.location = "/var/backup/postgresql";
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
