@@ -313,7 +313,7 @@ in  {
       networking.firewall.allowPing = true;
       networking.firewall.pingLimit = "--limit 1/second --limit-burst 5";
       networking.firewall.autoLoadConntrackHelpers = false;
-      networking.firewall.trustedInterfaces = [ "br-koillection" "br-solidtime" ];
+      networking.firewall.trustedInterfaces = [ "br-koillection" "br-solidtime" "br-dawarich" ];
       networking.firewall.allowedTCPPorts = [
         80 # http
         443 # https
@@ -582,6 +582,7 @@ in  {
       services.postgresql.dataDir = "/var/lib/postgresql/16";
       services.postgresql.enableTCPIP = true;
       services.postgrest.settings.server-host = "127.0.0.1,172.17.0.1";
+      services.postgresql.extraPlugins = ps: with ps; [ postgis ];
       services.postgresql.authentication = lib.mkForce ''
       # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
@@ -1085,6 +1086,21 @@ in  {
           enableACME = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3046";
+          };
+        };
+
+        "dawarich.quine.de" = {
+          forceSSL = true;
+          enableACME = true;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3047";
+            extraConfig = ''
+              # Set headers
+              proxy_set_header Host              $host;
+              proxy_set_header X-Real-IP         $remote_addr;
+              proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+              proxy_set_header X-Forwarded-Proto $scheme;
+            '';
           };
         };
 
