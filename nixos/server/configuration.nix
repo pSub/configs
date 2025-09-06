@@ -790,6 +790,7 @@ in  {
       services.nginx.recommendedGzipSettings = true;
       services.nginx.recommendedOptimisation = true;
       services.nginx.recommendedTlsSettings = true;
+      services.nginx.recommendedProxySettings = true;
       services.nginx.additionalModules = with pkgs.nginxModules; [
         geoip2
       ];
@@ -865,10 +866,6 @@ in  {
           extraConfig = ''
             proxy_read_timeout 90;
 
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
-
             add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
             add_header X-Content-Type-Options nosniff;
             add_header X-XSS-Protection "1; mode=block";
@@ -888,9 +885,6 @@ in  {
             '';
           };
           extraConfig = ''
-            proxy_set_header X-Forwarded-Host $host;
-            proxy_set_header X-Forwarded-Server $host;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_http_version 1.1;
             proxy_pass_request_headers on;
             proxy_set_header Connection "keep-alive";
@@ -1001,12 +995,6 @@ in  {
               # allow large file uploads
               client_max_body_size 50000M;
 
-              # Set headers
-              proxy_set_header Host              $host;
-              proxy_set_header X-Real-IP         $remote_addr;
-              proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-
               # enable websockets
               proxy_http_version 1.1;
               proxy_set_header   Upgrade    $http_upgrade;
@@ -1032,12 +1020,6 @@ in  {
               if ($is_allowed = 0) {
                 return 403;
               }
-
-              # Set headers
-              proxy_set_header Host              $host;
-              proxy_set_header X-Real-IP         $remote_addr;
-              proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
           '';
           };
         };
@@ -1048,13 +1030,6 @@ in  {
           enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3060";
-            extraConfig = ''
-              # Set headers
-              proxy_set_header Host              $host;
-              proxy_set_header X-Real-IP         $remote_addr;
-              proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-          '';
           };
         };
 
@@ -1064,13 +1039,6 @@ in  {
           enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:8080";
-            extraConfig = ''
-              # Set headers
-              proxy_set_header Host              $host;
-              proxy_set_header X-Real-IP         $remote_addr;
-              proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-            '';
           };
         };
 
@@ -1087,14 +1055,6 @@ in  {
           enableACME = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3046";
-            extraConfig = ''
-              # Set headers
-              proxy_set_header Host              $host;
-              proxy_set_header X-Real-IP         $remote_addr;
-              proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_set_header X-Forwarded-Server $host;
-              '';
           };
         };
 
@@ -1104,12 +1064,6 @@ in  {
           locations."/" = {
             proxyPass = "http://127.0.0.1:3047";
             extraConfig = ''
-              # Set headers
-              proxy_set_header Host              $host;
-              proxy_set_header X-Real-IP         $remote_addr;
-              proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
-              proxy_set_header X-Forwarded-Proto $scheme;
-              proxy_set_header X-Forwarded-Server $host;
               proxy_set_header Upgrade $http_upgrade;
               proxy_cache_bypass $http_upgrade;
               proxy_set_header Connection 'upgrade';
