@@ -267,7 +267,7 @@ in  {
         space_left_action = ignore
         admin_space_left = 5%
         admin_space_left_action = email
-        action_mail_acct = admin@frey.family
+        action_mail_acct = admin@quine.de
         num_logs = 10
         max_log_file = 100
         max_log_file_action = rotate
@@ -295,7 +295,7 @@ in  {
       };
 
       systemd.email-notify.mailTo = "mail@pascal-wittmann.de";
-      systemd.email-notify.mailFrom = "systemd <admin@frey.family>";
+      systemd.email-notify.mailFrom = "systemd <admin@quine.de>";
 
       services.journald.extraConfig = ''
           SystemMaxUse=1G
@@ -451,9 +451,9 @@ in  {
         accounts.default = {
           auth = true;
           tls = true;
-          host = "frey-family.netcup-mail.de";
-          from = "admin@frey.family";
-          user = "admin@frey.family";
+          host = "quine-de.netcup-mail.de";
+          from = "admin@quine.de";
+          user = "admin@quine.de";
           passwordeval = "cat /run/secrets/smtp";
         };
       };

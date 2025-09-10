@@ -81,7 +81,7 @@ in
       script = ''
         export PGPASS=`cat /run/secrets/homepage/db`
         cd /srv/homepage
-	${homepage-app}/bin/homepage
+        ${homepage-app}/bin/homepage
       '';
       serviceConfig = {
         KillSignal = "SIGINT";
@@ -91,7 +91,8 @@ in
         MemoryDenyWriteExecute = true;
         NoNewPrivileges = true;
         PrivateMounts = "yes";
-        PrivateTmp = "yes";ProtectControlGroups = true;
+        PrivateTmp = "yes";
+        ProtectControlGroups = true;
         ProtectHome = "yes";
         ProtectHostname = true;
         ProtectKernelModules = true;
