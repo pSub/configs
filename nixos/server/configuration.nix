@@ -1108,9 +1108,6 @@ in  {
       # Homepage
       services.homepage.enable = true;
 
-      # Baralga
-      #services.baralga.enable = false;
-
       # Netdata
       services.netdata.enable = true;
       services.netdata.config = {
