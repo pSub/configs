@@ -330,7 +330,6 @@ in  {
         ip6tables -I INPUT -p tcp --dport 10801 -m state --state NEW -m recent --update --seconds 10 --hitcount 10 -j DROP
       '';
 
-
       # Select internationalisation properties.
       i18n.defaultLocale = "en_US.UTF-8";
 
@@ -363,8 +362,6 @@ in  {
       security.acme.defaults.server = "https://acme-api.actalis.com/acme/directory";
       security.acme.defaults.environmentFile = "${config.sops.templates."acme.environment".path}";
 
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
       environment.systemPackages = with pkgs; [
         # Install only the alacritty terminfo file
         alacritty.terminfo
@@ -379,8 +376,6 @@ in  {
 
       # Ensure there are no packages except the ones explicitly defined in this config
       environment.defaultPackages = lib.mkForce [];
-
-      # List services that you want to enable:
 
       # AdGuard
       services.adguardhome.enable = true;
@@ -482,7 +477,6 @@ in  {
       environment.etc."logrotate.conf" = {
         source = "${config.services.logrotate.configFile}";
       };
-
 
       # fail2ban
       services.fail2ban.enable = true;
