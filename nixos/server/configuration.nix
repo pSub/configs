@@ -798,6 +798,7 @@ in  {
           default 0;
           DE 1;
           AT 1;
+          GR 1;
         }
 
         map $remote_addr $ip_anonym1 {
