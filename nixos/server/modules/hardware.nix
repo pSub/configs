@@ -11,6 +11,23 @@
   boot.kernelModules = [ "virtio-pci" ];
   boot.extraModulePackages = [ ];
 
+
+  # IP:<ignore>:GATEWAY:NETMASK:HOSTNAME:NIC:AUTCONF?
+  # See: https://www.kernel.org/doc/Documentation/filesystems/nfs/nfsroot.txt
+  boot.kernelParams = [
+    "ip=152.53.0.129::152.53.0.1:152.53.3.255:v22024034028258810.nicesrv.de:enp3s0:off"
+    "debugfs=off"
+  ];
+  networking = {
+    useDHCP = false;
+    interfaces."enp3s0" = {
+      ipv4.addresses = [{ address = "152.53.0.129"; prefixLength = 22; }];
+      ipv6.addresses = [{ address = "2a0a:4cc0:0:10a5::1"; prefixLength = 64; }];
+    };
+    defaultGateway = "152.53.0.1";
+    defaultGateway6 = { address = "fe80::1"; interface = "enp3s0"; };
+  };
+
    fileSystems."/" =
     {
       device = "none";
