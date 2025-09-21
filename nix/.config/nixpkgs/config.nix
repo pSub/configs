@@ -1,5 +1,5 @@
 let
-  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) { };
+  unstable = import (fetchTarball https://nixos.org/channels/nixpkgs-unstable/nixexprs.tar.xz) { };
   stable = import (fetchTarball https://nixos.org/channels/nixos-25.05/nixexprs.tar.xz) { };
 in
 {
@@ -70,7 +70,7 @@ in
         pamixer
         psmisc
         pinpoint
-        planify
+        unstable.planify
         inetutils
         tree
         xfce.tumbler
