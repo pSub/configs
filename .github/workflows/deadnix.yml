@@ -20,6 +20,6 @@ jobs:
       - uses: cachix/cachix-action@0fc020193b5a1fa3ac4575aa3a7d3aa6a35435ad # v16
         with:
           name: deadnix
-      - uses: astro/deadnix-action@ee2dbf0e5d720af59156d620d843fe4964d794ca # main
+      - uses: astro/deadnix-action@e6b9bbace580c30ff1e1bfa4d7e22b1c1d1ce56e # main
         with:
           flags: --no-lambda-arg  
