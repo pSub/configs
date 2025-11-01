@@ -52,7 +52,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install nix
-        uses: cachix/install-nix-action@9280e7aca88deada44c930f1e2c78e21c3ae3edd # V31.7.0
+        uses: cachix/install-nix-action@456688f15bc354bef6d396e4a35f4f89d40bf2b7 # V31.8.2
         with:
           nix_path: nixpkgs=channel:nixos-24.05
 
