@@ -34,7 +34,7 @@
       group = "wheel";
       openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIObCG2o/yDrsEc/uHMAL2TDxRWvSmf1zL1zT7CG15kbE deployer@pascal-wittmann.de"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDc9ad0nrS23JRQeEwSvGp106YnbOQ0Rfjcmh7AX5iij Pascal Wittmann <pascal.wittmann@red6-es.de>"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYufj1+PGMXfmZoOgu7hE8qwkWuyJLlsZVrvxdU25Wz pascal.wittmann@red6-es.de"
       ];
     };
 
