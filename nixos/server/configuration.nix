@@ -297,7 +297,8 @@ in  {
       networking.firewall.allowPing = true;
       networking.firewall.pingLimit = "--limit 1/second --limit-burst 5";
       networking.firewall.autoLoadConntrackHelpers = false;
-      networking.firewall.trustedInterfaces = [ "br-koillection" "br-solidtime" "br-dawarich" ];
+      networking.firewall.trustedInterfaces = [ "br-koillection" "br-solidtime" "br-dawarich"
+       "br-mathesar"];
       networking.firewall.allowedTCPPorts = [
         80 # http
         443 # https
@@ -967,6 +968,20 @@ in  {
           enablePhare = true;
           locations."/" = {
             proxyPass = "http://127.0.0.1:3045";
+            extraConfig = ''
+              if ($is_allowed = 0) {
+                return 403;
+              }
+            '';
+          };
+        };
+
+        "mathesar.quine.de" = {
+          forceSSL = true;
+          enableACME = true;
+          enablePhare = false;
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:3048";
             extraConfig = ''
               if ($is_allowed = 0) {
                 return 403;
