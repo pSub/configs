@@ -3,6 +3,7 @@
 *.hi
 *.o
 .idea
+configs.iml
 emacs.bak
 emacs/.emacs.d/elpa
 emacs/.emacs.d/var
