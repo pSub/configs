@@ -534,7 +534,7 @@ in  {
       ];
       services.openssh.knownHosts.storageBox = {
         publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIICf9svRenC/PLKIL9nk6K/pxQgoiFC41wTNvoIncOxs";
-        hostNames = [ "u388595.your-storagebox.de" ];
+        hostNames = [ "[u388595.your-storagebox.de]:23" "[u465177.your-storagebox.de]:23" ];
       };
       services.openssh.settings =  {
         X11Forwarding = false;
