@@ -4,7 +4,13 @@
 
 { config, pkgs, ... }:
 
-let unstable = import <nixos-unstable> {}; in
+let
+  unstable = import <nixos-unstable> {};
+  hansemerkurCertificates = builtins.fetchGit {
+    url = "git@gitpro.hanse-merkur.de:iti-si/hansemerkur-certificates.git";
+    rev = "eaad9a83173b5608311c8a4e230d20f8d11bdaaf";
+  };
+in
 
 {
   imports =
@@ -43,8 +49,8 @@ let unstable = import <nixos-unstable> {}; in
   };
 
   security.pki.certificateFiles = [
-	/etc/ssl/certs/Hansemerkur-CA.crt
-	/etc/ssl/certs/Hansemerkur-SubCA.crt
+	  "${hansemerkurCertificates}/Hansemerkur-CA.crt"
+	  "${hansemerkurCertificates}/Hansemerkur-SubCA.crt"
   ];
 
   # Enable the X11 windowing system.
