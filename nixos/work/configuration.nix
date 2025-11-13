@@ -5,18 +5,18 @@
 { config, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> {};
+  unstable = import <nixos-unstable> { };
   hansemerkurCertificates = builtins.fetchGit {
     url = "git@gitpro.hanse-merkur.de:iti-si/hansemerkur-certificates.git";
     rev = "eaad9a83173b5608311c8a4e230d20f8d11bdaaf";
   };
-in
 
+in
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -28,7 +28,10 @@ in
   networking.networkmanager.enable = true;
   networking.networkmanager.plugins = [ unstable.networkmanager-openconnect ];
 
-  nix.settings.trusted-users = [ "root" "pascal"  ];
+  nix.settings.trusted-users = [
+    "root"
+    "pascal"
+  ];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -49,8 +52,8 @@ in
   };
 
   security.pki.certificateFiles = [
-	  "${hansemerkurCertificates}/Hansemerkur-CA.crt"
-	  "${hansemerkurCertificates}/Hansemerkur-SubCA.crt"
+    "${hansemerkurCertificates}/Hansemerkur-CA.crt"
+    "${hansemerkurCertificates}/Hansemerkur-SubCA.crt"
   ];
 
   # Enable the X11 windowing system.
@@ -73,11 +76,11 @@ in
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-services.avahi = {
-  enable = true;
-  nssmdns4 = true;
-  openFirewall = true;
-};
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
 
   # Enable sound with pipewire.
   services.pulseaudio.enable = false;
@@ -102,10 +105,14 @@ services.avahi = {
   users.users.pascal = {
     isNormalUser = true;
     description = "Pascal Wittman";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -118,8 +125,8 @@ services.avahi = {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #  wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -140,7 +147,7 @@ services.avahi = {
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   networking.firewall.enable = true;
-networking.firewall.checkReversePath = false;
+  networking.firewall.checkReversePath = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
