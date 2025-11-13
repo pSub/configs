@@ -2,10 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  unstable,
+  ...
+}:
 
 let
-  unstable = import <nixos-unstable> { };
   hansemerkurCertificates = builtins.fetchGit {
     url = "git@gitpro.hanse-merkur.de:iti-si/hansemerkur-certificates.git";
     rev = "eaad9a83173b5608311c8a4e230d20f8d11bdaaf";
@@ -31,6 +35,11 @@ in
   nix.settings.trusted-users = [
     "root"
     "pascal"
+  ];
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
   ];
 
   # Set your time zone.
