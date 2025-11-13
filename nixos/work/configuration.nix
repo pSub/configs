@@ -104,7 +104,7 @@ in
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.pascal = {
     isNormalUser = true;
-    description = "Pascal Wittman";
+    description = "Pascal Wittmann";
     extraGroups = [
       "networkmanager"
       "wheel"
