@@ -32,6 +32,33 @@ in
   networking.networkmanager.enable = true;
   networking.networkmanager.plugins = [ unstable.networkmanager-openconnect ];
 
+  networking.networkmanager.ensureProfiles.profiles = {
+    hansemerkur-vpn = {
+      connection = {
+        id = "HanseMerkur VPN";
+        permissions = "";
+        type = "vpn";
+      };
+      ipv4 = {
+        method = "auto";
+      };
+      ipv6 = {
+        addr-gen-mode = "default";
+        method = "auto";
+      };
+      vpn = {
+        gateway = "vpn.hansemerkur.de/unmanaged_azure";
+        useragent = "AnyConnect";
+        protocol = "anyconnect";
+        service-type = "org.freedesktop.NetworkManager.openconnect";
+        reported_os = "apple-ios";
+      };
+      vpn-secrets = {
+        autoconnect = "no";
+      };
+    };
+  };
+
   nix.settings.trusted-users = [
     "root"
     "pascal"
