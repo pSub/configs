@@ -32,6 +32,12 @@ in
           add_header X-Content-Type-Options nosniff;
           add_header X-XSS-Protection "1; mode=block";
           add_header X-Frame-Options DENY;
+          proxy_set_header  X-Script-Name /;
+          proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+          proxy_set_header  X-Forwarded-Host $host;
+          proxy_set_header  X-Forwarded-Port $server_port;
+          proxy_set_header  X-Forwarded-Proto $scheme;
+          proxy_pass_header Authorization;
         '';
       };
     };
