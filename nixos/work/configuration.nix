@@ -156,6 +156,7 @@ in
   programs.firefox.enable = true;
 
   programs.kdeconnect.enable = true;
+  programs.starship.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
