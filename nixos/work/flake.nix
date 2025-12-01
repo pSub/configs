@@ -2,10 +2,14 @@
   description = "NixOS configuration";
 
   inputs.nixpkgs.url = "nixpkgs/nixos-25.05";
-  inputs.unstable.url = "nixpkgs/nixos-unstable";
+  inputs.red6.url = "git+ssh://git@github.com/red6/nixos-modules";
 
   outputs =
-    inputs@{ nixpkgs, unstable, ... }:
+    inputs@{
+      nixpkgs,
+      red6,
+      ...
+    }:
     let
       system = "x86_64-linux";
     in
@@ -13,10 +17,9 @@
       nixosConfigurations = {
         work = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {
-            unstable = import unstable { inherit system; };
-          };
           modules = [
+            red6.nixosModules.${system}.hansemerkur-vpn
+            red6.nixosModules.${system}.hansemerkur-certificates
             ./hardware-configuration.nix
             ./configuration.nix
           ];

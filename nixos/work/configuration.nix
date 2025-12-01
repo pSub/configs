@@ -5,17 +5,9 @@
 {
   config,
   pkgs,
-  unstable,
   ...
 }:
 
-let
-  hansemerkurCertificates = builtins.fetchGit {
-    url = "git@gitpro.hanse-merkur.de:iti-si/hansemerkur-certificates.git";
-    rev = "eaad9a83173b5608311c8a4e230d20f8d11bdaaf";
-  };
-
-in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -30,34 +22,6 @@ in
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.networkmanager.plugins = [ unstable.networkmanager-openconnect ];
-
-  networking.networkmanager.ensureProfiles.profiles = {
-    hansemerkur-vpn = {
-      connection = {
-        id = "HanseMerkur VPN";
-        permissions = "";
-        type = "vpn";
-      };
-      ipv4 = {
-        method = "auto";
-      };
-      ipv6 = {
-        addr-gen-mode = "default";
-        method = "auto";
-      };
-      vpn = {
-        gateway = "vpn.hansemerkur.de/unmanaged_azure";
-        useragent = "AnyConnect";
-        protocol = "anyconnect";
-        service-type = "org.freedesktop.NetworkManager.openconnect";
-        reported_os = "apple-ios";
-      };
-      vpn-secrets = {
-        autoconnect = "no";
-      };
-    };
-  };
 
   nix.settings.trusted-users = [
     "root"
@@ -86,11 +50,6 @@ in
     LC_TELEPHONE = "de_DE.UTF-8";
     LC_TIME = "de_DE.UTF-8";
   };
-
-  security.pki.certificateFiles = [
-    "${hansemerkurCertificates}/Hansemerkur-CA.crt"
-    "${hansemerkurCertificates}/Hansemerkur-SubCA.crt"
-  ];
 
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
