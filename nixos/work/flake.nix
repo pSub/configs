@@ -1,7 +1,7 @@
 {
   description = "NixOS configuration";
 
-  inputs.nixpkgs.url = "nixpkgs/nixos-25.05";
+  inputs.nixpkgs.url = "nixpkgs/nixos-25.11";
   inputs.red6.url = "git+ssh://git@github.com/red6/nixos-modules";
 
   outputs =
