@@ -26,12 +26,12 @@ jobs:
 
       - name: Ensure that the previous run was successfull, if run is unsupervised
         if: ${{ github.event_name == 'schedule' }}
-        uses: noirbizarre/need-checks@c3c25343c2a00798e4e9cbc78f6f047a8d14d838 # main
+        uses: noirbizarre/need-checks@780f13ea99854c2762470fa3c1b994174531a29d # main
         with:
           conclusions: success,skipped
 
       - name: Checkout repository
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         with:
           fetch-depth: 0
 
@@ -40,7 +40,7 @@ jobs:
         run: echo "previous_hash=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Install nix
-        uses: cachix/install-nix-action@456688f15bc354bef6d396e4a35f4f89d40bf2b7 # V31.8.2
+        uses: cachix/install-nix-action@0b0e072294b088b73964f1d72dfdac0951439dbd # V31.8.4
 
       - name: Update flake lock file
         run: nix flake update --no-warn-dirty
