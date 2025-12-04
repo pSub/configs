@@ -1,50 +1,17 @@
 {
   "nodes": {
-    "flake-utils": {
-      "inputs": {
-        "systems": "systems"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1764522689,
-        "narHash": "sha256-SqUuBFjhl/kpDiVaKLQBoD8TLD+/cTUzzgVFoaHrkqY=",
+        "lastModified": 1764677808,
+        "narHash": "sha256-H3lC7knbXOBrHI9hITQ7modLuX20mYJVhZORL5ioms0=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8bb5646e0bed5dbd3ab08c7a7cc15b75ab4e1d0f",
+        "rev": "1aab89277eb2d87823d5b69bae631a2496cff57a",
         "type": "github"
       },
       "original": {
         "id": "nixpkgs",
         "ref": "nixos-25.11",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs-unstable": {
-      "locked": {
-        "lastModified": 1764517877,
-        "narHash": "sha256-pp3uT4hHijIC8JUK5MEqeAWmParJrgBVzHLNfJDZxg4=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "2d293cbfa5a793b4c50d17c05ef9e385b90edf6c",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "ref": "nixos-unstable",
         "type": "indirect"
       }
     },
@@ -65,16 +32,14 @@
     },
     "red6": {
       "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_2",
-        "nixpkgs-unstable": "nixpkgs-unstable"
+        "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1764796779,
-        "narHash": "sha256-+8Xnv7G7aW0dGLFXxuzelB63vu/O4xP5BMK9p3a7nFg=",
+        "lastModified": 1764838377,
+        "narHash": "sha256-CNJRlD/W+eXxuWf55XHzScZpAsE3CFVZUBpq74hXwq0=",
         "ref": "refs/heads/main",
-        "rev": "225e99e87aefefe8ae1ccc11b4da9bf8097bb3a3",
-        "revCount": 6,
+        "rev": "788cf28cd7b9684b34972ade44839e0976eacd28",
+        "revCount": 7,
         "type": "git",
         "url": "ssh://git@github.com/red6/nixos-modules"
       },
@@ -87,21 +52,6 @@
       "inputs": {
         "nixpkgs": "nixpkgs",
         "red6": "red6"
-      }
-    },
-    "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
       }
     }
   },

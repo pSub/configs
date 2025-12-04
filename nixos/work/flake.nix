@@ -18,8 +18,8 @@
         work = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            red6.nixosModules.${system}.hansemerkur-vpn
-            red6.nixosModules.${system}.hansemerkur-certificates
+            red6.nixosModules.hansemerkur-vpn
+            red6.nixosModules.hansemerkur-certificates
             ./hardware-configuration.nix
             ./configuration.nix
           ];
