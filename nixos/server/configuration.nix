@@ -39,8 +39,8 @@ in  {
         "netdata/telegram" = { owner = "netdata"; };
         "nextcloud/admin" = { owner = "nextcloud"; };
         "nextcloud/db" = { owner = "nextcloud"; };
-        "homepage/db" = { owner = "homepage"; };
-        "paperless/admin" = { owner = "paperless"; };
+      # "homepage/db" = { owner = "homepage"; };
+      # "paperless/admin" = { owner = "paperless"; };
         "wakapi/passwordSalt" = {  };
         "radicale" = { owner = "radicale"; };
         "restic/data" = {};
@@ -351,7 +351,6 @@ in  {
         # Install only the alacritty terminfo file
         alacritty.terminfo
 
-        chkrootkit
         cifs-utils
         htop
         lynis
@@ -606,7 +605,6 @@ in  {
           htpasswd_encryption = "bcrypt";
         };
       };
-      services.radicale.package = pkgs.radicale3;
       services.radicale.nginx.enable = true;
       services.radicale.nginx.hostname = "calendar.pascal-wittmann.de";
 
@@ -685,7 +683,7 @@ in  {
       };
 
       # paperless
-      services.paperless.enable = true;
+      services.paperless.enable = false;
       services.paperless.package = pkgs.paperless-ngx-without-tests;
       services.paperless.dataDir = "/srv/paperless";
       services.paperless.passwordFile = "/run/secrets/paperless/admin";
@@ -1129,7 +1127,7 @@ in  {
       };
 
       # Homepage
-      services.homepage.enable = true;
+      services.homepage.enable = false;
 
       # Netdata
       services.netdata.enable = true;
