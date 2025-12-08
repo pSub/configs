@@ -64,7 +64,7 @@ jobs:
       - name: Run nixos-rebuild
         uses: workflow/nix-shell-action@5fdff26c1325df635247f72cba79ffc370303fdb # v3.4.0
         with:
-          packages: nixos-rebuild
+          packages: nixos-rebuild-ng
           working-directory: nixos/server
           script: |
             sudo cp -r $HOME/.ssh /root
