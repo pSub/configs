@@ -610,7 +610,7 @@ in  {
 
       # nextcloud
       services.nextcloud.enable = true;
-      services.nextcloud.package = pkgs.nextcloud31;
+      services.nextcloud.package = pkgs.nextcloud32;
       services.nextcloud.home = "/srv/nextcloud";
       services.nextcloud.config.adminpassFile = "/run/secrets/nextcloud/admin";
       services.nextcloud.hostName = "cloud.pascal-wittmann.de";
