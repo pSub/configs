@@ -696,7 +696,7 @@ in  {
       # SearxNG
       services.searx = {
         enable = true;
-        runInUwsgi = true;
+        configureUwsgi = true;
         environmentFile = "/run/secrets/searx";
         settings = {
           server.port = 3070; # TODO: Has no effect, maybe because of runInUwsgi = true
