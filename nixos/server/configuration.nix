@@ -303,6 +303,7 @@ in  {
         80 # http
         443 # https
         853 # adguard
+        9999 # tinyproxy
         10801 # ssh
       ];
       networking.firewall.allowedUDPPorts = [
@@ -394,6 +395,14 @@ in  {
           "fullchain.pem:/var/lib/acme/adguard.pascal-wittmann.de/fullchain.pem"
           "key.pem:/var/lib/acme/adguard.pascal-wittmann.de/key.pem"
         ];
+      };
+
+      # tinyproxy
+      services.tinyproxy.enable = true;
+      services.tinyproxy.settings = {
+        Listen = "0.0.0.0";
+        Port = 9999;
+        BasicAuth = "lerke shifter-snack-brick";
       };
 
       # Atuin Sync Server
@@ -610,7 +619,7 @@ in  {
 
       # nextcloud
       services.nextcloud.enable = true;
-      services.nextcloud.package = pkgs.nextcloud31;
+      services.nextcloud.package = pkgs.nextcloud32;
       services.nextcloud.home = "/srv/nextcloud";
       services.nextcloud.config.adminpassFile = "/run/secrets/nextcloud/admin";
       services.nextcloud.hostName = "cloud.pascal-wittmann.de";
