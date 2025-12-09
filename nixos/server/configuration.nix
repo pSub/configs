@@ -560,7 +560,7 @@ in  {
       services.postgresql.dataDir = "/var/lib/postgresql/16";
       services.postgresql.enableTCPIP = true;
       services.postgrest.settings.server-host = "127.0.0.1,172.17.0.1";
-      services.postgresql.extraPlugins = ps: with ps; [ postgis ];
+      services.postgresql.extensions = ps: with ps; [ postgis ];
       services.postgresql.authentication = lib.mkForce ''
       # TYPE  DATABASE        USER            ADDRESS                 METHOD
 
