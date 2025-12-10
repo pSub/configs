@@ -39,7 +39,7 @@ in  {
         "netdata/telegram" = { owner = "netdata"; };
         "nextcloud/admin" = { owner = "nextcloud"; };
         "nextcloud/db" = { owner = "nextcloud"; };
-      # "homepage/db" = { owner = "homepage"; };
+        "homepage/db" = { owner = "homepage"; };
       # "paperless/admin" = { owner = "paperless"; };
         "wakapi/passwordSalt" = {  };
         "radicale" = { owner = "radicale"; };
@@ -1136,7 +1136,7 @@ in  {
       };
 
       # Homepage
-      services.homepage.enable = false;
+      services.homepage.enable = true;
 
       # Netdata
       services.netdata.enable = true;
