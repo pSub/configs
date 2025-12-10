@@ -1,4 +1,4 @@
-{ config, lib, pkgs, pkgs-old, ... }:
+{ config, lib, pkgs, ... }:
 
 with lib;
 let
@@ -9,15 +9,11 @@ let
       pkgs.fetchFromGitHub {
         owner = "pSub";
         repo = "pascal-wittmann.de";
-        rev = "e45bbc3581e97119928085cd0fdb704dcf01b042";
-        hash = "sha256-KTM9cFCV0r3n1yFSJANvRayzF6PAv0dDuSh74QdX+AA==";
+        rev = "8546abd510b0427808aba8ac235339db130e17c9";
+        hash = "sha256-9rna4SZOvTs7eQiW8r5HnBORJ6YE/UWyT2YlTMdpzqw=";
       }
     )
-  ) { nixpkgs =  import (fetchTarball {
-    url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
-    sha256 = "0151xw5fjmdcw761rs5lh1237l6galx0j78bl9557rciwb653sbs";
-  }){};
-   };
+  ) { nixpkgs = pkgs; };
 in
 {
   options = {
