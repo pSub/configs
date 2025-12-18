@@ -50,6 +50,7 @@ in  {
         "geoip/key" = { };
         "phare/token" = { group = "wheel"; mode = "0440"; };
         "users/root" = { };
+        "3proxy" = { };
       };
 
       sops.templates = {
@@ -303,6 +304,7 @@ in  {
         80 # http
         443 # https
         853 # adguard
+        9999 # 3proxy
         10801 # ssh
       ];
       networking.firewall.allowedUDPPorts = [
@@ -393,6 +395,28 @@ in  {
         LoadCredential = [
           "fullchain.pem:/var/lib/acme/adguard.pascal-wittmann.de/fullchain.pem"
           "key.pem:/var/lib/acme/adguard.pascal-wittmann.de/key.pem"
+        ];
+      };
+
+      services._3proxy = {
+        enable = true;
+        services = [
+          { type = "socks";
+            bindPort = 9999;
+            auth = [ "strong" ];
+            acl = [ {
+              rule = "allow";
+              users = [ "lerke" "pascal" ];
+              }
+            ];
+          }
+        ];
+        usersFile = "/run/credentials/3proxy.service/userfile";
+      };
+
+      systemd.services."3proxy".serviceConfig = {
+        LoadCredential = [
+          "userfile:/run/secrets/3proxy"
         ];
       };
 
