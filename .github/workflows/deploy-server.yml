@@ -69,6 +69,6 @@ jobs:
           working-directory: nixos/server
           script: |
             sudo cp -r $HOME/.ssh /root
-            nixos-rebuild switch --no-reexec --flake ".#nixos" --sudo \
+            nixos-rebuild switch --fast --no-reexec --flake ".#nixos" --sudo \
               --target-host "deployer@152.53.0.129" --build-host "deployer@152.53.0.129" \
               --builders 'ssh://deployer@152.53.0.129 aarch64-linux'
