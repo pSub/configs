@@ -832,12 +832,6 @@ in  {
         access_log /var/log/nginx/access.log anonymized;
       '';
       services.nginx.virtualHosts = {
-        "penchy.pascal-wittmann.de" = {
-          forceSSL = true;
-          enableACME = true;
-          enablePhare = true;
-          root = "/srv/penchy";
-        };
 
         "cloud.pascal-wittmann.de" = {
           forceSSL = true;
