@@ -3,8 +3,9 @@
   inputs.sops-nix.url = "github:Mic92/sops-nix";
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   inputs.phare-nix.url = "github:pSub/phare-nix";
+  inputs.homepage-nix.url = "github:pSub/pascal-wittmann.de";
 
-  outputs = { nixpkgs, sops-nix, phare-nix, ... }:
+  outputs = { nixpkgs, sops-nix, phare-nix, homepage-nix, ... }:
     let
       system = "aarch64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -22,6 +23,7 @@
           pharePkgs = {
             docs = phare-nix.packages.${system}.phareNixDocs;
           };
+          homepage-app = homepage-nix.packages.${system}.homepage;
         };
         modules = [
           ./modules/homepage.nix

@@ -1,19 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, homepage-app, ... }:
 
 with lib;
 let
   cfg = config.services.homepage;
-
-  homepage-app = (
-    import (
-      pkgs.fetchFromGitHub {
-        owner = "pSub";
-        repo = "pascal-wittmann.de";
-        rev = "8546abd510b0427808aba8ac235339db130e17c9";
-        hash = "sha256-9rna4SZOvTs7eQiW8r5HnBORJ6YE/UWyT2YlTMdpzqw=";
-      }
-    )
-  ) { nixpkgs = pkgs; };
 in
 {
   options = {
