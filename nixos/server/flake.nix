@@ -24,6 +24,7 @@
           };
         };
         modules = [
+          ./modules/homepage.nix
           ./configuration.nix
           sops-nix.nixosModules.sops
           phare-nix.nixosModules.phare
