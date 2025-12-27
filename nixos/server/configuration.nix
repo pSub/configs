@@ -726,7 +726,7 @@ in  {
           server.port = 3070; # TODO: Has no effect, maybe because of runInUwsgi = true
           server.bind_address = "127.0.0.1";
           server.secret_key = "@SEARX_SECRET_KEY@";
-          use_default_settings.engines.remove = [ "soundcloud" "wikidata "];
+          use_default_settings.engines.remove = [ "soundcloud" "wikidata"];
         };
       };
 
