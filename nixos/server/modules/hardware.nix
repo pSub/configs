@@ -92,6 +92,5 @@
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
-  nixpkgs.buildPlatform = lib.mkDefault "aarch64-linux";
 }
 
