@@ -70,5 +70,5 @@ jobs:
           script: |
             sudo cp -r $HOME/.ssh /root
             nixos-rebuild switch --no-reexec --use-substitutes --flake ".#nixos" --sudo \
-              --target-host "deployer@152.53.0.129" --build-host "deployer@152.53.0.129" \
-              --builders 'ssh://deployer@152.53.0.129 aarch64-linux'
+              --target-host "github@152.53.0.129" --build-host "github@152.53.0.129" \
+              --builders 'ssh://github@152.53.0.129 aarch64-linux'
