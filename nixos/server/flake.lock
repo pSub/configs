@@ -36,17 +36,36 @@
         "type": "github"
       }
     },
+    "flake-utils_3": {
+      "inputs": {
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "homepage-nix": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "yesod-csp-nix": "yesod-csp-nix"
       },
       "locked": {
-        "lastModified": 1766871994,
-        "narHash": "sha256-CCwWmi6y3gqgY1jubUfxZUhRVM+rLixbioNMbbvtW9E=",
+        "lastModified": 1766945184,
+        "narHash": "sha256-uO29gKV4P0Zlz99KO6g3q3hnvorHbJFIPa9d26Di4hA=",
         "owner": "pSub",
         "repo": "pascal-wittmann.de",
-        "rev": "2b29230758430303d2fdc59090baab2180394055",
+        "rev": "51f8d7c9bac1a8b86bf90bc9afd79aeb3f52c213",
         "type": "github"
       },
       "original": {
@@ -75,6 +94,22 @@
       "locked": {
         "lastModified": 1766736597,
         "narHash": "sha256-BASnpCLodmgiVn0M1MU2Pqyoz0aHwar/0qLkp7CjvSQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "f560ccec6b1116b22e6ed15f4c510997d99d5852",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-25.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1766736597,
+        "narHash": "sha256-BASnpCLodmgiVn0M1MU2Pqyoz0aHwar/0qLkp7CjvSQ=",
         "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "f560ccec6b1116b22e6ed15f4c510997d99d5852",
@@ -87,7 +122,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1756346337,
         "narHash": "sha256-al0UcN5mXrO/p5lcH0MuQaj+t97s3brzCii8GfCBMuA=",
@@ -105,8 +140,8 @@
     },
     "phare-nix": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_3"
+        "flake-utils": "flake-utils_3",
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1764762960,
@@ -125,7 +160,7 @@
     "root": {
       "inputs": {
         "homepage-nix": "homepage-nix",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "phare-nix": "phare-nix",
         "sops-nix": "sops-nix"
       }
@@ -137,11 +172,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766289575,
-        "narHash": "sha256-BOKCwOQQIP4p9z8DasT5r+qjri3x7sPCOq+FTjY8Z+o=",
+        "lastModified": 1766894905,
+        "narHash": "sha256-pn8AxxfajqyR/Dmr1wnZYdUXHgM3u6z9x0Z1Ijmz2UQ=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "9836912e37aef546029e48c8749834735a6b9dad",
+        "rev": "61b39c7b657081c2adc91b75dd3ad8a91d6f07a7",
         "type": "github"
       },
       "original": {
@@ -177,6 +212,40 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_3": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "yesod-csp-nix": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1766944313,
+        "narHash": "sha256-lPZy7qJoOk3VSqvNScbT3VV4XtsMgvZ+pJ3aFew7JeI=",
+        "owner": "pSub",
+        "repo": "yesod-csp",
+        "rev": "95131d40a9221c1136b41d48428f774c9e9fb52b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pSub",
+        "repo": "yesod-csp",
         "type": "github"
       }
     }
