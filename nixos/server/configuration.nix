@@ -39,7 +39,7 @@ in  {
         "nextcloud/admin" = { owner = "nextcloud"; };
         "nextcloud/db" = { owner = "nextcloud"; };
         "homepage/db" = { owner = "homepage"; };
-      # "paperless/admin" = { owner = "paperless"; };
+        "paperless/admin" = { owner = "paperless"; };
         "wakapi/passwordSalt" = {  };
         "radicale" = { owner = "radicale"; };
         "restic/data" = {};
@@ -706,7 +706,7 @@ in  {
       };
 
       # paperless
-      services.paperless.enable = false;
+      services.paperless.enable = true;
       services.paperless.package = pkgs.paperless-ngx-without-tests;
       services.paperless.dataDir = "/srv/paperless";
       services.paperless.passwordFile = "/run/secrets/paperless/admin";
