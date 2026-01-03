@@ -52,7 +52,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install nix
-        uses: cachix/install-nix-action@0b0e072294b088b73964f1d72dfdac0951439dbd # V31.8.4
+        uses: cachix/install-nix-action@4e002c8ec80594ecd40e759629461e26c8abed15 # V31.9.0
         with:
           # FIXME: Somehow nix-shell ignores NIX_PATH, see https://github.com/NixOS/nix/issues/10246
           nix_path: nixpkgs=channel:nixos-25.11
