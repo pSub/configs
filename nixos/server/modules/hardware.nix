@@ -55,28 +55,28 @@
     {
       device = "/nix/persist/etc/nixos";
       fsType = "none";
-      options = [ "bind" ];
+      options = [ "bind" "mode=0755" ];
     };
 
   fileSystems."/home" =
     {
       device = "/nix/persist/home";
       fsType = "none";
-      options = [ "bind" ];
+      options = [ "bind" "mode=0755" ];
     };
 
   fileSystems."/var" =
     {
       device = "/nix/persist/var";
       fsType = "none";
-      options = [ "bind" ];
+      options = [ "bind" "mode=0755" ];
     };
 
   fileSystems."/srv" =
     {
       device = "/nix/persist/srv";
       fsType = "none";
-      options = [ "bind" ];
+      options = [ "bind" "mode=0755" ];
     };
 
   fileSystems."/srv/pictures" = {
