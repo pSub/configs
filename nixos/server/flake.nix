@@ -3,7 +3,9 @@
   inputs.sops-nix.url = "github:Mic92/sops-nix";
   inputs.sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   inputs.phare-nix.url = "github:pSub/phare-nix";
+  inputs.phare-nix.inputs.nixpkgs.follows = "nixpkgs";
   inputs.homepage-nix.url = "github:pSub/pascal-wittmann.de";
+  inputs.homepage-nix.inputs.nixpkgs.follows = "nixpkgs";
 
   outputs = { nixpkgs, sops-nix, phare-nix, homepage-nix, ... }:
     let
