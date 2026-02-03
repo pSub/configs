@@ -63,11 +63,11 @@
         "yesod-csp-nix": "yesod-csp-nix"
       },
       "locked": {
-        "lastModified": 1768401527,
-        "narHash": "sha256-AxxSMp7LUnfC3LPMqVV/Yn0KKmMQUEYTla++bKxYn/U=",
+        "lastModified": 1770019345,
+        "narHash": "sha256-1RWNTyVx9Cpeg/dwflh3y9cIRhFNX4cTeZok7GBxE3Y=",
         "owner": "pSub",
         "repo": "pascal-wittmann.de",
-        "rev": "b562c2a739b3279587a06c3b8a36d4af5f5a9734",
+        "rev": "8d032c21dca86fb6166cc5f8c864d50ddb5ef075",
         "type": "github"
       },
       "original": {
@@ -100,11 +100,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1767300796,
-        "narHash": "sha256-OyTW9fWPAkncH/Bi86tq+Jk7xLrmsqhpBtdUipsu/C4=",
+        "lastModified": 1770019302,
+        "narHash": "sha256-s+w2aT7H4FHxfPwWFnnDPq8cGYf8nUE4BFYXIwZqlWo=",
         "owner": "pSub",
         "repo": "phare-nix",
-        "rev": "a46a8b48edb0f78f48e1403799a6454f0a6392ee",
+        "rev": "942a343dc78e2177aba882ad7874be88371a93a5",
         "type": "github"
       },
       "original": {
