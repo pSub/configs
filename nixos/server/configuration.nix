@@ -211,6 +211,12 @@ in  {
         "dev.tty.ldisc_autoload" = mkDefault "0";
       };
 
+      systemd.tmpfiles.settings."10-var-tmp"."/var/tmp".d = {
+        mode = "0755";
+        user = "root";
+        group = "root";
+      };
+
       nix.settings.build-dir = "/var/tmp";
       nix.settings.allowed-users = [ ];
       nix.settings.experimental-features = [ "flakes" ];
