@@ -20,5 +20,10 @@
       format = "binary";
       owner = "nginx";
      };
+    "mtls/vaultwarden" = {
+      sopsFile = ./mtls/vaultwarden.yaml;
+      format = "binary";
+      owner = "nginx";
+     };
   };
 }
