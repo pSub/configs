@@ -63,11 +63,11 @@
         "yesod-csp-nix": "yesod-csp-nix"
       },
       "locked": {
-        "lastModified": 1771622602,
-        "narHash": "sha256-WVBYY+zCWf2oQsPJ4DWG2MUST9IpKf6ZG1BFkAxSFms=",
+        "lastModified": 1772396284,
+        "narHash": "sha256-rkm05InB/uz0I4J6ex+Pma054ReZUY+54wLbajGpGvo=",
         "owner": "pSub",
         "repo": "pascal-wittmann.de",
-        "rev": "275fdab61edd725cea11bd4d51063763e8e2355f",
+        "rev": "5427153d315e7bf24142ebfdd82ce79d0f2aa698",
         "type": "github"
       },
       "original": {
@@ -100,11 +100,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770019302,
-        "narHash": "sha256-s+w2aT7H4FHxfPwWFnnDPq8cGYf8nUE4BFYXIwZqlWo=",
+        "lastModified": 1772396215,
+        "narHash": "sha256-qLJGXDE+CdjN5sPU/xazPARDmnlRAF0Wot0v6ZHiAPI=",
         "owner": "pSub",
         "repo": "phare-nix",
-        "rev": "942a343dc78e2177aba882ad7874be88371a93a5",
+        "rev": "728c0494f722432072e5c1b7298b419092f522cf",
         "type": "github"
       },
       "original": {
@@ -128,11 +128,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1772048434,
-        "narHash": "sha256-/wA0OaH6kZ/pFA+nXR/tvg5oupOmEDmMS5us79JT60o=",
+        "lastModified": 1772401007,
+        "narHash": "sha256-YHykQg0h9hrlZGpMcywnaFzQ1Kn/5YNCCOSaaAl6z7Q=",
         "owner": "Mic92",
         "repo": "sops-nix",
-        "rev": "334daa7c273dd8bf7a0cd370e4e16022b64e55e9",
+        "rev": "d8be5ea4cd3bc363492ab5bc6e874ccdc5465fe4",
         "type": "github"
       },
       "original": {
