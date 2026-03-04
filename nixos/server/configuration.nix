@@ -35,7 +35,6 @@ in  {
         "basicauth/passwords" = { owner = "nginx"; };
         "cifs/pictures" = {};
         "changedetection" = { owner = "changedetection-io"; };
-        "netdata/telegram" = { owner = "netdata"; };
         "nextcloud/admin" = { owner = "nextcloud"; };
         "nextcloud/db" = { owner = "nextcloud"; };
         "homepage/db" = { owner = "homepage"; };
@@ -886,31 +885,6 @@ in  {
           '';
         };
 
-        "netdata.pascal-wittmann.de" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:19999";
-            extraConfig = ''
-              if ($is_allowed = 0) {
-                return 403;
-              }
-            '';
-          };
-          extraConfig = ''
-            proxy_http_version 1.1;
-            proxy_pass_request_headers on;
-            proxy_set_header Connection "keep-alive";
-            proxy_store off;
-
-            ssl_verify_client on;
-            ssl_client_certificate /run/secrets/mtls/netdata;
-
-            auth_basic "Password protected area";
-            auth_basic_user_file /run/secrets/basicauth/passwords;
-          '';
-        };
-
         "adguard.pascal-wittmann.de" = {
           forceSSL = true;
           enableACME = true;
@@ -1154,20 +1128,6 @@ in  {
 
       # Homepage
       services.homepage.enable = true;
-
-      # Netdata
-      services.netdata.enable = true;
-      services.netdata.config = {
-        global = {
-          "debug log" = "syslog";
-          "access log" = "syslog";
-          "error log" = "syslog";
-        };
-      };
-
-      services.netdata.configDir = {
-       "health_alarm_notify.conf" = "/run/secrets/netdata/telegram";
-      };
 
       # Enable zsh
       programs.zsh.enable = true;
