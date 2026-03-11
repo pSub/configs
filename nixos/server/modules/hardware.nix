@@ -89,7 +89,10 @@
       in ["${automount_opts},credentials=/run/secrets/cifs/pictures,uid=nextcloud,gid=nextcloud"];
     };
 
-  swapDevices = [ ];
+  swapDevices = [{
+    device = "/nix/swapfile";
+    size = 16 * 1024; # 16GB
+  }];
 
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";
   nixpkgs.buildPlatform = lib.mkDefault "aarch64-linux";
