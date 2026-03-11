@@ -1144,4 +1144,29 @@ in  {
       # Was enabled by changedetection.io, not sure why it seems to work without it.
       # If dns_enabled is true it leads to conflicts between aardvark and adguard.
       virtualisation.podman.defaultNetwork.settings.dns_enabled = lib.mkForce false;
+
+
+      services.gitea-actions-runner = {
+          package = pkgs.forgejo-runner;
+
+          instances.quine = {
+              enable = true;
+              name = "quine";
+              url = "https://codeberg.org";
+              # FIXME: Provide secret via sops
+              tokenFile = "/etc/runner-token";
+              labels = [
+                "ubuntu-22.04:docker://node:20-bullseye"
+              ];
+              settings = {
+                container = {
+                    network = "bridge";
+                };
+              };
+          };
+      };
+
+      systemd.services.gitea-runner-quine = {
+        restartIfChanged = false;
+      };
 }
