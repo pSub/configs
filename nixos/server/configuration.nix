@@ -303,7 +303,7 @@ in  {
       networking.firewall.pingLimit = "--limit 1/second --limit-burst 5";
       networking.firewall.autoLoadConntrackHelpers = false;
       networking.firewall.trustedInterfaces = [ "br-koillection" "br-solidtime" "br-dawarich"
-       "br-mathesar"];
+       "br-mathesar" "br-gitea-runner" ];
       networking.firewall.allowedTCPPorts = [
         80 # http
         443 # https
@@ -1156,11 +1156,13 @@ in  {
               # FIXME: Provide secret via sops
               tokenFile = "/etc/runner-token";
               labels = [
-                "ubuntu-22.04:docker://node:20-bullseye"
+                "quine-node:docker://node:25"
+                "quine-nix:docker://nixos/nix:latest"
               ];
               settings = {
                 container = {
-                    network = "bridge";
+                    network = "br-gitea-runner";
+                    options = "--dns=9.9.9.9";
                 };
               };
           };
