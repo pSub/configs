@@ -302,8 +302,8 @@ in  {
       networking.firewall.allowPing = true;
       networking.firewall.pingLimit = "--limit 1/second --limit-burst 5";
       networking.firewall.autoLoadConntrackHelpers = false;
-      networking.firewall.trustedInterfaces = [ "br-koillection" "br-solidtime" "br-dawarich"
-       "br-mathesar" "br-gitea-runner" ];
+      networking.firewall.trustedInterfaces = [ "br-solidtime" "br-dawarich" "br-mathesar"
+        "br-gitea-runner" ];
       networking.firewall.allowedTCPPorts = [
         80 # http
         443 # https
@@ -608,7 +608,7 @@ in  {
       host    replication     all             ::1/128                 trust
       '';
       services.postgresqlBackup.databases = [ "atuin" "homepage_production" "nextcloud" "wakapi" "solidtime"
-        "dawarich" "koillection" ];
+        "dawarich" ];
       services.postgresqlBackup.enable = true;
       services.postgresqlBackup.location = "/var/backup/postgresql";
       services.postgresqlBackup.startAt = "*-*-* 02:15:00";
@@ -1074,19 +1074,6 @@ in  {
           enablePhare = true;
           phare.request.url = "https://phare-nix.quine.de/nixos-options/";
           root = "${pharePkgs.docs}";
-        };
-
-        "koillection.quine.de" = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            proxyPass = "http://127.0.0.1:3046";
-            extraConfig = ''
-              if ($is_allowed = 0) {
-                return 403;
-              }
-            '';
-          };
         };
 
         "dawarich.quine.de" = {
