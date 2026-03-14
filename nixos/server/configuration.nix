@@ -17,7 +17,7 @@ in  {
       ];
 
       nixpkgs.overlays = [
-        (import ./overlays/paperless-ngx.nix) 
+        (import ./overlays/paperless-ngx.nix)
         (import ./overlays/pam_ssh_agent_auth.nix)
       ];
 
@@ -394,7 +394,7 @@ in  {
           private_key_path = "/run/credentials/adguardhome.service/key.pem";
         };
       };
-      
+
       systemd.services.adguardhome.serviceConfig = {
         LoadCredential = [
           "fullchain.pem:/var/lib/acme/adguard.pascal-wittmann.de/fullchain.pem"
@@ -453,7 +453,7 @@ in  {
               "127.0.0.1:3061:3000"
             ];
             extraOptions = [ "--dns=9.9.9.9" ];
-          };} 
+          };}
         ];
       };
 
@@ -790,6 +790,20 @@ in  {
         };
       };
 
+      services.renovate.enable = true;
+      services.renovate.schedule = "weekly";
+      services.renovate.settings = {
+        endpoint = "https://codeberg.org/api/v1";
+        gitAuthor = "Renovate <renovate@quine.de>";
+        platform = "forgejo";
+        repositories = [
+          "pSub/pascal-wittmann.de"
+        ];
+      };
+      services.renovate.credentials = {
+        RENOVATE_TOKEN = "/etc/renovate-token";
+      };
+
       # nginx
       services.nginx.enable = true;
       services.nginx.recommendedBrotliSettings = true;
@@ -1114,7 +1128,7 @@ in  {
               auth_basic_user_file /run/secrets/basicauth/passwords;
             '';
           };
-          
+
 
           extraConfig = ''
             add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
