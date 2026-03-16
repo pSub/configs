@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> This repository has been moved from GitHub to Codeberg (https://codeberg.org/pSub/configs). 
+> The GitHub repository is archieved will no longer receive updates. Please update your bookmarks and clones accordingly.
+
 # Pascal's Configuration Files
 
 These are the configuration files I actively use. I use them to set up my
